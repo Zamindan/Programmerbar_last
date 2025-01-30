@@ -32,7 +32,7 @@ void app_main(void)
     {
         ESP_ERROR_CHECK(adc_oneshot_read(adc1_test, ADC_CHANNEL_0, &adc_raw));
         Vin = ((adc_raw * Vcc) / Dmax);
-        ESP_LOGI("ADC_TEST", "ADC%d Channel[%d] Raw data: %d, Voltage: %f, Test for a new branch!", ADC_UNIT_1, ADC_CHANNEL_0, adc_raw, Vin);
+        ESP_LOGI("ADC_TEST", "ADC%d Channel[%d] Raw data: %d, Voltage: %f", ADC_UNIT_1, ADC_CHANNEL_0, adc_raw, Vin);
         vTaskDelay(pdMS_TO_TICKS(100));
     }
 }
