@@ -1,0 +1,227 @@
+[0;32mI (99) esp_image: segment 2: paddr=0001d754 vaddr=40374000 size=ESP-ROM:esp32s3-20210327[0m
+Build:Mar 27 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4037831e
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2810,len:0x15a0
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xd20
+load:0x403cb700,len:0x2ee4
+entry 0x403c8928
+[0;32mI (26) boot: ESP-IDF v5.4-dirty 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Jan 29 2025 10:24:47[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (27) boot: chip revision: v0.2[0m
+[0;32mI (30) boot: efuse block revision: v1.3[0m
+[0;32mI (34) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (37) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32s3: SPI Flash Size : 8MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3c020020 size=0ac54h ( 44116) map[0m
+[0;32mI (96) esp_image: segment 1: paddr=0001ac7c vaddr=3fc92200 size=02ad0h ( 10960) load[0m
+[0;32mI (99) esp_image: segment 2: paddr=0001d754 vaddr=40374000 size=028c4h ( 10436) load[0m
+[0;32mI (106) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=195c4h (103876) map[0m
+[0;32mI (129) esp_image: segment 4: paddr=000395ec vaddr=403768c4 size=0b868h ( 47208) load[0m
+[0;32mI (140) esp_image: segment 5: paddr=00044e5c vaddr=600fe100 size=0001ch (    28) load[0m
+[0;32mI (146) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (146) boot: Disabling RNG early entropy source...[0m
+[0;32mI (158) cpu_start: Multicore app[0m
+[0;32mI (167) cpu_start: Pro cpu start user code[0m
+[0;32mI (167) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (167) app_init: Application information:[0m
+[0;32mI (167) app_init: Project name:     Programmerbar_last[0m
+[0;32mI (172) app_init: App version:      1[0m
+[0;32mI (175) app_init: Compile time:     Jan 29 2025 10:24:32[0m
+[0;32mI (180) app_init: ELF file SHA256:  4867bdd74...[0m
+[0;32mI (185) app_init: ESP-IDF:          v5.4-dirty[0m
+[0;32mI (189) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (193) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (197) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (200) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (207) heap_init: At 3FC955E0 len 00054130 (336 KiB): RAM[0m
+[0;32mI (212) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (217) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (222) heap_init: At 600FE11C len 00001ECC (7 KiB): RTCRAM[0m
+[0;32mI (228) spi_flash: detected chip: gd[0m
+[0;32mI (231) spi_flash: flash io: dio[0m
+[0;32mI (234) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (240) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (247) main_task: Started on CPU0[0m
+[0;32mI (257) main_task: Calling app_main()[0m
+[0;32mI (257) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 116, Voltage: 0[0m
+[0;32mI (357) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 29, Voltage: 0[0m
+[0;32mI (457) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 27, Voltage: 0[0m
+[0;32mI (557) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 26, Voltage: 0[0m
+[0;32mI (657) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 28, Voltage: 0[0m
+[0;32mI (757) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 29, Voltage: 0[0m
+[0;32mI (857) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 29, Voltage: 0[0m
+[0;32mI (957) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 31, Voltage: 0[0m
+[0;32mI (1057) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 31, Voltage: 0[0m
+[0;32mI (1157) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 28, Voltage: 0[0m
+[0;32mI (1257) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 27, Voltage: 0[0m
+[0;32mI (1357) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 29, Voltage: 0[0m
+[0;32mI (1457) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 27, Voltage: 0[0m
+[0;32mI (1557) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 27, Voltage: 0[0m
+[0;32mI (1657) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 29, Voltage: 0[0m
+[0;32mI (1757) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 28, Voltage: 0[0m
+[0;32mI (1857) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 26, Voltage: 0[0m
+[0;32mI (1957) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 30, Voltage: 0[0m
+[0;32mI (2057) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 31, Voltage: 0[0m
+[0;32mI (2157) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 29, Voltage: 0[0m
+[0;32mI (2257) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 30, Voltage: 0[0m
+[0;32mI (2357) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 36, Voltage: 0[0m
+[0;32mI (2457) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 29, Voltage: 0[0m
+[0;32mI (2557) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 29, Voltage: 0[0m
+[0;32mI (2657) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 31, Voltage: 0[0m
+[0;32mI (2757) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 29, Voltage: 0[0m
+[0;32mI (2857) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 29, Voltage: 0[0m
+[0;32mI (2957) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 30, Voltage: 0[0m
+[0;32mI (3057) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 31, Voltage: 0[0m
+[0;32mI (3157) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 29, Voltage: 0[0m
+[0;32mI (3257) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 28, Voltage: 0[0m
+[0;32mI (3357) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 31, Voltage: 0[0m
+[0;32mI (3457) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 30, Voltage: 0[0m
+[0;32mI (3557) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 29, Voltage: 0[0m
+[0;32mI (3657) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 29, Voltage: 0[0m
+[0;32mI (3757) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 29, Voltage: 0[0m
+[0;32mI (3857) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 29, Voltage: 0[0m
+[0;32mI (3957) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 29, Voltage: 0[0m
+[0;32mI (4057) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 31, Voltage: 0[0m
+[0;32mI (4157) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 30, Voltage: 0[0m
+[0;32mI (4257) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 29, Voltage: 0[0m
+[0;32mI (4357) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 33, Voltage: 0[0m
+[0;32mI (4457) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 33, Voltage: 0[0m
+[0;32mI (4557) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 29, Voltage: 0[0m
+[0;32mI (4657) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 29, Voltage: 0[0m
+[0;32mI (4757) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 30, Voltage: 0[0m
+[0;32mI (4857) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 29, Voltage: 0[0m
+[0;32mI (4957) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 31, Voltage: 0[0m
+[0;32mI (5057) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 30, Voltage: 0[0m
+[0;32mI (5157) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 30, Voltage: 0[0m
+[0;32mI (5257) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 36, Voltage: 0[0m
+[0;32mI (5357) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 35, Voltage: 0[0m
+[0;32mI (5457) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 37, Voltage: 0[0m
+[0;32mI (5557) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 33, Voltage: 0[0m
+[0;32mI (5657) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 34, Voltage: 0[0m
+[0;32mI (5757) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 38, Voltage: 0[0m
+[0;32mI (5857) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 35, Voltage: 0[0m
+[0;32mI (5957) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 40, Voltage: 0[0m
+[0;32mI (6057) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 36, Voltage: 0[0m
+[0;32mI (6157) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 37, Voltage: 0[0m
+[0;32mI (6257) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 35, Voltage: 0[0m
+[0;32mI (6357) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 38, Voltage: 0[0m
+[0;32mI (6457) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 38, Voltage: 0[0m
+[0;32mI (6557) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 33, Voltage: 0[0m
+[0;32mI (6657) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 33, Voltage: 0[0m
+[0;32mI (6757) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 36, Voltage: 0[0m
+[0;32mI (6857) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 33, Voltage: 0[0m
+[0;32mI (6957) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (7057) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (7157) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 35, Voltage: 0[0m
+[0;32mI (7257) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 33, Voltage: 0[0m
+[0;32mI (7357) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 36, Voltage: 0[0m
+[0;32mI (7457) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 38, Voltage: 0[0m
+[0;32mI (7557) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 36, Voltage: 0[0m
+[0;32mI (7657) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 37, Voltage: 0[0m
+[0;32mI (7757) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 37, Voltage: 0[0m
+[0;32mI (7857) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 37, Voltage: 0[0m
+[0;32mI (7957) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (8057) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 41, Voltage: 0[0m
+[0;32mI (8157) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 40, Voltage: 0[0m
+[0;32mI (8257) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 40, Voltage: 0[0m
+[0;32mI (8357) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 42, Voltage: 0[0m
+[0;32mI (8457) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 41, Voltage: 0[0m
+[0;32mI (8557) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 41, Voltage: 0[0m
+[0;32mI (8657) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 41, Voltage: 0[0m
+[0;32mI (8757) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 43, Voltage: 0[0m
+[0;32mI (8857) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 41, Voltage: 0[0m
+[0;32mI (8957) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 45, Voltage: 0[0m
+[0;32mI (9057) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 41, Voltage: 0[0m
+[0;32mI (9157) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 43, Voltage: 0[0m
+[0;32mI (9257) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 42, Voltage: 0[0m
+[0;32mI (9357) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 42, Voltage: 0[0m
+[0;32mI (9457) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 40, Voltage: 0[0m
+[0;32mI (9557) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 40, Voltage: 0[0m
+[0;32mI (9657) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (9757) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 41, Voltage: 0[0m
+[0;32mI (9857) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (9957) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (10057) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (10157) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (10257) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (10357) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 41, Voltage: 0[0m
+[0;32mI (10457) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 40, Voltage: 0[0m
+[0;32mI (10557) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 37, Voltage: 0[0m
+[0;32mI (10657) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 37, Voltage: 0[0m
+[0;32mI (10757) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (10857) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 40, Voltage: 0[0m
+[0;32mI (10957) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 40, Voltage: 0[0m
+[0;32mI (11057) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 37, Voltage: 0[0m
+[0;32mI (11157) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 41, Voltage: 0[0m
+[0;32mI (11257) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (11357) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 42, Voltage: 0[0m
+[0;32mI (11457) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 40, Voltage: 0[0m
+[0;32mI (11557) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (11657) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 37, Voltage: 0[0m
+[0;32mI (11757) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 38, Voltage: 0[0m
+[0;32mI (11857) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 41, Voltage: 0[0m
+[0;32mI (11957) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 40, Voltage: 0[0m
+[0;32mI (12057) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 36, Voltage: 0[0m
+[0;32mI (12157) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 38, Voltage: 0[0m
+[0;32mI (12257) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 37, Voltage: 0[0m
+[0;32mI (12357) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 40, Voltage: 0[0m
+[0;32mI (12457) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (12557) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 37, Voltage: 0[0m
+[0;32mI (12657) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 37, Voltage: 0[0m
+[0;32mI (12757) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (12857) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 38, Voltage: 0[0m
+[0;32mI (12957) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 37, Voltage: 0[0m
+[0;32mI (13057) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 41, Voltage: 0[0m
+[0;32mI (13157) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 37, Voltage: 0[0m
+[0;32mI (13257) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 38, Voltage: 0[0m
+[0;32mI (13357) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (13457) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (13557) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (13657) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 36, Voltage: 0[0m
+[0;32mI (13757) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 40, Voltage: 0[0m
+[0;32mI (13857) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 38, Voltage: 0[0m
+[0;32mI (13957) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 38, Voltage: 0[0m
+[0;32mI (14057) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (14157) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (14257) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 45, Voltage: 0[0m
+[0;32mI (14357) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (14457) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 40, Voltage: 0[0m
+[0;32mI (14557) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 43, Voltage: 0[0m
+[0;32mI (14657) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (14757) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 41, Voltage: 0[0m
+[0;32mI (14857) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 40, Voltage: 0[0m
+[0;32mI (14957) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (15057) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 39, Voltage: 0[0m
+[0;32mI (15157) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 40, Voltage: 0[0m
+[0;32mI (15257) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 40, Voltage: 0[0m
+[0;32mI (15357) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 41, Voltage: 0[0m
+[0;32mI (15457) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 43, Voltage: 0[0m
+[0;32mI (15557) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 42, Voltage: 0[0m
+[0;32mI (15657) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 41, Voltage: 0[0m
+[0;32mI (15757) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 43, Voltage: 0[0m
+[0;32mI (15857) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 45, Voltage: 0[0m
+[0;32mI (15957) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 45, Voltage: 0[0m
+[0;32mI (16057) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 45, Voltage: 0[0m
+[0;32mI (16157) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 47, Voltage: 0[0m
+[0;32mI (16257) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 47, Voltage: 0[0m
+[0;32mI (16357) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 47, Voltage: 0[0m
+[0;32mI (16457) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 47, Voltage: 0[0m
+[0;32mI (16557) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 51, Voltage: 0[0m
+[0;32mI (16657) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 52, Voltage: 0[0m
+[0;32mI (16757) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 53, Voltage: 0[0m
+[0;32mI (16857) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 48, Voltage: 0[0m
+[0;32mI (16957) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 51, Voltage: 0[0m
+[0;32mI (17057) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 51, Voltage: 0[0m
+[0;32mI (17157) ADC_TEST_TAG: ADC0 Channel[0] Raw data: 53,

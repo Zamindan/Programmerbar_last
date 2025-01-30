@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/Espressif/**",
+                "C:/Espressif/frameworks/esp-idf-v5.4/components/freertos/**",
+                "C:/Espressif/frameworks/esp-idf-v5.4/components/freertos/FreeRTOS-Kernel-SMP/portable/**",
+                "C:/Espressif/frameworks/esp-idf-v5.4/components/freertos/FreeRTOS-Kernel-SMP/portable/linux/include/freertos",
+                "C:/Espressif/frameworks/esp-idf-v5.4/components/freertos/FreeRTOS-Kernel-SMP/portable/riscv/include/freertos",
+                "C:/Espressif/frameworks/esp-idf-v5.4/components/freertos/FreeRTOS-Kernel-SMP/portable/xtensa/include/freertos"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "compilerPath": "C:\\TDM-GCC-64\\bin\\gcc.exe",
+            "cStandard": "c17",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "windows-gcc-x64"
+        }
+    ],
+    "version": 4
+}

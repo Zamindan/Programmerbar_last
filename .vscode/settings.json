@@ -1,0 +1,31 @@
+{
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [
+                "/k",
+                "C:/Espressif/idf_cmd_init.bat esp-idf-1d48cf7427aa464d60cc013d481736ef"
+            ],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        }
+    },
+    "files.associations": {
+        "freertos.h": "c",
+        "portable.h": "c",
+        "stdio.h": "c",
+        "portmacro.h": "c",
+        "led_strip.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}
