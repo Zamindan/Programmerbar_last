@@ -13,7 +13,7 @@ GitHub Desktop er et verktøy som gjør det enkelt å jobbe med Git og GitHub. I
   2. Installer programmet.
   3. Lag og/eller logg inn med GitHub-konto.
 
-### 3. Klone reositoryet
+### 3. Klone repository
 Nå må du klone prosjektets repository til din maskin.
   1. Åpne GitHub Desktop
   2. Klikk på **File > Clone Repository**.
