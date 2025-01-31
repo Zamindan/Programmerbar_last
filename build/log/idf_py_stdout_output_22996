@@ -1,0 +1,1 @@
+could not open port '\\\\.\\COM3': OSError(22, 'The semaphore timeout period has expired.', None, 121)

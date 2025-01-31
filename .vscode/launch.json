@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "preLaunchTask": "preRun",
+            "name": "ESP32-S3 OpenOCD",
+            "type": "cppdbg",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/build",
+            "program": "${workspaceFolder}/build/Programmerbar_last.elf",
+            "miDebuggerPath": "C:/Espressif/tools/xtensa-esp-elf-gdb/14.2_20240403/xtensa-esp-elf-gdb/bin/xtensa-esp32-elf-gdb.exe",
+            "setupCommands": [
+                {"text": "target remote localhost:3333"}
+                {"text": "set remote hardware-watchpoint-limit 2"},
+                {"text": "monitor reset halt"},
+                {"text": "flushregs"},
+                {"text": "mon program_esp build/bootloader/bootloader.bin 0x0 verify"},
+                {"text": "mon program_esp build/partition_table/partition_table.bin 0x8000 verify"},
+                {"text": "mon program_esp build/Programmerbar_last.bin 0x10000 verify"},
+                {"text": "monitor reset halt"},
+                {"text": "flushregs"}
+            ]
+        }
+    ]
+}

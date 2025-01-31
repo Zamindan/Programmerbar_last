@@ -25,7 +25,8 @@
         "portable.h": "c",
         "stdio.h": "c",
         "portmacro.h": "c",
-        "led_strip.h": "c"
+        "led_strip.h": "c",
+        "esp_log.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
