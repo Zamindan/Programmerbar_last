@@ -50,8 +50,8 @@ void app_main(void)
     while (1)
     {
         ESP_ERROR_CHECK(adc_oneshot_read(adc1_test, ADC_CHANNEL_0, &adc_raw));
-        Vin = ((adc_raw * Vcc) / Dmax);
-        ratio = (float)(adc_raw/Dmax);
+        Vin = (adc_raw * Vcc / Dmax);
+        ratio = adc_raw/Dmax;
         SDM_DENSITY_FLOAT = (ratio * (float)SDM_MAX - (float)SDM_MIN);
         SDM_DENSITY = (int)SDM_DENSITY_FLOAT;
         SDM_VOLTAGE = ((Vin/SDM_MAX)*(SDM_DENSITY+256) + Vin/2);

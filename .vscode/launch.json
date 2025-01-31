@@ -18,7 +18,7 @@
                 {"text": "monitor reset halt"},
                 {"text": "flushregs"},
                 {"text": "mon program_esp build/bootloader/bootloader.bin 0x0 verify"},
-                {"text": "mon program_esp build/partition_table/partition_table.bin 0x8000 verify"},
+                {"text": "mon program_esp build/partition_table/partition-table.bin 0x8000 verify"},
                 {"text": "mon program_esp build/Programmerbar_last.bin 0x10000 verify"},
                 {"text": "monitor reset halt"},
                 {"text": "flushregs"}
