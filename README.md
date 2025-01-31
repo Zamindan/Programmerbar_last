@@ -4,8 +4,9 @@ Dette er alt som har med programmering å gjøre for den programmerbare lasten.
 Først må du installere ESP-IDF. Dette er et rammeverk som brukes for å programmere ESP32 mikrokontrollere. I vårt tilfelle ESP32-S3
   1. Gå til [ESP_IDF Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/get-started/index.html).
   2. Følg instruksjonene for Windows.
+  3. Trykk på **Windows Installer** under **Manual Installation**. 
  > [!CAUTION]
- > 3. Pass på at path for installasjonen blir `C:/Espressif`.
+ > 4. Pass på at path for installasjonen blir `C:/Espressif`.
 
 ### 2. Installer GitHub Desktop
 GitHub Desktop er et verktøy som gjør det enkelt å jobbe med Git og GitHub. Installer det for å klone og jobbe med repositoryet.
