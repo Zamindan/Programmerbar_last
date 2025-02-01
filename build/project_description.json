@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "Programmerbar_last",
-    "project_version":    "1",
+    "project_version":    "d27d454-dirty",
     "project_path":       "C:/Programmerbar_last",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.4",
     "build_dir":          "C:/Programmerbar_last/build",
@@ -11,7 +11,7 @@
     "app_elf":            "Programmerbar_last.elf",
     "app_bin":            "Programmerbar_last.bin",
     "build_type":         "flash_app",
-    "git_revision":       "v5.4-dirty",
+    "git_revision":       "v5.4",
     "target":             "esp32s3",
     "rev":                "",
     "min_rev":            "0",
