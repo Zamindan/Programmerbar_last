@@ -23,7 +23,8 @@ Nå må du klone prosjektets repository til din maskin.
   > [!Caution]
   > 5. Pass på at Pathen du velger ikke har noen spesialsymboler som **SPACE, andre spesialtegn og Norske bokstaver**.
 
-### 4. Konfigurer `init_esp_idf.bat`
+> [!IMPORTANT] ### 4. Konfigurer `init_esp_idf.bat`
+> Dere kan hoppe over punkt 4, for meg og TD var ikke dette noe som måtte gjøres.
 I repositoryet finner du en mappe kalt `tools` som inneholder en fil kalt `init_esp_idf.bat`. Denne filen må du endre slik at den fungerer på din maskin.
   1. Åpne `tools/init_esp_idf.bat` i VS Code.
   2. I denne filen må du legge til en unik identifikator fra din ESP-IDF installasjon
