@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "Programmerbar_last",
-    "project_version":    "96c9eb7-dirty",
+    "project_version":    "232d230-dirty",
     "project_path":       "C:/Programmerbar_last",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.4",
     "build_dir":          "C:/Programmerbar_last/build",

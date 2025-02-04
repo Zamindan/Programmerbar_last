@@ -1,38 +1,46 @@
 #include <stdio.h>
 #include "driver/gpio.h"
+#include "driver/sdm.h"
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "driver/i2c_master.h"
-#include "driver/i2c_slave.h"
+#include "esp_adc/adc_oneshot.h"
+#include "driver/ledc.h"
 
-#define PORT_NUMBER -1
-#define SCL_IO_PIN GPIO_NUM_12
-#define SDA_IO_PIN GPIO_NUM_13
-#define data 0xFF0000
 void app_main(void)
 {
-    i2c_master_bus_config_t i2c_mst_config = {
-        .clk_source = I2C_CLK_SRC_DEFAULT,
-        .i2c_port = PORT_NUMBER,
-        .scl_io_num = SCL_IO_PIN,
-        .sda_io_num = SDA_IO_PIN,
-        .glitch_ignore_cnt = 7,
-        .flags.enable_internal_pullup = true,
-    };
-    i2c_master_bus_handle_t bus_handle;
+    gpio_set_pull_mode(GPIO_NUM_10, GPIO_PULLDOWN_ONLY);
 
-    ESP_ERROR_CHECK(i2c_new_master_bus(&i2c_mst_config, &bus_handle));
+    ledc_timer_config_t pwm_timer = {
+        .clk_cfg = LEDC_AUTO_CLK,
+        .speed_mode = LEDC_LOW_SPEED_MODE,
+        .duty_resolution = LEDC_TIMER_14_BIT,
+        .timer_num = LEDC_TIMER_0,
+        .freq_hz = 4000};
+    ESP_ERROR_CHECK(ledc_timer_config(&pwm_timer));
 
+    ledc_channel_config_t pwm_config = {
+        .gpio_num = GPIO_NUM_10,
+        .speed_mode = LEDC_LOW_SPEED_MODE,
+        .channel = LEDC_CHANNEL_0,
+        .timer_sel = LEDC_TIMER_0,
+        .intr_type = LEDC_INTR_DISABLE,
+        .duty = 0,
+        .hpoint = 0};
+    ESP_ERROR_CHECK(ledc_channel_config(&pwm_config));
 
-    i2c_device_config_t dev_cfg = {
-        .dev_addr_length = I2C_ADDR_BIT_LEN_7,
-        .device_address = 0x2A,
-        .scl_speed_hz = 100000,
-    };
-    i2c_master_dev_handle_t dev_handle;
+    while (1)
+    {
+        for (int i = 15000; i < 16383; i++)
+        {
+            ESP_ERROR_CHECK(ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, i));
 
-    ESP_ERROR_CHECK(i2c_master_bus_add_device(bus_handle, &dev_cfg, &dev_handle));
+            ESP_ERROR_CHECK(ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0));
 
-    ESP_ERROR_CHECK(i2c_master_transmit(dev_handle, &data, 100, -1));
+            if (i == 16383) {
+                i = 15000;
+            }
+            vTaskDelay(1);
+        }
+    }
 }
