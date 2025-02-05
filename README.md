@@ -25,7 +25,7 @@ Nå må du klone prosjektets repository til din maskin.
 
 ### 4. Konfigurer `init_esp_idf.bat`
 > [!IMPORTANT]
-> Dere kan hoppe over punkt 4, for meg og TD var ikke dette noe som måtte gjøres.
+> Dere kan hoppe over hele dette punktet, for meg og TD var ikke dette noe som måtte gjøres.
 
 I repositoryet finner du en mappe kalt `tools` som inneholder en fil kalt `init_esp_idf.bat`. Denne filen må du endre slik at den fungerer på din maskin.
   1. Åpne `tools/init_esp_idf.bat` i VS Code.
