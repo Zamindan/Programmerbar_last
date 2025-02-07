@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "Programmerbar_last", "index.html", [
+  [ "Programmable load", "index.html", [
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
       [ "File Members", "globals.html", [

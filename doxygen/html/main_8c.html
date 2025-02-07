@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Programmerbar_last: main/main.c File Reference</title>
+<title>Programmable load: main/main.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -32,8 +32,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Programmerbar_last
+   <div id="projectname">Programmable load
    </div>
+   <div id="projectbrief">Programmable load circuit for testing power supplies and logging data</div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -107,22 +108,29 @@ $(function(){initNavTree('main_8c.html',''); initResizable(true); });
   <div class="headertitle"><div class="title">main.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Hovedfil for applikasjonen.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &quot;driver/gpio.h&quot;</code><br />
-<code>#include &quot;driver/sdm.h&quot;</code><br />
 <code>#include &quot;esp_log.h&quot;</code><br />
 <code>#include &quot;freertos/FreeRTOS.h&quot;</code><br />
 <code>#include &quot;freertos/task.h&quot;</code><br />
-<code>#include &quot;esp_adc/adc_oneshot.h&quot;</code><br />
 <code>#include &quot;driver/ledc.h&quot;</code><br />
-</div><table class="memberdecls">
+</div>
+<p><a href="main_8c_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a630544a7f0a2cc40d8a7fefab7e2fe70" id="r_a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a630544a7f0a2cc40d8a7fefab7e2fe70">app_main</a> (void)</td></tr>
 <tr class="memdesc:a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hovedfunksjon for applikasjonen.  <br /></td></tr>
 <tr class="separator:a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Hovedfil for applikasjonen. </p>
+
+<p class="definition">Definition in file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="a630544a7f0a2cc40d8a7fefab7e2fe70" name="a630544a7f0a2cc40d8a7fefab7e2fe70"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a630544a7f0a2cc40d8a7fefab7e2fe70">&#9670;&#160;</a></span>app_main()</h2>
 
@@ -139,20 +147,45 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Hovedfunksjon for applikasjonen. </p>
-<p>Denne funksjonen konfigurerer GPIO, PWM-timer og PWM-kanal, og kjører en uendelig løkke som justerer PWM-duty cycle. </p>
-<p>&lt; Automatisk klokkevalg for PWM-timer</p>
-<p>&lt; Lav hastighetsmodus for PWM</p>
-<p>&lt; 14-bit oppløsning for duty cycle</p>
-<p>&lt; Timer nummer 0</p>
-<p>&lt; Frekvens på 4000 Hz</p>
-<p>&lt; GPIO nummer 10 for PWM-utgang</p>
-<p>&lt; Lav hastighetsmodus for PWM</p>
-<p>&lt; PWM-kanal 0</p>
-<p>&lt; Bruk timer 0 for denne kanalen</p>
-<p>&lt; Deaktiver avbrudd for PWM</p>
-<p>&lt; Start duty cycle på 0</p>
-<p>&lt; Høydepunkt for PWM</p>
+<p>Konfigurerer GPIO og PWM, og kjører en uendelig løkke for å justere PWM-duty cycle. </p>
+<p>PWM-timer konfigurasjon (4000 Hz, 14-bit oppløsning)</p>
+<p>PWM-kanal konfigurasjon for GPIO 10</p>
 
+<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00018">18</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   19</span> {</div>
+<div class="line"><span class="lineno">   20</span>     <span class="comment">// Konfigurer GPIO 10 med pull-down</span></div>
+<div class="line"><span class="lineno">   21</span>     gpio_set_pull_mode(GPIO_NUM_10, GPIO_PULLDOWN_ONLY);</div>
+<div class="line"><span class="lineno">   22</span> </div>
+<div class="line"><span class="lineno">   26</span>     ledc_timer_config_t pwm_timer = {</div>
+<div class="line"><span class="lineno">   27</span>         .clk_cfg = LEDC_AUTO_CLK,</div>
+<div class="line"><span class="lineno">   28</span>         .speed_mode = LEDC_LOW_SPEED_MODE,</div>
+<div class="line"><span class="lineno">   29</span>         .duty_resolution = LEDC_TIMER_14_BIT,</div>
+<div class="line"><span class="lineno">   30</span>         .timer_num = LEDC_TIMER_0,</div>
+<div class="line"><span class="lineno">   31</span>         .freq_hz = 4000</div>
+<div class="line"><span class="lineno">   32</span>     };</div>
+<div class="line"><span class="lineno">   33</span>     ESP_ERROR_CHECK(ledc_timer_config(&amp;pwm_timer));</div>
+<div class="line"><span class="lineno">   34</span>     </div>
+<div class="line"><span class="lineno">   38</span>     ledc_channel_config_t pwm_config = {</div>
+<div class="line"><span class="lineno">   39</span>         .gpio_num = GPIO_NUM_10,</div>
+<div class="line"><span class="lineno">   40</span>         .speed_mode = LEDC_LOW_SPEED_MODE,</div>
+<div class="line"><span class="lineno">   41</span>         .channel = LEDC_CHANNEL_0,</div>
+<div class="line"><span class="lineno">   42</span>         .timer_sel = LEDC_TIMER_0,</div>
+<div class="line"><span class="lineno">   43</span>         .intr_type = LEDC_INTR_DISABLE,</div>
+<div class="line"><span class="lineno">   44</span>         .duty = 0,</div>
+<div class="line"><span class="lineno">   45</span>         .hpoint = 0</div>
+<div class="line"><span class="lineno">   46</span>     };</div>
+<div class="line"><span class="lineno">   47</span>     ESP_ERROR_CHECK(ledc_channel_config(&amp;pwm_config));</div>
+<div class="line"><span class="lineno">   48</span> </div>
+<div class="line"><span class="lineno">   49</span>     <span class="keywordflow">while</span> (1) {</div>
+<div class="line"><span class="lineno">   50</span>         <span class="comment">// Øk PWM-duty cycle sakte fra 15000 til 16383</span></div>
+<div class="line"><span class="lineno">   51</span>         <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 15000; i &lt; 16383; i++) {</div>
+<div class="line"><span class="lineno">   52</span>             ESP_ERROR_CHECK(ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, i));</div>
+<div class="line"><span class="lineno">   53</span>             ESP_ERROR_CHECK(ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0));</div>
+<div class="line"><span class="lineno">   54</span>             vTaskDelay(1);</div>
+<div class="line"><span class="lineno">   55</span>         }</div>
+<div class="line"><span class="lineno">   56</span>     }</div>
+<div class="line"><span class="lineno">   57</span> }</div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

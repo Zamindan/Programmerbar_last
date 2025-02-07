@@ -1,0 +1,49 @@
+\doxysection{main.\+c}
+\hypertarget{main_8c_source}{}\label{main_8c_source}\index{main/main.c@{main/main.c}}
+\mbox{\hyperlink{main_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00006}00006\ \textcolor{preprocessor}{\ \#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00007}00007\ \textcolor{preprocessor}{\ \#include\ "{}driver/gpio.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00008}00008\ \textcolor{preprocessor}{\ \#include\ "{}esp\_log.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00009}00009\ \textcolor{preprocessor}{\ \#include\ "{}freertos/FreeRTOS.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00010}00010\ \textcolor{preprocessor}{\ \#include\ "{}freertos/task.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00011}00011\ \textcolor{preprocessor}{\ \#include\ "{}driver/ledc.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00012}00012\ \ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00018}\mbox{\hyperlink{main_8c_a630544a7f0a2cc40d8a7fefab7e2fe70}{00018}}\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8c_a630544a7f0a2cc40d8a7fefab7e2fe70}{app\_main}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00019}00019\ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00020}00020\ \ \ \ \ \ \textcolor{comment}{//\ Konfigurer\ GPIO\ 10\ med\ pull-\/down}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00021}00021\ \ \ \ \ \ gpio\_set\_pull\_mode(GPIO\_NUM\_10,\ GPIO\_PULLDOWN\_ONLY);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00022}00022\ \ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00026}00026\ \ \ \ \ \ ledc\_timer\_config\_t\ pwm\_timer\ =\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00027}00027\ \ \ \ \ \ \ \ \ \ .clk\_cfg\ =\ LEDC\_AUTO\_CLK,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00028}00028\ \ \ \ \ \ \ \ \ \ .speed\_mode\ =\ LEDC\_LOW\_SPEED\_MODE,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00029}00029\ \ \ \ \ \ \ \ \ \ .duty\_resolution\ =\ LEDC\_TIMER\_14\_BIT,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00030}00030\ \ \ \ \ \ \ \ \ \ .timer\_num\ =\ LEDC\_TIMER\_0,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00031}00031\ \ \ \ \ \ \ \ \ \ .freq\_hz\ =\ 4000}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00032}00032\ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00033}00033\ \ \ \ \ \ ESP\_ERROR\_CHECK(ledc\_timer\_config(\&pwm\_timer));}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00034}00034\ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00038}00038\ \ \ \ \ \ ledc\_channel\_config\_t\ pwm\_config\ =\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00039}00039\ \ \ \ \ \ \ \ \ \ .gpio\_num\ =\ GPIO\_NUM\_10,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00040}00040\ \ \ \ \ \ \ \ \ \ .speed\_mode\ =\ LEDC\_LOW\_SPEED\_MODE,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00041}00041\ \ \ \ \ \ \ \ \ \ .channel\ =\ LEDC\_CHANNEL\_0,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00042}00042\ \ \ \ \ \ \ \ \ \ .timer\_sel\ =\ LEDC\_TIMER\_0,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00043}00043\ \ \ \ \ \ \ \ \ \ .intr\_type\ =\ LEDC\_INTR\_DISABLE,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00044}00044\ \ \ \ \ \ \ \ \ \ .duty\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00045}00045\ \ \ \ \ \ \ \ \ \ .hpoint\ =\ 0}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00046}00046\ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00047}00047\ \ \ \ \ \ ESP\_ERROR\_CHECK(ledc\_channel\_config(\&pwm\_config));}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00048}00048\ \ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00049}00049\ \ \ \ \ \ \textcolor{keywordflow}{while}\ (1)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Øk\ PWM-\/duty\ cycle\ sakte\ fra\ 15000\ til\ 16383}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 15000;\ i\ <\ 16383;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_ERROR\_CHECK(ledc\_set\_duty(LEDC\_LOW\_SPEED\_MODE,\ LEDC\_CHANNEL\_0,\ i));}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_ERROR\_CHECK(ledc\_update\_duty(LEDC\_LOW\_SPEED\_MODE,\ LEDC\_CHANNEL\_0));}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ vTaskDelay(1);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00056}00056\ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00057}00057\ \ \}}
+
+\end{DoxyCode}
