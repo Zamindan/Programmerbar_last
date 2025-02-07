@@ -5,37 +5,32 @@
 \DoxyCodeLine{\Hypertarget{adc_8c_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
 \DoxyCodeLine{\Hypertarget{adc_8c_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}esp\_adc/adc\_oneshot.h"{}}}
 \DoxyCodeLine{\Hypertarget{adc_8c_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}esp\_log.h"{}}}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00004}00004\ }
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00005}\mbox{\hyperlink{adc_8h_a851561680d70fffd097028f2adcf032e}{00005}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{adc_8c_a851561680d70fffd097028f2adcf032e}{adc\_unit\_init}}(adc\_oneshot\_unit\_handle\_t\ adc\_handle\_name,\ adc\_oneshot\_unit\_init\_cfg\_t\ adc\_config\_name,\ adc\_unit\_t\ adc\_unit\_name)}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00006}00006\ \{}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00007}00007\ \ \ \ \ \textcolor{comment}{//\ Initaliserer\ ADC\ unit}}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00008}00008\ \ \ \ \ adc\_oneshot\_unit\_handle\_t\ adc\_handle\_name;\ \textcolor{comment}{//\ Lager\ en\ ADC\ handle}}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00009}00009\ \ \ \ \ adc\_oneshot\_unit\_init\_cfg\_t\ adc\_config\_name\ =\ \{}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00010}00010\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lager\ en\ konfigurasjon\ som\ denne\ ADC\ uniten\ kommer\ til\ å\ bruke}}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00011}00011\ \ \ \ \ \ \ \ \ .unit\_id\ =\ adc\_unit\_name,}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00012}00012\ \ \ \ \ \ \ \ \ .ulp\_mode\ =\ ADC\_ULP\_MODE\_DISABLE,}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00013}00013\ \ \ \ \ \};}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00014}00014\ \ \ \ \ ESP\_ERROR\_CHECK(adc\_oneshot\_new\_unit(\&adc\_config\_name,\ \&adc\_handle\_name));\ \textcolor{comment}{//\ Lager\ ADC\ uniten\ som\ vi\ har\ laget\ navn\ og\ konfigurert\ over}}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00015}00015\ \}}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00016}00016\ }
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00017}\mbox{\hyperlink{adc_8h_ac8c7126a1af0d8e46906bec35e903ae4}{00017}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{adc_8c_ac8c7126a1af0d8e46906bec35e903ae4}{adc\_channel\_init}}(adc\_oneshot\_unit\_handle\_t\ adc\_handle\_name,\ adc\_oneshot\_unit\_init\_cfg\_t\ adc\_config\_name,\ adc\_oneshot\_chan\_cfg\_t\ channel\_config\_name,\ adc\_channel\_t\ adc\_channel,\ adc\_bitwidth\_t\ bid\_width,\ adc\_atten\_t\ attenuation)}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00018}00018\ \{}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00019}00019\ \ \ \ \ \textcolor{comment}{//Initialiserer\ ADC\ kanal}}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00020}00020\ \ \ \ \ adc\_oneshot\_chan\_cfg\_t\ channel\_config\_name\ =\ \{}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00021}00021\ \ \ \ \ \ \ \ \ .bitwidth\ =\ bid\_width,}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00022}00022\ \ \ \ \ \ \ \ \ .atten\ =\ attenuation,}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00023}00023\ \ \ \ \ \};}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00024}00024\ \ \ \ \ ESP\_ERROR\_CHECK(adc\_oneshot\_config\_channel(adc\_handle\_name,\ adc\_channel,\ \&adc\_config\_name));}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00025}00025\ \}}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00026}00026\ }
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00027}\mbox{\hyperlink{adc_8h_a5759baf0efdf08e53d80053a550f57f5}{00027}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{adc_8c_a5759baf0efdf08e53d80053a550f57f5}{adc\_read}}(adc\_oneshot\_unit\_handle\_t\ adc\_handle\_name,\ adc\_oneshot\_chan\_cfg\_t\ channel\_config\_name)\{}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00028}00028\ \ \ \ \ \textcolor{keywordtype}{int}\ adc\_raw;}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00029}00029\ \ \ \ \ ESP\_ERROR\_CHECK(adc\_oneshot\_config\_channel(adc\_handle\_name,\ channel\_config\_name,\ \&adc\_raw));}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00030}00030\ \ \ \ \ \textcolor{keywordflow}{return}\ adc\_raw;}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00031}00031\ \}}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00032}00032\ }
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00033}\mbox{\hyperlink{adc_8h_a5961f162a41bde459b5dab22d131a04c}{00033}}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{adc_8c_a5961f162a41bde459b5dab22d131a04c}{adc\_raw\_to\_voltage}}(\textcolor{keywordtype}{int}\ adc\_raw,\ \textcolor{keywordtype}{float}\ Vref,\ \textcolor{keywordtype}{int}\ max\_adc\_value)\{}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{return}\ ((\textcolor{keywordtype}{float})adc\_raw\ *\ Vref)\ /\ max\_adc\_value;}
-\DoxyCodeLine{\Hypertarget{adc_8c_source_l00035}00035\ \}}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00011}\mbox{\hyperlink{adc_8h_a851561680d70fffd097028f2adcf032e}{00011}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{adc_8c_a851561680d70fffd097028f2adcf032e}{adc\_unit\_init}}(adc\_oneshot\_unit\_handle\_t\ adc\_handle\_name,\ adc\_oneshot\_unit\_init\_cfg\_t\ adc\_config\_name,\ adc\_unit\_t\ adc\_unit\_name)}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00012}00012\ \{}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00013}00013\ \ \ \ \ \textcolor{comment}{//\ Initaliserer\ ADC\ unit}}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00014}00014\ \ \ \ \ adc\_oneshot\_unit\_handle\_t\ adc\_handle\_name;\ \textcolor{comment}{//\ Lager\ en\ ADC\ handle}}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00015}00015\ \ \ \ \ adc\_oneshot\_unit\_init\_cfg\_t\ adc\_config\_name\ =\ \{}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lager\ en\ konfigurasjon\ som\ denne\ ADC\ uniten\ kommer\ til\ å\ bruke}}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00017}00017\ \ \ \ \ \ \ \ \ .unit\_id\ =\ adc\_unit\_name,}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00018}00018\ \ \ \ \ \ \ \ \ .ulp\_mode\ =\ ADC\_ULP\_MODE\_DISABLE,}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00019}00019\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00020}00020\ \ \ \ \ ESP\_ERROR\_CHECK(adc\_oneshot\_new\_unit(\&adc\_config\_name,\ \&adc\_handle\_name));\ \textcolor{comment}{//\ Lager\ ADC\ uniten\ som\ vi\ har\ laget\ navn\ og\ konfigurert\ over}}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00021}00021\ \}}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00033}\mbox{\hyperlink{adc_8h_ac8c7126a1af0d8e46906bec35e903ae4}{00033}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{adc_8c_ac8c7126a1af0d8e46906bec35e903ae4}{adc\_channel\_init}}(adc\_oneshot\_unit\_handle\_t\ adc\_handle\_name,\ adc\_oneshot\_unit\_init\_cfg\_t\ adc\_config\_name,\ adc\_oneshot\_chan\_cfg\_t\ channel\_config\_name,\ adc\_channel\_t\ adc\_channel,\ adc\_bitwidth\_t\ bid\_width,\ adc\_atten\_t\ attenuation)}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00034}00034\ \{}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00035}00035\ \ \ \ \ \textcolor{comment}{//Initialiserer\ ADC\ kanal}}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00036}00036\ \ \ \ \ adc\_oneshot\_chan\_cfg\_t\ channel\_config\_name\ =\ \{}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00037}00037\ \ \ \ \ \ \ \ \ .bitwidth\ =\ bid\_width,}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00038}00038\ \ \ \ \ \ \ \ \ .atten\ =\ attenuation,}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00039}00039\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00040}00040\ \ \ \ \ ESP\_ERROR\_CHECK(adc\_oneshot\_config\_channel(adc\_handle\_name,\ adc\_channel,\ \&adc\_config\_name));}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00041}00041\ \}}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00050}\mbox{\hyperlink{adc_8h_a5759baf0efdf08e53d80053a550f57f5}{00050}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{adc_8c_a5759baf0efdf08e53d80053a550f57f5}{adc\_read}}(adc\_oneshot\_unit\_handle\_t\ adc\_handle\_name,\ adc\_oneshot\_chan\_cfg\_t\ channel\_config\_name)\{}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00051}00051\ \ \ \ \ \textcolor{keywordtype}{int}\ adc\_raw;}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00052}00052\ \ \ \ \ ESP\_ERROR\_CHECK(adc\_oneshot\_config\_channel(adc\_handle\_name,\ channel\_config\_name,\ \&adc\_raw));}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00053}00053\ \ \ \ \ \textcolor{keywordflow}{return}\ adc\_raw;}
+\DoxyCodeLine{\Hypertarget{adc_8c_source_l00054}00054\ \}}
 
 \end{DoxyCode}

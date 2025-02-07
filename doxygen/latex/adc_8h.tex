@@ -5,11 +5,11 @@
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{adc_8h_a851561680d70fffd097028f2adcf032e}{adc\+\_\+unit\+\_\+init}} (adc\+\_\+oneshot\+\_\+unit\+\_\+handle\+\_\+t adc\+\_\+handle\+\_\+name, adc\+\_\+oneshot\+\_\+unit\+\_\+init\+\_\+cfg\+\_\+t adc\+\_\+config\+\_\+name, adc\+\_\+unit\+\_\+t adc\+\_\+unit\+\_\+name)
-\item 
+\begin{DoxyCompactList}\small\item\em Initialise a ADC unit. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{adc_8h_ac8c7126a1af0d8e46906bec35e903ae4}{adc\+\_\+channel\+\_\+init}} (adc\+\_\+oneshot\+\_\+unit\+\_\+handle\+\_\+t adc\+\_\+handle\+\_\+name, adc\+\_\+oneshot\+\_\+unit\+\_\+init\+\_\+cfg\+\_\+t adc\+\_\+config\+\_\+name, adc\+\_\+oneshot\+\_\+chan\+\_\+cfg\+\_\+t channel\+\_\+config\+\_\+name, adc\+\_\+channel\+\_\+t adc\+\_\+channel, adc\+\_\+bitwidth\+\_\+t bid\+\_\+width, adc\+\_\+atten\+\_\+t attenuation)
-\item 
+\begin{DoxyCompactList}\small\item\em Initialise an ADC channel. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{adc_8h_a5759baf0efdf08e53d80053a550f57f5}{adc\+\_\+read}} (adc\+\_\+oneshot\+\_\+unit\+\_\+handle\+\_\+t adc\+\_\+handle\+\_\+name, adc\+\_\+oneshot\+\_\+chan\+\_\+cfg\+\_\+t channel\+\_\+config\+\_\+name)
-\item 
+\begin{DoxyCompactList}\small\item\em Function to read ADC channel. \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{adc_8h_a5961f162a41bde459b5dab22d131a04c}{adc\+\_\+raw\+\_\+to\+\_\+voltage}} (int adc\+\_\+raw, float Vref, int max\+\_\+adc\+\_\+value)
 \end{DoxyCompactItemize}
 
@@ -23,18 +23,37 @@ void adc\+\_\+channel\+\_\+init (\begin{DoxyParamCaption}\item[{adc\+\_\+oneshot
 
 
 
-Definition at line \mbox{\hyperlink{adc_8c_source_l00017}{17}} of file \mbox{\hyperlink{adc_8c_source}{adc.\+c}}.
+Initialise an ADC channel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em adc\+\_\+handle\+\_\+name} & \\
+\hline
+{\em adc\+\_\+config\+\_\+name} & \\
+\hline
+{\em channel\+\_\+config\+\_\+name} & \\
+\hline
+{\em adc\+\_\+channel} & \\
+\hline
+{\em bid\+\_\+width} & \\
+\hline
+{\em attenuation} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{adc_8c_source_l00033}{33}} of file \mbox{\hyperlink{adc_8c_source}{adc.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00018\ \{}
-\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//Initialiserer\ ADC\ kanal}}
-\DoxyCodeLine{00020\ \ \ \ \ adc\_oneshot\_chan\_cfg\_t\ channel\_config\_name\ =\ \{}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ .bitwidth\ =\ bid\_width,}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ .atten\ =\ attenuation,}
-\DoxyCodeLine{00023\ \ \ \ \ \};}
-\DoxyCodeLine{00024\ \ \ \ \ ESP\_ERROR\_CHECK(adc\_oneshot\_config\_channel(adc\_handle\_name,\ adc\_channel,\ \&adc\_config\_name));}
-\DoxyCodeLine{00025\ \}}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//Initialiserer\ ADC\ kanal}}
+\DoxyCodeLine{00036\ \ \ \ \ adc\_oneshot\_chan\_cfg\_t\ channel\_config\_name\ =\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ .bitwidth\ =\ bid\_width,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ .atten\ =\ attenuation,}
+\DoxyCodeLine{00039\ \ \ \ \ \};}
+\DoxyCodeLine{00040\ \ \ \ \ ESP\_ERROR\_CHECK(adc\_oneshot\_config\_channel(adc\_handle\_name,\ adc\_channel,\ \&adc\_config\_name));}
+\DoxyCodeLine{00041\ \}}
 
 \end{DoxyCode}
 \Hypertarget{adc_8h_a5961f162a41bde459b5dab22d131a04c}\index{adc.h@{adc.h}!adc\_raw\_to\_voltage@{adc\_raw\_to\_voltage}}
@@ -43,17 +62,6 @@ Definition at line \mbox{\hyperlink{adc_8c_source_l00017}{17}} of file \mbox{\hy
 {\footnotesize\ttfamily \label{adc_8h_a5961f162a41bde459b5dab22d131a04c} 
 float adc\+\_\+raw\+\_\+to\+\_\+voltage (\begin{DoxyParamCaption}\item[{int}]{adc\+\_\+raw}{, }\item[{float}]{Vref}{, }\item[{int}]{max\+\_\+adc\+\_\+value}{}\end{DoxyParamCaption})}
 
-
-
-Definition at line \mbox{\hyperlink{adc_8c_source_l00033}{33}} of file \mbox{\hyperlink{adc_8c_source}{adc.\+c}}.
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{return}\ ((\textcolor{keywordtype}{float})adc\_raw\ *\ Vref)\ /\ max\_adc\_value;}
-\DoxyCodeLine{00035\ \}}
-
-\end{DoxyCode}
 \Hypertarget{adc_8h_a5759baf0efdf08e53d80053a550f57f5}\index{adc.h@{adc.h}!adc\_read@{adc\_read}}
 \index{adc\_read@{adc\_read}!adc.h@{adc.h}}
 \doxysubsubsection{\texorpdfstring{adc\_read()}{adc\_read()}}
@@ -62,15 +70,29 @@ int adc\+\_\+read (\begin{DoxyParamCaption}\item[{adc\+\_\+oneshot\+\_\+unit\+\_
 
 
 
-Definition at line \mbox{\hyperlink{adc_8c_source_l00027}{27}} of file \mbox{\hyperlink{adc_8c_source}{adc.\+c}}.
+Function to read ADC channel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em adc\+\_\+handle\+\_\+name} & \\
+\hline
+{\em channel\+\_\+config\+\_\+name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{adc_8c_source_l00050}{50}} of file \mbox{\hyperlink{adc_8c_source}{adc.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ adc\_raw;}
-\DoxyCodeLine{00029\ \ \ \ \ ESP\_ERROR\_CHECK(adc\_oneshot\_config\_channel(adc\_handle\_name,\ channel\_config\_name,\ \&adc\_raw));}
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{return}\ adc\_raw;}
-\DoxyCodeLine{00031\ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{int}\ adc\_raw;}
+\DoxyCodeLine{00052\ \ \ \ \ ESP\_ERROR\_CHECK(adc\_oneshot\_config\_channel(adc\_handle\_name,\ channel\_config\_name,\ \&adc\_raw));}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{return}\ adc\_raw;}
+\DoxyCodeLine{00054\ \}}
 
 \end{DoxyCode}
 \Hypertarget{adc_8h_a851561680d70fffd097028f2adcf032e}\index{adc.h@{adc.h}!adc\_unit\_init@{adc\_unit\_init}}
@@ -81,19 +103,32 @@ void adc\+\_\+unit\+\_\+init (\begin{DoxyParamCaption}\item[{adc\+\_\+oneshot\+\
 
 
 
-Definition at line \mbox{\hyperlink{adc_8c_source_l00005}{5}} of file \mbox{\hyperlink{adc_8c_source}{adc.\+c}}.
+Initialise a ADC unit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em adc\+\_\+handle\+\_\+name} & \\
+\hline
+{\em adc\+\_\+config\+\_\+name} & \\
+\hline
+{\em adc\+\_\+unit\+\_\+name} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{adc_8c_source_l00011}{11}} of file \mbox{\hyperlink{adc_8c_source}{adc.\+c}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00006\ \{}
-\DoxyCodeLine{00007\ \ \ \ \ \textcolor{comment}{//\ Initaliserer\ ADC\ unit}}
-\DoxyCodeLine{00008\ \ \ \ \ adc\_oneshot\_unit\_handle\_t\ adc\_handle\_name;\ \textcolor{comment}{//\ Lager\ en\ ADC\ handle}}
-\DoxyCodeLine{00009\ \ \ \ \ adc\_oneshot\_unit\_init\_cfg\_t\ adc\_config\_name\ =\ \{}
-\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lager\ en\ konfigurasjon\ som\ denne\ ADC\ uniten\ kommer\ til\ å\ bruke}}
-\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ .unit\_id\ =\ adc\_unit\_name,}
-\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ .ulp\_mode\ =\ ADC\_ULP\_MODE\_DISABLE,}
-\DoxyCodeLine{00013\ \ \ \ \ \};}
-\DoxyCodeLine{00014\ \ \ \ \ ESP\_ERROR\_CHECK(adc\_oneshot\_new\_unit(\&adc\_config\_name,\ \&adc\_handle\_name));\ \textcolor{comment}{//\ Lager\ ADC\ uniten\ som\ vi\ har\ laget\ navn\ og\ konfigurert\ over}}
-\DoxyCodeLine{00015\ \}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{comment}{//\ Initaliserer\ ADC\ unit}}
+\DoxyCodeLine{00014\ \ \ \ \ adc\_oneshot\_unit\_handle\_t\ adc\_handle\_name;\ \textcolor{comment}{//\ Lager\ en\ ADC\ handle}}
+\DoxyCodeLine{00015\ \ \ \ \ adc\_oneshot\_unit\_init\_cfg\_t\ adc\_config\_name\ =\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lager\ en\ konfigurasjon\ som\ denne\ ADC\ uniten\ kommer\ til\ å\ bruke}}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ .unit\_id\ =\ adc\_unit\_name,}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ .ulp\_mode\ =\ ADC\_ULP\_MODE\_DISABLE,}
+\DoxyCodeLine{00019\ \ \ \ \ \};}
+\DoxyCodeLine{00020\ \ \ \ \ ESP\_ERROR\_CHECK(adc\_oneshot\_new\_unit(\&adc\_config\_name,\ \&adc\_handle\_name));\ \textcolor{comment}{//\ Lager\ ADC\ uniten\ som\ vi\ har\ laget\ navn\ og\ konfigurert\ over}}
+\DoxyCodeLine{00021\ \}}
 
 \end{DoxyCode}
