@@ -1,0 +1,41 @@
+\doxysection{main/include/adc.h File Reference}
+\hypertarget{adc_8h}{}\label{adc_8h}\index{main/include/adc.h@{main/include/adc.h}}
+{\ttfamily \#include "{}esp\+\_\+adc/adc\+\_\+oneshot.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{adc_8h_a851561680d70fffd097028f2adcf032e}{adc\+\_\+unit\+\_\+init}} (adc\+\_\+oneshot\+\_\+unit\+\_\+handle\+\_\+t adc\+\_\+handle\+\_\+name, adc\+\_\+oneshot\+\_\+unit\+\_\+init\+\_\+cfg\+\_\+t adc\+\_\+config\+\_\+name, adc\+\_\+unit\+\_\+t adc\+\_\+unit\+\_\+name)
+\item 
+void \mbox{\hyperlink{adc_8h_ac8c7126a1af0d8e46906bec35e903ae4}{adc\+\_\+channel\+\_\+init}} (adc\+\_\+oneshot\+\_\+unit\+\_\+handle\+\_\+t adc\+\_\+handle\+\_\+name, adc\+\_\+oneshot\+\_\+unit\+\_\+init\+\_\+cfg\+\_\+t adc\+\_\+config\+\_\+name, adc\+\_\+oneshot\+\_\+chan\+\_\+cfg\+\_\+t channel\+\_\+config\+\_\+name, adc\+\_\+channel\+\_\+t adc\+\_\+channel, adc\+\_\+bitwidth\+\_\+t bid\+\_\+width, adc\+\_\+atten\+\_\+t attenuation)
+\item 
+int \mbox{\hyperlink{adc_8h_a5759baf0efdf08e53d80053a550f57f5}{adc\+\_\+read}} (adc\+\_\+oneshot\+\_\+unit\+\_\+handle\+\_\+t adc\+\_\+handle\+\_\+name, adc\+\_\+oneshot\+\_\+chan\+\_\+cfg\+\_\+t channel\+\_\+config\+\_\+name)
+\item 
+float \mbox{\hyperlink{adc_8h_a5961f162a41bde459b5dab22d131a04c}{adc\+\_\+raw\+\_\+to\+\_\+voltage}} (int adc\+\_\+raw, float Vref, int max\+\_\+adc\+\_\+value)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{adc_8h_ac8c7126a1af0d8e46906bec35e903ae4}\index{adc.h@{adc.h}!adc\_channel\_init@{adc\_channel\_init}}
+\index{adc\_channel\_init@{adc\_channel\_init}!adc.h@{adc.h}}
+\doxysubsubsection{\texorpdfstring{adc\_channel\_init()}{adc\_channel\_init()}}
+{\footnotesize\ttfamily \label{adc_8h_ac8c7126a1af0d8e46906bec35e903ae4} 
+void adc\+\_\+channel\+\_\+init (\begin{DoxyParamCaption}\item[{adc\+\_\+oneshot\+\_\+unit\+\_\+handle\+\_\+t}]{adc\+\_\+handle\+\_\+name}{, }\item[{adc\+\_\+oneshot\+\_\+unit\+\_\+init\+\_\+cfg\+\_\+t}]{adc\+\_\+config\+\_\+name}{, }\item[{adc\+\_\+oneshot\+\_\+chan\+\_\+cfg\+\_\+t}]{channel\+\_\+config\+\_\+name}{, }\item[{adc\+\_\+channel\+\_\+t}]{adc\+\_\+channel}{, }\item[{adc\+\_\+bitwidth\+\_\+t}]{bid\+\_\+width}{, }\item[{adc\+\_\+atten\+\_\+t}]{attenuation}{}\end{DoxyParamCaption})}
+
+\Hypertarget{adc_8h_a5961f162a41bde459b5dab22d131a04c}\index{adc.h@{adc.h}!adc\_raw\_to\_voltage@{adc\_raw\_to\_voltage}}
+\index{adc\_raw\_to\_voltage@{adc\_raw\_to\_voltage}!adc.h@{adc.h}}
+\doxysubsubsection{\texorpdfstring{adc\_raw\_to\_voltage()}{adc\_raw\_to\_voltage()}}
+{\footnotesize\ttfamily \label{adc_8h_a5961f162a41bde459b5dab22d131a04c} 
+float adc\+\_\+raw\+\_\+to\+\_\+voltage (\begin{DoxyParamCaption}\item[{int}]{adc\+\_\+raw}{, }\item[{float}]{Vref}{, }\item[{int}]{max\+\_\+adc\+\_\+value}{}\end{DoxyParamCaption})}
+
+\Hypertarget{adc_8h_a5759baf0efdf08e53d80053a550f57f5}\index{adc.h@{adc.h}!adc\_read@{adc\_read}}
+\index{adc\_read@{adc\_read}!adc.h@{adc.h}}
+\doxysubsubsection{\texorpdfstring{adc\_read()}{adc\_read()}}
+{\footnotesize\ttfamily \label{adc_8h_a5759baf0efdf08e53d80053a550f57f5} 
+int adc\+\_\+read (\begin{DoxyParamCaption}\item[{adc\+\_\+oneshot\+\_\+unit\+\_\+handle\+\_\+t}]{adc\+\_\+handle\+\_\+name}{, }\item[{adc\+\_\+oneshot\+\_\+chan\+\_\+cfg\+\_\+t}]{channel\+\_\+config\+\_\+name}{}\end{DoxyParamCaption})}
+
+\Hypertarget{adc_8h_a851561680d70fffd097028f2adcf032e}\index{adc.h@{adc.h}!adc\_unit\_init@{adc\_unit\_init}}
+\index{adc\_unit\_init@{adc\_unit\_init}!adc.h@{adc.h}}
+\doxysubsubsection{\texorpdfstring{adc\_unit\_init()}{adc\_unit\_init()}}
+{\footnotesize\ttfamily \label{adc_8h_a851561680d70fffd097028f2adcf032e} 
+void adc\+\_\+unit\+\_\+init (\begin{DoxyParamCaption}\item[{adc\+\_\+oneshot\+\_\+unit\+\_\+handle\+\_\+t}]{adc\+\_\+handle\+\_\+name}{, }\item[{adc\+\_\+oneshot\+\_\+unit\+\_\+init\+\_\+cfg\+\_\+t}]{adc\+\_\+config\+\_\+name}{, }\item[{adc\+\_\+unit\+\_\+t}]{adc\+\_\+unit\+\_\+name}{}\end{DoxyParamCaption})}
+

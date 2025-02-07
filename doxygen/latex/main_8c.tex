@@ -1,0 +1,51 @@
+\doxysection{main/main.c File Reference}
+\hypertarget{main_8c}{}\label{main_8c}\index{main/main.c@{main/main.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include "{}driver/gpio.\+h"{}}\newline
+{\ttfamily \#include "{}driver/sdm.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+log.\+h"{}}\newline
+{\ttfamily \#include "{}freertos/\+Free\+RTOS.\+h"{}}\newline
+{\ttfamily \#include "{}freertos/task.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+adc/adc\+\_\+oneshot.\+h"{}}\newline
+{\ttfamily \#include "{}driver/ledc.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8c_a630544a7f0a2cc40d8a7fefab7e2fe70}{app\+\_\+main}} (void)
+\begin{DoxyCompactList}\small\item\em Hovedfunksjon for applikasjonen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8c_a630544a7f0a2cc40d8a7fefab7e2fe70}\index{main.c@{main.c}!app\_main@{app\_main}}
+\index{app\_main@{app\_main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{app\_main()}{app\_main()}}
+{\footnotesize\ttfamily \label{main_8c_a630544a7f0a2cc40d8a7fefab7e2fe70} 
+void app\+\_\+main (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Hovedfunksjon for applikasjonen. 
+
+Denne funksjonen konfigurerer GPIO, PWM-\/timer og PWM-\/kanal, og kjører en uendelig løkke som justerer PWM-\/duty cycle. \texorpdfstring{$<$}{<} Automatisk klokkevalg for PWM-\/timer
+
+\texorpdfstring{$<$}{<} Lav hastighetsmodus for PWM
+
+\texorpdfstring{$<$}{<} 14-\/bit oppløsning for duty cycle
+
+\texorpdfstring{$<$}{<} Timer nummer 0
+
+\texorpdfstring{$<$}{<} Frekvens på 4000 Hz
+
+\texorpdfstring{$<$}{<} GPIO nummer 10 for PWM-\/utgang
+
+\texorpdfstring{$<$}{<} Lav hastighetsmodus for PWM
+
+\texorpdfstring{$<$}{<} PWM-\/kanal 0
+
+\texorpdfstring{$<$}{<} Bruk timer 0 for denne kanalen
+
+\texorpdfstring{$<$}{<} Deaktiver avbrudd for PWM
+
+\texorpdfstring{$<$}{<} Start duty cycle på 0
+
+\texorpdfstring{$<$}{<} Høydepunkt for PWM
