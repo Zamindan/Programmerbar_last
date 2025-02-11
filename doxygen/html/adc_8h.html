@@ -114,21 +114,19 @@ $(function(){initNavTree('adc_8h.html',''); initResizable(true); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a851561680d70fffd097028f2adcf032e" id="r_a851561680d70fffd097028f2adcf032e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a851561680d70fffd097028f2adcf032e">adc_unit_init</a> (adc_oneshot_unit_handle_t adc_handle_name, adc_oneshot_unit_init_cfg_t adc_config_name, adc_unit_t adc_unit_name)</td></tr>
-<tr class="memdesc:a851561680d70fffd097028f2adcf032e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise a ADC unit.  <br /></td></tr>
-<tr class="separator:a851561680d70fffd097028f2adcf032e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8c7126a1af0d8e46906bec35e903ae4" id="r_ac8c7126a1af0d8e46906bec35e903ae4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8c7126a1af0d8e46906bec35e903ae4">adc_channel_init</a> (adc_oneshot_unit_handle_t adc_handle_name, adc_oneshot_unit_init_cfg_t adc_config_name, adc_oneshot_chan_cfg_t channel_config_name, adc_channel_t adc_channel, adc_bitwidth_t bid_width, adc_atten_t attenuation)</td></tr>
-<tr class="memdesc:ac8c7126a1af0d8e46906bec35e903ae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise an ADC channel.  <br /></td></tr>
-<tr class="separator:ac8c7126a1af0d8e46906bec35e903ae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5759baf0efdf08e53d80053a550f57f5" id="r_a5759baf0efdf08e53d80053a550f57f5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5759baf0efdf08e53d80053a550f57f5">adc_read</a> (adc_oneshot_unit_handle_t adc_handle_name, adc_oneshot_chan_cfg_t channel_config_name)</td></tr>
-<tr class="memdesc:a5759baf0efdf08e53d80053a550f57f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to read ADC channel.  <br /></td></tr>
-<tr class="separator:a5759baf0efdf08e53d80053a550f57f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5961f162a41bde459b5dab22d131a04c" id="r_a5961f162a41bde459b5dab22d131a04c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5961f162a41bde459b5dab22d131a04c">adc_raw_to_voltage</a> (int adc_raw, float Vref, int max_adc_value)</td></tr>
-<tr class="separator:a5961f162a41bde459b5dab22d131a04c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dad5df4f9e2075946f89bac1c332dea" id="r_a5dad5df4f9e2075946f89bac1c332dea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5dad5df4f9e2075946f89bac1c332dea">adc_unit_init</a> (adc_oneshot_unit_handle_t *adc_handle_name, adc_unit_t adc_unit, adc_ulp_mode_t ulp_mode)</td></tr>
+<tr class="memdesc:a5dad5df4f9e2075946f89bac1c332dea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises an ADC unit.  <br /></td></tr>
+<tr class="separator:a5dad5df4f9e2075946f89bac1c332dea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a862407b560ea9ed098f0b108d5cb09a8" id="r_a862407b560ea9ed098f0b108d5cb09a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a862407b560ea9ed098f0b108d5cb09a8">adc_channel_init</a> (adc_oneshot_unit_handle_t adc_handle_name, adc_channel_t channel, adc_atten_t atten, adc_bitwidth_t bitwidth)</td></tr>
+<tr class="memdesc:a862407b560ea9ed098f0b108d5cb09a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises an ADC channel, refer to the datsheet to see which channel corresponds to which GPIO.  <br /></td></tr>
+<tr class="separator:a862407b560ea9ed098f0b108d5cb09a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a9fcc8af4a4583c4fe8476a4558c5d8" id="r_a9a9fcc8af4a4583c4fe8476a4558c5d8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a9fcc8af4a4583c4fe8476a4558c5d8">adc_read</a> (adc_oneshot_unit_handle_t adc_handle_name, adc_channel_t channel)</td></tr>
+<tr class="memdesc:a9a9fcc8af4a4583c4fe8476a4558c5d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the value from an ADC channel.  <br /></td></tr>
+<tr class="separator:a9a9fcc8af4a4583c4fe8476a4558c5d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ac8c7126a1af0d8e46906bec35e903ae4" name="ac8c7126a1af0d8e46906bec35e903ae4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8c7126a1af0d8e46906bec35e903ae4">&#9670;&#160;</a></span>adc_channel_init()</h2>
+<a id="a862407b560ea9ed098f0b108d5cb09a8" name="a862407b560ea9ed098f0b108d5cb09a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a862407b560ea9ed098f0b108d5cb09a8">&#9670;&#160;</a></span>adc_channel_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -141,84 +139,47 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">adc_oneshot_unit_init_cfg_t</td>          <td class="paramname"><span class="paramname"><em>adc_config_name</em></span>, </td>
+          <td class="paramtype">adc_channel_t</td>          <td class="paramname"><span class="paramname"><em>channel</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">adc_oneshot_chan_cfg_t</td>          <td class="paramname"><span class="paramname"><em>channel_config_name</em></span>, </td>
+          <td class="paramtype">adc_atten_t</td>          <td class="paramname"><span class="paramname"><em>atten</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">adc_channel_t</td>          <td class="paramname"><span class="paramname"><em>adc_channel</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">adc_bitwidth_t</td>          <td class="paramname"><span class="paramname"><em>bid_width</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">adc_atten_t</td>          <td class="paramname"><span class="paramname"><em>attenuation</em></span>&#160;)</td>
+          <td class="paramtype">adc_bitwidth_t</td>          <td class="paramname"><span class="paramname"><em>bitwidth</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initialise an ADC channel. </p>
+<p>Initialises an ADC channel, refer to the datsheet to see which channel corresponds to which GPIO. </p>
+<p>This function configures an ADC channel with the specified settings.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">adc_handle_name</td><td></td></tr>
-    <tr><td class="paramname">adc_config_name</td><td></td></tr>
-    <tr><td class="paramname">channel_config_name</td><td></td></tr>
-    <tr><td class="paramname">adc_channel</td><td></td></tr>
-    <tr><td class="paramname">bid_width</td><td></td></tr>
-    <tr><td class="paramname">attenuation</td><td></td></tr>
+    <tr><td class="paramname">adc_handle_name</td><td>The handle of the ADC unit structure. </td></tr>
+    <tr><td class="paramname">channel</td><td>The ADC channel to configure </td></tr>
+    <tr><td class="paramname">atten</td><td>The attenuation to use for the channel. Decides how high voltage you can measure. </td></tr>
+    <tr><td class="paramname">bitwidth</td><td>The bit width to use for the channel. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="adc_8c_source.html#l00033">33</a> of file <a class="el" href="adc_8c_source.html">adc.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   34</span>{</div>
-<div class="line"><span class="lineno">   35</span>    <span class="comment">//Initialiserer ADC kanal</span></div>
-<div class="line"><span class="lineno">   36</span>    adc_oneshot_chan_cfg_t channel_config_name = {</div>
-<div class="line"><span class="lineno">   37</span>        .bitwidth = bid_width,</div>
-<div class="line"><span class="lineno">   38</span>        .atten = attenuation,</div>
-<div class="line"><span class="lineno">   39</span>    };</div>
-<div class="line"><span class="lineno">   40</span>    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc_handle_name, adc_channel, &amp;adc_config_name));</div>
-<div class="line"><span class="lineno">   41</span>}</div>
+<p class="definition">Definition at line <a class="el" href="adc_8c_source.html#l00039">39</a> of file <a class="el" href="adc_8c_source.html">adc.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   39</span>                                                                                                                                   {</div>
+<div class="line"><span class="lineno">   40</span>    adc_oneshot_chan_cfg_t config = {</div>
+<div class="line"><span class="lineno">   41</span>        .bitwidth = bitwidth,</div>
+<div class="line"><span class="lineno">   42</span>        .atten = atten,</div>
+<div class="line"><span class="lineno">   43</span>    };</div>
+<div class="line"><span class="lineno">   44</span>    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc_handle_name, channel, &amp;config));</div>
+<div class="line"><span class="lineno">   45</span>    ESP_LOGI(TAG, <span class="stringliteral">&quot;ADC channel initialised successfully&quot;</span>);</div>
+<div class="line"><span class="lineno">   46</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a5961f162a41bde459b5dab22d131a04c" name="a5961f162a41bde459b5dab22d131a04c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5961f162a41bde459b5dab22d131a04c">&#9670;&#160;</a></span>adc_raw_to_voltage()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float adc_raw_to_voltage </td>
-          <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>adc_raw</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>Vref</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>max_adc_value</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a5759baf0efdf08e53d80053a550f57f5" name="a5759baf0efdf08e53d80053a550f57f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5759baf0efdf08e53d80053a550f57f5">&#9670;&#160;</a></span>adc_read()</h2>
+<a id="a9a9fcc8af4a4583c4fe8476a4558c5d8" name="a9a9fcc8af4a4583c4fe8476a4558c5d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a9fcc8af4a4583c4fe8476a4558c5d8">&#9670;&#160;</a></span>adc_read()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -231,32 +192,33 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">adc_oneshot_chan_cfg_t</td>          <td class="paramname"><span class="paramname"><em>channel_config_name</em></span>&#160;)</td>
+          <td class="paramtype">adc_channel_t</td>          <td class="paramname"><span class="paramname"><em>channel</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Function to read ADC channel. </p>
+<p>Reads the value from an ADC channel. </p>
+<p>This function reads the raw value from the specified ADC channel.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">adc_handle_name</td><td></td></tr>
-    <tr><td class="paramname">channel_config_name</td><td></td></tr>
+    <tr><td class="paramname">adc_handle_name</td><td>The handle of the ADC unit. </td></tr>
+    <tr><td class="paramname">channel</td><td>The ADC channel to read from. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the read ADC value. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="adc_8c_source.html#l00050">50</a> of file <a class="el" href="adc_8c_source.html">adc.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   50</span>                                                                                                   {</div>
-<div class="line"><span class="lineno">   51</span>    <span class="keywordtype">int</span> adc_raw;</div>
-<div class="line"><span class="lineno">   52</span>    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc_handle_name, channel_config_name, &amp;adc_raw));</div>
-<div class="line"><span class="lineno">   53</span>    <span class="keywordflow">return</span> adc_raw;</div>
-<div class="line"><span class="lineno">   54</span>}</div>
+<p class="definition">Definition at line <a class="el" href="adc_8c_source.html#l00057">57</a> of file <a class="el" href="adc_8c_source.html">adc.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   57</span>                                                                              {</div>
+<div class="line"><span class="lineno">   58</span>    <span class="keywordtype">int</span> adc_raw;</div>
+<div class="line"><span class="lineno">   59</span>    ESP_ERROR_CHECK(adc_oneshot_read(adc_handle_name, channel, &amp;adc_raw));</div>
+<div class="line"><span class="lineno">   60</span>    <span class="keywordflow">return</span> adc_raw;</div>
+<div class="line"><span class="lineno">   61</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a851561680d70fffd097028f2adcf032e" name="a851561680d70fffd097028f2adcf032e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a851561680d70fffd097028f2adcf032e">&#9670;&#160;</a></span>adc_unit_init()</h2>
+<a id="a5dad5df4f9e2075946f89bac1c332dea" name="a5dad5df4f9e2075946f89bac1c332dea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dad5df4f9e2075946f89bac1c332dea">&#9670;&#160;</a></span>adc_unit_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -264,42 +226,43 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void adc_unit_init </td>
           <td>(</td>
-          <td class="paramtype">adc_oneshot_unit_handle_t</td>          <td class="paramname"><span class="paramname"><em>adc_handle_name</em></span>, </td>
+          <td class="paramtype">adc_oneshot_unit_handle_t *</td>          <td class="paramname"><span class="paramname"><em>adc_handle_name</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">adc_oneshot_unit_init_cfg_t</td>          <td class="paramname"><span class="paramname"><em>adc_config_name</em></span>, </td>
+          <td class="paramtype">adc_unit_t</td>          <td class="paramname"><span class="paramname"><em>adc_unit</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">adc_unit_t</td>          <td class="paramname"><span class="paramname"><em>adc_unit_name</em></span>&#160;)</td>
+          <td class="paramtype">adc_ulp_mode_t</td>          <td class="paramname"><span class="paramname"><em>ulp_mode</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initialise a ADC unit. </p>
+<p>Initialises an ADC unit. </p>
+<p>This function initialises an ADC unit with the configuration input in the parameters</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">adc_handle_name</td><td></td></tr>
-    <tr><td class="paramname">adc_config_name</td><td></td></tr>
-    <tr><td class="paramname">adc_unit_name</td><td></td></tr>
+    <tr><td class="paramname">adc_handle_name</td><td>Pointer to the ADC unit handle structure. </td></tr>
+    <tr><td class="paramname">adc_unit</td><td>The ADC unit to initialise. </td></tr>
+    <tr><td class="paramname">ulp_mode</td><td>The ULP mode to use. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="adc_8c_source.html#l00011">11</a> of file <a class="el" href="adc_8c_source.html">adc.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   12</span>{</div>
-<div class="line"><span class="lineno">   13</span>    <span class="comment">// Initaliserer ADC unit</span></div>
-<div class="line"><span class="lineno">   14</span>    adc_oneshot_unit_handle_t adc_handle_name; <span class="comment">// Lager en ADC handle</span></div>
-<div class="line"><span class="lineno">   15</span>    adc_oneshot_unit_init_cfg_t adc_config_name = {</div>
-<div class="line"><span class="lineno">   16</span>        <span class="comment">// Lager en konfigurasjon som denne ADC uniten kommer til å bruke</span></div>
-<div class="line"><span class="lineno">   17</span>        .unit_id = adc_unit_name,</div>
-<div class="line"><span class="lineno">   18</span>        .ulp_mode = ADC_ULP_MODE_DISABLE,</div>
-<div class="line"><span class="lineno">   19</span>    };</div>
-<div class="line"><span class="lineno">   20</span>    ESP_ERROR_CHECK(adc_oneshot_new_unit(&amp;adc_config_name, &amp;adc_handle_name)); <span class="comment">// Lager ADC uniten som vi har laget navn og konfigurert over</span></div>
-<div class="line"><span class="lineno">   21</span>}</div>
+<p class="definition">Definition at line <a class="el" href="adc_8c_source.html#l00017">17</a> of file <a class="el" href="adc_8c_source.html">adc.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   18</span>{</div>
+<div class="line"><span class="lineno">   19</span>    <span class="comment">//Configuration for the ADC unit.</span></div>
+<div class="line"><span class="lineno">   20</span>    adc_oneshot_unit_init_cfg_t adc_unit_cfg = {</div>
+<div class="line"><span class="lineno">   21</span>        .unit_id = adc_unit,</div>
+<div class="line"><span class="lineno">   22</span>        .ulp_mode = ulp_mode,</div>
+<div class="line"><span class="lineno">   23</span>    };</div>
+<div class="line"><span class="lineno">   24</span>    <span class="comment">//Initialise the ADC unit.</span></div>
+<div class="line"><span class="lineno">   25</span>    ESP_ERROR_CHECK(adc_oneshot_new_unit(&amp;adc_unit_cfg, adc_handle_name));</div>
+<div class="line"><span class="lineno">   26</span>    ESP_LOGI(TAG, <span class="stringliteral">&quot;ADC unit initialised successfully&quot;</span>);</div>
+<div class="line"><span class="lineno">   27</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

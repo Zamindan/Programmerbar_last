@@ -111,31 +111,21 @@ $(function(){initNavTree('adc_8h_source.html',''); initResizable(true); });
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;esp_adc/adc_oneshot.h&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keywordtype">void</span> <a class="code hl_function" href="adc_8h.html#a851561680d70fffd097028f2adcf032e">adc_unit_init</a>(adc_oneshot_unit_handle_t adc_handle_name,</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>                   adc_oneshot_unit_init_cfg_t adc_config_name,</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>                   adc_unit_t adc_unit_name);</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keywordtype">void</span> <a class="code hl_function" href="adc_8h.html#ac8c7126a1af0d8e46906bec35e903ae4">adc_channel_init</a>(adc_oneshot_unit_handle_t adc_handle_name,</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>                      adc_oneshot_unit_init_cfg_t adc_config_name,</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>                      adc_oneshot_chan_cfg_t channel_config_name,</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>                      adc_channel_t adc_channel,</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>                      adc_bitwidth_t bid_width,</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>                      adc_atten_t attenuation);</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keywordtype">int</span> <a class="code hl_function" href="adc_8h.html#a5759baf0efdf08e53d80053a550f57f5">adc_read</a>(adc_oneshot_unit_handle_t adc_handle_name,</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>             adc_oneshot_chan_cfg_t channel_config_name);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="adc_8h.html#a5961f162a41bde459b5dab22d131a04c">   24</a></span><span class="keywordtype">float</span> <a class="code hl_function" href="adc_8h.html#a5961f162a41bde459b5dab22d131a04c">adc_raw_to_voltage</a>(<span class="keywordtype">int</span> adc_raw,</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>                         <span class="keywordtype">float</span> Vref,</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>                         <span class="keywordtype">int</span> max_adc_value);</div>
-<div class="ttc" id="aadc_8h_html_a5759baf0efdf08e53d80053a550f57f5"><div class="ttname"><a href="adc_8h.html#a5759baf0efdf08e53d80053a550f57f5">adc_read</a></div><div class="ttdeci">int adc_read(adc_oneshot_unit_handle_t adc_handle_name, adc_oneshot_chan_cfg_t channel_config_name)</div><div class="ttdoc">Function to read ADC channel.</div><div class="ttdef"><b>Definition</b> <a href="adc_8c_source.html#l00050">adc.c:50</a></div></div>
-<div class="ttc" id="aadc_8h_html_a5961f162a41bde459b5dab22d131a04c"><div class="ttname"><a href="adc_8h.html#a5961f162a41bde459b5dab22d131a04c">adc_raw_to_voltage</a></div><div class="ttdeci">float adc_raw_to_voltage(int adc_raw, float Vref, int max_adc_value)</div></div>
-<div class="ttc" id="aadc_8h_html_a851561680d70fffd097028f2adcf032e"><div class="ttname"><a href="adc_8h.html#a851561680d70fffd097028f2adcf032e">adc_unit_init</a></div><div class="ttdeci">void adc_unit_init(adc_oneshot_unit_handle_t adc_handle_name, adc_oneshot_unit_init_cfg_t adc_config_name, adc_unit_t adc_unit_name)</div><div class="ttdoc">Initialise a ADC unit.</div><div class="ttdef"><b>Definition</b> <a href="adc_8c_source.html#l00011">adc.c:11</a></div></div>
-<div class="ttc" id="aadc_8h_html_ac8c7126a1af0d8e46906bec35e903ae4"><div class="ttname"><a href="adc_8h.html#ac8c7126a1af0d8e46906bec35e903ae4">adc_channel_init</a></div><div class="ttdeci">void adc_channel_init(adc_oneshot_unit_handle_t adc_handle_name, adc_oneshot_unit_init_cfg_t adc_config_name, adc_oneshot_chan_cfg_t channel_config_name, adc_channel_t adc_channel, adc_bitwidth_t bid_width, adc_atten_t attenuation)</div><div class="ttdoc">Initialise an ADC channel.</div><div class="ttdef"><b>Definition</b> <a href="adc_8c_source.html#l00033">adc.c:33</a></div></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keywordtype">void</span> <a class="code hl_function" href="adc_8h.html#a5dad5df4f9e2075946f89bac1c332dea">adc_unit_init</a>(adc_oneshot_unit_handle_t *adc_handle_name,</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>                   adc_unit_t adc_unit,</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>                   adc_ulp_mode_t ulp_mode);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keywordtype">void</span> <a class="code hl_function" href="adc_8h.html#a862407b560ea9ed098f0b108d5cb09a8">adc_channel_init</a>(adc_oneshot_unit_handle_t adc_handle_name,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                      adc_channel_t channel, adc_atten_t atten,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                      adc_bitwidth_t bitwidth);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keywordtype">int</span> <a class="code hl_function" href="adc_8h.html#a9a9fcc8af4a4583c4fe8476a4558c5d8">adc_read</a>(adc_oneshot_unit_handle_t adc_handle_name,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>             adc_channel_t channel);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aadc_8h_html_a5dad5df4f9e2075946f89bac1c332dea"><div class="ttname"><a href="adc_8h.html#a5dad5df4f9e2075946f89bac1c332dea">adc_unit_init</a></div><div class="ttdeci">void adc_unit_init(adc_oneshot_unit_handle_t *adc_handle_name, adc_unit_t adc_unit, adc_ulp_mode_t ulp_mode)</div><div class="ttdoc">Initialises an ADC unit.</div><div class="ttdef"><b>Definition</b> <a href="adc_8c_source.html#l00017">adc.c:17</a></div></div>
+<div class="ttc" id="aadc_8h_html_a862407b560ea9ed098f0b108d5cb09a8"><div class="ttname"><a href="adc_8h.html#a862407b560ea9ed098f0b108d5cb09a8">adc_channel_init</a></div><div class="ttdeci">void adc_channel_init(adc_oneshot_unit_handle_t adc_handle_name, adc_channel_t channel, adc_atten_t atten, adc_bitwidth_t bitwidth)</div><div class="ttdoc">Initialises an ADC channel, refer to the datsheet to see which channel corresponds to which GPIO.</div><div class="ttdef"><b>Definition</b> <a href="adc_8c_source.html#l00039">adc.c:39</a></div></div>
+<div class="ttc" id="aadc_8h_html_a9a9fcc8af4a4583c4fe8476a4558c5d8"><div class="ttname"><a href="adc_8h.html#a9a9fcc8af4a4583c4fe8476a4558c5d8">adc_read</a></div><div class="ttdeci">int adc_read(adc_oneshot_unit_handle_t adc_handle_name, adc_channel_t channel)</div><div class="ttdoc">Reads the value from an ADC channel.</div><div class="ttdef"><b>Definition</b> <a href="adc_8c_source.html#l00057">adc.c:57</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

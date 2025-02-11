@@ -8,25 +8,16 @@
 \DoxyCodeLine{\Hypertarget{adc_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}esp\_adc/adc\_oneshot.h"{}}}
 \DoxyCodeLine{\Hypertarget{adc_8h_source_l00005}00005\ }
 \DoxyCodeLine{\Hypertarget{adc_8h_source_l00006}00006\ }
-\DoxyCodeLine{\Hypertarget{adc_8h_source_l00007}00007\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{adc_8h_a851561680d70fffd097028f2adcf032e}{adc\_unit\_init}}(adc\_oneshot\_unit\_handle\_t\ adc\_handle\_name,}
-\DoxyCodeLine{\Hypertarget{adc_8h_source_l00008}00008\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ adc\_oneshot\_unit\_init\_cfg\_t\ adc\_config\_name,}
-\DoxyCodeLine{\Hypertarget{adc_8h_source_l00009}00009\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ adc\_unit\_t\ adc\_unit\_name);}
-\DoxyCodeLine{\Hypertarget{adc_8h_source_l00010}00010\ }
-\DoxyCodeLine{\Hypertarget{adc_8h_source_l00011}00011\ }
-\DoxyCodeLine{\Hypertarget{adc_8h_source_l00012}00012\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{adc_8h_ac8c7126a1af0d8e46906bec35e903ae4}{adc\_channel\_init}}(adc\_oneshot\_unit\_handle\_t\ adc\_handle\_name,}
-\DoxyCodeLine{\Hypertarget{adc_8h_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ adc\_oneshot\_unit\_init\_cfg\_t\ adc\_config\_name,}
-\DoxyCodeLine{\Hypertarget{adc_8h_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ adc\_oneshot\_chan\_cfg\_t\ channel\_config\_name,}
-\DoxyCodeLine{\Hypertarget{adc_8h_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ adc\_channel\_t\ adc\_channel,}
-\DoxyCodeLine{\Hypertarget{adc_8h_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ adc\_bitwidth\_t\ bid\_width,}
-\DoxyCodeLine{\Hypertarget{adc_8h_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ adc\_atten\_t\ attenuation);}
-\DoxyCodeLine{\Hypertarget{adc_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{adc_8h_source_l00016}00016\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{adc_8h_a5dad5df4f9e2075946f89bac1c332dea}{adc\_unit\_init}}(adc\_oneshot\_unit\_handle\_t\ *adc\_handle\_name,}
+\DoxyCodeLine{\Hypertarget{adc_8h_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ adc\_unit\_t\ adc\_unit,}
+\DoxyCodeLine{\Hypertarget{adc_8h_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ adc\_ulp\_mode\_t\ ulp\_mode);}
 \DoxyCodeLine{\Hypertarget{adc_8h_source_l00019}00019\ }
-\DoxyCodeLine{\Hypertarget{adc_8h_source_l00020}00020\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{adc_8h_a5759baf0efdf08e53d80053a550f57f5}{adc\_read}}(adc\_oneshot\_unit\_handle\_t\ adc\_handle\_name,}
-\DoxyCodeLine{\Hypertarget{adc_8h_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ adc\_oneshot\_chan\_cfg\_t\ channel\_config\_name);}
-\DoxyCodeLine{\Hypertarget{adc_8h_source_l00022}00022\ }
-\DoxyCodeLine{\Hypertarget{adc_8h_source_l00023}00023\ }
-\DoxyCodeLine{\Hypertarget{adc_8h_source_l00024}\mbox{\hyperlink{adc_8h_a5961f162a41bde459b5dab22d131a04c}{00024}}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{adc_8h_a5961f162a41bde459b5dab22d131a04c}{adc\_raw\_to\_voltage}}(\textcolor{keywordtype}{int}\ adc\_raw,}
-\DoxyCodeLine{\Hypertarget{adc_8h_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ Vref,}
-\DoxyCodeLine{\Hypertarget{adc_8h_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ max\_adc\_value);}
+\DoxyCodeLine{\Hypertarget{adc_8h_source_l00030}00030\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{adc_8h_a862407b560ea9ed098f0b108d5cb09a8}{adc\_channel\_init}}(adc\_oneshot\_unit\_handle\_t\ adc\_handle\_name,}
+\DoxyCodeLine{\Hypertarget{adc_8h_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ adc\_channel\_t\ channel,\ adc\_atten\_t\ atten,}
+\DoxyCodeLine{\Hypertarget{adc_8h_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ adc\_bitwidth\_t\ bitwidth);}
+\DoxyCodeLine{\Hypertarget{adc_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{adc_8h_source_l00043}00043\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{adc_8h_a9a9fcc8af4a4583c4fe8476a4558c5d8}{adc\_read}}(adc\_oneshot\_unit\_handle\_t\ adc\_handle\_name,}
+\DoxyCodeLine{\Hypertarget{adc_8h_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ adc\_channel\_t\ channel);}
+\DoxyCodeLine{\Hypertarget{adc_8h_source_l00045}00045\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

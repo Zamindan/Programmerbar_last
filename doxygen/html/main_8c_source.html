@@ -106,52 +106,63 @@ $(function(){initNavTree('main_8c_source.html',''); initResizable(true); });
   <div class="headertitle"><div class="title">main.c</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="main_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<a href="main_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;<a class="code" href="adc_8h.html">adc.h</a>&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;freertos/task.h&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;esp_log.h&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor"> #include &lt;stdio.h&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor"> #include &quot;driver/gpio.h&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor"> #include &quot;esp_log.h&quot;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor"> #include &quot;freertos/FreeRTOS.h&quot;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor"> #include &quot;freertos/task.h&quot;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor"> #include &quot;driver/ledc.h&quot;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="foldopen" id="foldopen00018" data-start="{" data-end="}">
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="main_8c.html#a630544a7f0a2cc40d8a7fefab7e2fe70">   18</a></span> <span class="keywordtype">void</span> <a class="code hl_function" href="main_8c.html#a630544a7f0a2cc40d8a7fefab7e2fe70">app_main</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> {</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>     <span class="comment">// Konfigurer GPIO 10 med pull-down</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>     gpio_set_pull_mode(GPIO_NUM_10, GPIO_PULLDOWN_ONLY);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>     ledc_timer_config_t pwm_timer = {</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>         .clk_cfg = LEDC_AUTO_CLK,</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>         .speed_mode = LEDC_LOW_SPEED_MODE,</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>         .duty_resolution = LEDC_TIMER_14_BIT,</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>         .timer_num = LEDC_TIMER_0,</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>         .freq_hz = 4000</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>     };</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>     ESP_ERROR_CHECK(ledc_timer_config(&amp;pwm_timer));</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>     </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>     ledc_channel_config_t pwm_config = {</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>         .gpio_num = GPIO_NUM_10,</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>         .speed_mode = LEDC_LOW_SPEED_MODE,</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>         .channel = LEDC_CHANNEL_0,</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>         .timer_sel = LEDC_TIMER_0,</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>         .intr_type = LEDC_INTR_DISABLE,</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>         .duty = 0,</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>         .hpoint = 0</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>     };</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>     ESP_ERROR_CHECK(ledc_channel_config(&amp;pwm_config));</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//Define the ADC unit to be used</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="main_8c.html#aa869cc8a3bf3f2a35447edc6eb11cf32">    7</a></span><span class="preprocessor">#define ADC_UNIT ADC_UNIT_1</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//Defines the ULP mode (Ultra Low Power mode)</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="main_8c.html#a9b6bdf0dd8c64f9f987645438f057161">   10</a></span><span class="preprocessor">#define ADC_ULP ADC_ULP_MODE_DISABLE</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//Defines the ADC channel to be used (GPIO 10)</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="main_8c.html#a7fb9fde533f9b9bc8e4ae31524c9ea51">   13</a></span><span class="preprocessor">#define ADC_CHANNEL ADC_CHANNEL_9</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//Defines the attenuation for the ADC channel</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="main_8c.html#a9851d7403086e8d8ce491625b0f8863d">   16</a></span><span class="preprocessor">#define ADC_ATTEN ADC_ATTEN_DB_12</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">//Define the bit width for the ADC channel</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="main_8c.html#a133ef7b7b4ad7fa713384c3ede19e5f4">   19</a></span><span class="preprocessor">#define ADC_BITWIDTH ADC_BITWIDTH_DEFAULT</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span></div>
+<div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="main_8c.html#abce06be17fc37d675118a678a8100a36">   28</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a>(){</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="comment">//Handle for the ADC unit</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    adc_oneshot_unit_handle_t adc_handle_1;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="comment">//Initialise the ADC unit</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_function" href="adc_8h.html#a5dad5df4f9e2075946f89bac1c332dea">adc_unit_init</a>(&amp;adc_handle_1, <a class="code hl_define" href="main_8c.html#aa869cc8a3bf3f2a35447edc6eb11cf32">ADC_UNIT</a>, <a class="code hl_define" href="main_8c.html#a9b6bdf0dd8c64f9f987645438f057161">ADC_ULP</a>);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="comment">//Initialise the ADC channel</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <a class="code hl_function" href="adc_8h.html#a862407b560ea9ed098f0b108d5cb09a8">adc_channel_init</a>(adc_handle_1, <a class="code hl_define" href="main_8c.html#a7fb9fde533f9b9bc8e4ae31524c9ea51">ADC_CHANNEL</a>, <a class="code hl_define" href="main_8c.html#a9851d7403086e8d8ce491625b0f8863d">ADC_ATTEN</a>, <a class="code hl_define" href="main_8c.html#a133ef7b7b4ad7fa713384c3ede19e5f4">ADC_BITWIDTH</a>);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="comment">//Variable to store the ADC result</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">int</span> adc_result;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="comment">//Endless loop to continously read and log the ADC value</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">while</span> (1){</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="comment">//Read the ADC value</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        adc_result = <a class="code hl_function" href="adc_8h.html#a9a9fcc8af4a4583c4fe8476a4558c5d8">adc_read</a>(adc_handle_1, <a class="code hl_define" href="main_8c.html#a7fb9fde533f9b9bc8e4ae31524c9ea51">ADC_CHANNEL</a>);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="comment">//Log the ADC result</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        ESP_LOGI(<span class="stringliteral">&quot;MAIN&quot;</span>, <span class="stringliteral">&quot;ADC result: %d&quot;</span>, adc_result);</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>     <span class="keywordflow">while</span> (1) {</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>         <span class="comment">// Øk PWM-duty cycle sakte fra 15000 til 16383</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>         <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 15000; i &lt; 16383; i++) {</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>             ESP_ERROR_CHECK(ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, i));</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>             ESP_ERROR_CHECK(ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0));</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>             vTaskDelay(1);</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>         }</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>     }</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> }</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="comment">//10ms delay</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        vTaskDelay(pdMS_TO_TICKS(10));</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>}</div>
 </div>
-<div class="ttc" id="amain_8c_html_a630544a7f0a2cc40d8a7fefab7e2fe70"><div class="ttname"><a href="main_8c.html#a630544a7f0a2cc40d8a7fefab7e2fe70">app_main</a></div><div class="ttdeci">void app_main(void)</div><div class="ttdoc">Hovedfunksjon for applikasjonen.</div><div class="ttdef"><b>Definition</b> <a href="#l00018">main.c:18</a></div></div>
+<div class="ttc" id="aadc_8h_html"><div class="ttname"><a href="adc_8h.html">adc.h</a></div></div>
+<div class="ttc" id="aadc_8h_html_a5dad5df4f9e2075946f89bac1c332dea"><div class="ttname"><a href="adc_8h.html#a5dad5df4f9e2075946f89bac1c332dea">adc_unit_init</a></div><div class="ttdeci">void adc_unit_init(adc_oneshot_unit_handle_t *adc_handle_name, adc_unit_t adc_unit, adc_ulp_mode_t ulp_mode)</div><div class="ttdoc">Initialises an ADC unit.</div><div class="ttdef"><b>Definition</b> <a href="adc_8c_source.html#l00017">adc.c:17</a></div></div>
+<div class="ttc" id="aadc_8h_html_a862407b560ea9ed098f0b108d5cb09a8"><div class="ttname"><a href="adc_8h.html#a862407b560ea9ed098f0b108d5cb09a8">adc_channel_init</a></div><div class="ttdeci">void adc_channel_init(adc_oneshot_unit_handle_t adc_handle_name, adc_channel_t channel, adc_atten_t atten, adc_bitwidth_t bitwidth)</div><div class="ttdoc">Initialises an ADC channel, refer to the datsheet to see which channel corresponds to which GPIO.</div><div class="ttdef"><b>Definition</b> <a href="adc_8c_source.html#l00039">adc.c:39</a></div></div>
+<div class="ttc" id="aadc_8h_html_a9a9fcc8af4a4583c4fe8476a4558c5d8"><div class="ttname"><a href="adc_8h.html#a9a9fcc8af4a4583c4fe8476a4558c5d8">adc_read</a></div><div class="ttdeci">int adc_read(adc_oneshot_unit_handle_t adc_handle_name, adc_channel_t channel)</div><div class="ttdoc">Reads the value from an ADC channel.</div><div class="ttdef"><b>Definition</b> <a href="adc_8c_source.html#l00057">adc.c:57</a></div></div>
+<div class="ttc" id="amain_8c_html_a133ef7b7b4ad7fa713384c3ede19e5f4"><div class="ttname"><a href="main_8c.html#a133ef7b7b4ad7fa713384c3ede19e5f4">ADC_BITWIDTH</a></div><div class="ttdeci">#define ADC_BITWIDTH</div><div class="ttdef"><b>Definition</b> <a href="#l00019">main.c:19</a></div></div>
+<div class="ttc" id="amain_8c_html_a7fb9fde533f9b9bc8e4ae31524c9ea51"><div class="ttname"><a href="main_8c.html#a7fb9fde533f9b9bc8e4ae31524c9ea51">ADC_CHANNEL</a></div><div class="ttdeci">#define ADC_CHANNEL</div><div class="ttdef"><b>Definition</b> <a href="#l00013">main.c:13</a></div></div>
+<div class="ttc" id="amain_8c_html_a9851d7403086e8d8ce491625b0f8863d"><div class="ttname"><a href="main_8c.html#a9851d7403086e8d8ce491625b0f8863d">ADC_ATTEN</a></div><div class="ttdeci">#define ADC_ATTEN</div><div class="ttdef"><b>Definition</b> <a href="#l00016">main.c:16</a></div></div>
+<div class="ttc" id="amain_8c_html_a9b6bdf0dd8c64f9f987645438f057161"><div class="ttname"><a href="main_8c.html#a9b6bdf0dd8c64f9f987645438f057161">ADC_ULP</a></div><div class="ttdeci">#define ADC_ULP</div><div class="ttdef"><b>Definition</b> <a href="#l00010">main.c:10</a></div></div>
+<div class="ttc" id="amain_8c_html_aa869cc8a3bf3f2a35447edc6eb11cf32"><div class="ttname"><a href="main_8c.html#aa869cc8a3bf3f2a35447edc6eb11cf32">ADC_UNIT</a></div><div class="ttdeci">#define ADC_UNIT</div><div class="ttdef"><b>Definition</b> <a href="#l00007">main.c:7</a></div></div>
+<div class="ttc" id="amain_8c_html_abce06be17fc37d675118a678a8100a36"><div class="ttname"><a href="main_8c.html#abce06be17fc37d675118a678a8100a36">app_main</a></div><div class="ttdeci">void app_main()</div><div class="ttdoc">Main application function.</div><div class="ttdef"><b>Definition</b> <a href="#l00028">main.c:28</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
