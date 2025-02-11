@@ -1,52 +1,33 @@
-#include "adc.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_log.h"
+#include "driver/i2c_master.h"
+#include "driver/gpio.h"
 
-//Define the ADC unit to be used
-#define ADC_UNIT ADC_UNIT_1
+#define I2C_PORT -1
+#define I2C_SDA_GPIO GPIO_NUM_11
+#define I2C_SCL_GPIO GPIO_NUM_12
+#define CLK_SRC I2C_CLK_SRC_DEFAULT
+#define GLITCH_IGNORE_COUNT 7
+#define INTR_PRI 1
+#define INTERNAL_PULLUP 1
 
-//Defines the ULP mode (Ultra Low Power mode)
-#define ADC_ULP ADC_ULP_MODE_DISABLE
+#define DEV_ADDR_LENGTH I2C_ADDR_BIT_LEN_10
+#define DEV_ADD 0x28
+#define SCL_SPEED_HZ 100000
+#define SCL_WAIT_US 0
 
-//Defines the ADC channel to be used (GPIO 10)
-#define ADC_CHANNEL ADC_CHANNEL_9
-
-//Defines the attenuation for the ADC channel
-#define ADC_ATTEN ADC_ATTEN_DB_12
-
-//Define the bit width for the ADC channel
-#define ADC_BITWIDTH ADC_BITWIDTH_DEFAULT
-
-/**
- * @brief Main application function
- * 
- * This function initialises the ADC unit and channel,
- * then continuously reads the ADC value and logs it to the monitor.
- * 
- */
 void app_main(){
-    //Handle for the ADC unit
-    adc_oneshot_unit_handle_t adc_handle_1;
 
-    //Initialise the ADC unit
-    adc_unit_init(&adc_handle_1, ADC_UNIT, ADC_ULP);
+    i2c_master_bus_config_t i2c_mst_config = {
+        .clk_source = CLK_SRC,
+        .i2c_port = I2C_PORT,
+        .scl_io_num = I2C_SCL_GPIO,
+        .sda_io_num = I2C_SDA_GPIO,
+        .glitch_ignore_cnt = GLITCH_IGNORE_COUNT,
+        .flags.enable_internal_pullup = INTERNAL_PULLUP
+    };
 
-    //Initialise the ADC channel
-    adc_channel_init(adc_handle_1, ADC_CHANNEL, ADC_ATTEN, ADC_BITWIDTH);
-
-    //Variable to store the ADC result
-    int adc_result;
-
-    //Endless loop to continously read and log the ADC value
-    while (1){
-        //Read the ADC value
-        adc_result = adc_read(adc_handle_1, ADC_CHANNEL);
-
-        //Log the ADC result
-        ESP_LOGI("MAIN", "ADC result: %d", adc_result);
-
-        //10ms delay
-        vTaskDelay(pdMS_TO_TICKS(10));
-    }
+    i2c_master_bus_handle_t bus_handle;
+    ESP_ERROR_CHECK(i2c_new_master_bus(&i2c_mst_config, &bus_handle));
 }
