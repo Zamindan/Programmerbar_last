@@ -16,11 +16,11 @@
 #define TAG "I2C"
 
 /**
- * @brief I2C initialise function
+ * @brief Function for initialising I2C with a bus handle.
  * 
- * @param bus_handle_name 
- * @param sda_pin 
- * @param scl_pin 
+ * @param bus_handle_name Pointer to the bus handle name
+ * @param sda_pin Select the SDA GPIO
+ * @param scl_pin Select the SCL GPIO
  */
 void i2c_init(i2c_master_bus_handle_t bus_handle_name, gpio_num_t sda_pin, gpio_num_t scl_pin){
     i2c_master_bus_config_t i2c_mst_config = {
@@ -34,6 +34,14 @@ void i2c_init(i2c_master_bus_handle_t bus_handle_name, gpio_num_t sda_pin, gpio_
     ESP_ERROR_CHECK(i2c_new_master_bus(&i2c_mst_config, &bus_handle_name));
 };
 
+/**
+ * @brief 
+ * 
+ * @param bus_handle_name 
+ * @param dev_handle_name 
+ * @param device_address 
+ * @param scl_clock_speed 
+ */
 void i2c_add_device(i2c_master_bus_handle_t bus_handle_name, i2c_master_dev_handle_t dev_handle_name, uint16_t device_address, uint32_t scl_clock_speed){
     i2c_device_config_t dev_cfg = {
         .dev_addr_length = DEV_ADDR_LENGTH,
@@ -61,8 +69,11 @@ void i2c_write(i2c_master_dev_handle_t dev_handle_name, uint8_t register_address
     ESP_ERROR_CHECK(i2c_master_transmit(dev_handle_name, write_buffer, sizeof(write_buffer), -1));
 }
 
-float i2c_read(){
-
+float i2c_read(i2c_master_dev_handle_t dev_handle_name){
+    uint16_t read_buffer[1] = {0};
+    i2c_master_receive(dev_handle_name, read_buffer, sizeof(read_buffer), -1);
+    uint16_t result = read_buffer[0];
+    return result;
 }
 
 float i2c_write_read(){
