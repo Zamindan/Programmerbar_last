@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "esp_adc/adc_oneshot.h"
 #include "esp_log.h"
-#include "adc.h"
+
 
 //Logging tag
 static const char* TAG = "ADC_INIT";

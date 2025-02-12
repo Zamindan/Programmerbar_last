@@ -1,8 +1,9 @@
 #ifndef ADC_H
 #define ADC_H
 
+#include <stdio.h>
 #include "esp_adc/adc_oneshot.h"
-
+#include "esp_log.h"
 
 /**
  * @brief Initialises an ADC unit.

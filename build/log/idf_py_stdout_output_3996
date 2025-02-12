@@ -1,0 +1,283 @@
+[0;32mI (100) esp_image: segment 2: paddr=0001e078 vaddr=40374000 sizeESP-ROM:esp32s3-20210327[0m
+Build:Mar 27 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0xb (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40378656
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2810,len:0x15a0
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xd20
+load:0x403cb700,len:0x2ee4
+entry 0x403c8928
+[0;32mI (26) boot: ESP-IDF v5.4-dirty 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Feb  3 2025 13:29:39[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (27) boot: chip revision: v0.2[0m
+[0;32mI (30) boot: efuse block revision: v1.3[0m
+[0;32mI (34) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (37) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32s3: SPI Flash Size : 8MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3c020020 size=0b618h ( 46616) map[0m
+[0;32mI (97) esp_image: segment 1: paddr=0001b640 vaddr=3fc92800 size=02a30h ( 10800) load[0m
+[0;32mI (100) esp_image: segment 2: paddr=0001e078 vaddr=40374000 size=01fa0h (  8096) load[0m
+[0;32mI (105) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=1b044h (110660) map[0m
+[0;32mI (131) esp_image: segment 4: paddr=0003b06c vaddr=40375fa0 size=0c770h ( 51056) load[0m
+[0;32mI (142) esp_image: segment 5: paddr=000477e4 vaddr=600fe100 size=0001ch (    28) load[0m
+[0;32mI (148) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (148) boot: Disabling RNG early entropy source...[0m
+[0;32mI (160) cpu_start: Multicore app[0m
+[0;32mI (169) cpu_start: Pro cpu start user code[0m
+[0;32mI (169) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (169) app_init: Application information:[0m
+[0;32mI (169) app_init: Project name:     Programmerbar_last[0m
+[0;32mI (174) app_init: App version:      20ce4c2-dirty[0m
+[0;32mI (178) app_init: Compile time:     Feb 12 2025 10:24:16[0m
+[0;32mI (183) app_init: ELF file SHA256:  14aec9617...[0m
+[0;32mI (188) app_init: ESP-IDF:          v5.4-dirty[0m
+[0;32mI (192) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (196) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (200) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (204) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (210) heap_init: At 3FC95B10 len 00053C00 (335 KiB): RAM[0m
+[0;32mI (215) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (220) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (225) heap_init: At 600FE11C len 00001ECC (7 KiB): RTCRAM[0m
+[0;32mI (231) spi_flash: detected chip: gd[0m
+[0;32mI (234) spi_flash: flash io: dio[0m
+[0;32mI (237) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (243) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (250) main_task: Started on CPU0[0m
+[0;32mI (260) main_task: Calling app_main()[0m
+[0;32mI (260) I2C TEST: I2C Address found at 72[0m
+[0;32mI (260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (1260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (2260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (3260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (4260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (5260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (6260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (7260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (8260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (9260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (10260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (11260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (12260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (13260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (14260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (15260) I2C TEST: I2C read value: 25.19°C[0m
+[0;32mI (16260) I2C TEST: I2C read value: 25.19°C[0m
+[0;32mI (17260) I2C TEST: I2C read value: 25.19°C[0m
+[0;32mI (18260) I2C TEST: I2C read value: 25.19°C[0m
+[0;32mI (19260) I2C TEST: I2C read value: 25.19°C[0m
+[0;32mI (20260) I2C TEST: I2C read value: 25.19°C[0m
+[0;32mI (21260) I2C TEST: I2C read value: 25.19°C[0m
+[0;32mI (22260) I2C TEST: I2C read value: 25.19°C[0m
+[0;32mI (23260) I2C TEST: I2C read value: 24.94°C[0m
+[0;32mI (24260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (25260) I2C TEST: I2C read value: 24.94°C[0m
+[0;32mI (26260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (27260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (28260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (29260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (30260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (31260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (32260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (33260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (34260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (35260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (36260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (37260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (38260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (39260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (40260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (41260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (42260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (43260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (44260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (45260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (46260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (47260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (48260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (49260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (50260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (51260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (52260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (53260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (54260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (55260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (56260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (57260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (58260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (59260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (60260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (61260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (62260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (63260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (64260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (65260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (66260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (67260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (68260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (69260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (70260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (71260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (72260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (73260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (74260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (75260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (76260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (77260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (78260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (79260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (80260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (81260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (82260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (83260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (84260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (85260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (86260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (87260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (88260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (89260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (90260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (91260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (92260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (93260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (94260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (95260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (96260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (97260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (98260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (99260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (100260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (101260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (102260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (103260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (104260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (105260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (106260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (107260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (108260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (109260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (110260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (111260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (112260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (113260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (114260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (115260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (116260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (117260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (118260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (119260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (120260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (121260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (122260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (123260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (124260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (125260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (126260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (127260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (128260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (129260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (130260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (131260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (132260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (133260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (134260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (135260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (136260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (137260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (138260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (139260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (140260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (141260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (142260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (143260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (144260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (145260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (146260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (147260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (148260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (149260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (150260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (151260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (152260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (153260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (154260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (155260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (156260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (157260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (158260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (159260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (160260) I2C TEST: I2C read value: 25.12°C[0m
+[0;32mI (161260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (162260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (163260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (164260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (165260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (166260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (167260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (168260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (169260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (170260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (171260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (172260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (173260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (174260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (175260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (176260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (177260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (178260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (179260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (180260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (181260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (182260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (183260) I2C TEST: I2C read value: 25.06°C[0m
+[0;32mI (184260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (185260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (186260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (187260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (188260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (189260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (190260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (191260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (192260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (193260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (194260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (195260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (196260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (197260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (198260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (199260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (200260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (201260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (202260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (203260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (204260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (205260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (206260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (207260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (208260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (209260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (210260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (211260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (212260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (213260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (214260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (215260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (216260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (217260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (218260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (219260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (220260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (221260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (222260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (223260) I2C TEST: I2C read value: 25.00°C[0m
+[0;32mI (224260) I2
