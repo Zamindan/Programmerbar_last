@@ -6,6 +6,17 @@
 #include "esp_log.h"
 
 /**
+ * @file adc.c
+ * @brief Implementation of ADC initialization and reading functions.
+ * 
+ * This file contains the functions for initializing an ADC unit, configuring ADC channels,
+ * and reading values from ADC channels.
+ * 
+ * @author Sondre Pettersen
+ * @date 2025-02-11
+ */
+
+/**
  * @brief Initialises an ADC unit.
  * 
  * This function initialises an ADC unit with the configuration input in the parameters

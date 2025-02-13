@@ -2,6 +2,17 @@
 #include "esp_adc/adc_oneshot.h"
 #include "esp_log.h"
 
+/**
+ * @file adc.c
+ * @brief Implementation of ADC initialization and reading functions.
+ * 
+ * This file contains the functions for initializing an ADC unit, configuring ADC channels,
+ * and reading values from ADC channels.
+ * 
+ * @author Sondre Pettersen
+ * @date 2025-02-11
+ */
+
 
 //Logging tag
 static const char* TAG = "ADC_INIT";

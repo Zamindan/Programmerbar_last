@@ -32,7 +32,8 @@
         "esp_log.h": "c",
         "gpio.h": "c",
         "sdm.h": "c",
-        "i2c_master.h": "c"
+        "i2c_master.h": "c",
+        "adc_oneshot.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
