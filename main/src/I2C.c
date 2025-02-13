@@ -13,7 +13,7 @@
  * These functions are created to make it easier to use the I2C
  * functionality of the ESP32-S3, specifically it has been created
  * with the INA237 IC in mind.
- * The files contains the source code for I2C initilisation, device addition and data transmission functions.
+ * The file contains the source code for I2C initilisation, device addition and data transmission functions.
  * 
  * @author Sondre Pettersen
  * @date 2025-02-13
