@@ -1,10 +1,7 @@
 #include <stdio.h>
-#include "driver/gpio.h"
 #include "esp_log.h"
 #include "driver/i2c_master.h"
 #include "driver/i2c_slave.h"
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
 
 /**
  * @file I2C.c
