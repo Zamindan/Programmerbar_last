@@ -34,6 +34,10 @@
  * @param bus_handle_name Pointer to the bus handle name.
  * @param sda_pin Select the SDA GPIO.
  * @param scl_pin Select the SCL GPIO.
+ * 
+ * @details This function initialises the I2C bus with the specified SDA and SCL pins.
+ * @details The function will print a message to the console if the initialisation was successful.
+ * @details The function will also print a message to the console if the I2C device was found.
  */
 void i2c_init(i2c_master_bus_handle_t *bus_handle_name, gpio_num_t sda_pin, gpio_num_t scl_pin){
     i2c_master_bus_config_t i2c_mst_config = {
@@ -55,6 +59,10 @@ void i2c_init(i2c_master_bus_handle_t *bus_handle_name, gpio_num_t sda_pin, gpio
  * @param dev_handle_name Handle to the I2C device.
  * @param device_address Address of the I2C device.
  * @param scl_clock_speed Clock speed for the I2C bus.
+ * 
+ * @details This function adds an I2C device to the bus with the specified address and clock speed.
+ * @details The function will print a message to the console if the I2C device was found.
+ * @details The function will also print a message to the console if the I2C device was not found.
  */
 void i2c_add_device(i2c_master_bus_handle_t bus_handle_name, i2c_master_dev_handle_t *dev_handle_name, uint16_t device_address, uint32_t scl_clock_speed){
     i2c_device_config_t dev_cfg = {
@@ -85,6 +93,8 @@ void i2c_add_device(i2c_master_bus_handle_t bus_handle_name, i2c_master_dev_hand
  * @param dev_handle_name Handle to the I2C device.
  * @param register_address Address of the register to write to.
  * @param data_to_write Data to write to the register.
+ * 
+ * @details This function writes data to the specified register of the I2C device..
  */
 void i2c_write(i2c_master_dev_handle_t dev_handle_name, uint8_t register_address, uint16_t data_to_write){
     uint8_t write_buffer[3] = {0};
@@ -101,6 +111,8 @@ void i2c_write(i2c_master_dev_handle_t dev_handle_name, uint8_t register_address
  * 
  * @param dev_handle_name Handle of the I2C device.
  * @param register_address Address of the register pointer
+ * 
+ * @details This function sets the register pointer of the I2C device to the specified register.
  */
 void i2c_set_register_pointer(i2c_master_dev_handle_t dev_handle_name, uint8_t register_address){
     // Transmit the register address to set the register pointer.
@@ -113,6 +125,9 @@ void i2c_set_register_pointer(i2c_master_dev_handle_t dev_handle_name, uint8_t r
  * @param dev_handle_name Handle to the I2C device.
  * @param register_address Address of the register to read from
  * @return float Returns the data read from the register
+ * 
+ * @details This function reads data from the specified register of the I2C device.
+ * @details The function will return the read data.
  */
 float i2c_read(i2c_master_dev_handle_t dev_handle_name, uint8_t register_address){
     // Set the register pointer to a desired register to read from.

@@ -30,6 +30,8 @@
  * @param cts_gpio Specifies CTS gpio
  * @param uart_buffer_size Defines UART buffer size.
  * @param uart_queue Pointer to the Queue Handle.
+ * 
+ * @details This function initialises the UART module with the specified parameters.
  */
 void uart_init(uart_port_t uart_port, int tx_gpio, int rx_gpio, int rts_gpio, int cts_gpio, int uart_buffer_size, QueueHandle_t *uart_queue)
 {

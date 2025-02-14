@@ -24,6 +24,14 @@ static const char* TAG = "ADC_INIT";
  * @param adc_handle_name Pointer to the ADC unit handle structure.
  * @param adc_unit The ADC unit to initialise.
  * @param ulp_mode The ULP mode to use.
+ * 
+ * @details The ADC unit handle structure should be declared in the main file like this:
+ * @details adc_oneshot_unit_handle_t adc_handle;
+ * @details The adc_unit should be either ADC_UNIT_1 or ADC_UNIT_2.
+ * @details The ulp_mode should be either ADC_ULP_MODE_0 or ADC_ULP_MODE_1.
+ * @details The function will initialise the ADC unit and store the handle in the adc_handle_name pointer.
+ * @details The function will also print a message to the console if the initialisation was successful.
+ * @details When you write the argument for the adc_handle_name it has to be a pointer to the adc_oneshot_unit_handle_t struct.
  */
 void adc_unit_init(adc_oneshot_unit_handle_t *adc_handle_name, adc_unit_t adc_unit, adc_ulp_mode_t ulp_mode)
 {
@@ -46,6 +54,9 @@ void adc_unit_init(adc_oneshot_unit_handle_t *adc_handle_name, adc_unit_t adc_un
  * @param channel The ADC channel to configure
  * @param atten The attenuation to use for the channel. Decides how high voltage you can measure.
  * @param bitwidth The bit width to use for the channel.
+ * 
+ * @details The function will configure the ADC channel with the specified settings.
+ * @details The function will print a message to the console if the configuration was successful.
  */
 void adc_channel_init(adc_oneshot_unit_handle_t adc_handle_name, adc_channel_t channel, adc_atten_t atten, adc_bitwidth_t bitwidth){
     adc_oneshot_chan_cfg_t config = {
@@ -64,9 +75,44 @@ void adc_channel_init(adc_oneshot_unit_handle_t adc_handle_name, adc_channel_t c
  * @param adc_handle_name The handle of the ADC unit.
  * @param channel The ADC channel to read from.
  * @return Returns the read ADC value.
+ * 
+ * @details The function will read the raw value from the specified ADC channel.
+ * @details The function will return the raw ADC value.
+ * @details The function will print an error message to the console if the read was unsuccessful.
+ * @details The function will print the read value to the console if the read was successful.
  */
 int adc_read(adc_oneshot_unit_handle_t adc_handle_name, adc_channel_t channel){
     int adc_raw;
     ESP_ERROR_CHECK(adc_oneshot_read(adc_handle_name, channel, &adc_raw));
     return adc_raw;
+}
+
+
+/**
+ * @brief Task for reading ADC values.
+ * 
+ * This task reads the value from an ADC channel and prints it to the console.
+ * 
+ * @param parameter The parameters for the task.
+ * 
+ * @details The parameter should be a pointer to an adc_task_params_t struct.
+ * @details The struct should contain the handle of the ADC unit and the channel to read from.
+ * @details The struct should look like this:
+ * @details adc_task_params_t params = {
+ * @details     .adc_handle = adc_handle,
+ * @details     .channel = channel,
+ * @details };
+ */
+void adc_task(void *parameter)
+{
+    adc_task_params_t *params = (adc_task_params_t *)parameter;
+    adc_oneshot_unit_handle_t adc_handle = params->adc_handle;
+    adc_channel_t channel = params->channel;
+
+    while (1)
+    {
+        int adc_value = adc_read(adc_handle, channel);
+        ESP_LOGI(TAG, "ADC Value: %d", adc_value);
+        vTaskDelay(pdMS_TO_TICKS(1000)); // Delay for 1 second
+    }
 }

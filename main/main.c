@@ -1,74 +1,60 @@
 #include <stdio.h>
-#include "driver/gpio.h"
-#include "esp_log.h"
-#include "driver/i2c_master.h"
-#include "driver/i2c_slave.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "adc.h"
+#include "driver/gpio.h"
+#include "driver/ledc.h"
 
-#define TAG "I2C TEST"
+void blinky(void *parameter)
+{
+    while (1)
+    {
+        gpio_set_level(GPIO_NUM_10, 1);
+        vTaskDelay(pdMS_TO_TICKS(1000));
+        gpio_set_level(GPIO_NUM_10, 0);
+        vTaskDelay(pdMS_TO_TICKS(1000));
+    }
+}
+void buzzer(void *parameter)
+{
+    while (1)
+    {
+        // Set buzzer to first frequency
+        ledc_set_freq(LEDC_LOW_SPEED_MODE, LEDC_TIMER_0, 2000); // 2 kHz
+        ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, 4000); // 50% duty cycle
+        ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
+        vTaskDelay(pdMS_TO_TICKS(100));
 
-#define I2C_PORT -1
-#define I2C_SDA_GPIO GPIO_NUM_11
-#define I2C_SCL_GPIO GPIO_NUM_12
-#define CLK_SRC I2C_CLK_SRC_DEFAULT
-#define GLITCH_IGNORE_COUNT 7
-#define INTR_PRI 1
-#define INTERNAL_PULLUP 1
-
-#define DEV_ADDR_LENGTH I2C_ADDR_BIT_LEN_7
-#define DEV_ADD 0b1001000 // Address of TMP102
-#define SCL_SPEED_HZ 100000
-#define SCL_WAIT_US 0
+        // Set buzzer to second frequency
+        ledc_set_freq(LEDC_LOW_SPEED_MODE, LEDC_TIMER_0, 3000); // 3 kHz
+        ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, 4000); // 50% duty cycle
+        ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
+        vTaskDelay(pdMS_TO_TICKS(1000));
+    }
+}
 
 void app_main()
 {
+    ledc_timer_config_t pwm_timer = {
+        .clk_cfg = LEDC_AUTO_CLK,
+        .speed_mode = LEDC_LOW_SPEED_MODE,
+        .duty_resolution = LEDC_TIMER_13_BIT,
+        .timer_num = LEDC_TIMER_0,
+        .freq_hz = 4000};
+    ESP_ERROR_CHECK(ledc_timer_config(&pwm_timer));
 
-    i2c_master_bus_config_t i2c_mst_config = {
-        .clk_source = CLK_SRC,
-        .i2c_port = I2C_PORT,
-        .scl_io_num = I2C_SCL_GPIO,
-        .sda_io_num = I2C_SDA_GPIO,
-        .glitch_ignore_cnt = GLITCH_IGNORE_COUNT,
-        .flags.enable_internal_pullup = INTERNAL_PULLUP};
+    ledc_channel_config_t pwm_config = {
+        .gpio_num = 0,
+        .speed_mode = LEDC_LOW_SPEED_MODE,
+        .channel = LEDC_CHANNEL_0,
+        .timer_sel = LEDC_TIMER_0,
+        .intr_type = LEDC_INTR_DISABLE,
+        .duty = 0,
+        .hpoint = 0};
+    ESP_ERROR_CHECK(ledc_channel_config(&pwm_config));
 
-    i2c_master_bus_handle_t bus_handle;
-    ESP_ERROR_CHECK(i2c_new_master_bus(&i2c_mst_config, &bus_handle));
 
-    i2c_device_config_t dev_cfg = {
-        .dev_addr_length = DEV_ADDR_LENGTH,
-        .device_address = DEV_ADD,
-        .scl_speed_hz = SCL_SPEED_HZ,
-    };
-
-    i2c_master_dev_handle_t dev_handle;
-    ESP_ERROR_CHECK(i2c_master_bus_add_device(bus_handle, &dev_cfg, &dev_handle));
-
-    esp_err_t check = i2c_master_probe(bus_handle, DEV_ADD, -1);
-    if (check == ESP_OK)
-    {
-        ESP_LOGI(TAG, "I2C Address found at %d", DEV_ADD);
-
-        uint8_t I2C_write[1] = {0x00};
-        ESP_ERROR_CHECK(i2c_master_transmit(dev_handle, I2C_write, sizeof(I2C_write), -1));
-
-        uint8_t read_I2C[2] = {0};
-        while (1)
-        {
-            i2c_master_receive(dev_handle, read_I2C, sizeof(read_I2C), -1);
-            int16_t temp_raw = (read_I2C[0] << 4) | (read_I2C [1] >> 4);
-            if (temp_raw & 0x800) // Check if negative
-            {
-                temp_raw |= 0xF000; // Sign extend if negative
-            }
-            float temperature = temp_raw * 0.0625;
-            ESP_LOGI(TAG, "I2C read value: %.4f°C", temperature);
-            vTaskDelay(pdMS_TO_TICKS(1000));
-        };
-    }
-    else
-    {
-        ESP_LOGI(TAG, "NO I2C Address found");
-    };
+    gpio_set_direction(GPIO_NUM_10, GPIO_MODE_OUTPUT);
+    xTaskCreatePinnedToCore(blinky, "Toggle LED", 2048, NULL, 1, NULL, 0);
+    xTaskCreatePinnedToCore(buzzer, "Buzzer Sound", 2048, NULL, 1, NULL, 1);
+    xTaskCreate()
 }

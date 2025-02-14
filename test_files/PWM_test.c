@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "driver/gpio.h"
-#include "driver/sdm.h"
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -14,7 +13,7 @@ void app_main(void)
         .speed_mode = LEDC_LOW_SPEED_MODE,
         .duty_resolution = LEDC_TIMER_13_BIT,
         .timer_num = LEDC_TIMER_0,
-        .freq_hz = 4000};
+        .freq_hz = 800000};
     ESP_ERROR_CHECK(ledc_timer_config(&pwm_timer));
 
     ledc_channel_config_t pwm_config = {
