@@ -131,13 +131,14 @@ float i2c_read(i2c_master_dev_handle_t dev_handle_name, uint8_t register_address
     i2c_set_register_pointer(dev_handle_name, register_address);
 
     // Buffer to hold the read data.
-    uint16_t read_buffer[1] = {0};
+    uint8_t read_buffer[2] = {0};
 
     // Receive the data from the I2C device
     i2c_master_receive(dev_handle_name, read_buffer, sizeof(read_buffer), -1);
 
     // Combine the read data into a single value
-    float result = read_buffer[0];
+    uint16_t combined_data = (read_buffer[0] << 8) | read_buffer[1];
+    float result = combined_data;
     return result;
 }
 

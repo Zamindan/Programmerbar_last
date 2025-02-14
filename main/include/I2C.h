@@ -28,7 +28,7 @@
  * @param sda_pin Select the SDA GPIO.
  * @param scl_pin Select the SCL GPIO.
  */
-void i2c_init(i2c_master_bus_handle_t bus_handle_name,
+void i2c_init(i2c_master_bus_handle_t *bus_handle_name,
               gpio_num_t sda_pin,
               gpio_num_t scl_pin);
 
@@ -41,7 +41,7 @@ void i2c_init(i2c_master_bus_handle_t bus_handle_name,
  * @param scl_clock_speed Clock speed for the I2C bus.
  */
 void i2c_add_device(i2c_master_bus_handle_t bus_handle_name,
-                    i2c_master_dev_handle_t dev_handle_name,
+                    i2c_master_dev_handle_t *dev_handle_name,
                     uint16_t device_address,
                     uint32_t scl_clock_speed);
 
