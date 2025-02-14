@@ -80,6 +80,7 @@ void adc_channel_init(adc_oneshot_unit_handle_t adc_handle_name, adc_channel_t c
  * @details The function will return the raw ADC value.
  * @details The function will print an error message to the console if the read was unsuccessful.
  * @details The function will print the read value to the console if the read was successful.
+ * 
  */
 int adc_read(adc_oneshot_unit_handle_t adc_handle_name, adc_channel_t channel){
     int adc_raw;
@@ -105,14 +106,5 @@ int adc_read(adc_oneshot_unit_handle_t adc_handle_name, adc_channel_t channel){
  */
 void adc_task(void *parameter)
 {
-    adc_task_params_t *params = (adc_task_params_t *)parameter;
-    adc_oneshot_unit_handle_t adc_handle = params->adc_handle;
-    adc_channel_t channel = params->channel;
-
-    while (1)
-    {
-        int adc_value = adc_read(adc_handle, channel);
-        ESP_LOGI(TAG, "ADC Value: %d", adc_value);
-        vTaskDelay(pdMS_TO_TICKS(1000)); // Delay for 1 second
-    }
+ 
 }
