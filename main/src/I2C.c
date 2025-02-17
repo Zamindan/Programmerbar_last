@@ -2,6 +2,8 @@
 #include "esp_log.h"
 #include "driver/i2c_master.h"
 #include "driver/i2c_slave.h"
+#include "freertos/freeRTOS.h"
+#include "freertos/task.h"
 
 /**
  * @file I2C.c
@@ -40,13 +42,14 @@ void i2c_init(i2c_master_bus_handle_t *bus_handle_name, gpio_num_t sda_pin, gpio
     i2c_master_bus_config_t i2c_mst_config = {
         .clk_source = CLK_SRC,
         .i2c_port = I2C_PORT,
-        .scl_io_num = sda_pin,
-        .sda_io_num = scl_pin,
+        .scl_io_num = scl_pin,
+        .sda_io_num = sda_pin,
         .glitch_ignore_cnt = GLITCH_IGNORE_COUNT,
         .flags.enable_internal_pullup = INTERNAL_PULLUP};
 
     //Initialise the I2C master bus with the above config.
     ESP_ERROR_CHECK(i2c_new_master_bus(&i2c_mst_config, bus_handle_name));
+    vTaskDelay(pdMS_TO_TICKS(10));
 };
 
 /**
@@ -77,10 +80,10 @@ void i2c_add_device(i2c_master_bus_handle_t bus_handle_name, i2c_master_dev_hand
     {
         ESP_LOGI(TAG, "I2C Address found at %d", device_address);
     }
-    else
+    else if (check == ESP_ERR_NOT_FOUND)
     {
         ESP_LOGI(TAG, "No I2C device found on %d", device_address);
-    };
+    }
 };
 
 
@@ -101,6 +104,7 @@ void i2c_write(i2c_master_dev_handle_t dev_handle_name, uint8_t register_address
 
     // Transmit the data to the I2C device.
     ESP_ERROR_CHECK(i2c_master_transmit(dev_handle_name, write_buffer, sizeof(write_buffer), -1));
+    ESP_LOGI(TAG, "Wrote 0x%04X to register 0x%02X", data_to_write, register_address);
 }
 
 /**
@@ -134,11 +138,12 @@ float i2c_read(i2c_master_dev_handle_t dev_handle_name, uint8_t register_address
     uint8_t read_buffer[2] = {0};
 
     // Receive the data from the I2C device
-    i2c_master_receive(dev_handle_name, read_buffer, sizeof(read_buffer), -1);
+    ESP_ERROR_CHECK(i2c_master_receive(dev_handle_name, read_buffer, sizeof(read_buffer), -1));
 
     // Combine the read data into a single value
     uint16_t combined_data = (read_buffer[0] << 8) | read_buffer[1];
-    float result = combined_data;
+    float result = (float)combined_data;
+    //ESP_LOGI(TAG, "Read data from register 0x%02X: 0x%04X", register_address, combined_data);
     return result;
 }
 

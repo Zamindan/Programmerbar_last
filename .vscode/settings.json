@@ -35,7 +35,8 @@
         "i2c_master.h": "c",
         "adc_oneshot.h": "c",
         "uart.h": "c",
-        "*.lf": "c"
+        "*.lf": "c",
+        "task.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "C_Cpp.dimInactiveRegions": false

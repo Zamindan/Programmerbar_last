@@ -1,0 +1,527 @@
+[0;32mI (100) esp_image: segment 2: paddr=0001ed14 vaddr=40374000 sizeESP-ROM:esp32s3-20210327[0m
+Build:Mar 27 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0x2b (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40378676
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2810,len:0x15a0
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xd20
+load:0x403cb700,len:0x2ee4
+entry 0x403c8928
+[0;32mI (26) boot: ESP-IDF v5.4-dirty 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Feb 14 2025 11:21:12[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (27) boot: chip revision: v0.2[0m
+[0;32mI (30) boot: efuse block revision: v1.3[0m
+[0;32mI (34) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (38) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32s3: SPI Flash Size : 8MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (50) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3c020020 size=0c214h ( 49684) map[0m
+[0;32mI (98) esp_image: segment 1: paddr=0001c23c vaddr=3fc92800 size=02ad0h ( 10960) load[0m
+[0;32mI (100) esp_image: segment 2: paddr=0001ed14 vaddr=40374000 size=01304h (  4868) load[0m
+[0;32mI (105) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=1d124h (119076) map[0m
+[0;32mI (132) esp_image: segment 4: paddr=0003d14c vaddr=40375304 size=0d42ch ( 54316) load[0m
+[0;32mI (144) esp_image: segment 5: paddr=0004a580 vaddr=600fe100 size=0001ch (    28) load[0m
+[0;32mI (150) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (150) boot: Disabling RNG early entropy source...[0m
+[0;32mI (162) cpu_start: Multicore app[0m
+[0;32mI (171) cpu_start: Pro cpu start user code[0m
+[0;32mI (171) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (171) app_init: Application information:[0m
+[0;32mI (172) app_init: Project name:     Programmerbar_last[0m
+[0;32mI (176) app_init: App version:      eacbb8f-dirty[0m
+[0;32mI (181) app_init: Compile time:     Feb 17 2025 09:25:16[0m
+[0;32mI (186) app_init: ELF file SHA256:  3c6c90f55...[0m
+[0;32mI (190) app_init: ESP-IDF:          v5.4-dirty[0m
+[0;32mI (194) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (198) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (202) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (206) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (212) heap_init: At 3FC95C08 len 00053B08 (334 KiB): RAM[0m
+[0;32mI (217) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (222) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (228) heap_init: At 600FE11C len 00001ECC (7 KiB): RTCRAM[0m
+[0;32mI (234) spi_flash: detected chip: gd[0m
+[0;32mI (236) spi_flash: flash io: dio[0m
+[0;32mI (239) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (246) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (252) main_task: Started on CPU0[0m
+[0;32mI (262) main_task: Calling app_main()[0m
+[0;32mI (262) main_task: Returned from app_main()[0m
+[0;32mI (262) ADC_INIT: ADC unit initialised successfully[0m
+[0;32mI (262) ADC_INIT: ADC channel initialised successfully[0m
+[0;32mI (282) I2C: I2C Address found at 64[0m
+[0;32mI (282) I2C: Wrote 0x0000 to register 0x00[0m
+[0;32mI (282) I2C: Wrote 0xB002 to register 0x01[0m
+[0;32mI (282) I2C: Wrote 0x09C4 to register 0x02[0m
+[0;32mI (682) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (1082) MEASUREMENTS: Current: 0.000000 Voltage: 3.303125 Power: 0.000000 Temperature: 226.000000[0m
+[0;32mI (1482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 223.000000[0m
+[0;32mI (1882) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (2282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.303125 Power: 216470.296875 Temperature: 223.000000[0m
+[0;32mI (2682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (3082) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (3482) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (3882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 226.000000[0m
+[0;32mI (4282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 223.000000[0m
+[0;32mI (4682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 233.000000[0m
+[0;32mI (5082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 224.000000[0m
+[0;32mI (5482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 223.000000[0m
+[0;32mI (5882) MEASUREMENTS: Current: 0.000000 Voltage: 3.290625 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (6282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 223.000000[0m
+[0;32mI (6682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 222.000000[0m
+[0;32mI (7082) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 229.000000[0m
+[0;32mI (7482) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 226.000000[0m
+[0;32mI (7882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 223.000000[0m
+[0;32mI (8282) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (8682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 231.000000[0m
+[0;32mI (9082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 221.000000[0m
+[0;32mI (9482) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (9882) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 227.000000[0m
+[0;32mI (10282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.303125 Power: 216470.296875 Temperature: 223.000000[0m
+[0;32mI (10682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 224.000000[0m
+[0;32mI (11082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 222.000000[0m
+[0;32mI (11482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 223.000000[0m
+[0;32mI (11882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (12282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (12682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 221.000000[0m
+[0;32mI (13082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.306250 Power: 216675.093750 Temperature: 224.000000[0m
+[0;32mI (13482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 221.000000[0m
+[0;32mI (13882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (14282) MEASUREMENTS: Current: 0.000000 Voltage: 3.303125 Power: 0.000000 Temperature: 227.000000[0m
+[0;32mI (14682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 227.000000[0m
+[0;32mI (15082) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (15482) MEASUREMENTS: Current: 0.000000 Voltage: 3.303125 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (15882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (16282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 223.000000[0m
+[0;32mI (16682) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (17082) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 227.000000[0m
+[0;32mI (17482) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (17882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.290625 Power: 215651.109375 Temperature: 220.000000[0m
+[0;32mI (18282) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (18682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 222.000000[0m
+[0;32mI (19082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 221.000000[0m
+[0;32mI (19482) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (19882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 221.000000[0m
+[0;32mI (20282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 220.000000[0m
+[0;32mI (20682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 219.000000[0m
+[0;32mI (21082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 221.000000[0m
+[0;32mI (21482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 219.000000[0m
+[0;32mI (21882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 231.000000[0m
+[0;32mI (22282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 221.000000[0m
+[0;32mI (22682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 219.000000[0m
+[0;32mI (23082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 220.000000[0m
+[0;32mI (23482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 218.000000[0m
+[0;32mI (23882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 219.000000[0m
+[0;32mI (24282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 219.000000[0m
+[0;32mI (24682) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 228.000000[0m
+[0;32mI (25082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 217.000000[0m
+[0;32mI (25482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 219.000000[0m
+[0;32mI (25882) MEASUREMENTS: Current: 0.000000 Voltage: 3.303125 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (26282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 217.000000[0m
+[0;32mI (26682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 228.000000[0m
+[0;32mI (27082) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 213.000000[0m
+[0;32mI (27482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 218.000000[0m
+[0;32mI (27882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (28282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 217.000000[0m
+[0;32mI (28682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 217.000000[0m
+[0;32mI (29082) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (29482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 219.000000[0m
+[0;32mI (29882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.303125 Power: 216470.296875 Temperature: 221.000000[0m
+[0;32mI (30282) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (30682) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (31082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 231.000000[0m
+[0;32mI (31482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 220.000000[0m
+[0;32mI (31882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 219.000000[0m
+[0;32mI (32282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (32682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 221.000000[0m
+[0;32mI (33082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 222.000000[0m
+[0;32mI (33482) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (33882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.290625 Power: 215651.109375 Temperature: 223.000000[0m
+[0;32mI (34282) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 229.000000[0m
+[0;32mI (34682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 218.000000[0m
+[0;32mI (35082) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 226.000000[0m
+[0;32mI (35482) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (35882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 220.000000[0m
+[0;32mI (36282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 216.000000[0m
+[0;32mI (36682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.287500 Power: 215446.312500 Temperature: 222.000000[0m
+[0;32mI (37082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 223.000000[0m
+[0;32mI (37482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 222.000000[0m
+[0;32mI (37882) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (38282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 216.000000[0m
+[0;32mI (38682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (39082) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 231.000000[0m
+[0;32mI (39482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 218.000000[0m
+[0;32mI (39882) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 216.000000[0m
+[0;32mI (40282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.290625 Power: 215651.109375 Temperature: 218.000000[0m
+[0;32mI (40682) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (41082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 217.000000[0m
+[0;32mI (41482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 217.000000[0m
+[0;32mI (41882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 218.000000[0m
+[0;32mI (42282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 216.000000[0m
+[0;32mI (42682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 217.000000[0m
+[0;32mI (43082) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 215.000000[0m
+[0;32mI (43482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 217.000000[0m
+[0;32mI (43882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 229.000000[0m
+[0;32mI (44282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 216.000000[0m
+[0;32mI (44682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 220.000000[0m
+[0;32mI (45082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 223.000000[0m
+[0;32mI (45482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 219.000000[0m
+[0;32mI (45882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 218.000000[0m
+[0;32mI (46282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 219.000000[0m
+[0;32mI (46682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 219.000000[0m
+[0;32mI (47082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 219.000000[0m
+[0;32mI (47482) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (47882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (48282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 232.000000[0m
+[0;32mI (48682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (49082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 230.000000[0m
+[0;32mI (49482) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (49882) MEASUREMENTS: Current: 0.000000 Voltage: 3.303125 Power: 0.000000 Temperature: 228.000000[0m
+[0;32mI (50282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 221.000000[0m
+[0;32mI (50682) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (51082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 221.000000[0m
+[0;32mI (51482) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (51882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (52282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 221.000000[0m
+[0;32mI (52682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (53082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 222.000000[0m
+[0;32mI (53482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 225.000000[0m
+[0;32mI (53882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (54282) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 225.000000[0m
+[0;32mI (54682) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (55082) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (55482) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 226.000000[0m
+[0;32mI (55882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (56282) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (56682) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (57082) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (57482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 221.000000[0m
+[0;32mI (57882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 233.000000[0m
+[0;32mI (58282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 233.000000[0m
+[0;32mI (58682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (59082) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (59482) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (59882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (60282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 222.000000[0m
+[0;32mI (60682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 221.000000[0m
+[0;32mI (61082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 223.000000[0m
+[0;32mI (61482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 219.000000[0m
+[0;32mI (61882) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (62282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 220.000000[0m
+[0;32mI (62682) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (63082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 220.000000[0m
+[0;32mI (63482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 221.000000[0m
+[0;32mI (63882) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (64282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 219.000000[0m
+[0;32mI (64682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 222.000000[0m
+[0;32mI (65082) MEASUREMENTS: Current: 1.000000 Voltage: 3.300000 Power: 3.300000 Temperature: 218.000000[0m
+[0;32mI (65482) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (65882) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (66282) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (66682) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (67082) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (67482) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 229.000000[0m
+[0;32mI (67882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 219.000000[0m
+[0;32mI (68282) MEASUREMENTS: Current: 0.000000 Voltage: 3.303125 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (68682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 228.000000[0m
+[0;32mI (69082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 220.000000[0m
+[0;32mI (69482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 219.000000[0m
+[0;32mI (69882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 228.000000[0m
+[0;32mI (70282) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (70682) MEASUREMENTS: Current: 0.000000 Voltage: 3.303125 Power: 0.000000 Temperature: 230.000000[0m
+[0;32mI (71082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 219.000000[0m
+[0;32mI (71482) MEASUREMENTS: Current: 0.000000 Voltage: 3.303125 Power: 0.000000 Temperature: 231.000000[0m
+[0;32mI (71882) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 218.000000[0m
+[0;32mI (72282) MEASUREMENTS: Current: 1.000000 Voltage: 3.293750 Power: 3.293750 Temperature: 230.000000[0m
+[0;32mI (72682) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (73082) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (73482) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (73882) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (74282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 221.000000[0m
+[0;32mI (74682) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (75082) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (75482) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (75882) MEASUREMENTS: Current: 1.000000 Voltage: 3.300000 Power: 3.300000 Temperature: 221.000000[0m
+[0;32mI (76282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (76682) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (77082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 221.000000[0m
+[0;32mI (77482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 219.000000[0m
+[0;32mI (77882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 218.000000[0m
+[0;32mI (78282) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (78682) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 234.000000[0m
+[0;32mI (79082) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (79482) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (79882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (80282) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (80682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 228.000000[0m
+[0;32mI (81082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 222.000000[0m
+[0;32mI (81482) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (81882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 223.000000[0m
+[0;32mI (82282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (82682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (83082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 220.000000[0m
+[0;32mI (83482) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (83882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 221.000000[0m
+[0;32mI (84282) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (84682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 221.000000[0m
+[0;32mI (85082) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (85482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 221.000000[0m
+[0;32mI (85882) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (86282) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 232.000000[0m
+[0;32mI (86682) MEASUREMENTS: Current: 0.000000 Voltage: 3.303125 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (87082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 223.000000[0m
+[0;32mI (87482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 221.000000[0m
+[0;32mI (87882) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 226.000000[0m
+[0;32mI (88282) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (88682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (89082) MEASUREMENTS: Current: 0.000000 Voltage: 3.290625 Power: 0.000000 Temperature: 224.000000[0m
+[0;32mI (89482) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (89882) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (90282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 221.000000[0m
+[0;32mI (90682) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (91082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 219.000000[0m
+[0;32mI (91482) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (91882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (92282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 220.000000[0m
+[0;32mI (92682) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (93082) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (93482) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (93882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 223.000000[0m
+[0;32mI (94282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (94682) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (95082) MEASUREMENTS: Current: 0.000000 Voltage: 3.290625 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (95482) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (95882) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (96282) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (96682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 221.000000[0m
+[0;32mI (97082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 222.000000[0m
+[0;32mI (97482) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 227.000000[0m
+[0;32mI (97882) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (98282) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (98682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (99082) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (99482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 221.000000[0m
+[0;32mI (99882) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 229.000000[0m
+[0;32mI (100282) MEASUREMENTS: Current: 0.000000 Voltage: 3.306250 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (100682) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (101082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 220.000000[0m
+[0;32mI (101482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 219.000000[0m
+[0;32mI (101882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (102282) MEASUREMENTS: Current: 1.000000 Voltage: 3.293750 Power: 3.293750 Temperature: 217.000000[0m
+[0;32mI (102682) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (103082) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (103482) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 227.000000[0m
+[0;32mI (103882) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (104282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (104682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (105082) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (105482) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (105882) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (106282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (106682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.290625 Power: 215651.109375 Temperature: 220.000000[0m
+[0;32mI (107082) MEASUREMENTS: Current: 1.000000 Voltage: 3.300000 Power: 3.300000 Temperature: 219.000000[0m
+[0;32mI (107482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 217.000000[0m
+[0;32mI (107882) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (108282) MEASUREMENTS: Current: 0.000000 Voltage: 3.290625 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (108682) MEASUREMENTS: Current: 0.000000 Voltage: 3.290625 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (109082) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (109482) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 218.000000[0m
+[0;32mI (109882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 219.000000[0m
+[0;32mI (110282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.303125 Power: 216470.296875 Temperature: 232.000000[0m
+[0;32mI (110682) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (111082) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (111482) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 218.000000[0m
+[0;32mI (111882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (112282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 221.000000[0m
+[0;32mI (112682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 220.000000[0m
+[0;32mI (113082) MEASUREMENTS: Current: 0.000000 Voltage: 3.290625 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (113482) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (113882) MEASUREMENTS: Current: 0.000000 Voltage: 3.303125 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (114282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 231.000000[0m
+[0;32mI (114682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (115082) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (115482) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (115882) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (116282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 220.000000[0m
+[0;32mI (116682) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (117082) MEASUREMENTS: Current: 0.000000 Voltage: 3.290625 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (117482) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (117882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 226.000000[0m
+[0;32mI (118282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (118682) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (119082) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (119482) MEASUREMENTS: Current: 1.000000 Voltage: 3.296875 Power: 3.296875 Temperature: 221.000000[0m
+[0;32mI (119882) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (120282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 221.000000[0m
+[0;32mI (120682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.290625 Power: 215651.109375 Temperature: 231.000000[0m
+[0;32mI (121082) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (121482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 221.000000[0m
+[0;32mI (121882) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (122282) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (122682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (123082) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (123482) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (123882) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (124282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (124682) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (125082) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (125482) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (125882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 225.000000[0m
+[0;32mI (126282) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 229.000000[0m
+[0;32mI (126682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 223.000000[0m
+[0;32mI (127082) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (127482) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (127882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 220.000000[0m
+[0;32mI (128282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (128682) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (129082) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (129482) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (129882) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (130282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (130682) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (131082) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (131482) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (131882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (132282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (132682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 221.000000[0m
+[0;32mI (133082) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (133482) MEASUREMENTS: Current: 0.000000 Voltage: 3.290625 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (133882) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (134282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (134682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (135082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 222.000000[0m
+[0;32mI (135482) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (135882) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 231.000000[0m
+[0;32mI (136282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 222.000000[0m
+[0;32mI (136682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (137082) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (137482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 221.000000[0m
+[0;32mI (137882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 221.000000[0m
+[0;32mI (138282) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (138682) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (139082) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (139482) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (139882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (140282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 218.000000[0m
+[0;32mI (140682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 233.000000[0m
+[0;32mI (141082) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (141482) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (141882) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (142282) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (142682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 222.000000[0m
+[0;32mI (143082) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (143482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 233.000000[0m
+[0;32mI (143882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (144282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 221.000000[0m
+[0;32mI (144682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (145082) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (145482) MEASUREMENTS: Current: 0.000000 Voltage: 3.287500 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (145882) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (146282) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (146682) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 232.000000[0m
+[0;32mI (147082) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (147482) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 230.000000[0m
+[0;32mI (147882) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 232.000000[0m
+[0;32mI (148282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 223.000000[0m
+[0;32mI (148682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (149082) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (149482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 223.000000[0m
+[0;32mI (149882) MEASUREMENTS: Current: 0.000000 Voltage: 3.303125 Power: 0.000000 Temperature: 231.000000[0m
+[0;32mI (150282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (150682) MEASUREMENTS: Current: 1.000000 Voltage: 3.300000 Power: 3.300000 Temperature: 223.000000[0m
+[0;32mI (151082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 223.000000[0m
+[0;32mI (151482) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 232.000000[0m
+[0;32mI (151882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 221.000000[0m
+[0;32mI (152282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (152682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (153082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 223.000000[0m
+[0;32mI (153482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 223.000000[0m
+[0;32mI (153882) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (154282) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (154682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 220.000000[0m
+[0;32mI (155082) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 231.000000[0m
+[0;32mI (155482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 221.000000[0m
+[0;32mI (155882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (156282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (156682) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 215.000000[0m
+[0;32mI (157082) MEASUREMENTS: Current: 0.000000 Voltage: 3.303125 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (157482) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (157882) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (158282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 219.000000[0m
+[0;32mI (158682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (159082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 220.000000[0m
+[0;32mI (159482) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 228.000000[0m
+[0;32mI (159882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (160282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 221.000000[0m
+[0;32mI (160682) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (161082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.303125 Power: 216470.296875 Temperature: 221.000000[0m
+[0;32mI (161482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 221.000000[0m
+[0;32mI (161882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 218.000000[0m
+[0;32mI (162282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (162682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (163082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 219.000000[0m
+[0;32mI (163482) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (163882) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (164282) MEASUREMENTS: Current: 0.000000 Voltage: 3.303125 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (164682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 221.000000[0m
+[0;32mI (165082) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (165482) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 232.000000[0m
+[0;32mI (165882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 222.000000[0m
+[0;32mI (166282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 221.000000[0m
+[0;32mI (166682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 219.000000[0m
+[0;32mI (167082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 218.000000[0m
+[0;32mI (167482) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 223.000000[0m
+[0;32mI (167882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 219.000000[0m
+[0;32mI (168282) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 218.000000[0m
+[0;32mI (168682) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 220.000000[0m
+[0;32mI (169082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 219.000000[0m
+[0;32mI (169482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 219.000000[0m
+[0;32mI (169882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 218.000000[0m
+[0;32mI (170282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 229.000000[0m
+[0;32mI (170682) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (171082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 227.000000[0m
+[0;32mI (171482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 219.000000[0m
+[0;32mI (171882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (172282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (172682) MEASUREMENTS: Current: 1.000000 Voltage: 3.300000 Power: 3.300000 Temperature: 221.000000[0m
+[0;32mI (173082) MEASUREMENTS: Current: 1.000000 Voltage: 3.296875 Power: 3.296875 Temperature: 219.000000[0m
+[0;32mI (173482) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (173882) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (174282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 221.000000[0m
+[0;32mI (174682) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (175082) MEASUREMENTS: Current: 0.000000 Voltage: 3.290625 Power: 0.000000 Temperature: 217.000000[0m
+[0;32mI (175482) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (175882) MEASUREMENTS: Current: 0.000000 Voltage: 3.303125 Power: 0.000000 Temperature: 218.000000[0m
+[0;32mI (176282) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (176682) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (177082) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (177482) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (177882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 219.000000[0m
+[0;32mI (178282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (178682) MEASUREMENTS: Current: 0.000000 Voltage: 3.303125 Power: 0.000000 Temperature: 229.000000[0m
+[0;32mI (179082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 218.000000[0m
+[0;32mI (179482) MEASUREMENTS: Current: 0.000000 Voltage: 3.290625 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (179882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.296875 Power: 216060.703125 Temperature: 219.000000[0m
+[0;32mI (180282) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (180682) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (181082) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (181482) MEASUREMENTS: Current: 65535.000000 Voltage: 3.300000 Power: 216265.500000 Temperature: 219.000000[0m
+[0;32mI (181882) MEASUREMENTS: Current: 0.000000 Voltage: 3.293750 Power: 0.000000 Temperature: 219.000000[0m
+[0;32mI (182282) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 217.000000[0m
+[0;32mI (182682) MEASUREMENTS: Current: 0.000000 Voltage: 3.303125 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (183082) MEASUREMENTS: Current: 0.000000 Voltage: 3.296875 Power: 0.000000 Temperature: 220.000000[0m
+[0;32mI (183482) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 Power: 0.000000 Temperature: 217.000000[0m
+[0;32mI (183882) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 220.000000[0m
+[0;32mI (184282) MEASUREMENTS: Current: 65535.000000 Voltage: 3.293750 Power: 215855.906250 Temperature: 220.000000[0m
+[0;32mI (184682) MEASUREMENTS: Current: 1.000000 Voltage: 3.296875 Power: 3.296875 Temperature: 220.000000[0m
+[0;32mI (185082) MEASUREMENTS: Current: 65535.000000 Voltage: 3.303125 Power: 216470.296875 Temperature: 231.000000[0m
+[0;32mI (185482) MEASUREMENTS: Current: 0.000000 Voltage: 3.300000 P
