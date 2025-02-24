@@ -1,4 +1,4 @@
-# Install script for directory: C:/Programmerbar_last/main
+# Install script for directory: C:/Users/ardiu/OneDrive/Dokumenter/Programmerbar_last/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
