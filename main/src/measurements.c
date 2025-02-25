@@ -36,7 +36,7 @@ void ina_config(i2c_master_dev_handle_t dev_handle_name)
     i2c_write(dev_handle_name, 0x00, 0b0000000000000000);
 
     // Set the ADC configuration of the INA237
-    i2c_write(dev_handle_name, 0x01, 0b1011000000000010);
+    i2c_write(dev_handle_name, 0x01, 0b1011000000000000);
 
     // Set the shunt calibration of the INA237
     i2c_write(dev_handle_name, 0x02, 0b0000100111000100); // Calculations from page 29: https://www.ti.com/lit/ds/symlink/ina237.pdf (Rshunt = 0.01 ohm, Current_LSB = 10/2^15, SHUNT_CAL = 2500)
@@ -53,15 +53,14 @@ void ina_config(i2c_master_dev_handle_t dev_handle_name)
 float read_current(i2c_master_dev_handle_t dev_handle_name)
 {
     // Read the current from the INA237
-    //uint16_t raw_shunt_voltage = i2c_read(dev_handle_name, INA237_SHUNT_V_REG);
-    uint16_t raw_current = i2c_read(dev_handle_name, INA237_CURRENT_REG);
+    // uint16_t raw_shunt_voltage = i2c_read(dev_handle_name, INA237_SHUNT_V_REG);
+    int16_t raw_current = i2c_read(dev_handle_name, INA237_CURRENT_REG);
 
     // Convert the raw current data to actual current value
-    current = (float) raw_current * (10.0 / 32768.0);
-
+    current = (float)raw_current * (10.0 / 32768.0);
 
     // Conversion factor: 5uV/LSB
-    //current = (float) raw_shunt_voltage * 5 / (1000000 * 0.01); // Convert to amperes (A)
+    // current = (float) raw_shunt_voltage * 5 / (1000000 * 0.01); // Convert to amperes (A)
     return current;
 }
 
@@ -80,7 +79,7 @@ float read_voltage(i2c_master_dev_handle_t dev_handle_name)
 
     // Convert the raw voltage data to actualt voltage value
     // Conversion factor: 3.125mV/LSB
-    voltage = (float) raw_voltage * 3.125 / 1000.0; // Convert to volts (V)
+    voltage = (float)raw_voltage * 3.125 / 1000.0; // Convert to volts (V)
     return voltage;
 }
 
@@ -116,8 +115,11 @@ float read_temperature(adc_oneshot_unit_handle_t adc_handle, adc_channel_t adc_c
     return temperature;
 }
 
-void measurements_task(void *parameter)
+void measurements_task(void *parameter /*, void *parameter2*/)
 {
+    // adc_oneshot_unit_handle_t adc_handle_1 = (adc_oneshot_unit_handle_t)parameter1;
+    // i2c_master_dev_handle_t ina_handle = (i2c_master_dev_handle_t)parameter2;
+
     // Handle for the ADC unit
     adc_oneshot_unit_handle_t adc_handle_1;
 
@@ -137,22 +139,25 @@ void measurements_task(void *parameter)
     i2c_master_dev_handle_t ina_handle;
 
     // Add the I2C device to the bus
-    i2c_add_device(bus_handle_name, &ina_handle, (uint16_t) 0b1000000, 100000);
+    i2c_add_device(bus_handle_name, &ina_handle, (uint16_t)0b1000000, 100000);
+
     // Configure the INA237
     ina_config(ina_handle);
-    vTaskDelay(pdMS_TO_TICKS(100));
+
+
+    vTaskDelay(pdMS_TO_TICKS(10));
     while (1)
     {
         // Read the current, voltage, power and temperature
         read_current(ina_handle);
-        vTaskDelay(pdMS_TO_TICKS(100));
+        vTaskDelay(pdMS_TO_TICKS(10));
         read_voltage(ina_handle);
-        vTaskDelay(pdMS_TO_TICKS(100));
+        vTaskDelay(pdMS_TO_TICKS(10));
         read_power(ina_handle);
-        vTaskDelay(pdMS_TO_TICKS(100));
+        vTaskDelay(pdMS_TO_TICKS(10));
         read_temperature(adc_handle_1, ADC_CHANNEL_0);
 
         ESP_LOGI("MEASUREMENTS", "Current: %f Voltage: %f Power: %f Temperature: %f", current, voltage, power, temperature);
-        vTaskDelay(pdMS_TO_TICKS(100));
+        vTaskDelay(pdMS_TO_TICKS(10));
     }
 }

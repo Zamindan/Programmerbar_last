@@ -142,7 +142,8 @@ float i2c_read(i2c_master_dev_handle_t dev_handle_name, uint8_t register_address
 
     // Combine the read data into a single value
     uint16_t combined_data = (read_buffer[0] << 8) | read_buffer[1];
-    float result = (float)combined_data;
+    int16_t signed_data = (int16_t)combined_data;
+    float result = (float)signed_data;
     //ESP_LOGI(TAG, "Read data from register 0x%02X: 0x%04X", register_address, combined_data);
     return result;
 }
