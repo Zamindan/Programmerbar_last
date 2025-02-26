@@ -37,7 +37,10 @@
         "uart.h": "c",
         "*.lf": "c",
         "task.h": "c",
-        "measurements.h": "c"
+        "measurements.h": "c",
+        "time.h": "c",
+        "nvs_flash.h": "c",
+        "esp_sntp.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "C_Cpp.dimInactiveRegions": false

@@ -1,0 +1,748 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40048d46
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2810,len:0x15a0
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xd20
+load:0x403cb700,len:0x2ee4
+entry 0x403c8928
+[0;32mI (26) boot: ESP-IDF v5.4-dirty 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Feb 14 2025 11:21:12[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (27) boot: chip revision: v0.2[0m
+[0;32mI (30) boot: efuse block revision: v1.3[0m
+[0;32mI (34) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (37) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32s3: SPI Flash Size : 8MB[0m
+[0;32mI (45) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (65) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (78) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3c090020 size=19ed0h (106192) map[0m
+[0;32mI (107) esp_image: segment 1: paddr=00029ef8 vaddr=3fc99a00 size=049a8h ( 18856) load[0m
+[0;32mI (112) esp_image: segment 2: paddr=0002e8a8 vaddr=40374000 size=01770h (  6000) load[0m
+[0;32mI (114) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=879a4h (555428) map[0m
+[0;32mI (217) esp_image: segment 4: paddr=000b79cc vaddr=40375770 size=14210h ( 82448) load[0m
+[0;32mI (235) esp_image: segment 5: paddr=000cbbe4 vaddr=600fe100 size=0001ch (    28) load[0m
+[0;32mI (244) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (244) boot: Disabling RNG early entropy source...[0m
+[0;32mI (254) cpu_start: Multicore app[0m
+[0;32mI (263) cpu_start: Pro cpu start user code[0m
+[0;32mI (263) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (263) app_init: Application information:[0m
+[0;32mI (263) app_init: Project name:     Programmerbar_last[0m
+[0;32mI (268) app_init: App version:      2b73397-dirty[0m
+[0;32mI (272) app_init: Compile time:     Feb 26 2025 09:45:18[0m
+[0;32mI (278) app_init: ELF file SHA256:  a3b55207a...[0m
+[0;32mI (282) app_init: ESP-IDF:          v5.4-dirty[0m
+[0;32mI (286) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (290) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (294) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (298) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (304) heap_init: At 3FCA2528 len 000471E8 (284 KiB): RAM[0m
+[0;32mI (309) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (314) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (319) heap_init: At 600FE11C len 00001ECC (7 KiB): RTCRAM[0m
+[0;32mI (326) spi_flash: detected chip: gd[0m
+[0;32mI (328) spi_flash: flash io: dio[0m
+[0;32mI (331) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (337) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (344) main_task: Started on CPU0[0m
+[0;32mI (354) main_task: Calling app_main()[0m
+[0;32mI (374) pp: pp rom version: e7ae62f[0m
+[0;32mI (374) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (384) wifi:wifi driver task: 3fcac5a0, prio:23, stack:6656, core=0[0m
+[0;32mI (384) wifi:wifi firmware version: 48ea317a7[0m
+[0;32mI (384) wifi:wifi certification version: v7.0[0m
+[0;32mI (384) wifi:config NVS flash: enabled[0m
+[0;32mI (384) wifi:config nano formatting: disabled[0m
+[0;32mI (394) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (394) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (404) wifi:Init management short buffer num: 32[0m
+[0;32mI (404) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (404) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (414) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (414) wifi:Init static rx buffer num: 10[0m
+[0;32mI (424) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (424) wifi_init: rx ba win: 6[0m
+[0;32mI (424) wifi_init: accept mbox: 6[0m
+[0;32mI (434) wifi_init: tcpip mbox: 32[0m
+[0;32mI (434) wifi_init: udp mbox: 6[0m
+[0;32mI (434) wifi_init: tcp mbox: 6[0m
+[0;32mI (444) wifi_init: tcp tx win: 5760[0m
+[0;32mI (444) wifi_init: tcp rx win: 5760[0m
+[0;32mI (444) wifi_init: tcp mss: 1440[0m
+[0;32mI (444) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (454) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (454) phy_init: phy_version 680,a6008b2,Jun  4 2024,16:41:10[0m
+[0;32mI (494) wifi:mode : sta (8c:bf:ea:03:b8:98)[0m
+[0;32mI (494) wifi:enable tsf[0m
+[0;32mI (494) WIFI: STA init complete[0m
+[0;32mI (494) WIFI: Connecting to AP...[0m
+[0;32mI (584) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (584) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (594) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (594) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (664) wifi:connected with Sondre, aid = 1, channel 6, BW20, bssid = 52:36:e4:ed:47:bb[0m
+[0;32mI (664) wifi:security: WPA2-PSK, phy: bgn, rssi: -42[0m
+[0;32mI (664) wifi:pm start, type: 1[0m
+
+[0;32mI (674) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (674) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000[0m
+[0;32mI (684) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (694) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (724) wifi:<ba-add>idx:0 (ifx:0, 52:36:e4:ed:47:bb), tid:0, ssn:0, winSize:64[0m
+[0;32mI (1744) esp_netif_handlers: sta ip: 192.168.57.136, mask: 255.255.255.0, gw: 192.168.57.19[0m
+[0;32mI (1744) WIFI: STA IP: 192.168.57.136[0m
+[0;32mI (1744) WIFI: Connected to AP[0m
+[0;32mI (1744) MAIN: Connected to AP[0m
+[0;32mI (1744) MAIN: Initialising SNTP[0m
+[0;32mI (1744) MAIN: Waiting for system time to be set... (1/10)[0m
+[0;32mI (3434) wifi:<ba-add>idx:1 (ifx:0, 52:36:e4:ed:47:bb), tid:6, ssn:0, winSize:64[0m
+[0;32mI (3754) MAIN: The current date/time is: Wed Feb 26 13:31:14 2025[0m
+[0;32mI (3964) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)[0m
+[0;32mI (4754) MAIN: The current date/time is: Wed Feb 26 13:31:15 2025[0m
+[0;32mI (5754) MAIN: The current date/time is: Wed Feb 26 13:31:16 2025[0m
+[0;32mI (6754) MAIN: The current date/time is: Wed Feb 26 13:31:17 2025[0m
+[0;32mI (7754) MAIN: The current date/time is: Wed Feb 26 13:31:18 2025[0m
+[0;32mI (8754) MAIN: The current date/time is: Wed Feb 26 13:31:19 2025[0m
+[0;32mI (9284) wifi:state: run -> init (0x3c0)[0m
+[0;32mI (9294) wifi:pm stop, total sleep time: 6969327 us / 8620413 us[0m
+
+[0;32mI (9294) wifi:<ba-del>idx:0, tid:0[0m
+[0;32mI (9294) wifi:<ba-del>idx:1, tid:6[0m
+[0;32mI (9294) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (9754) MAIN: The current date/time is: Wed Feb 26 13:31:20 2025[0m
+[0;32mI (10754) MAIN: The current date/time is: Wed Feb 26 13:31:21 2025[0m
+[0;32mI (11754) MAIN: The current date/time is: Wed Feb 26 13:31:22 2025[0m
+[0;32mI (12754) MAIN: The current date/time is: Wed Feb 26 13:31:23 2025[0m
+[0;32mI (13754) MAIN: The current date/time is: Wed Feb 26 13:31:24 2025[0m
+[0;32mI (14754) MAIN: The current date/time is: Wed Feb 26 13:31:25 2025[0m
+[0;32mI (15754) MAIN: The current date/time is: Wed Feb 26 13:31:26 2025[0m
+[0;32mI (16754) MAIN: The current date/time is: Wed Feb 26 13:31:27 2025[0m
+[0;32mI (17754) MAIN: The current date/time is: Wed Feb 26 13:31:28 2025[0m
+[0;32mI (18754) MAIN: The current date/time is: Wed Feb 26 13:31:29 2025[0m
+[0;32mI (19754) MAIN: The current date/time is: Wed Feb 26 13:31:30 2025[0m
+[0;32mI (20754) MAIN: The current date/time is: Wed Feb 26 13:31:31 2025[0m
+[0;32mI (21754) MAIN: The current date/time is: Wed Feb 26 13:31:32 2025[0m
+[0;32mI (22754) MAIN: The current date/time is: Wed Feb 26 13:31:33 2025[0m
+[0;32mI (23754) MAIN: The current date/time is: Wed Feb 26 13:31:34 2025[0m
+[0;32mI (24754) MAIN: The current date/time is: Wed Feb 26 13:31:35 2025[0m
+[0;32mI (25754) MAIN: The current date/time is: Wed Feb 26 13:31:36 2025[0m
+[0;32mI (26754) MAIN: The current date/time is: Wed Feb 26 13:31:37 2025[0m
+[0;32mI (27754) MAIN: The current date/time is: Wed Feb 26 13:31:38 2025[0m
+[0;32mI (28754) MAIN: The current date/time is: Wed Feb 26 13:31:39 2025[0m
+[0;32mI (29754) MAIN: The current date/time is: Wed Feb 26 13:31:40 2025[0m
+[0;32mI (30754) MAIN: The current date/time is: Wed Feb 26 13:31:41 2025[0m
+[0;32mI (31754) MAIN: The current date/time is: Wed Feb 26 13:31:42 2025[0m
+[0;32mI (32754) MAIN: The current date/time is: Wed Feb 26 13:31:43 2025[0m
+[0;32mI (33754) MAIN: The current date/time is: Wed Feb 26 13:31:44 2025[0m
+[0;32mI (34754) MAIN: The current date/time is: Wed Feb 26 13:31:45 2025[0m
+[0;32mI (35754) MAIN: The current date/time is: Wed Feb 26 13:31:46 2025[0m
+[0;32mI (36754) MAIN: The current date/time is: Wed Feb 26 13:31:47 2025[0m
+[0;32mI (37754) MAIN: The current date/time is: Wed Feb 26 13:31:48 2025[0m
+[0;32mI (38754) MAIN: The current date/time is: Wed Feb 26 13:31:49 2025[0m
+[0;32mI (39754) MAIN: The current date/time is: Wed Feb 26 13:31:50 2025[0m
+[0;32mI (40754) MAIN: The current date/time is: Wed Feb 26 13:31:51 2025[0m
+[0;32mI (41754) MAIN: The current date/time is: Wed Feb 26 13:31:52 2025[0m
+[0;32mI (42754) MAIN: The current date/time is: Wed Feb 26 13:31:53 2025[0m
+[0;32mI (43754) MAIN: The current date/time is: Wed Feb 26 13:31:54 2025[0m
+[0;32mI (44754) MAIN: The current date/time is: Wed Feb 26 13:31:55 2025[0m
+[0;32mI (45754) MAIN: The current date/time is: Wed Feb 26 13:31:56 2025[0m
+[0;32mI (46754) MAIN: The current date/time is: Wed Feb 26 13:31:57 2025[0m
+[0;32mI (47754) MAIN: The current date/time is: Wed Feb 26 13:31:58 2025[0m
+[0;32mI (48754) MAIN: The current date/time is: Wed Feb 26 13:31:59 2025[0m
+[0;32mI (49754) MAIN: The current date/time is: Wed Feb 26 13:32:00 2025[0m
+[0;32mI (50754) MAIN: The current date/time is: Wed Feb 26 13:32:01 2025[0m
+[0;32mI (51754) MAIN: The current date/time is: Wed Feb 26 13:32:02 2025[0m
+[0;32mI (52754) MAIN: The current date/time is: Wed Feb 26 13:32:03 2025[0m
+[0;32mI (53754) MAIN: The current date/time is: Wed Feb 26 13:32:04 2025[0m
+[0;32mI (54754) MAIN: The current date/time is: Wed Feb 26 13:32:05 2025[0m
+[0;32mI (55754) MAIN: The current date/time is: Wed Feb 26 13:32:06 2025[0m
+[0;32mI (56754) MAIN: The current date/time is: Wed Feb 26 13:32:07 2025[0m
+[0;32mI (57754) MAIN: The current date/time is: Wed Feb 26 13:32:08 2025[0m
+[0;32mI (58754) MAIN: The current date/time is: Wed Feb 26 13:32:09 2025[0m
+[0;32mI (59754) MAIN: The current date/time is: Wed Feb 26 13:32:10 2025[0m
+[0;32mI (60754) MAIN: The current date/time is: Wed Feb 26 13:32:11 2025[0m
+[0;32mI (61754) MAIN: The current date/time is: Wed Feb 26 13:32:12 2025[0m
+[0;32mI (62754) MAIN: The current date/time is: Wed Feb 26 13:32:13 2025[0m
+[0;32mI (63754) MAIN: The current date/time is: Wed Feb 26 13:32:14 2025[0m
+[0;32mI (64754) MAIN: The current date/time is: Wed Feb 26 13:32:15 2025[0m
+[0;32mI (65754) MAIN: The current date/time is: Wed Feb 26 13:32:16 2025[0m
+[0;32mI (66754) MAIN: The current date/time is: Wed Feb 26 13:32:17 2025[0m
+[0;32mI (67754) MAIN: The current date/time is: Wed Feb 26 13:32:18 2025[0m
+[0;32mI (68754) MAIN: The current date/time is: Wed Feb 26 13:32:19 2025[0m
+[0;32mI (69754) MAIN: The current date/time is: Wed Feb 26 13:32:20 2025[0m
+[0;32mI (70754) MAIN: The current date/time is: Wed Feb 26 13:32:21 2025[0m
+[0;32mI (71754) MAIN: The current date/time is: Wed Feb 26 13:32:22 2025[0m
+[0;32mI (72754) MAIN: The current date/time is: Wed Feb 26 13:32:23 2025[0m
+[0;32mI (73754) MAIN: The current date/time is: Wed Feb 26 13:32:24 2025[0m
+[0;32mI (74754) MAIN: The current date/time is: Wed Feb 26 13:32:25 2025[0m
+[0;32mI (75754) MAIN: The current date/time is: Wed Feb 26 13:32:26 2025[0m
+[0;32mI (76754) MAIN: The current date/time is: Wed Feb 26 13:32:27 2025[0m
+[0;32mI (77754) MAIN: The current date/time is: Wed Feb 26 13:32:28 2025[0m
+[0;32mI (78754) MAIN: The current date/time is: Wed Feb 26 13:32:29 2025[0m
+[0;32mI (79754) MAIN: The current date/time is: Wed Feb 26 13:32:30 2025[0m
+[0;32mI (80754) MAIN: The current date/time is: Wed Feb 26 13:32:31 2025[0m
+[0;32mI (81754) MAIN: The current date/time is: Wed Feb 26 13:32:32 2025[0m
+[0;32mI (82754) MAIN: The current date/time is: Wed Feb 26 13:32:33 2025[0m
+[0;32mI (83754) MAIN: The current date/time is: Wed Feb 26 13:32:34 2025[0m
+[0;32mI (84754) MAIN: The current date/time is: Wed Feb 26 13:32:35 2025[0m
+[0;32mI (85754) MAIN: The current date/time is: Wed Feb 26 13:32:36 2025[0m
+[0;32mI (86754) MAIN: The current date/time is: Wed Feb 26 13:32:37 2025[0m
+[0;32mI (87754) MAIN: The current date/time is: Wed Feb 26 13:32:38 2025[0m
+[0;32mI (88754) MAIN: The current date/time is: Wed Feb 26 13:32:39 2025[0m
+[0;32mI (89754) MAIN: The current date/time is: Wed Feb 26 13:32:40 2025[0m
+[0;32mI (90754) MAIN: The current date/time is: Wed Feb 26 13:32:41 2025[0m
+[0;32mI (91754) MAIN: The current date/time is: Wed Feb 26 13:32:42 2025[0m
+[0;32mI (92754) MAIN: The current date/time is: Wed Feb 26 13:32:43 2025[0m
+[0;32mI (93754) MAIN: The current date/time is: Wed Feb 26 13:32:44 2025[0m
+[0;32mI (94754) MAIN: The current date/time is: Wed Feb 26 13:32:45 2025[0m
+[0;32mI (95754) MAIN: The current date/time is: Wed Feb 26 13:32:46 2025[0m
+[0;32mI (96754) MAIN: The current date/time is: Wed Feb 26 13:32:47 2025[0m
+[0;32mI (97754) MAIN: The current date/time is: Wed Feb 26 13:32:48 2025[0m
+[0;32mI (98754) MAIN: The current date/time is: Wed Feb 26 13:32:49 2025[0m
+[0;32mI (99754) MAIN: The current date/time is: Wed Feb 26 13:32:50 2025[0m
+[0;32mI (100754) MAIN: The current date/time is: Wed Feb 26 13:32:51 2025[0m
+[0;32mI (101754) MAIN: The current date/time is: Wed Feb 26 13:32:52 2025[0m
+[0;32mI (102754) MAIN: The current date/time is: Wed Feb 26 13:32:53 2025[0m
+[0;32mI (103754) MAIN: The current date/time is: Wed Feb 26 13:32:54 2025[0m
+[0;32mI (104754) MAIN: The current date/time is: Wed Feb 26 13:32:55 2025[0m
+[0;32mI (105754) MAIN: The current date/time is: Wed Feb 26 13:32:56 2025[0m
+[0;32mI (106754) MAIN: The current date/time is: Wed Feb 26 13:32:57 2025[0m
+[0;32mI (107754) MAIN: The current date/time is: Wed Feb 26 13:32:58 2025[0m
+[0;32mI (108754) MAIN: The current date/time is: Wed Feb 26 13:32:59 2025[0m
+[0;32mI (109754) MAIN: The current date/time is: Wed Feb 26 13:33:00 2025[0m
+[0;32mI (110754) MAIN: The current date/time is: Wed Feb 26 13:33:01 2025[0m
+[0;32mI (111754) MAIN: The current date/time is: Wed Feb 26 13:33:02 2025[0m
+[0;32mI (112754) MAIN: The current date/time is: Wed Feb 26 13:33:03 2025[0m
+[0;32mI (113754) MAIN: The current date/time is: Wed Feb 26 13:33:04 2025[0m
+[0;32mI (114754) MAIN: The current date/time is: Wed Feb 26 13:33:05 2025[0m
+[0;32mI (115754) MAIN: The current date/time is: Wed Feb 26 13:33:06 2025[0m
+[0;32mI (116754) MAIN: The current date/time is: Wed Feb 26 13:33:07 2025[0m
+[0;32mI (117754) MAIN: The current date/time is: Wed Feb 26 13:33:08 2025[0m
+[0;32mI (118754) MAIN: The current date/time is: Wed Feb 26 13:33:09 2025[0m
+[0;32mI (119754) MAIN: The current date/time is: Wed Feb 26 13:33:10 2025[0m
+[0;32mI (120754) MAIN: The current date/time is: Wed Feb 26 13:33:11 2025[0m
+[0;32mI (121754) MAIN: The current date/time is: Wed Feb 26 13:33:12 2025[0m
+[0;32mI (122754) MAIN: The current date/time is: Wed Feb 26 13:33:13 2025[0m
+[0;32mI (123754) MAIN: The current date/time is: Wed Feb 26 13:33:14 2025[0m
+[0;32mI (124754) MAIN: The current date/time is: Wed Feb 26 13:33:15 2025[0m
+[0;32mI (125754) MAIN: The current date/time is: Wed Feb 26 13:33:16 2025[0m
+[0;32mI (126754) MAIN: The current date/time is: Wed Feb 26 13:33:17 2025[0m
+[0;32mI (127754) MAIN: The current date/time is: Wed Feb 26 13:33:18 2025[0m
+[0;32mI (128754) MAIN: The current date/time is: Wed Feb 26 13:33:19 2025[0m
+[0;32mI (129754) MAIN: The current date/time is: Wed Feb 26 13:33:20 2025[0m
+[0;32mI (130754) MAIN: The current date/time is: Wed Feb 26 13:33:21 2025[0m
+[0;32mI (131754) MAIN: The current date/time is: Wed Feb 26 13:33:22 2025[0m
+[0;32mI (132754) MAIN: The current date/time is: Wed Feb 26 13:33:23 2025[0m
+[0;32mI (133754) MAIN: The current date/time is: Wed Feb 26 13:33:24 2025[0m
+[0;32mI (134754) MAIN: The current date/time is: Wed Feb 26 13:33:25 2025[0m
+[0;32mI (135754) MAIN: The current date/time is: Wed Feb 26 13:33:26 2025[0m
+[0;32mI (136754) MAIN: The current date/time is: Wed Feb 26 13:33:27 2025[0m
+[0;32mI (137754) MAIN: The current date/time is: Wed Feb 26 13:33:28 2025[0m
+[0;32mI (138754) MAIN: The current date/time is: Wed Feb 26 13:33:29 2025[0m
+[0;32mI (139754) MAIN: The current date/time is: Wed Feb 26 13:33:30 2025[0m
+[0;32mI (140754) MAIN: The current date/time is: Wed Feb 26 13:33:31 2025[0m
+[0;32mI (141754) MAIN: The current date/time is: Wed Feb 26 13:33:32 2025[0m
+[0;32mI (142754) MAIN: The current date/time is: Wed Feb 26 13:33:33 2025[0m
+[0;32mI (143754) MAIN: The current date/time is: Wed Feb 26 13:33:34 2025[0m
+[0;32mI (144754) MAIN: The current date/time is: Wed Feb 26 13:33:35 2025[0m
+[0;32mI (145754) MAIN: The current date/time is: Wed Feb 26 13:33:36 2025[0m
+[0;32mI (146754) MAIN: The current date/time is: Wed Feb 26 13:33:37 2025[0m
+[0;32mI (147754) MAIN: The current date/time is: Wed Feb 26 13:33:38 2025[0m
+[0;32mI (148754) MAIN: The current date/time is: Wed Feb 26 13:33:39 2025[0m
+[0;32mI (149754) MAIN: The current date/time is: Wed Feb 26 13:33:40 2025[0m
+[0;32mI (150754) MAIN: The current date/time is: Wed Feb 26 13:33:41 2025[0m
+[0;32mI (151754) MAIN: The current date/time is: Wed Feb 26 13:33:42 2025[0m
+[0;32mI (152754) MAIN: The current date/time is: Wed Feb 26 13:33:43 2025[0m
+[0;32mI (153754) MAIN: The current date/time is: Wed Feb 26 13:33:44 2025[0m
+[0;32mI (154754) MAIN: The current date/time is: Wed Feb 26 13:33:45 2025[0m
+[0;32mI (155754) MAIN: The current date/time is: Wed Feb 26 13:33:46 2025[0m
+[0;32mI (156754) MAIN: The current date/time is: Wed Feb 26 13:33:47 2025[0m
+[0;32mI (157754) MAIN: The current date/time is: Wed Feb 26 13:33:48 2025[0m
+[0;32mI (158754) MAIN: The current date/time is: Wed Feb 26 13:33:49 2025[0m
+[0;32mI (159754) MAIN: The current date/time is: Wed Feb 26 13:33:50 2025[0m
+[0;32mI (160754) MAIN: The current date/time is: Wed Feb 26 13:33:51 2025[0m
+[0;32mI (161754) MAIN: The current date/time is: Wed Feb 26 13:33:52 2025[0m
+[0;32mI (162754) MAIN: The current date/time is: Wed Feb 26 13:33:53 2025[0m
+[0;32mI (163754) MAIN: The current date/time is: Wed Feb 26 13:33:54 2025[0m
+[0;32mI (164754) MAIN: The current date/time is: Wed Feb 26 13:33:55 2025[0m
+[0;32mI (165754) MAIN: The current date/time is: Wed Feb 26 13:33:56 2025[0m
+[0;32mI (166754) MAIN: The current date/time is: Wed Feb 26 13:33:57 2025[0m
+[0;32mI (167754) MAIN: The current date/time is: Wed Feb 26 13:33:58 2025[0m
+[0;32mI (168754) MAIN: The current date/time is: Wed Feb 26 13:33:59 2025[0m
+[0;32mI (169754) MAIN: The current date/time is: Wed Feb 26 13:34:00 2025[0m
+[0;32mI (170754) MAIN: The current date/time is: Wed Feb 26 13:34:01 2025[0m
+[0;32mI (171754) MAIN: The current date/time is: Wed Feb 26 13:34:02 2025[0m
+[0;32mI (172754) MAIN: The current date/time is: Wed Feb 26 13:34:03 2025[0m
+[0;32mI (173754) MAIN: The current date/time is: Wed Feb 26 13:34:04 2025[0m
+[0;32mI (174754) MAIN: The current date/time is: Wed Feb 26 13:34:05 2025[0m
+[0;32mI (175754) MAIN: The current date/time is: Wed Feb 26 13:34:06 2025[0m
+[0;32mI (176754) MAIN: The current date/time is: Wed Feb 26 13:34:07 2025[0m
+[0;32mI (177754) MAIN: The current date/time is: Wed Feb 26 13:34:08 2025[0m
+[0;32mI (178754) MAIN: The current date/time is: Wed Feb 26 13:34:09 2025[0m
+[0;32mI (179754) MAIN: The current date/time is: Wed Feb 26 13:34:10 2025[0m
+[0;32mI (180754) MAIN: The current date/time is: Wed Feb 26 13:34:11 2025[0m
+[0;32mI (181754) MAIN: The current date/time is: Wed Feb 26 13:34:12 2025[0m
+[0;32mI (182754) MAIN: The current date/time is: Wed Feb 26 13:34:13 2025[0m
+[0;32mI (183754) MAIN: The current date/time is: Wed Feb 26 13:34:14 2025[0m
+[0;32mI (184754) MAIN: The current date/time is: Wed Feb 26 13:34:15 2025[0m
+[0;32mI (185754) MAIN: The current date/time is: Wed Feb 26 13:34:16 2025[0m
+[0;32mI (186754) MAIN: The current date/time is: Wed Feb 26 13:34:17 2025[0m
+[0;32mI (187754) MAIN: The current date/time is: Wed Feb 26 13:34:18 2025[0m
+[0;32mI (188754) MAIN: The current date/time is: Wed Feb 26 13:34:19 2025[0m
+[0;32mI (189754) MAIN: The current date/time is: Wed Feb 26 13:34:20 2025[0m
+[0;32mI (190754) MAIN: The current date/time is: Wed Feb 26 13:34:21 2025[0m
+[0;32mI (191754) MAIN: The current date/time is: Wed Feb 26 13:34:22 2025[0m
+[0;32mI (192754) MAIN: The current date/time is: Wed Feb 26 13:34:23 2025[0m
+[0;32mI (193754) MAIN: The current date/time is: Wed Feb 26 13:34:24 2025[0m
+[0;32mI (194754) MAIN: The current date/time is: Wed Feb 26 13:34:25 2025[0m
+[0;32mI (195754) MAIN: The current date/time is: Wed Feb 26 13:34:26 2025[0m
+[0;32mI (196754) MAIN: The current date/time is: Wed Feb 26 13:34:27 2025[0m
+[0;32mI (197754) MAIN: The current date/time is: Wed Feb 26 13:34:28 2025[0m
+[0;32mI (198754) MAIN: The current date/time is: Wed Feb 26 13:34:29 2025[0m
+[0;32mI (199754) MAIN: The current date/time is: Wed Feb 26 13:34:30 2025[0m
+[0;32mI (200754) MAIN: The current date/time is: Wed Feb 26 13:34:31 2025[0m
+[0;32mI (201754) MAIN: The current date/time is: Wed Feb 26 13:34:32 2025[0m
+[0;32mI (202754) MAIN: The current date/time is: Wed Feb 26 13:34:33 2025[0m
+[0;32mI (203754) MAIN: The current date/time is: Wed Feb 26 13:34:34 2025[0m
+[0;32mI (204754) MAIN: The current date/time is: Wed Feb 26 13:34:35 2025[0m
+[0;32mI (205754) MAIN: The current date/time is: Wed Feb 26 13:34:36 2025[0m
+[0;32mI (206754) MAIN: The current date/time is: Wed Feb 26 13:34:37 2025[0m
+[0;32mI (207754) MAIN: The current date/time is: Wed Feb 26 13:34:38 2025[0m
+[0;32mI (208754) MAIN: The current date/time is: Wed Feb 26 13:34:39 2025[0m
+[0;32mI (209754) MAIN: The current date/time is: Wed Feb 26 13:34:40 2025[0m
+[0;32mI (210754) MAIN: The current date/time is: Wed Feb 26 13:34:41 2025[0m
+[0;32mI (211754) MAIN: The current date/time is: Wed Feb 26 13:34:42 2025[0m
+[0;32mI (212754) MAIN: The current date/time is: Wed Feb 26 13:34:43 2025[0m
+[0;32mI (213754) MAIN: The current date/time is: Wed Feb 26 13:34:44 2025[0m
+[0;32mI (214754) MAIN: The current date/time is: Wed Feb 26 13:34:45 2025[0m
+[0;32mI (215754) MAIN: The current date/time is: Wed Feb 26 13:34:46 2025[0m
+[0;32mI (216754) MAIN: The current date/time is: Wed Feb 26 13:34:47 2025[0m
+[0;32mI (217754) MAIN: The current date/time is: Wed Feb 26 13:34:48 2025[0m
+[0;32mI (218754) MAIN: The current date/time is: Wed Feb 26 13:34:49 2025[0m
+[0;32mI (219754) MAIN: The current date/time is: Wed Feb 26 13:34:50 2025[0m
+[0;32mI (220754) MAIN: The current date/time is: Wed Feb 26 13:34:51 2025[0m
+[0;32mI (221754) MAIN: The current date/time is: Wed Feb 26 13:34:52 2025[0m
+[0;32mI (222754) MAIN: The current date/time is: Wed Feb 26 13:34:53 2025[0m
+[0;32mI (223754) MAIN: The current date/time is: Wed Feb 26 13:34:54 2025[0m
+[0;32mI (224754) MAIN: The current date/time is: Wed Feb 26 13:34:55 2025[0m
+[0;32mI (225754) MAIN: The current date/time is: Wed Feb 26 13:34:56 2025[0m
+[0;32mI (226754) MAIN: The current date/time is: Wed Feb 26 13:34:57 2025[0m
+[0;32mI (227754) MAIN: The current date/time is: Wed Feb 26 13:34:58 2025[0m
+[0;32mI (228754) MAIN: The current date/time is: Wed Feb 26 13:34:59 2025[0m
+[0;32mI (229754) MAIN: The current date/time is: Wed Feb 26 13:35:00 2025[0m
+[0;32mI (230754) MAIN: The current date/time is: Wed Feb 26 13:35:01 2025[0m
+[0;32mI (231754) MAIN: The current date/time is: Wed Feb 26 13:35:02 2025[0m
+[0;32mI (232754) MAIN: The current date/time is: Wed Feb 26 13:35:03 2025[0m
+[0;32mI (233754) MAIN: The current date/time is: Wed Feb 26 13:35:04 2025[0m
+[0;32mI (234754) MAIN: The current date/time is: Wed Feb 26 13:35:05 2025[0m
+[0;32mI (235754) MAIN: The current date/time is: Wed Feb 26 13:35:06 2025[0m
+[0;32mI (236754) MAIN: The current date/time is: Wed Feb 26 13:35:07 2025[0m
+[0;32mI (237754) MAIN: The current date/time is: Wed Feb 26 13:35:08 2025[0m
+[0;32mI (238754) MAIN: The current date/time is: Wed Feb 26 13:35:09 2025[0m
+[0;32mI (239754) MAIN: The current date/time is: Wed Feb 26 13:35:10 2025[0m
+[0;32mI (240754) MAIN: The current date/time is: Wed Feb 26 13:35:11 2025[0m
+[0;32mI (241754) MAIN: The current date/time is: Wed Feb 26 13:35:12 2025[0m
+[0;32mI (242754) MAIN: The current date/time is: Wed Feb 26 13:35:13 2025[0m
+[0;32mI (243754) MAIN: The current date/time is: Wed Feb 26 13:35:14 2025[0m
+[0;32mI (244754) MAIN: The current date/time is: Wed Feb 26 13:35:15 2025[0m
+[0;32mI (245754) MAIN: The current date/time is: Wed Feb 26 13:35:16 2025[0m
+[0;32mI (246754) MAIN: The current date/time is: Wed Feb 26 13:35:17 2025[0m
+[0;32mI (247754) MAIN: The current date/time is: Wed Feb 26 13:35:18 2025[0m
+[0;32mI (248754) MAIN: The current date/time is: Wed Feb 26 13:35:19 2025[0m
+[0;32mI (249754) MAIN: The current date/time is: Wed Feb 26 13:35:20 2025[0m
+[0;32mI (250754) MAIN: The current date/time is: Wed Feb 26 13:35:21 2025[0m
+[0;32mI (251754) MAIN: The current date/time is: Wed Feb 26 13:35:22 2025[0m
+[0;32mI (252754) MAIN: The current date/time is: Wed Feb 26 13:35:23 2025[0m
+[0;32mI (253754) MAIN: The current date/time is: Wed Feb 26 13:35:24 2025[0m
+[0;32mI (254754) MAIN: The current date/time is: Wed Feb 26 13:35:25 2025[0m
+[0;32mI (255754) MAIN: The current date/time is: Wed Feb 26 13:35:26 2025[0m
+[0;32mI (256754) MAIN: The current date/time is: Wed Feb 26 13:35:27 2025[0m
+[0;32mI (257754) MAIN: The current date/time is: Wed Feb 26 13:35:28 2025[0m
+[0;32mI (258754) MAIN: The current date/time is: Wed Feb 26 13:35:29 2025[0m
+[0;32mI (259754) MAIN: The current date/time is: Wed Feb 26 13:35:30 2025[0m
+[0;32mI (260754) MAIN: The current date/time is: Wed Feb 26 13:35:31 2025[0m
+[0;32mI (261754) MAIN: The current date/time is: Wed Feb 26 13:35:32 2025[0m
+[0;32mI (262754) MAIN: The current date/time is: Wed Feb 26 13:35:33 2025[0m
+[0;32mI (263754) MAIN: The current date/time is: Wed Feb 26 13:35:34 2025[0m
+[0;32mI (264754) MAIN: The current date/time is: Wed Feb 26 13:35:35 2025[0m
+[0;32mI (265754) MAIN: The current date/time is: Wed Feb 26 13:35:36 2025[0m
+[0;32mI (266754) MAIN: The current date/time is: Wed Feb 26 13:35:37 2025[0m
+[0;32mI (267754) MAIN: The current date/time is: Wed Feb 26 13:35:38 2025[0m
+[0;32mI (268754) MAIN: The current date/time is: Wed Feb 26 13:35:39 2025[0m
+[0;32mI (269754) MAIN: The current date/time is: Wed Feb 26 13:35:40 2025[0m
+[0;32mI (270754) MAIN: The current date/time is: Wed Feb 26 13:35:41 2025[0m
+[0;32mI (271754) MAIN: The current date/time is: Wed Feb 26 13:35:42 2025[0m
+[0;32mI (272754) MAIN: The current date/time is: Wed Feb 26 13:35:43 2025[0m
+[0;32mI (273754) MAIN: The current date/time is: Wed Feb 26 13:35:44 2025[0m
+[0;32mI (274754) MAIN: The current date/time is: Wed Feb 26 13:35:45 2025[0m
+[0;32mI (275754) MAIN: The current date/time is: Wed Feb 26 13:35:46 2025[0m
+[0;32mI (276754) MAIN: The current date/time is: Wed Feb 26 13:35:47 2025[0m
+[0;32mI (277754) MAIN: The current date/time is: Wed Feb 26 13:35:48 2025[0m
+[0;32mI (278754) MAIN: The current date/time is: Wed Feb 26 13:35:49 2025[0m
+[0;32mI (279754) MAIN: The current date/time is: Wed Feb 26 13:35:50 2025[0m
+[0;32mI (280754) MAIN: The current date/time is: Wed Feb 26 13:35:51 2025[0m
+[0;32mI (281754) MAIN: The current date/time is: Wed Feb 26 13:35:52 2025[0m
+[0;32mI (282754) MAIN: The current date/time is: Wed Feb 26 13:35:53 2025[0m
+[0;32mI (283754) MAIN: The current date/time is: Wed Feb 26 13:35:54 2025[0m
+[0;32mI (284754) MAIN: The current date/time is: Wed Feb 26 13:35:55 2025[0m
+[0;32mI (285754) MAIN: The current date/time is: Wed Feb 26 13:35:56 2025[0m
+[0;32mI (286754) MAIN: The current date/time is: Wed Feb 26 13:35:57 2025[0m
+[0;32mI (287754) MAIN: The current date/time is: Wed Feb 26 13:35:58 2025[0m
+[0;32mI (288754) MAIN: The current date/time is: Wed Feb 26 13:35:59 2025[0m
+[0;32mI (289754) MAIN: The current date/time is: Wed Feb 26 13:36:00 2025[0m
+[0;32mI (290754) MAIN: The current date/time is: Wed Feb 26 13:36:01 2025[0m
+[0;32mI (291754) MAIN: The current date/time is: Wed Feb 26 13:36:02 2025[0m
+[0;32mI (292754) MAIN: The current date/time is: Wed Feb 26 13:36:03 2025[0m
+[0;32mI (293754) MAIN: The current date/time is: Wed Feb 26 13:36:04 2025[0m
+[0;32mI (294754) MAIN: The current date/time is: Wed Feb 26 13:36:05 2025[0m
+[0;32mI (295754) MAIN: The current date/time is: Wed Feb 26 13:36:06 2025[0m
+[0;32mI (296754) MAIN: The current date/time is: Wed Feb 26 13:36:07 2025[0m
+[0;32mI (297754) MAIN: The current date/time is: Wed Feb 26 13:36:08 2025[0m
+[0;32mI (298754) MAIN: The current date/time is: Wed Feb 26 13:36:09 2025[0m
+[0;32mI (299754) MAIN: The current date/time is: Wed Feb 26 13:36:10 2025[0m
+[0;32mI (300754) MAIN: The current date/time is: Wed Feb 26 13:36:11 2025[0m
+[0;32mI (301754) MAIN: The current date/time is: Wed Feb 26 13:36:12 2025[0m
+[0;32mI (302754) MAIN: The current date/time is: Wed Feb 26 13:36:13 2025[0m
+[0;32mI (303754) MAIN: The current date/time is: Wed Feb 26 13:36:14 2025[0m
+[0;32mI (304754) MAIN: The current date/time is: Wed Feb 26 13:36:15 2025[0m
+[0;32mI (305754) MAIN: The current date/time is: Wed Feb 26 13:36:16 2025[0m
+[0;32mI (306754) MAIN: The current date/time is: Wed Feb 26 13:36:17 2025[0m
+[0;32mI (307754) MAIN: The current date/time is: Wed Feb 26 13:36:18 2025[0m
+[0;32mI (308754) MAIN: The current date/time is: Wed Feb 26 13:36:19 2025[0m
+[0;32mI (309754) MAIN: The current date/time is: Wed Feb 26 13:36:20 2025[0m
+[0;32mI (310754) MAIN: The current date/time is: Wed Feb 26 13:36:21 2025[0m
+[0;32mI (311754) MAIN: The current date/time is: Wed Feb 26 13:36:22 2025[0m
+[0;32mI (312754) MAIN: The current date/time is: Wed Feb 26 13:36:23 2025[0m
+[0;32mI (313754) MAIN: The current date/time is: Wed Feb 26 13:36:24 2025[0m
+[0;32mI (314754) MAIN: The current date/time is: Wed Feb 26 13:36:25 2025[0m
+[0;32mI (315754) MAIN: The current date/time is: Wed Feb 26 13:36:26 2025[0m
+[0;32mI (316754) MAIN: The current date/time is: Wed Feb 26 13:36:27 2025[0m
+[0;32mI (317754) MAIN: The current date/time is: Wed Feb 26 13:36:28 2025[0m
+[0;32mI (318754) MAIN: The current date/time is: Wed Feb 26 13:36:29 2025[0m
+[0;32mI (319754) MAIN: The current date/time is: Wed Feb 26 13:36:30 2025[0m
+[0;32mI (320754) MAIN: The current date/time is: Wed Feb 26 13:36:31 2025[0m
+[0;32mI (321754) MAIN: The current date/time is: Wed Feb 26 13:36:32 2025[0m
+[0;32mI (322754) MAIN: The current date/time is: Wed Feb 26 13:36:33 2025[0m
+[0;32mI (323754) MAIN: The current date/time is: Wed Feb 26 13:36:34 2025[0m
+[0;32mI (324754) MAIN: The current date/time is: Wed Feb 26 13:36:35 2025[0m
+[0;32mI (325754) MAIN: The current date/time is: Wed Feb 26 13:36:36 2025[0m
+[0;32mI (326754) MAIN: The current date/time is: Wed Feb 26 13:36:37 2025[0m
+[0;32mI (327754) MAIN: The current date/time is: Wed Feb 26 13:36:38 2025[0m
+[0;32mI (328754) MAIN: The current date/time is: Wed Feb 26 13:36:39 2025[0m
+[0;32mI (329754) MAIN: The current date/time is: Wed Feb 26 13:36:40 2025[0m
+[0;32mI (330754) MAIN: The current date/time is: Wed Feb 26 13:36:41 2025[0m
+[0;32mI (331754) MAIN: The current date/time is: Wed Feb 26 13:36:42 2025[0m
+[0;32mI (332754) MAIN: The current date/time is: Wed Feb 26 13:36:43 2025[0m
+[0;32mI (333754) MAIN: The current date/time is: Wed Feb 26 13:36:44 2025[0m
+[0;32mI (334754) MAIN: The current date/time is: Wed Feb 26 13:36:45 2025[0m
+[0;32mI (335754) MAIN: The current date/time is: Wed Feb 26 13:36:46 2025[0m
+[0;32mI (336754) MAIN: The current date/time is: Wed Feb 26 13:36:47 2025[0m
+[0;32mI (337754) MAIN: The current date/time is: Wed Feb 26 13:36:48 2025[0m
+[0;32mI (338754) MAIN: The current date/time is: Wed Feb 26 13:36:49 2025[0m
+[0;32mI (339754) MAIN: The current date/time is: Wed Feb 26 13:36:50 2025[0m
+[0;32mI (340754) MAIN: The current date/time is: Wed Feb 26 13:36:51 2025[0m
+[0;32mI (341754) MAIN: The current date/time is: Wed Feb 26 13:36:52 2025[0m
+[0;32mI (342754) MAIN: The current date/time is: Wed Feb 26 13:36:53 2025[0m
+[0;32mI (343754) MAIN: The current date/time is: Wed Feb 26 13:36:54 2025[0m
+[0;32mI (344754) MAIN: The current date/time is: Wed Feb 26 13:36:55 2025[0m
+[0;32mI (345754) MAIN: The current date/time is: Wed Feb 26 13:36:56 2025[0m
+[0;32mI (346754) MAIN: The current date/time is: Wed Feb 26 13:36:57 2025[0m
+[0;32mI (347754) MAIN: The current date/time is: Wed Feb 26 13:36:58 2025[0m
+[0;32mI (348754) MAIN: The current date/time is: Wed Feb 26 13:36:59 2025[0m
+[0;32mI (349754) MAIN: The current date/time is: Wed Feb 26 13:37:00 2025[0m
+[0;32mI (350754) MAIN: The current date/time is: Wed Feb 26 13:37:01 2025[0m
+[0;32mI (351754) MAIN: The current date/time is: Wed Feb 26 13:37:02 2025[0m
+[0;32mI (352754) MAIN: The current date/time is: Wed Feb 26 13:37:03 2025[0m
+[0;32mI (353754) MAIN: The current date/time is: Wed Feb 26 13:37:04 2025[0m
+[0;32mI (354754) MAIN: The current date/time is: Wed Feb 26 13:37:05 2025[0m
+[0;32mI (355754) MAIN: The current date/time is: Wed Feb 26 13:37:06 2025[0m
+[0;32mI (356754) MAIN: The current date/time is: Wed Feb 26 13:37:07 2025[0m
+[0;32mI (357754) MAIN: The current date/time is: Wed Feb 26 13:37:08 2025[0m
+[0;32mI (358754) MAIN: The current date/time is: Wed Feb 26 13:37:09 2025[0m
+[0;32mI (359754) MAIN: The current date/time is: Wed Feb 26 13:37:10 2025[0m
+[0;32mI (360754) MAIN: The current date/time is: Wed Feb 26 13:37:11 2025[0m
+[0;32mI (361754) MAIN: The current date/time is: Wed Feb 26 13:37:12 2025[0m
+[0;32mI (362754) MAIN: The current date/time is: Wed Feb 26 13:37:13 2025[0m
+[0;32mI (363754) MAIN: The current date/time is: Wed Feb 26 13:37:14 2025[0m
+[0;32mI (364754) MAIN: The current date/time is: Wed Feb 26 13:37:15 2025[0m
+[0;32mI (365754) MAIN: The current date/time is: Wed Feb 26 13:37:16 2025[0m
+[0;32mI (366754) MAIN: The current date/time is: Wed Feb 26 13:37:17 2025[0m
+[0;32mI (367754) MAIN: The current date/time is: Wed Feb 26 13:37:18 2025[0m
+[0;32mI (368754) MAIN: The current date/time is: Wed Feb 26 13:37:19 2025[0m
+[0;32mI (369754) MAIN: The current date/time is: Wed Feb 26 13:37:20 2025[0m
+[0;32mI (370754) MAIN: The current date/time is: Wed Feb 26 13:37:21 2025[0m
+[0;32mI (371754) MAIN: The current date/time is: Wed Feb 26 13:37:22 2025[0m
+[0;32mI (372754) MAIN: The current date/time is: Wed Feb 26 13:37:23 2025[0m
+[0;32mI (373754) MAIN: The current date/time is: Wed Feb 26 13:37:24 2025[0m
+[0;32mI (374754) MAIN: The current date/time is: Wed Feb 26 13:37:25 2025[0m
+[0;32mI (375754) MAIN: The current date/time is: Wed Feb 26 13:37:26 2025[0m
+[0;32mI (376754) MAIN: The current date/time is: Wed Feb 26 13:37:27 2025[0m
+[0;32mI (377754) MAIN: The current date/time is: Wed Feb 26 13:37:28 2025[0m
+[0;32mI (378754) MAIN: The current date/time is: Wed Feb 26 13:37:29 2025[0m
+[0;32mI (379754) MAIN: The current date/time is: Wed Feb 26 13:37:30 2025[0m
+[0;32mI (380754) MAIN: The current date/time is: Wed Feb 26 13:37:31 2025[0m
+[0;32mI (381754) MAIN: The current date/time is: Wed Feb 26 13:37:32 2025[0m
+[0;32mI (382754) MAIN: The current date/time is: Wed Feb 26 13:37:33 2025[0m
+[0;32mI (383754) MAIN: The current date/time is: Wed Feb 26 13:37:34 2025[0m
+[0;32mI (384754) MAIN: The current date/time is: Wed Feb 26 13:37:35 2025[0m
+[0;32mI (385754) MAIN: The current date/time is: Wed Feb 26 13:37:36 2025[0m
+[0;32mI (386754) MAIN: The current date/time is: Wed Feb 26 13:37:37 2025[0m
+[0;32mI (387754) MAIN: The current date/time is: Wed Feb 26 13:37:38 2025[0m
+[0;32mI (388754) MAIN: The current date/time is: Wed Feb 26 13:37:39 2025[0m
+[0;32mI (389754) MAIN: The current date/time is: Wed Feb 26 13:37:40 2025[0m
+[0;32mI (390754) MAIN: The current date/time is: Wed Feb 26 13:37:41 2025[0m
+[0;32mI (391754) MAIN: The current date/time is: Wed Feb 26 13:37:42 2025[0m
+[0;32mI (392754) MAIN: The current date/time is: Wed Feb 26 13:37:43 2025[0m
+[0;32mI (393754) MAIN: The current date/time is: Wed Feb 26 13:37:44 2025[0m
+[0;32mI (394754) MAIN: The current date/time is: Wed Feb 26 13:37:45 2025[0m
+[0;32mI (395754) MAIN: The current date/time is: Wed Feb 26 13:37:46 2025[0m
+[0;32mI (396754) MAIN: The current date/time is: Wed Feb 26 13:37:47 2025[0m
+[0;32mI (397754) MAIN: The current date/time is: Wed Feb 26 13:37:48 2025[0m
+[0;32mI (398754) MAIN: The current date/time is: Wed Feb 26 13:37:49 2025[0m
+[0;32mI (399754) MAIN: The current date/time is: Wed Feb 26 13:37:50 2025[0m
+[0;32mI (400754) MAIN: The current date/time is: Wed Feb 26 13:37:51 2025[0m
+[0;32mI (401754) MAIN: The current date/time is: Wed Feb 26 13:37:52 2025[0m
+[0;32mI (402754) MAIN: The current date/time is: Wed Feb 26 13:37:53 2025[0m
+[0;32mI (403754) MAIN: The current date/time is: Wed Feb 26 13:37:54 2025[0m
+[0;32mI (404754) MAIN: The current date/time is: Wed Feb 26 13:37:55 2025[0m
+[0;32mI (405754) MAIN: The current date/time is: Wed Feb 26 13:37:56 2025[0m
+[0;32mI (406754) MAIN: The current date/time is: Wed Feb 26 13:37:57 2025[0m
+[0;32mI (407754) MAIN: The current date/time is: Wed Feb 26 13:37:58 2025[0m
+[0;32mI (408754) MAIN: The current date/time is: Wed Feb 26 13:37:59 2025[0m
+[0;32mI (409754) MAIN: The current date/time is: Wed Feb 26 13:38:00 2025[0m
+[0;32mI (410754) MAIN: The current date/time is: Wed Feb 26 13:38:01 2025[0m
+[0;32mI (411754) MAIN: The current date/time is: Wed Feb 26 13:38:02 2025[0m
+[0;32mI (412754) MAIN: The current date/time is: Wed Feb 26 13:38:03 2025[0m
+[0;32mI (413754) MAIN: The current date/time is: Wed Feb 26 13:38:04 2025[0m
+[0;32mI (414754) MAIN: The current date/time is: Wed Feb 26 13:38:05 2025[0m
+[0;32mI (415754) MAIN: The current date/time is: Wed Feb 26 13:38:06 2025[0m
+[0;32mI (416754) MAIN: The current date/time is: Wed Feb 26 13:38:07 2025[0m
+[0;32mI (417754) MAIN: The current date/time is: Wed Feb 26 13:38:08 2025[0m
+[0;32mI (418754) MAIN: The current date/time is: Wed Feb 26 13:38:09 2025[0m
+[0;32mI (419754) MAIN: The current date/time is: Wed Feb 26 13:38:10 2025[0m
+[0;32mI (420754) MAIN: The current date/time is: Wed Feb 26 13:38:11 2025[0m
+[0;32mI (421754) MAIN: The current date/time is: Wed Feb 26 13:38:12 2025[0m
+[0;32mI (422754) MAIN: The current date/time is: Wed Feb 26 13:38:13 2025[0m
+[0;32mI (423754) MAIN: The current date/time is: Wed Feb 26 13:38:14 2025[0m
+[0;32mI (424754) MAIN: The current date/time is: Wed Feb 26 13:38:15 2025[0m
+[0;32mI (425754) MAIN: The current date/time is: Wed Feb 26 13:38:16 2025[0m
+[0;32mI (426754) MAIN: The current date/time is: Wed Feb 26 13:38:17 2025[0m
+[0;32mI (427754) MAIN: The current date/time is: Wed Feb 26 13:38:18 2025[0m
+[0;32mI (428754) MAIN: The current date/time is: Wed Feb 26 13:38:19 2025[0m
+[0;32mI (429754) MAIN: The current date/time is: Wed Feb 26 13:38:20 2025[0m
+[0;32mI (430754) MAIN: The current date/time is: Wed Feb 26 13:38:21 2025[0m
+[0;32mI (431754) MAIN: The current date/time is: Wed Feb 26 13:38:22 2025[0m
+[0;32mI (432754) MAIN: The current date/time is: Wed Feb 26 13:38:23 2025[0m
+[0;32mI (433754) MAIN: The current date/time is: Wed Feb 26 13:38:24 2025[0m
+[0;32mI (434754) MAIN: The current date/time is: Wed Feb 26 13:38:25 2025[0m
+[0;32mI (435754) MAIN: The current date/time is: Wed Feb 26 13:38:26 2025[0m
+[0;32mI (436754) MAIN: The current date/time is: Wed Feb 26 13:38:27 2025[0m
+[0;32mI (437754) MAIN: The current date/time is: Wed Feb 26 13:38:28 2025[0m
+[0;32mI (438754) MAIN: The current date/time is: Wed Feb 26 13:38:29 2025[0m
+[0;32mI (439754) MAIN: The current date/time is: Wed Feb 26 13:38:30 2025[0m
+[0;32mI (440754) MAIN: The current date/time is: Wed Feb 26 13:38:31 2025[0m
+[0;32mI (441754) MAIN: The current date/time is: Wed Feb 26 13:38:32 2025[0m
+[0;32mI (442754) MAIN: The current date/time is: Wed Feb 26 13:38:33 2025[0m
+[0;32mI (443754) MAIN: The current date/time is: Wed Feb 26 13:38:34 2025[0m
+[0;32mI (444754) MAIN: The current date/time is: Wed Feb 26 13:38:35 2025[0m
+[0;32mI (445754) MAIN: The current date/time is: Wed Feb 26 13:38:36 2025[0m
+[0;32mI (446754) MAIN: The current date/time is: Wed Feb 26 13:38:37 2025[0m
+[0;32mI (447754) MAIN: The current date/time is: Wed Feb 26 13:38:38 2025[0m
+[0;32mI (448754) MAIN: The current date/time is: Wed Feb 26 13:38:39 2025[0m
+[0;32mI (449754) MAIN: The current date/time is: Wed Feb 26 13:38:40 2025[0m
+[0;32mI (450754) MAIN: The current date/time is: Wed Feb 26 13:38:41 2025[0m
+[0;32mI (451754) MAIN: The current date/time is: Wed Feb 26 13:38:42 2025[0m
+[0;32mI (452754) MAIN: The current date/time is: Wed Feb 26 13:38:43 2025[0m
+[0;32mI (453754) MAIN: The current date/time is: Wed Feb 26 13:38:44 2025[0m
+[0;32mI (454754) MAIN: The current date/time is: Wed Feb 26 13:38:45 2025[0m
+[0;32mI (455754) MAIN: The current date/time is: Wed Feb 26 13:38:46 2025[0m
+[0;32mI (456754) MAIN: The current date/time is: Wed Feb 26 13:38:47 2025[0m
+[0;32mI (457754) MAIN: The current date/time is: Wed Feb 26 13:38:48 2025[0m
+[0;32mI (458754) MAIN: The current date/time is: Wed Feb 26 13:38:49 2025[0m
+[0;32mI (459754) MAIN: The current date/time is: Wed Feb 26 13:38:50 2025[0m
+[0;32mI (460754) MAIN: The current date/time is: Wed Feb 26 13:38:51 2025[0m
+[0;32mI (461754) MAIN: The current date/time is: Wed Feb 26 13:38:52 2025[0m
+[0;32mI (462754) MAIN: The current date/time is: Wed Feb 26 13:38:53 2025[0m
+[0;32mI (463754) MAIN: The current date/time is: Wed Feb 26 13:38:54 2025[0m
+[0;32mI (464754) MAIN: The current date/time is: Wed Feb 26 13:38:55 2025[0m
+[0;32mI (465754) MAIN: The current date/time is: Wed Feb 26 13:38:56 2025[0m
+[0;32mI (466754) MAIN: The current date/time is: Wed Feb 26 13:38:57 2025[0m
+[0;32mI (467754) MAIN: The current date/time is: Wed Feb 26 13:38:58 2025[0m
+[0;32mI (468754) MAIN: The current date/time is: Wed Feb 26 13:38:59 2025[0m
+[0;32mI (469754) MAIN: The current date/time is: Wed Feb 26 13:39:00 2025[0m
+[0;32mI (470754) MAIN: The current date/time is: Wed Feb 26 13:39:01 2025[0m
+[0;32mI (471754) MAIN: The current date/time is: Wed Feb 26 13:39:02 2025[0m
+[0;32mI (472754) MAIN: The current date/time is: Wed Feb 26 13:39:03 2025[0m
+[0;32mI (473754) MAIN: The current date/time is: Wed Feb 26 13:39:04 2025[0m
+[0;32mI (474754) MAIN: The current date/time is: Wed Feb 26 13:39:05 2025[0m
+[0;32mI (475754) MAIN: The current date/time is: Wed Feb 26 13:39:06 2025[0m
+[0;32mI (476754) MAIN: The current date/time is: Wed Feb 26 13:39:07 2025[0m
+[0;32mI (477754) MAIN: The current date/time is: Wed Feb 26 13:39:08 2025[0m
+[0;32mI (478754) MAIN: The current date/time is: Wed Feb 26 13:39:09 2025[0m
+[0;32mI (479754) MAIN: The current date/time is: Wed Feb 26 13:39:10 2025[0m
+[0;32mI (480754) MAIN: The current date/time is: Wed Feb 26 13:39:11 2025[0m
+[0;32mI (481754) MAIN: The current date/time is: Wed Feb 26 13:39:12 2025[0m
+[0;32mI (482754) MAIN: The current date/time is: Wed Feb 26 13:39:13 2025[0m
+[0;32mI (483754) MAIN: The current date/time is: Wed Feb 26 13:39:14 2025[0m
+[0;32mI (484754) MAIN: The current date/time is: Wed Feb 26 13:39:15 2025[0m
+[0;32mI (485754) MAIN: The current date/time is: Wed Feb 26 13:39:16 2025[0m
+[0;32mI (486754) MAIN: The current date/time is: Wed Feb 26 13:39:17 2025[0m
+[0;32mI (487754) MAIN: The current date/time is: Wed Feb 26 13:39:18 2025[0m
+[0;32mI (488754) MAIN: The current date/time is: Wed Feb 26 13:39:19 2025[0m
+[0;32mI (489754) MAIN: The current date/time is: Wed Feb 26 13:39:20 2025[0m
+[0;32mI (490754) MAIN: The current date/time is: Wed Feb 26 13:39:21 2025[0m
+[0;32mI (491754) MAIN: The current date/time is: Wed Feb 26 13:39:22 2025[0m
+[0;32mI (492754) MAIN: The current date/time is: Wed Feb 26 13:39:23 2025[0m
+[0;32mI (493754) MAIN: The current date/time is: Wed Feb 26 13:39:24 2025[0m
+[0;32mI (494754) MAIN: The current date/time is: Wed Feb 26 13:39:25 2025[0m
+[0;32mI (495754) MAIN: The current date/time is: Wed Feb 26 13:39:26 2025[0m
+[0;32mI (496754) MAIN: The current date/time is: Wed Feb 26 13:39:27 2025[0m
+[0;32mI (497754) MAIN: The current date/time is: Wed Feb 26 13:39:28 2025[0m
+[0;32mI (498754) MAIN: The current date/time is: Wed Feb 26 13:39:29 2025[0m
+[0;32mI (499754) MAIN: The current date/time is: Wed Feb 26 13:39:30 2025[0m
+[0;32mI (500754) MAIN: The current date/time is: Wed Feb 26 13:39:31 2025[0m
+[0;32mI (501754) MAIN: The current date/time is: Wed Feb 26 13:39:32 2025[0m
+[0;32mI (502754) MAIN: The current date/time is: Wed Feb 26 13:39:33 2025[0m
+[0;32mI (503754) MAIN: The current date/time is: Wed Feb 26 13:39:34 2025[0m
+[0;32mI (504754) MAIN: The current date/time is: Wed Feb 26 13:39:35 2025[0m
+[0;32mI (505754) MAIN: The current date/time is: Wed Feb 26 13:39:36 2025[0m
+[0;32mI (506754) MAIN: The current date/time is: Wed Feb 26 13:39:37 2025[0m
+[0;32mI (507754) MAIN: The current date/time is: Wed Feb 26 13:39:38 2025[0m
+[0;32mI (508754) MAIN: The current date/time is: Wed Feb 26 13:39:39 2025[0m
+[0;32mI (509754) MAIN: The current date/time is: Wed Feb 26 13:39:40 2025[0m
+[0;32mI (510754) MAIN: The current date/time is: Wed Feb 26 13:39:41 2025[0m
+[0;32mI (511754) MAIN: The current date/time is: Wed Feb 26 13:39:42 2025[0m
+[0;32mI (512754) MAIN: The current date/time is: Wed Feb 26 13:39:43 2025[0m
+[0;32mI (513754) MAIN: The current date/time is: Wed Feb 26 13:39:44 2025[0m
+[0;32mI (514754) MAIN: The current date/time is: Wed Feb 26 13:39:45 2025[0m
+[0;32mI (515754) MAIN: The current date/time is: Wed Feb 26 13:39:46 2025[0m
+[0;32mI (516754) MAIN: The current date/time is: Wed Feb 26 13:39:47 2025[0m
+[0;32mI (517754) MAIN: The current date/time is: Wed Feb 26 13:39:48 2025[0m
+[0;32mI (518754) MAIN: The current date/time is: Wed Feb 26 13:39:49 2025[0m
+[0;32mI (519754) MAIN: The current date/time is: Wed Feb 26 13:39:50 2025[0m
+[0;32mI (520754) MAIN: The current date/time is: Wed Feb 26 13:39:51 2025[0m
+[0;32mI (521754) MAIN: The current date/time is: Wed Feb 26 13:39:52 2025[0m
+[0;32mI (522754) MAIN: The current date/time is: Wed Feb 26 13:39:53 2025[0m
+[0;32mI (523754) MAIN: The current date/time is: Wed Feb 26 13:39:54 2025[0m
+[0;32mI (524754) MAIN: The current date/time is: Wed Feb 26 13:39:55 2025[0m
+[0;32mI (525754) MAIN: The current date/time is: Wed Feb 26 13:39:56 2025[0m
+[0;32mI (526754) MAIN: The current date/time is: Wed Feb 26 13:39:57 2025[0m
+[0;32mI (527754) MAIN: The current date/time is: Wed Feb 26 13:39:58 2025[0m
+[0;32mI (528754) MAIN: The current date/time is: Wed Feb 26 13:39:59 2025[0m
+[0;32mI (529754) MAIN: The current date/time is: Wed Feb 26 13:40:00 2025[0m
+[0;32mI (530754) MAIN: The current date/time is: Wed Feb 26 13:40:01 2025[0m
+[0;32mI (531754) MAIN: The current date/time is: Wed Feb 26 13:40:02 2025[0m
+[0;32mI (532754) MAIN: The current date/time is: Wed Feb 26 13:40:03 2025[0m
+[0;32mI (533754) MAIN: The current date/time is: Wed Feb 26 13:40:04 2025[0m
+[0;32mI (534754) MAIN: The current date/time is: Wed Feb 26 13:40:05 2025[0m
+[0;32mI (535754) MAIN: The current date/time is: Wed Feb 26 13:40:06 2025[0m
+[0;32mI (536754) MAIN: The current date/time is: Wed Feb 26 13:40:07 2025[0m
+[0;32mI (537754) MAIN: The current date/time is: Wed Feb 26 13:40:08 2025[0m
+[0;32mI (538754) MAIN: The current date/time is: Wed Feb 26 13:40:09 2025[0m
+[0;32mI (539754) MAIN: The current date/time is: Wed Feb 26 13:40:10 2025[0m
+[0;32mI (540754) MAIN: The current date/time is: Wed Feb 26 13:40:11 2025[0m
+[0;32mI (541754) MAIN: The current date/time is: Wed Feb 26 13:40:12 2025[0m
+[0;32mI (542754) MAIN: The current date/time is: Wed Feb 26 13:40:13 2025[0m
+[0;32mI (543754) MAIN: The current date/time is: Wed Feb 26 13:40:14 2025[0m
+[0;32mI (544754) MAIN: The current date/time is: Wed Feb 26 13:40:15 2025[0m
+[0;32mI (545754) MAIN: The current date/time is: Wed Feb 26 13:40:16 2025[0m
+[0;32mI (546754) MAIN: The current date/time is: Wed Feb 26 13:40:17 2025[0m
+[0;32mI (547754) MAIN: The current date/time is: Wed Feb 26 13:40:18 2025[0m
+[0;32mI (548754) MAIN: The current date/time is: Wed Feb 26 13:40:19 2025[0m
+[0;32mI (549754) MAIN: The current date/time is: Wed Feb 26 13:40:20 2025[0m
+[0;32mI (550754) MAIN: The current date/time is: Wed Feb 26 13:40:21 2025[0m
+[0;32mI (551754) MAIN: The current date/time is: Wed Feb 26 13:40:22 2025[0m
+[0;32mI (552754) MAIN: The current date/time is: Wed Feb 26 13:40:23 2025[0m
+[0;32mI (553754) MAIN: The current date/time is: Wed Feb 26 13:40:24 2025[0m
+[0;32mI (554754) MAIN: The current date/time is: Wed Feb 26 13:40:25 2025[0m
+[0;32mI (555754) MAIN: The current date/time is: Wed Feb 26 13:40:26 2025[0m
+[0;32mI (556754) MAIN: The current date/time is: Wed Feb 26 13:40:27 2025[0m
+[0;32mI (557754) MAIN: The current date/time is: Wed Feb 26 13:40:28 2025[0m
+[0;32mI (558754) MAIN: The current date/time is: Wed Feb 26 13:40:29 2025[0m
+[0;32mI (559754) MAIN: The current date/time is: Wed Feb 26 13:40:30 2025[0m
+[0;32mI (560754) MAIN: The current date/time is: Wed Feb 26 13:40:31 2025[0m
+[0;32mI (561754) MAIN: The current date/time is: Wed Feb 26 13:40:32 2025[0m
+[0;32mI (562754) MAIN: The current date/time is: Wed Feb 26 13:40:33 2025[0m
+[0;32mI (563754) MAIN: The current date/time is: Wed Feb 26 13:40:34 2025[0m
+[0;32mI (564754) MAIN: The current date/time is: Wed Feb 26 13:40:35 2025[0m
+[0;32mI (565754) MAIN: The current date/time is: Wed Feb 26 13:40:36 2025[0m
+[0;32mI (566754) MAIN: The current date/time is: Wed Feb 26 13:40:37 2025[0m
+[0;32mI (567754) MAIN: The current date/time is: Wed Feb 26 13:40:38 2025[0m
+[0;32mI (568754) MAIN: The current date/time is: Wed Feb 26 13:40:39 2025[0m
+[0;32mI (569754) MAIN: The current date/time is: Wed Feb 26 13:40:40 2025[0m
+[0;32mI (570754) MAIN: The current date/time is: Wed Feb 26 13:40:41 2025[0m
+[0;32mI (571754) MAIN: The current date/time is: Wed Feb 26 13:40:42 2025[0m
+[0;32mI (572754) MAIN: The current date/time is: Wed Feb 26 13:40:43 2025[0m
+[0;32mI (573754) MAIN: The current date/time is: Wed Feb 26 13:40:44 2025[0m
+[0;32mI (574754) MAIN: The current date/time is: Wed Feb 26 13:40:45 2025[0m
+[0;32mI (575754) MAIN: The current date/time is: Wed Feb 26 13:40:46 2025[0m
+[0;32mI (576754) MAIN: The current date/time is: Wed Feb 26 13:40:47 2025[0m
+[0;32mI (577754) MAIN: The current date/time is: Wed Feb 26 13:40:48 2025[0m
+[0;32mI (578754) MAIN: The current date/time is: Wed Feb 26 13:40:49 2025[0m
+[0;32mI (579754) MAIN: The current date/time is: Wed Feb 26 13:40:50 2025[0m
+[0;32mI (580754) MAIN: The current date/time is: Wed Feb 26 13:40:51 2025[0m
+[0;32mI (581754) MAIN: The current date/time is: Wed Feb 26 13:40:52 2025[0m
+[0;32mI (582754) MAIN: The current date/time is: Wed Feb 26 13:40:53 2025[0m
+[0;32mI (583754) MAIN: The current date/time is: Wed Feb 26 13:40:54 2025[0m
+[0;32mI (584754) MAIN: The current date/time is: Wed Feb 26 13:40:55 2025[0m
+[0;32mI (585754) MAIN: The current date/time is: Wed Feb 26 13:40:56 2025[0m
+[0;32mI (586754) MAIN: The current date/time is: Wed Feb 26 13:40:57 2025[0m
+[0;32mI (587754) MAIN: The current date/time is: Wed Feb 26 13:40:58 2025[0m
+[0;32mI (588754) MAIN: The current date/time is: Wed Feb 26 13:40:59 2025[0m
+[0;32mI (589754) MAIN: The current date/time is: Wed Feb 26 13:41:00 2025[0m
+[0;32mI (590754) MAIN: The current date/time is: Wed Feb 26 13:41:01 2025[0m
+[0;32mI (591754) MAIN: The current date/time is: Wed Feb 26 13:41:02 2025[0m
+[0;32mI (592754) MAIN: The current date/time is: Wed Feb 26 13:41:03 2025[0m
+[0;32mI (593754) MAIN: The current date/time is: Wed Feb 26 13:41:04 2025[0m
+[0;32mI (594754) MAIN: The current date/time is: Wed Feb 26 13:41:05 2025[0m
+[0;32mI (595754) MAIN: The current date/time is: Wed Feb 26 13:41:06 2025[0m
+[0;32mI (596754) MAIN: The current date/time is: Wed Feb 26 13:41:07 2025[0m
+[0;32mI (597754) MAIN: The current date/time is: Wed Feb 26 13:41:08 2025[0m
+[0;32mI (598754) MAIN: The current date/time is: Wed Feb 26 13:41:09 2025[0m
+[0;32mI (599754) MAIN: The current date/time is: Wed Feb 26 13:41:10 2025[0m
+[0;32mI (600754) MAIN: The current date/time is: Wed Feb 26 13:41:11 2025[0m
+[0;32mI (601754) MAIN: The current date/time is: Wed Feb 26 13:41:12 2025[0m
+[0;32mI (602754) MAIN: The current date/time is: Wed Feb 26 13:41:13 2025[0m
+[0;32mI (603754) MAIN: The current date/time is: Wed Feb 26 13:41:14 2025[0m
+[0;32mI (604754) MAIN: The current date/time is: Wed Feb 26 13:41:15 2025[0m
+[0;32mI (605754) MAIN: The current date/time is: Wed Feb 26 13:41:16 2025[0m
+[0;32mI (606754) MAIN: The current date/time is: Wed Feb 26 13:41:17 2025[0m
+[0;32mI (607754) MAIN: The current date/time is: Wed Feb 26 13:41:18 2025[0m
+[0;32mI (608754) MAIN: The current date/time is: Wed Feb 26 13:41:19 2025[0m
+[0;32mI (609754) MAIN: The current date/time is: Wed Feb 26 13:41:20 2025[0m
+[0;32mI (610754) MAIN: The current date/time is: Wed Feb 26 13:41:21 2025[0m
+[0;32mI (611754) MAIN: The current date/time is: Wed Feb 26 13:41:22 2025[0m
+[0;32mI (612754) MAIN: The current date/time is: Wed Feb 26 13:41:23 2025[0m
+[0;32mI (613754) MAIN: The current date/time is: Wed Feb 26 13:41:24 2025[0m
+[0;32mI (614754) MAIN: The current date/time is: Wed Feb 26 13:41:25 2025[0m
+[0;32mI (615754) MAIN: The current date/time is: Wed Feb 26 13:41:26 2025[0m
+[0;32mI (616754) MAIN: The current date/time is: Wed Feb 26 13:41:27 2025[0m
+[0;32mI (617754) MAIN: The current date/time is: Wed Feb 26 13:41:28 2025[0m
+[0;32mI (618754) MAIN: The current date/time is: Wed Feb 26 13:41:29 2025[0m
+[0;32mI (619754) MAIN: The current date/time is: Wed Feb 26 13:41:30 2025[0m
+[0;32mI (620754) MAIN: The current date/time is: Wed Feb 26 13:41:31 2025[0m
+[0;32mI (621754) MAIN: The current date/time is: Wed Feb 26 13:41:32 2025[0m
+[0;32mI (622754) MAIN: The current date/time is: Wed Feb 26 13:41:33 2025[0m
+[0;32mI (623754) MAIN: The current date/time is: Wed Feb 26 13:41:34 2025[0m
+[0;32mI (624754) MAIN: The current date/time is: Wed Feb 26 13:41:35 2025[0m
+[0;32mI (625754) MAIN: The current date/time is: Wed Feb 26 13:41:36 2025[0m
+[0;32mI (626754) MAIN: The current date/time is: Wed Feb 26 13:41:37 2025[0m
+[0;32mI (627754) MAIN: The current date/time is: Wed Feb 26 13:41:38 2025[0m
+[0;32mI (628754) MAIN: The current date/time is: Wed Feb 26 13:41:39 2025[0m
+[0;32mI (629754) MAIN: The current date/time is: Wed Feb 26 13:41:40 2025[0m
+[0;32mI (630754) MAIN: The current date/time is: Wed Feb 26 13:41:41 2025[0m
+[0;32mI (631754) MAIN: The current date/time is: Wed Feb 26 13:41:42 2025[0m
+[0;32mI (632754) MAIN: The current date/time is: Wed Feb 26 13:41:43 2025[0m
+[0;32mI (633754) MAIN: The current date/time is: Wed Feb 26 13:41:44 2025[0m
+[0;32mI (634754) MAIN: The current date/time is: Wed Feb 26 13:41:45 2025[0m
+[0;32mI (635754) MAIN: The current date/time is: Wed Feb 26 13:41:46 2025[0m
+[0;32mI (636754) MAIN: The current date/time

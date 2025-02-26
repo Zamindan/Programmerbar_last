@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "Programmerbar_last",
-    "project_version":    "a0311c9-dirty",
+    "project_version":    "2b73397-dirty",
     "project_path":       "C:/Programmerbar_last",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.4",
     "build_dir":          "C:/Programmerbar_last/build",
@@ -1195,7 +1195,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "C:/Programmerbar_last/build/esp-idf/main/libmain.a",
-            "sources": [ "C:/Programmerbar_last/main/main.c", "C:/Programmerbar_last/main/src/adc.c", "C:/Programmerbar_last/main/src/I2C.c", "C:/Programmerbar_last/main/src/measurements.c", "C:/Programmerbar_last/main/src/uart.c" ],
+            "sources": [ "C:/Programmerbar_last/main/main.c", "C:/Programmerbar_last/main/src/adc.c", "C:/Programmerbar_last/main/src/I2C.c", "C:/Programmerbar_last/main/src/measurements.c", "C:/Programmerbar_last/main/src/uart.c", "C:/Programmerbar_last/main/src/wifi.c", "C:/Programmerbar_last/main/src/rtc_time.c" ],
             "include_dirs": [ "include" ]
         },
         "mbedtls": {
