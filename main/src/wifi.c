@@ -86,10 +86,18 @@ esp_err_t connect_wifi()
     wifi_event_group = xEventGroupCreate();
 
     esp_event_handler_instance_t wifi_handler_event_instance;
-    ESP_ERROR_CHECK(esp_event_handler_instance_register(WIFI_EVENT, ESP_EVENT_ANY_ID, &wifi_event_handler, NULL, &wifi_handler_event_instance));
+    ESP_ERROR_CHECK(esp_event_handler_instance_register(WIFI_EVENT,
+                                                        ESP_EVENT_ANY_ID,
+                                                        &wifi_event_handler,
+                                                        NULL,
+                                                        &wifi_handler_event_instance));
 
     esp_event_handler_instance_t ip_handler_event_instance;
-    ESP_ERROR_CHECK(esp_event_handler_instance_register(IP_EVENT, ESP_EVENT_ANY_ID, &ip_event_handler, NULL, &ip_handler_event_instance));
+    ESP_ERROR_CHECK(esp_event_handler_instance_register(IP_EVENT,
+                                                        ESP_EVENT_ANY_ID,
+                                                        &ip_event_handler,
+                                                        NULL,
+                                                        &ip_handler_event_instance));
 
     /// Start the WIFI driver
 
@@ -134,7 +142,6 @@ esp_err_t connect_wifi()
         ESP_LOGE(TAG, "Unexpected event");
         status = WIFI_FAILURE;
     }
-
 
     ESP_ERROR_CHECK(esp_event_handler_instance_unregister(IP_EVENT, IP_EVENT_STA_GOT_IP, ip_handler_event_instance));
     ESP_ERROR_CHECK(esp_event_handler_instance_unregister(WIFI_EVENT, ESP_EVENT_ANY_ID, wifi_handler_event_instance));

@@ -18,10 +18,10 @@
 #define INA237_VBUS_REG 0x05
 #define INA237_CURRENT_REG 0x07
 
-static float current = 0;
-static float voltage = 0;
-static float power = 0;
-static float temperature = 0;
+float current = 0;
+float voltage = 0;
+float power = 0;
+float temperature = 0;
 
 /**
  * @brief Function for configuring the INA237.
