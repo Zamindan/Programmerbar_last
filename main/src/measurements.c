@@ -3,6 +3,9 @@
 #include "adc.h"
 #include "freertos/freeRTOS.h"
 #include "freertos/task.h"
+#include "esp_http_client.h"
+#include "esp_log.h"
+#include "wifi.h" 
 
 /**
  * @file measurements.c
@@ -14,14 +17,16 @@
  * @date 2025-02-14
  */
 
+static const char *TAG = "MEASUREMENTS";
+
 #define INA237_SHUNT_V_REG 0x04
 #define INA237_VBUS_REG 0x05
 #define INA237_CURRENT_REG 0x07
 
-float current = 0;
-float voltage = 0;
-float power = 0;
-float temperature = 0;
+extern float current;
+extern float voltage;
+extern float power;
+extern float temperature;
 
 /**
  * @brief Function for configuring the INA237.
@@ -157,7 +162,7 @@ void measurements_task(void *parameter /*, void *parameter2*/)
         vTaskDelay(pdMS_TO_TICKS(10));
         read_temperature(adc_handle_1, ADC_CHANNEL_0);
 
-        ESP_LOGI("MEASUREMENTS", "Current: %f Voltage: %f Power: %f Temperature: %f", current, voltage, power, temperature);
+        ESP_LOGI(TAG, "Current: %f Voltage: %f Power: %f Temperature: %f", current, voltage, power, temperature);
         vTaskDelay(pdMS_TO_TICKS(10));
     }
 }

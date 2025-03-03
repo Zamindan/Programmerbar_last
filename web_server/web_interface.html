@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ESP32 Control</title>
+</head>
+<body>
+    <h1>ESP32 Control</h1>
+    <form id="controlForm">
+        <label for="mode">Mode:</label>
+        <select id="mode" name="mode">
+            <option value="CC">Constant Current (CC)</option>
+            <option value="CV">Constant Voltage (CV)</option>
+            <option value="CP">Constant Power (CP)</option>
+        </select><br><br>
+        <label for="current">Current (A):</label>
+        <input type="number" id="current" name="current" step="0.01"><br><br>
+        <label for="voltage">Voltage (V):</label>
+        <input type="number" id="voltage" name="voltage" step="0.01"><br><br>
+        <label for="power">Power (W):</label>
+        <input type="number" id="power" name="power" step="0.01"><br><br>
+        <button type="button" onclick="setMode()">Set Mode</button>
+    </form>
+    <script>
+        function setMode() {
+            const form = document.getElementById('controlForm');
+            const data = {
+                mode: form.mode.value,
+                current: parseFloat(form.current.value),
+                voltage: parseFloat(form.voltage.value),
+                power: parseFloat(form.power.value)
+            };
+
+            fetch('/set_mode', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -149,3 +149,28 @@ esp_err_t connect_wifi()
 
     return status;
 }
+
+void wifi_start()
+{
+    esp_err_t status = WIFI_FAILURE;
+    // initialize storage
+    esp_err_t ret = nvs_flash_init();
+    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND)
+    {
+        ESP_ERROR_CHECK(nvs_flash_erase());
+        ret = nvs_flash_init();
+    }
+    ESP_ERROR_CHECK(ret);
+
+    // connect to wireless AP
+    status = connect_wifi();
+    if (WIFI_SUCCESS != status)
+    {
+        ESP_LOGI(TAG, "Failed to associate to AP, dying...");
+        return;
+    }
+    else
+    {
+        ESP_LOGI(TAG, "Connected to AP");
+    }
+}

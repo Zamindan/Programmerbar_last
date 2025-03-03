@@ -1,65 +1,52 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/semphr.h"
+#include "pwm.h"
 #include "measurements.h"
-#include "esp_log.h"
 #include "wifi.h"
 #include "nvs_flash.h"
 #include "time.h"
 #include "esp_sntp.h"
-#include "esp_http_server.h"
 #include "rtc_time.h"
+#include "web_server.h"
+#include "control.h"
+#include "esp_log.h"
+#include "control.h"
 
 
 static const char *TAG = "MAIN";
 
-// Shared variable to store the current time
-char current_time_str[64];
-SemaphoreHandle_t time_mutex;
+float current = 0;
+float voltage = 0;
+float power = 0;
+float temperature = 0;
 
-// HTTP GET handler
-esp_err_t hello_get_handler(httpd_req_t *req)
-{
-    char time_str[64];
+float set_current = 0;
+float set_voltage = 0;
+float set_power = 0;
 
-    // Get the current time from the shared variable
-    if (xSemaphoreTake(time_mutex, portMAX_DELAY))
-    {
-        strncpy(time_str, current_time_str, sizeof(time_str));
-        xSemaphoreGive(time_mutex);
-    }
-
-    // Send the current time as the response
-    httpd_resp_send(req, time_str, strlen(time_str));
-    return ESP_OK;
-}
-
-// Function to start the web server
-httpd_handle_t start_webserver(void)
-{
-    httpd_handle_t server = NULL;
-    httpd_config_t config = HTTPD_DEFAULT_CONFIG();
-
-    // Start the HTTP server
-    if (httpd_start(&server, &config) == ESP_OK)
-    {
-        // Set URI handlers
-        httpd_uri_t hello_uri = {
-            .uri       = "/hello",
-            .method    = HTTP_GET,
-            .handler   = hello_get_handler,
-            .user_ctx  = NULL
-        };
-        httpd_register_uri_handler(server, &hello_uri);
-    }
-    return server;
-}
+LOAD_MODE_t load_mode = MODE_CC;
 
 void app_main(void)
 {
-    //void measurements_task(void *parameter);
-    //   Create a task for the measurements
-    //xTaskCreatePinnedToCore(measurements_task, "measurements_task", 4096, NULL, 5, NULL, 1);
+    void rtc_task(void *parameter);
+    void measurements_task(void *parameter);
+    void control_task(void *parameter);
+
+    wifi_start();
+
+    xTaskCreatePinnedToCore(rtc_task, "rtc_task", 4096, NULL, 3, NULL, 0);
+    xTaskCreatePinnedToCore(measurements_task, "measurements_task", 4096, NULL, 2, NULL, 0);
+
+    // Initialize control
+    control_init();
+    xTaskCreatePinnedToCore(control_task, "control_task", 4096, NULL, 1, NULL, 0);
+
+}
+
+/*
+void app_main(void)
+{
     esp_err_t status = WIFI_FAILURE;
     // initialize storage
     esp_err_t ret = nvs_flash_init();
@@ -82,19 +69,24 @@ void app_main(void)
         ESP_LOGI(TAG, "Connected to AP");
     }
 
-    // Initialize the semaphore
-    time_mutex = xSemaphoreCreateMutex();
-    if (time_mutex == NULL)
+    mode_mutex = xSemaphoreCreateMutex();
+    if (mode_mutex == NULL)
     {
-        ESP_LOGI(TAG, "Failed to create mutex");
+        ESP_LOGI(TAG, "Failed to create mode mutex");
         return;
     }
 
     void rtc_task(void *parameter);
+    void measurements_task(void *parameter);
 
     xTaskCreatePinnedToCore(rtc_task, "rtc_task", 4096, NULL, 5, NULL, 0);
+    xTaskCreatePinnedToCore(measurements_task, "measurements_task", 4096, NULL, 5, NULL, 0);
+
+    // Initialize control
+    control_init();
+    xTaskCreatePinnedToCore(control_task, "control_task", 4096, NULL, 5, NULL, 0);
 
     // Start the web server
     start_webserver();
     ESP_LOGI(TAG, "Web server started");
-}
+}*/
