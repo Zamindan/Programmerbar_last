@@ -7,6 +7,15 @@
 #include "freertos/freeRTOS.h"
 #include "freertos/task.h"
 
+
+struct measurement_data
+{
+    float current;
+    float voltage;
+    float power;
+    float temperature;
+};
+
 /**
  * @file measurements.c
  * @brief Functions for reading I2C data and ADC data. Which will then be converted to current, voltage, power and temperature

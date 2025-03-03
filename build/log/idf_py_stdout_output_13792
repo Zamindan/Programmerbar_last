@@ -1,0 +1,202 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4037ac26
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2810,len:0x15a0
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xd20
+load:0x403cb700,len:0x2ee4
+entry 0x403c8928
+[0;32mI (26) boot: ESP-IDF v5.4 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Mar  3 2025 17:12:26[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (27) boot: chip revision: v0.2[0m
+[0;32mI (29) boot: efuse block revision: v1.3[0m
+[0;32mI (33) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (37) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32s3: SPI Flash Size : 8MB[0m
+[0;32mI (44) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (64) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (77) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3c0a0020 size=1e2e8h (123624) map[0m
+[0;32mI (110) esp_image: segment 1: paddr=0002e310 vaddr=3fc99b00 size=01d08h (  7432) load[0m
+[0;32mI (112) esp_image: segment 2: paddr=00030020 vaddr=42000020 size=9037ch (590716) map[0m
+[0;32mI (218) esp_image: segment 3: paddr=000c03a4 vaddr=3fc9b808 size=02ca0h ( 11424) load[0m
+[0;32mI (221) esp_image: segment 4: paddr=000c304c vaddr=40374000 size=15ae0h ( 88800) load[0m
+[0;32mI (241) esp_image: segment 5: paddr=000d8b34 vaddr=600fe100 size=0001ch (    28) load[0m
+[0;32mI (250) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (250) boot: Disabling RNG early entropy source...[0m
+[0;32mI (260) cpu_start: Multicore app[0m
+[0;32mI (269) cpu_start: Pro cpu start user code[0m
+[0;32mI (269) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (270) app_init: Application information:[0m
+[0;32mI (270) app_init: Project name:     Programmerbar_last[0m
+[0;32mI (274) app_init: App version:      a4e8186-dirty[0m
+[0;32mI (279) app_init: Compile time:     Mar  3 2025 17:10:58[0m
+[0;32mI (284) app_init: ELF file SHA256:  cdf07826c...[0m
+[0;32mI (288) app_init: ESP-IDF:          v5.4[0m
+[0;32mI (292) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (296) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (300) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (304) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (310) heap_init: At 3FCA2680 len 00047090 (284 KiB): RAM[0m
+[0;32mI (315) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (320) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (325) heap_init: At 600FE11C len 00001ECC (7 KiB): RTCRAM[0m
+[0;32mI (331) spi_flash: detected chip: gd[0m
+[0;32mI (334) spi_flash: flash io: dio[0m
+[0;32mI (337) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (343) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (350) main_task: Started on CPU0[0m
+[0;32mI (360) main_task: Calling app_main()[0m
+[0;32mI (370) pp: pp rom version: e7ae62f[0m
+[0;32mI (370) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (390) wifi:wifi driver task: 3fcac7d4, prio:23, stack:6656, core=0[0m
+[0;32mI (390) wifi:wifi firmware version: 48ea317a7[0m
+[0;32mI (390) wifi:wifi certification version: v7.0[0m
+[0;32mI (390) wifi:config NVS flash: enabled[0m
+[0;32mI (390) wifi:config nano formatting: disabled[0m
+[0;32mI (400) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (400) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (410) wifi:Init management short buffer num: 32[0m
+[0;32mI (410) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (420) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (420) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (420) wifi:Init static rx buffer num: 10[0m
+[0;32mI (430) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (430) wifi_init: rx ba win: 6[0m
+[0;32mI (430) wifi_init: accept mbox: 6[0m
+[0;32mI (440) wifi_init: tcpip mbox: 32[0m
+[0;32mI (440) wifi_init: udp mbox: 6[0m
+[0;32mI (440) wifi_init: tcp mbox: 6[0m
+[0;32mI (450) wifi_init: tcp tx win: 5760[0m
+[0;32mI (450) wifi_init: tcp rx win: 5760[0m
+[0;32mI (450) wifi_init: tcp mss: 1440[0m
+[0;32mI (460) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (460) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (460) phy_init: phy_version 680,a6008b2,Jun  4 2024,16:41:10[0m
+[0;32mI (500) wifi:mode : sta (8c:bf:ea:03:b8:98)[0m
+[0;32mI (500) wifi:enable tsf[0m
+[0;32mI (500) WIFI: STA init complete[0m
+[0;32mI (500) WIFI: Connecting to AP...[0m
+[0;32mI (510) wifi:new:<9,2>, old:<1,0>, ap:<255,255>, sta:<9,2>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (510) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (520) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (530) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (550) wifi:connected with Kirchoff, aid = 1, channel 9, 40D, bssid = b4:b0:24:dc:48:53[0m
+[0;32mI (550) wifi:security: WPA2-PSK, phy: bgn, rssi: -31[0m
+[0;32mI (550) wifi:pm start, type: 1[0m
+
+[0;32mI (550) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (560) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000[0m
+[0;32mI (580) wifi:<ba-add>idx:0 (ifx:0, b4:b0:24:dc:48:53), tid:7, ssn:0, winSize:64[0m
+[0;32mI (590) wifi:AP's beacon interval = 102400 us, DTIM period = 1[0m
+[0;32mI (1600) esp_netif_handlers: sta ip: 192.168.0.10, mask: 255.255.255.0, gw: 192.168.0.1[0m
+[0;32mI (1600) WIFI: STA IP: 192.168.0.10[0m
+[0;32mI (1600) WIFI: Connected to AP[0m
+[0;32mI (1600) WIFI: Connected to AP[0m
+[0;32mI (1600) RTC_TIME: Initialising SNTP[0m
+[0;32mI (1600) RTC_TIME: Waiting for system time to be set... (1/10)[0m
+[0;33mW (1610) httpd_uri: httpd_register_uri_handler: handler / with method 1 already registered[0m
+[0;32mI (1620) MAIN: New values: 2.83A, 39.90V, 112.92W, 39.0°C[0m
+[0;32mI (1620) main_task: Returned from app_main()[0m
+[0;32mI (2020) wifi:<ba-add>idx:1 (ifx:0, b4:b0:24:dc:48:53), tid:0, ssn:0, winSize:64[0m
+[0;33mW (2030) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2030) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2060) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2060) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2070) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2070) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2090) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2090) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2110) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2110) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2120) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2120) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2140) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2140) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2160) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2160) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2170) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2170) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2190) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2190) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2210) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2210) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2220) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2220) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2240) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2240) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2260) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2260) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2280) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2280) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2290) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2300) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2310) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2310) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2320) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2330) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2350) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2350) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2370) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2370) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2380) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2380) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2400) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2400) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2410) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2420) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2430) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2430) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2450) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2450) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2470) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2470) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2480) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2490) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2500) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2500) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2520) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2520) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2530) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2530) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2550) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2550) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2570) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2570) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2590) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2590) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2600) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2600) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2620) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2620) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2630) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2630) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2650) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2660) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2670) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2670) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2690) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2690) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2710) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2710) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2720) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2720) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2730) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2740) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2760) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2760) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2770) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2780) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2790) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2790) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2810) httpd_uri: httpd_uri: Method '1' not allowed for URI '/measurements'[0m
+[0;33mW (2810) httpd_txrx: httpd_resp_send_err: 405 Method Not Allowed - Specified method is invalid for this resource[0m
+[0;33mW (2830) httpd_u

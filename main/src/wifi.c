@@ -20,8 +20,8 @@
 #define TCP_FAILURE 1 << 1
 #define MAX_FAILURES 10
 
-#define CONFIG_WIFI_SSID "Test"
-#define CONFIG_WIFI_PASSWORD "Test"
+#define CONFIG_WIFI_SSID "Kirchoff"
+#define CONFIG_WIFI_PASSWORD "1020304050"
 
 // Event group to contain status information
 static EventGroupHandle_t wifi_event_group;

@@ -4,30 +4,87 @@
 #include "esp_http_server.h"
 #include "esp_log.h"
 #include "cJSON.h"
+#include "web_interface.h"
+#include "measurements.h"
+#include "control.h"
 
 static const char *TAG = "WEB_SERVER";
 
-extern float current, voltage, power, temperature;
-extern float set_current, set_voltage, set_power;
+extern struct measurement_data sensor_data;
+extern struct control_data control_data;
 
 
+esp_err_t index_get_handler(httpd_req_t *req) {
+    httpd_resp_set_type(req, "text/html");
+    httpd_resp_send(req, (const char *)index_html, index_html_len);
+    return ESP_OK;
+}
 
+esp_err_t measurements_handler(httpd_req_t *req) {
+    struct measurement_data* simulated_data_ptr = (struct measurement_data *)req->user_ctx;
+    struct measurement_data simulated_data = *simulated_data_ptr;
+    char json_buf[128];
+    snprintf(json_buf, sizeof(json_buf),
+        "{\"voltage\":%.2f,\"current\":%.2f,\"temperature\":%.1f}",
+        simulated_data.voltage, simulated_data.current, simulated_data.temperature);
 
+    httpd_resp_set_type(req, "application/json");
+    httpd_resp_send(req, json_buf, HTTPD_RESP_USE_STRLEN);
+    return ESP_OK;
+}
 
+esp_err_t emergency_handler(httpd_req_t *req) {
+    httpd_resp_sendstr(req, "Emergency shutdown activated");
+    return ESP_OK;
+}
 
+httpd_handle_t start_webserver(struct measurement_data* data)
+{
+    httpd_handle_t server = NULL;
+    httpd_config_t config = HTTPD_DEFAULT_CONFIG();
 
+    esp_err_t test = httpd_start(&server, &config);
 
+    if (test == ESP_OK)
+    {
+        httpd_uri_t index_uri = {
+            .uri       = "/",
+            .method    = HTTP_GET,
+            .handler   = index_get_handler,
+            .user_ctx  = NULL
+        };
+        httpd_register_uri_handler(server, &index_uri);
 
+        /*httpd_uri_t controls_uri = {
+            .uri       = "/",
+            .method    = HTTP_GET,
+            .handler   = measurements_handler,
+            .user_ctx  = NULL
+        };*/
 
+        httpd_uri_t measurments_uri = {
+            .uri       = "/measurements",
+            .method    = HTTP_GET,
+            .handler   = measurements_handler,
+            .user_ctx  = &data
+        };
+        httpd_register_uri_handler(server, &measurments_uri);
 
+        httpd_uri_t emergency_uri = {
+            .uri       = "/",
+            .method    = HTTP_GET,
+            .handler   = emergency_handler,
+            .user_ctx  = NULL
+        };
+        httpd_register_uri_handler(server, &emergency_uri);
 
-
-
-
-
-
-
-
+    }
+    else
+    {
+        ESP_LOGI(TAG, "Server failed to start");
+    };
+    return server;
+}
 
 /*
 // Shared variables for mode and parameters

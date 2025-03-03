@@ -18,15 +18,19 @@
  */
 
 static const char *TAG = "MEASUREMENTS";
-
 #define INA237_SHUNT_V_REG 0x04
 #define INA237_VBUS_REG 0x05
 #define INA237_CURRENT_REG 0x07
 
-extern float current;
-extern float voltage;
-extern float power;
-extern float temperature;
+struct measurement_data
+{
+    float current;
+    float voltage;
+    float power;
+    float temperature;
+};
+
+extern struct measurement_data* measurements;
 
 /**
  * @brief Function for configuring the INA237.
@@ -55,18 +59,17 @@ void ina_config(i2c_master_dev_handle_t dev_handle_name)
  *
  * @details This function reads the current from the INA237 and returns it.
  */
-float read_current(i2c_master_dev_handle_t dev_handle_name)
+void read_current(i2c_master_dev_handle_t dev_handle_name)
 {
     // Read the current from the INA237
     // uint16_t raw_shunt_voltage = i2c_read(dev_handle_name, INA237_SHUNT_V_REG);
     int16_t raw_current = i2c_read(dev_handle_name, INA237_CURRENT_REG);
 
     // Convert the raw current data to actual current value
-    current = (float)raw_current * (10.0 / 32768.0);
+    measurements->current = (float)raw_current * (10.0 / 32768.0);
 
     // Conversion factor: 5uV/LSB
     // current = (float) raw_shunt_voltage * 5 / (1000000 * 0.01); // Convert to amperes (A)
-    return current;
 }
 
 /**
@@ -77,15 +80,14 @@ float read_current(i2c_master_dev_handle_t dev_handle_name)
  *
  * @details This function reads the voltage from the INA237 and returns it.
  */
-float read_voltage(i2c_master_dev_handle_t dev_handle_name)
+void read_voltage(i2c_master_dev_handle_t dev_handle_name)
 {
     // Read the voltage from the INA237
     uint16_t raw_voltage = i2c_read(dev_handle_name, INA237_VBUS_REG);
 
     // Convert the raw voltage data to actualt voltage value
     // Conversion factor: 3.125mV/LSB
-    voltage = (float)raw_voltage * 3.125 / 1000.0; // Convert to volts (V)
-    return voltage;
+    measurements->voltage = (float)raw_voltage * 3.125 / 1000.0; // Convert to volts (V)
 }
 
 /**
@@ -96,11 +98,10 @@ float read_voltage(i2c_master_dev_handle_t dev_handle_name)
  *
  * @details This function reads the current and voltage from the INA237 and returns the calculated power
  */
-float read_power(i2c_master_dev_handle_t dev_handle_name)
+void read_power(i2c_master_dev_handle_t dev_handle_name)
 {
     // Read the power from the INA237
-    power = read_voltage(dev_handle_name) * read_current(dev_handle_name);
-    return power;
+    measurements->power =  measurements->voltage * measurements->current; 
 }
 
 /**
@@ -113,11 +114,10 @@ float read_power(i2c_master_dev_handle_t dev_handle_name)
  *
  * @details This function reads the temperature from the ADC input, turns it into temperature and returns it.
  */
-float read_temperature(adc_oneshot_unit_handle_t adc_handle, adc_channel_t adc_channel)
+void read_temperature(adc_oneshot_unit_handle_t adc_handle, adc_channel_t adc_channel)
 {
     // Read the temperature from the ADC
-    temperature = adc_read(adc_handle, adc_channel);
-    return temperature;
+    measurements->temperature = adc_read(adc_handle, adc_channel);
 }
 
 void measurements_task(void *parameter /*, void *parameter2*/)
@@ -162,7 +162,7 @@ void measurements_task(void *parameter /*, void *parameter2*/)
         vTaskDelay(pdMS_TO_TICKS(10));
         read_temperature(adc_handle_1, ADC_CHANNEL_0);
 
-        ESP_LOGI(TAG, "Current: %f Voltage: %f Power: %f Temperature: %f", current, voltage, power, temperature);
+        ESP_LOGI(TAG, "Current: %f Voltage: %f Power: %f Temperature: %f", measurements->current, measurements->voltage, measurements->power, measurements->temperature);
         vTaskDelay(pdMS_TO_TICKS(10));
     }
 }

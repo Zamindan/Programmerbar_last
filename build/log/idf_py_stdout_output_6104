@@ -1,0 +1,133 @@
+[0;32mI (403) wifi:wifi driver task: 3fcac858, prio:23, stack:6656, core=0[0m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x420040c5
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2810,len:0x15a0
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xd20
+load:0x403cb700,len:0x2ee4
+entry 0x403c8928
+[0;32mI (26) boot: ESP-IDF v5.4 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Mar  3 2025 17:12:26[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (27) boot: chip revision: v0.2[0m
+[0;32mI (29) boot: efuse block revision: v1.3[0m
+[0;32mI (33) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (37) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32s3: SPI Flash Size : 8MB[0m
+[0;32mI (44) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (64) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (77) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3c0a0020 size=1e2e8h (123624) map[0m
+[0;32mI (110) esp_image: segment 1: paddr=0002e310 vaddr=3fc99b00 size=01d08h (  7432) load[0m
+[0;32mI (112) esp_image: segment 2: paddr=00030020 vaddr=42000020 size=90390h (590736) map[0m
+[0;32mI (218) esp_image: segment 3: paddr=000c03b8 vaddr=3fc9b808 size=02ca0h ( 11424) load[0m
+[0;32mI (221) esp_image: segment 4: paddr=000c3060 vaddr=40374000 size=15ae0h ( 88800) load[0m
+[0;32mI (241) esp_image: segment 5: paddr=000d8b48 vaddr=600fe100 size=0001ch (    28) load[0m
+[0;32mI (250) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (250) boot: Disabling RNG early entropy source...[0m
+[0;32mI (260) cpu_start: Multicore app[0m
+[0;32mI (270) cpu_start: Pro cpu start user code[0m
+[0;32mI (270) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (270) app_init: Application information:[0m
+[0;32mI (271) app_init: Project name:     Programmerbar_last[0m
+[0;32mI (275) app_init: App version:      a4e8186-dirty[0m
+[0;32mI (279) app_init: Compile time:     Mar  3 2025 17:10:58[0m
+[0;32mI (284) app_init: ELF file SHA256:  4de635fce...[0m
+[0;32mI (288) app_init: ESP-IDF:          v5.4[0m
+[0;32mI (292) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (296) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (300) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (304) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (310) heap_init: At 3FCA2680 len 00047090 (284 KiB): RAM[0m
+[0;32mI (315) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (320) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (326) heap_init: At 600FE11C len 00001ECC (7 KiB): RTCRAM[0m
+[0;32mI (332) spi_flash: detected chip: gd[0m
+[0;32mI (334) spi_flash: flash io: dio[0m
+[0;32mI (337) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (343) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (350) main_task: Started on CPU0[0m
+[0;32mI (360) main_task: Calling app_main()[0m
+[0;32mI (370) pp: pp rom version: e7ae62f[0m
+[0;32mI (370) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (380) wifi:wifi driver task: 3fcac858, prio:23, stack:6656, core=0[0m
+[0;32mI (380) wifi:wifi firmware version: 48ea317a7[0m
+[0;32mI (380) wifi:wifi certification version: v7.0[0m
+[0;32mI (380) wifi:config NVS flash: enabled[0m
+[0;32mI (390) wifi:config nano formatting: disabled[0m
+[0;32mI (390) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (400) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (400) wifi:Init management short buffer num: 32[0m
+[0;32mI (410) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (410) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (410) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (420) wifi:Init static rx buffer num: 10[0m
+[0;32mI (420) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (430) wifi_init: rx ba win: 6[0m
+[0;32mI (430) wifi_init: accept mbox: 6[0m
+[0;32mI (430) wifi_init: tcpip mbox: 32[0m
+[0;32mI (430) wifi_init: udp mbox: 6[0m
+[0;32mI (440) wifi_init: tcp mbox: 6[0m
+[0;32mI (440) wifi_init: tcp tx win: 5760[0m
+[0;32mI (440) wifi_init: tcp rx win: 5760[0m
+[0;32mI (450) wifi_init: tcp mss: 1440[0m
+[0;32mI (450) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (450) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (460) phy_init: phy_version 680,a6008b2,Jun  4 2024,16:41:10[0m
+[0;33mW (500) phy_init: saving new calibration data because of checksum failure, mode(0)[0m
+[0;32mI (550) wifi:mode : sta (8c:bf:ea:03:b8:98)[0m
+[0;32mI (550) wifi:enable tsf[0m
+[0;32mI (550) WIFI: STA init complete[0m
+[0;32mI (550) WIFI: Connecting to AP...[0m
+[0;32mI (560) wifi:new:<9,2>, old:<1,0>, ap:<255,255>, sta:<9,2>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (560) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (570) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (580) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (590) wifi:connected with Kirchoff, aid = 1, channel 9, 40D, bssid = b4:b0:24:dc:48:53[0m
+[0;32mI (590) wifi:security: WPA2-PSK, phy: bgn, rssi: -35[0m
+[0;32mI (600) wifi:pm start, type: 1[0m
+
+[0;32mI (600) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (610) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000[0m
+[0;32mI (620) wifi:AP's beacon interval = 102400 us, DTIM period = 1[0m
+[0;32mI (630) wifi:<ba-add>idx:0 (ifx:0, b4:b0:24:dc:48:53), tid:7, ssn:0, winSize:64[0m
+[0;32mI (1640) esp_netif_handlers: sta ip: 192.168.0.10, mask: 255.255.255.0, gw: 192.168.0.1[0m
+[0;32mI (1640) WIFI: STA IP: 192.168.0.10[0m
+[0;32mI (1640) WIFI: Connected to AP[0m
+[0;32mI (1640) WIFI: Connected to AP[0m
+[0;32mI (1640) RTC_TIME: Initialising SNTP[0m
+[0;32mI (1640) RTC_TIME: Waiting for system time to be set... (1/10)[0m
+[0;33mW (1650) httpd_uri: httpd_register_uri_handler: handler / with method 1 already registered[0m
+[0;32mI (1660) MAIN: New values: 9.59A, 23.80V, 228.24W, 26.5°C[0m
+[0;32mI (1660) main_task: Returned from app_main()[0m
+[0;32mI (1740) wifi:<ba-add>idx:1 (ifx:0, b4:b0:24:dc:48:53), tid:0, ssn:0, winSize:64[0m
+[0;32mI (3660) MAIN: New values: 8.51A, 43.60V, 371.04W, 35.1°C[0m
+[0;32mI (5660) MAIN: New values: 8.66A, 45.60V, 394.90W, 25.7°C[0m
+[0;33mW (5750) httpd_uri: httpd_uri: URI '/favicon.ico' not found[0m
+[0;33mW (5750) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (7660) MAIN: New values: 5.58A, 41.40V, 231.01W, 37.2°C[0m
+[0;32mI (9660) MAIN: New values: 8.89A, 42.10V, 374.27W, 44.3°C[0m
+[0;32mI (11660) MAIN: New values: 1.30A, 11.40V, 14.82W, 28.8°C[0m
+[0;32mI (13660) MAIN: New values: 5.76A, 31.70V, 182.59W, 45.1°C[0m
+[0;32mI (15660) MAIN: New values: 5.38A, 30.90V, 166.24W, 44.7°C[0m
+[0;32mI (17660) MAIN: New values: 3.66A, 34.60V, 126.64W, 37.4°C[0m
+[0;32mI (19660) MAIN: New values: 6.92A, 41.70V, 288.56W, 46.6°C[0m
+[0;32mI (21660) MAIN: New values: 6.58A, 36.60V, 240.83W, 43.5°C[0m
+[0;32mI (23660) MAIN: New values: 2.38A, 33.10V, 78.78W, 39.7°C[0m
+[0;32mI (25660) MAIN: New values: 7.64A, 34.60V, 264.34W, 39.6°C[0m
+[0;32mI (27660) MAIN: New values: 0.78A, 18.00V, 14.04W, 41.2°C[0m
+[0;32mI (29660) MAIN: New values: 6.53A, 46.70V, 304.95W, 35.4°C[0m
+[0;32mI (31660) MAIN: New values: 2.10A, 41.10V, 86.31W, 38.1°C[0m
+[0;32mI (33660) MAIN: New values: 6.11A, 16.40V, 100.20W, 30.2°C[0m
+[0;32mI (35660) MAIN: New values: 5.85A, 47.90V, 280.21W, 45.0°C[0m
+[0;32mI (37660) MAIN: New values: 8.52A, 44.90V, 382.55W, 33.2°C[0m
+[0;32mI (39660) MAIN: New values: 1.61A, 24.10V, 38.80W, 48.4°C[0m
+[0;32mI (4166

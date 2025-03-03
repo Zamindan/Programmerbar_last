@@ -16,33 +16,89 @@
 
 static const char *TAG = "MAIN";
 
-float current = 0;
-float voltage = 0;
-float power = 0;
-float temperature = 0;
+load_mode_t load_mode = MODE_CC;
 
-float set_current = 0;
-float set_voltage = 0;
-float set_power = 0;
+SemaphoreHandle_t time_mutex;
 
-LOAD_MODE_t load_mode = MODE_CC;
+char current_time_str[64];
+
+
+struct measurement_data measurements;
+struct control_data* control_signals;
+
+struct measurement_data simulated_data = {0};
+static SemaphoreHandle_t sensor_mutex;
+
+void sensor_sim_task(void *pvParameter) {
+    // Seed random number generator
+    srand(time(NULL));
+
+    while(1) {
+        // Generate random values within realistic ranges
+        float new_current = 0.5f + (rand() % 950) / 100.0f;  // 0.5-10A
+        float new_voltage = 10.0f + (rand() % 380) / 10.0f;   // 10-48V
+        float new_power = new_current * new_voltage;          // Calculate power
+        float new_temp = 25.0f + (rand() % 250) / 10.0f;      // 25-50°C
+
+        // Protect shared data with mutex
+        if(xSemaphoreTake(sensor_mutex, pdMS_TO_TICKS(100)) == pdTRUE) {
+            struct measurement_data simulated_data = {
+                .current = new_current,
+                .voltage = new_voltage,
+                .power = new_power,
+                .temperature = new_temp
+            };
+            xSemaphoreGive(sensor_mutex);
+            
+            ESP_LOGI(TAG, "New values: %.2fA, %.2fV, %.2fW, %.1f°C", 
+                    new_current, new_voltage, new_power, new_temp);
+        } else {
+            ESP_LOGW(TAG, "Failed to update sensor data - mutex timeout");
+        }
+
+        // Update every 2 seconds
+        vTaskDelay(pdMS_TO_TICKS(2000));
+    }
+}
+
+// Call this from app_main() to initialize
+void init_sensor_sim() {
+    sensor_mutex = xSemaphoreCreateMutex();
+    if(sensor_mutex == NULL) {
+        ESP_LOGE(TAG, "Failed to create sensor mutex!");
+        return;
+    }
+
+    xTaskCreatePinnedToCore(
+        sensor_sim_task,    // Task function
+        "sensor_sim",       // Task name
+        4096,               // Stack size
+        NULL,               // Parameters
+        2,                  // Priority
+        NULL,               // Task handle
+        tskNO_AFFINITY      // Core
+    );
+}
+
 
 void app_main(void)
 {
-    void rtc_task(void *parameter);
-    void measurements_task(void *parameter);
-    void control_task(void *parameter);
+
+    time_mutex = xSemaphoreCreateMutex();
+    if (time_mutex == NULL)
+    {
+        ESP_LOGE(TAG, "FATAL: Failed to create time mutex");
+        vTaskDelay(pdMS_TO_TICKS(100));
+        esp_restart(); // Critical failure, restart
+    }
 
     wifi_start();
-
-    xTaskCreatePinnedToCore(rtc_task, "rtc_task", 4096, NULL, 3, NULL, 0);
-    xTaskCreatePinnedToCore(measurements_task, "measurements_task", 4096, NULL, 2, NULL, 0);
-
-    // Initialize control
-    control_init();
-    xTaskCreatePinnedToCore(control_task, "control_task", 4096, NULL, 1, NULL, 0);
-
+    xTaskCreatePinnedToCore(rtc_task, "rtc_task", 4096, NULL, 3, NULL, 0); // Max priroty is 25!
+    start_webserver(&simulated_data);
+    init_sensor_sim();
 }
+
+
 
 /*
 void app_main(void)

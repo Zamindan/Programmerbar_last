@@ -3,13 +3,23 @@
 
 static const char *TAG = "CONTROL";
 
+extern struct sensor_data sensor_data;
+extern struct control_data control_data;
 
-typedef LOAD_MODE_t
+typedef enum
 {
     MODE_CC,
     MODE_CV,
     MODE_CP
-} load_mode;
+} load_mode_t;
+
+
+struct control_data
+{
+    float set_current;
+    float set_voltage;
+    float set_power;
+};
 
 void control_init(void)
 {
@@ -18,7 +28,7 @@ void control_init(void)
 
 void control_task(void *parameter)
 {
-    extern LOAD_MODE_t load_mode;
+    extern load_mode_t load_mode;
     control_init();
 
     while (1)

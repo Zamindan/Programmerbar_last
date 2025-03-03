@@ -1,19 +1,17 @@
 #ifndef WEB_SERVER_H
 #define WEB_SERVER_H
 
+#include "web_server.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/semphr.h"
 #include "esp_http_server.h"
+#include "esp_log.h"
+#include "cJSON.h"
+#include "web_interface.h"
 
-// Shared variables for mode and parameters
-typedef enum { CC_MODE, CV_MODE, CP_MODE } mode_t;
-extern mode_t current_mode;
-extern float set_current;
-extern float set_voltage;
-extern float set_power;
-extern SemaphoreHandle_t mode_mutex;
+extern struct measurement_data simulated_data;
 
 // Function to start the web server
-httpd_handle_t start_webserver(void);
+httpd_handle_t start_webserver(struct measurement_data* data);
 
 #endif // WEB_SERVER_H

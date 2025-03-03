@@ -1,13 +1,13 @@
 # Target labels
  bootloader
 # Source files and their labels
-C:/Programmerbar_last/build/CMakeFiles/bootloader
-C:/Programmerbar_last/build/CMakeFiles/bootloader.rule
-C:/Programmerbar_last/build/CMakeFiles/bootloader-complete.rule
-C:/Programmerbar_last/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
-C:/Programmerbar_last/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
-C:/Programmerbar_last/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
-C:/Programmerbar_last/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
-C:/Programmerbar_last/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
-C:/Programmerbar_last/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
-C:/Programmerbar_last/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
+C:/github/Programmerbar_last/build/CMakeFiles/bootloader
+C:/github/Programmerbar_last/build/CMakeFiles/bootloader.rule
+C:/github/Programmerbar_last/build/CMakeFiles/bootloader-complete.rule
+C:/github/Programmerbar_last/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+C:/github/Programmerbar_last/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+C:/github/Programmerbar_last/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+C:/github/Programmerbar_last/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+C:/github/Programmerbar_last/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+C:/github/Programmerbar_last/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+C:/github/Programmerbar_last/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

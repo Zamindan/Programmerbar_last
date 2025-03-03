@@ -13,6 +13,7 @@ extern SemaphoreHandle_t time_mutex;
 
 void rtc_task(void *parameter)
 {
+
     // Initialise SNTP
     ESP_LOGI(TAG, "Initialising SNTP");
     esp_sntp_setoperatingmode(SNTP_OPMODE_POLL);
@@ -28,7 +29,7 @@ void rtc_task(void *parameter)
     while (sntp_get_sync_status() == SNTP_SYNC_STATUS_RESET && ++retry < retry_count)
     {
         ESP_LOGI(TAG, "Waiting for system time to be set... (%d/%d)", retry, retry_count);
-        vTaskDelay(2000 / portTICK_PERIOD_MS);
+        vTaskDelay(pdTICKS_TO_MS(1000));
     }
 
     // Set timezone to Oslo time (CET/CEST)
@@ -49,6 +50,6 @@ void rtc_task(void *parameter)
             xSemaphoreGive(time_mutex);
         }
         ESP_LOGI(TAG, "The current date/time is: %s", strftime_buf);
-        vTaskDelay(pdTICKS_TO_MS(10));
+        vTaskDelay(pdTICKS_TO_MS(900));
     }
 }

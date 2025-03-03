@@ -1,0 +1,1084 @@
+[0;32mI (423) wifi:wifi firmware version: 48ea317a7[0m
+[0;32mI (423) wifi:wifi certification version: v7.0[0m
+[0;32mI (423) wifi:config NVS flash: enabled[0m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x420082e0
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2810,len:0x15a0
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xd20
+load:0x403cb700,len:0x2ee4
+entry 0x403c8928
+[0;32mI (26) boot: ESP-IDF v5.4 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Mar  3 2025 17:12:26[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (27) boot: chip revision: v0.2[0m
+[0;32mI (29) boot: efuse block revision: v1.3[0m
+[0;32mI (33) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (37) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (41) boot.esp32s3: SPI Flash Size : 8MB[0m
+[0;32mI (44) boot: Enabling RNG early entropy source...[0m
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (64) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (77) boot: End of partition table[0m
+[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3c0a0020 size=1e2d8h (123608) map[0m
+[0;32mI (110) esp_image: segment 1: paddr=0002e300 vaddr=3fc99b00 size=01d18h (  7448) load[0m
+[0;32mI (112) esp_image: segment 2: paddr=00030020 vaddr=42000020 size=9037ch (590716) map[0m
+[0;32mI (218) esp_image: segment 3: paddr=000c03a4 vaddr=3fc9b818 size=02c90h ( 11408) load[0m
+[0;32mI (221) esp_image: segment 4: paddr=000c303c vaddr=40374000 size=15ae0h ( 88800) load[0m
+[0;32mI (241) esp_image: segment 5: paddr=000d8b24 vaddr=600fe100 size=0001ch (    28) load[0m
+[0;32mI (250) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (250) boot: Disabling RNG early entropy source...[0m
+[0;32mI (261) cpu_start: Multicore app[0m
+[0;32mI (270) cpu_start: Pro cpu start user code[0m
+[0;32mI (270) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (270) app_init: Application information:[0m
+[0;32mI (270) app_init: Project name:     Programmerbar_last[0m
+[0;32mI (275) app_init: App version:      a4e8186-dirty[0m
+[0;32mI (279) app_init: Compile time:     Mar  3 2025 17:10:58[0m
+[0;32mI (284) app_init: ELF file SHA256:  2ffa77ba7...[0m
+[0;32mI (288) app_init: ESP-IDF:          v5.4[0m
+[0;32mI (292) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (296) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (300) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (304) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (310) heap_init: At 3FCA2680 len 00047090 (284 KiB): RAM[0m
+[0;32mI (315) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (320) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (326) heap_init: At 600FE11C len 00001ECC (7 KiB): RTCRAM[0m
+[0;32mI (332) spi_flash: detected chip: gd[0m
+[0;32mI (334) spi_flash: flash io: dio[0m
+[0;32mI (337) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (343) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (350) main_task: Started on CPU0[0m
+[0;32mI (360) main_task: Calling app_main()[0m
+[0;32mI (370) pp: pp rom version: e7ae62f[0m
+[0;32mI (370) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (390) wifi:wifi driver task: 3fcac7d4, prio:23, stack:6656, core=0[0m
+[0;32mI (390) wifi:wifi firmware version: 48ea317a7[0m
+[0;32mI (390) wifi:wifi certification version: v7.0[0m
+[0;32mI (390) wifi:config NVS flash: enabled[0m
+[0;32mI (390) wifi:config nano formatting: disabled[0m
+[0;32mI (400) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (400) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (410) wifi:Init management short buffer num: 32[0m
+[0;32mI (410) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (420) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (420) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (420) wifi:Init static rx buffer num: 10[0m
+[0;32mI (430) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (430) wifi_init: rx ba win: 6[0m
+[0;32mI (430) wifi_init: accept mbox: 6[0m
+[0;32mI (440) wifi_init: tcpip mbox: 32[0m
+[0;32mI (440) wifi_init: udp mbox: 6[0m
+[0;32mI (440) wifi_init: tcp mbox: 6[0m
+[0;32mI (450) wifi_init: tcp tx win: 5760[0m
+[0;32mI (450) wifi_init: tcp rx win: 5760[0m
+[0;32mI (450) wifi_init: tcp mss: 1440[0m
+[0;32mI (460) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (460) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (460) phy_init: phy_version 680,a6008b2,Jun  4 2024,16:41:10[0m
+[0;32mI (500) wifi:mode : sta (8c:bf:ea:03:b8:98)[0m
+[0;32mI (500) wifi:enable tsf[0m
+[0;32mI (500) WIFI: STA init complete[0m
+[0;32mI (500) WIFI: Connecting to AP...[0m
+[0;32mI (510) wifi:new:<9,2>, old:<1,0>, ap:<255,255>, sta:<9,2>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (510) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (530) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (540) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (550) wifi:connected with Kirchoff, aid = 1, channel 9, 40D, bssid = b4:b0:24:dc:48:53[0m
+[0;32mI (560) wifi:security: WPA2-PSK, phy: bgn, rssi: -32[0m
+[0;32mI (560) wifi:pm start, type: 1[0m
+
+[0;32mI (560) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (570) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000[0m
+[0;32mI (580) wifi:AP's beacon interval = 102400 us, DTIM period = 1[0m
+[0;32mI (590) wifi:<ba-add>idx:0 (ifx:0, b4:b0:24:dc:48:53), tid:7, ssn:0, winSize:64[0m
+[0;32mI (1600) esp_netif_handlers: sta ip: 192.168.0.10, mask: 255.255.255.0, gw: 192.168.0.1[0m
+[0;32mI (1600) WIFI: STA IP: 192.168.0.10[0m
+[0;32mI (1600) WIFI: Connected to AP[0m
+[0;32mI (1600) WIFI: Connected to AP[0m
+[0;32mI (1600) RTC_TIME: Initialising SNTP[0m
+[0;32mI (1600) RTC_TIME: Waiting for system time to be set... (1/10)[0m
+[0;33mW (1610) httpd_uri: httpd_register_uri_handler: handler / with method 1 already registered[0m
+[0;33mW (1620) httpd_uri: httpd_register_uri_handler: handler / with method 1 already registered[0m
+[0;32mI (1630) MAIN: New values: 0.53A, 11.00V, 5.83W, 32.0°C[0m
+[0;32mI (1630) main_task: Returned from app_main()[0m
+[0;32mI (2370) wifi:<ba-add>idx:1 (ifx:0, b4:b0:24:dc:48:53), tid:0, ssn:0, winSize:64[0m
+[0;33mW (2380) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2380) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2400) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2400) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2410) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2410) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2430) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2430) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2440) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2440) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2460) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2460) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2470) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2470) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2480) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2480) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2500) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2500) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2510) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2510) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2520) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2520) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2540) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2540) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2550) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2550) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2560) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2570) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2580) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2580) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2590) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2590) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2610) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2610) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2610) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2620) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2630) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2630) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2650) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2650) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2660) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2660) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2680) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2680) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2690) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2690) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2700) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2700) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2710) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2710) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2730) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2730) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2740) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2750) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2760) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2760) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2770) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2770) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2790) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2790) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2800) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2800) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2810) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2820) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2820) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2830) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2840) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2840) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2860) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2860) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2870) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2870) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2890) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2890) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2900) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2900) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2910) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2910) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2920) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2920) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2940) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2940) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2950) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2950) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2970) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2970) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (2980) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (2980) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3000) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3000) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3010) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3010) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3020) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3020) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3040) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3040) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3050) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3050) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3060) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3060) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3080) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3080) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3090) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3090) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3110) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3110) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3120) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3120) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3140) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3140) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3150) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3150) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3160) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3160) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3180) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3180) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3180) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3190) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3200) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3200) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3220) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3220) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3220) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3220) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3240) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3240) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3260) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3260) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3270) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3270) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3280) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3280) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3300) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3300) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3310) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3310) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3320) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3320) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3340) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3340) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3350) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3350) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3360) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3360) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3380) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3380) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3390) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3390) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3410) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3410) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3420) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3420) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3430) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3430) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3450) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3450) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3460) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3460) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3470) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3470) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3490) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3490) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3500) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3500) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3510) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3510) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3530) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3530) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3540) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3540) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3550) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3550) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3570) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3570) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3580) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3580) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3590) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3590) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3610) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3610) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3620) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3620) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3630) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3630) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (3640) MAIN: New values: 9.14A, 46.50V, 425.01W, 35.3°C[0m
+[0;33mW (3650) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3650) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3670) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3670) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3680) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3680) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3690) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3690) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3710) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3710) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3720) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3720) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3730) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3730) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3750) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3750) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3760) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3760) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3770) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3770) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3790) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3790) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3800) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3800) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3810) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3810) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3830) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3830) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3840) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3840) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3850) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3860) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3870) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3870) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3880) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3880) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3900) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3900) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3910) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3910) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3920) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3920) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3940) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3940) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3940) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3950) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3960) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3960) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3980) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3980) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (3990) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (3990) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4010) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4010) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4020) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4020) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4030) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4030) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4040) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4040) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4060) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4060) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4080) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4080) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4090) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4090) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4100) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4100) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4120) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4120) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4130) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4130) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4140) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4150) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4160) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4160) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4170) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4180) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4190) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4190) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4200) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4200) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4210) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4210) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4230) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4230) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4240) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4240) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4250) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4250) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4270) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4270) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4280) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4280) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4300) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4300) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4310) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4310) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4320) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4320) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4340) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4340) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4350) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4350) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4360) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4360) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4380) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4380) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4390) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4390) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4400) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4400) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4420) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4420) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4430) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4430) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4440) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4450) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4450) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4450) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4470) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4470) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4490) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4490) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4500) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4500) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4510) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4510) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4530) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4530) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4540) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4540) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4550) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4550) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4570) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4570) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4580) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4580) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4590) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4590) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4610) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4610) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4620) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4620) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4640) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4640) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4650) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4650) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4660) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4660) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4680) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4680) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4690) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4690) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4700) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4700) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4720) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4720) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4730) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4730) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4740) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4740) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4760) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4760) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4770) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4770) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4780) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4780) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4800) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4800) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4810) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4810) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4820) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4820) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4830) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4830) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4850) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4850) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4860) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4860) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4880) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4880) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4900) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4900) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4910) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4910) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4920) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4920) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4930) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4940) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4940) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4940) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4960) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4960) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4970) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4970) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (4990) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (4990) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5000) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5000) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5010) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5020) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5030) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5030) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5040) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5040) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5060) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5060) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5070) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5070) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5080) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5080) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5100) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5100) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5110) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5110) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5120) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5120) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5130) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5130) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5150) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5150) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5160) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5160) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5170) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5170) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5190) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5190) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5200) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5200) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5220) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5220) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5230) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5230) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5240) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5250) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5260) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5260) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5270) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5270) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5280) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5280) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5300) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5300) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5310) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5310) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5330) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5330) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5340) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5340) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5350) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5350) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5370) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5370) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5380) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5380) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5400) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5400) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5410) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5410) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5420) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5420) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5440) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5440) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5450) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5450) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5460) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5460) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5470) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5480) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5490) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5490) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5510) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5510) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5520) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5520) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5530) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5530) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5550) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5550) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5560) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5560) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5570) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5580) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5580) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5580) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5600) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5600) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5620) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5620) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5630) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5630) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5640) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5640) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5650) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;32mI (5660) MAIN: New values: 7.29A, 41.60V, 303.26W, 36.2°C[0m
+[0;33mW (5660) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5670) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5670) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5680) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5680) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5700) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5700) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5710) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5720) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5730) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5730) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5740) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5740) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5760) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5760) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5770) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5770) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5780) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5780) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5800) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5800) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5810) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5810) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5820) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5820) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5830) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5830) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5850) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5850) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5860) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5860) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5880) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5880) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5890) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5890) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5910) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5910) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5910) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5910) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5930) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5930) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5950) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5950) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5960) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5960) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5970) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5980) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (5990) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (5990) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6000) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6000) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6010) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6010) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6030) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6030) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6040) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6040) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6060) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6060) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6070) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6070) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6080) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6090) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6090) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6090) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6110) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6110) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6120) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6130) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6140) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6140) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6150) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6150) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6160) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6160) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6170) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6170) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6190) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6190) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6210) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6210) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6220) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6220) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6240) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6240) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6250) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6250) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6260) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6260) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6280) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6280) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6290) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6290) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6300) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6300) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6320) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6320) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6330) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6330) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6340) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6340) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6360) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6360) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6370) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6370) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6380) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6380) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6400) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6400) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6410) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6410) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6420) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6420) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6440) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6440) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6450) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6450) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6460) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6470) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6480) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6480) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6490) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6490) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6500) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6500) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6520) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6520) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6530) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6530) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6540) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6540) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6560) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6560) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6570) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6570) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6590) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6590) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6600) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6600) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6610) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6610) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6620) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6620) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6640) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6640) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6650) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6650) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6670) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6670) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6680) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6680) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6690) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6690) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6710) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6710) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6720) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6720) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6730) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6730) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6750) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6750) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6760) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6760) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6770) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6770) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6790) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6790) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6800) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6800) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6810) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6810) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6830) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6830) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6840) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6840) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6860) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6860) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6870) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6870) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6890) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6890) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6900) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6900) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6910) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6910) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6930) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6930) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6940) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6940) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6950) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6950) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6970) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6970) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (6980) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (6980) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7000) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7000) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7010) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7010) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7020) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7020) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7040) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7040) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7050) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7050) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7060) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7060) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7080) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7080) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7090) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7090) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7100) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7100) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7110) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7110) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7130) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7130) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7140) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7140) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7160) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7160) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7170) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7170) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7190) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7190) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7200) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7200) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7210) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7210) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7220) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7220) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7240) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7240) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7250) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7250) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7270) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7270) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7280) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7280) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7290) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7290) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7300) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7300) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7320) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (7320) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (7670) MAIN: New values: 3.59A, 22.00V, 78.98W, 49.4°C[0m
+[0;33mW (7740) httpd_uri: httpd_uri: URI '/favicon.ico' not found[0m
+[0;33mW (7740) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (8660) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (8660) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (9670) MAIN: New values: 2.15A, 17.40V, 37.41W, 32.5°C[0m
+[0;33mW (9790) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (9790) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (10710) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (10710) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (11670) MAIN: New values: 1.40A, 14.10V, 19.74W, 37.3°C[0m
+[0;33mW (11740) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (11740) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (12760) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (12760) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (13670) MAIN: New values: 0.56A, 30.70V, 17.19W, 26.0°C[0m
+[0;33mW (13780) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (13780) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (14910) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (14910) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (15670) MAIN: New values: 6.17A, 37.60V, 231.99W, 39.1°C[0m
+[0;33mW (15830) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (15830) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (16860) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (16860) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (17670) MAIN: New values: 9.18A, 14.60V, 134.03W, 26.7°C[0m
+[0;33mW (17980) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (17980) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (18900) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (18900) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (19670) MAIN: New values: 6.52A, 15.30V, 99.76W, 49.8°C[0m
+[0;33mW (19930) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (19930) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (20850) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (20850) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (21670) MAIN: New values: 9.41A, 12.40V, 116.68W, 45.3°C[0m
+[0;33mW (21980) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (21980) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (23000) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (23000) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (23670) MAIN: New values: 2.96A, 13.70V, 40.55W, 47.6°C[0m
+[0;33mW (24020) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (24020) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (25050) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (25050) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (25670) MAIN: New values: 4.50A, 16.50V, 74.25W, 42.5°C[0m
+[0;33mW (26070) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (26080) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (27100) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (27100) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (27670) MAIN: New values: 8.22A, 40.50V, 332.91W, 34.0°C[0m
+[0;33mW (28120) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (28120) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (29250) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (29250) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (29670) MAIN: New values: 2.22A, 39.90V, 88.58W, 43.2°C[0m
+[0;33mW (30170) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (30170) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (31190) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (31190) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (31670) MAIN: New values: 3.90A, 29.70V, 115.83W, 35.3°C[0m
+[0;33mW (32220) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (32220) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (33240) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (33240) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (33670) MAIN: New values: 1.83A, 17.90V, 32.76W, 31.3°C[0m
+[0;33mW (34270) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (34270) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (35390) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (35390) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (35670) MAIN: New values: 9.66A, 33.00V, 318.78W, 36.4°C[0m
+[0;33mW (36320) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (36320) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (37540) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (37540) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (37670) MAIN: New values: 7.43A, 16.60V, 123.34W, 28.8°C[0m
+[0;33mW (38570) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (38570) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (39590) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (39590) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (39670) MAIN: New values: 6.20A, 44.70V, 277.14W, 48.7°C[0m
+[0;33mW (40610) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (40610) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (41640) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (41640) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (41670) MAIN: New values: 8.58A, 13.60V, 116.69W, 29.2°C[0m
+[0;33mW (42660) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (42670) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (43670) MAIN: New values: 9.54A, 31.90V, 304.33W, 30.1°C[0m
+[0;33mW (43690) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (43690) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (44810) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (44810) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (45670) MAIN: New values: 6.61A, 15.80V, 104.44W, 41.7°C[0m
+[0;33mW (45840) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (45840) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (46960) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (46960) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (47670) MAIN: New values: 7.66A, 23.40V, 179.24W, 44.7°C[0m
+[0;33mW (47890) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (47890) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (48910) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (48910) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (49670) MAIN: New values: 4.27A, 43.50V, 185.74W, 44.5°C[0m
+[0;33mW (49930) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (49940) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (51060) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (51060) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (51670) MAIN: New values: 3.80A, 47.90V, 182.02W, 37.2°C[0m
+[0;33mW (51980) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (51980) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (53010) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (53010) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (53670) MAIN: New values: 5.07A, 21.20V, 107.48W, 49.4°C[0m
+[0;33mW (54030) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (54030) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (55050) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (55050) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (55670) MAIN: New values: 9.35A, 29.90V, 279.57W, 25.0°C[0m
+[0;33mW (56080) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (56080) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (57100) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (57100) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (57670) MAIN: New values: 0.85A, 44.40V, 37.74W, 27.6°C[0m
+[0;33mW (58120) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (58130) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (59150) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (59150) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (59670) MAIN: New values: 9.73A, 37.80V, 367.79W, 28.7°C[0m
+[0;33mW (60170) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (60170) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (61300) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (61300) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (61670) MAIN: New values: 6.64A, 29.20V, 193.89W, 36.7°C[0m
+[0;33mW (62220) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (62220) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (63240) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (63240) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (63670) MAIN: New values: 0.55A, 26.50V, 14.58W, 48.5°C[0m
+[0;33mW (64270) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (64270) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (65290) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (65290) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (65670) MAIN: New values: 9.67A, 45.90V, 443.85W, 32.3°C[0m
+[0;33mW (66430) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (66430) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (67340) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (67340) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (67670) MAIN: New values: 5.32A, 34.30V, 182.48W, 47.7°C[0m
+[0;33mW (68360) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (68360) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (69390) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (69390) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (69670) MAIN: New values: 4.04A, 40.20V, 162.41W, 39.7°C[0m
+[0;33mW (70410) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (70410) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (71440) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (71440) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (71670) MAIN: New values: 7.21A, 42.90V, 309.31W, 46.5°C[0m
+[0;33mW (72560) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (72560) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (73480) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (73480) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (73670) MAIN: New values: 7.87A, 36.60V, 288.04W, 25.8°C[0m
+[0;33mW (74510) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (74510) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (75630) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (75630) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (75670) MAIN: New values: 8.56A, 22.40V, 191.74W, 45.5°C[0m
+[0;33mW (76760) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (76760) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (77580) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (77580) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (77670) MAIN: New values: 6.35A, 27.40V, 173.99W, 39.0°C[0m
+[0;33mW (78600) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (78600) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (79630) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (79630) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (79670) MAIN: New values: 1.17A, 32.90V, 38.49W, 26.9°C[0m
+[0;33mW (80650) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (80650) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (81670) MAIN: New values: 8.56A, 21.60V, 184.90W, 46.9°C[0m
+[0;33mW (81680) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (81680) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (82700) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (82700) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (83670) MAIN: New values: 5.77A, 34.90V, 201.37W, 27.0°C[0m
+[0;33mW (83720) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (83720) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (84850) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (84850) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (85670) MAIN: New values: 7.33A, 15.00V, 109.95W, 28.2°C[0m
+[0;33mW (85770) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (85770) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (86800) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (86800) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (87670) MAIN: New values: 5.63A, 18.10V, 101.90W, 43.9°C[0m
+[0;33mW (87820) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (87820) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (88840) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (88840) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (89670) MAIN: New values: 2.99A, 33.20V, 99.27W, 29.1°C[0m
+[0;33mW (89870) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (89870) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (90890) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (90890) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (91670) MAIN: New values: 8.63A, 25.10V, 216.61W, 35.9°C[0m
+[0;33mW (91920) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (91920) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (92940) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (92940) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (93670) MAIN: New values: 6.21A, 18.50V, 114.89W, 25.2°C[0m
+[0;33mW (93970) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (93970) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (94990) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (94990) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (95670) MAIN: New values: 4.46A, 12.80V, 57.09W, 28.6°C[0m
+[0;33mW (96030) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (96030) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (97040) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (97040) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (97670) MAIN: New values: 7.22A, 44.70V, 322.73W, 45.9°C[0m
+[0;33mW (98160) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (98160) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (99080) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (99090) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (99670) MAIN: New values: 7.73A, 17.40V, 134.50W, 40.5°C[0m
+[0;33mW (100110) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (100110) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (101030) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (101030) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (101610) RTC_TIME: The current date/time is: Mon Mar  3 21:33:42 2025[0m
+[0;32mI (101670) MAIN: New values: 1.42A, 18.50V, 26.27W, 47.7°C[0m
+[0;33mW (102160) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (102160) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (103280) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (103280) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (103670) MAIN: New values: 2.57A, 44.80V, 115.14W, 36.6°C[0m
+[0;33mW (104200) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (104200) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (105230) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (105230) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (105670) MAIN: New values: 1.74A, 32.50V, 56.55W, 45.0°C[0m
+[0;33mW (106250) httpd_uri: httpd_uri: URI '/measurements' not found[0m
+[0;33mW (106250) httpd_txrx: httpd_resp_send_err: 404 N

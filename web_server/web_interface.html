@@ -1,50 +1,250 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>ESP32 Control</title>
-</head>
-<body>
-    <h1>ESP32 Control</h1>
-    <form id="controlForm">
-        <label for="mode">Mode:</label>
-        <select id="mode" name="mode">
-            <option value="CC">Constant Current (CC)</option>
-            <option value="CV">Constant Voltage (CV)</option>
-            <option value="CP">Constant Power (CP)</option>
-        </select><br><br>
-        <label for="current">Current (A):</label>
-        <input type="number" id="current" name="current" step="0.01"><br><br>
-        <label for="voltage">Voltage (V):</label>
-        <input type="number" id="voltage" name="voltage" step="0.01"><br><br>
-        <label for="power">Power (W):</label>
-        <input type="number" id="power" name="power" step="0.01"><br><br>
-        <button type="button" onclick="setMode()">Set Mode</button>
-    </form>
-    <script>
-        function setMode() {
-            const form = document.getElementById('controlForm');
-            const data = {
-                mode: form.mode.value,
-                current: parseFloat(form.current.value),
-                voltage: parseFloat(form.voltage.value),
-                power: parseFloat(form.power.value)
-            };
 
-            fetch('/set_mode', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.text())
-            .then(data => {
-                alert(data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+<head>
+    <title>Programmable Load Controller</title>
+    <h1>Programmable Load Controller</h1>
+    <p>Control the load using the buttons below:</p>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .control-section {
+            background: #2d2d2d;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .mode-btn {
+            background: #4CAF50;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .input-group {
+            margin: 15px 0;
+        }
+
+        input[type="number"] {
+            padding: 8px;
+            width: 120px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            background: #333;
+            color: white;
+        }
+
+        .status-section {
+            background: #2d2d2d;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .status-item {
+            margin: 10px 0;
+        }
+
+        .label {
+            display: inline-block;
+            width: 120px;
+            color: #888;
+        }
+
+        .value {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <div class="chart-container">
+        <canvas id="liveChart"></canvas>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('liveChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [], // Time stamps
+                datasets: [{
+                    label: 'Voltage (V)',
+                    borderColor: '#4CAF50',
+                    data: []
+                }, {
+                    label: 'Current (A)',
+                    borderColor: '#2196F3',
+                    data: []
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        // Update chart in measurement interval
+        function updateChart(voltage, current) {
+            const labels = chart.data.labels;
+            const now = new Date().toLocaleTimeString();
+
+            // Keep last 60 points
+            if (labels.length > 60) {
+                labels.shift();
+                chart.data.datasets[0].data.shift();
+                chart.data.datasets[1].data.shift();
+            }
+
+            labels.push(now);
+            chart.data.datasets[0].data.push(voltage);
+            chart.data.datasets[1].data.push(current);
+            chart.update();
         }
     </script>
+
+</head>
+
+<body>
+    <div class="control-section">
+        <h2>Operation Mode</h2>
+        <button id="ccBtn" class="mode-btn">Constant Current (CC)</button>
+        <button id="cvBtn" class="mode-btn">Constant Voltage (CV)</button>
+        <button id="cpBtn" class="mode-btn">Constant Power (CP)</button>
+    </div>
+    <div class="control-section">
+        <h2>Set Values</h2>
+        <div class="input-group">
+            <label>Target Value:</label>
+            <input type="number" id="targetValue" step="0.01">
+            <span id="valueUnit">A</span>
+        </div>
+    </div>
+
+    <div class="status-section">
+        <h2>Measurements</h2>
+        <div class="status-item">
+            <span class="label">Voltage:</span>
+            <span id="voltageValue" class="value">--.--</span> V
+        </div>
+        <div class="status-item">
+            <span class="label">Current:</span>
+            <span id="currentValue" class="value">--.--</span> A
+        </div>
+        <div class="status-item">
+            <span class="label">Temperature:</span>
+            <span id="tempValue" class="value">--.--</span> °C
+        </div>
+    </div>
+
+    <div class="safety-controls">
+        <button id="emergencyStop" class="emergency-btn">EMERGENCY STOP</button>
+        <div class="limits">
+            <input type="number" id="maxCurrent" placeholder="Max Current (A)" step="0.1">
+            <input type="number" id="maxVoltage" placeholder="Max Voltage (V)" step="0.1">
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('emergencyStop').addEventListener('click', () => {
+            fetch('/emergency', { method: 'POST' })
+                .then(response => {
+                    document.body.style.backgroundColor = '#ff000033';
+                    setTimeout(() => document.body.style.backgroundColor = '', 2000);
+                });
+        });
+    </script>
+
+
+    <script>
+        let currentMode = 'CC';
+
+        // Handle mode button clicks
+        document.getElementById('ccBtn').addEventListener('click', () => setMode('CC'));
+        document.getElementById('cvBtn').addEventListener('click', () => setMode('CV'));
+        document.getElementById('cpBtn').addEventListener('click', () => setMode('CP'));
+
+        function setMode(mode) {
+            currentMode = mode;
+            updateUI();
+            sendToESP32({ command: 'set_mode', mode: mode });
+        }
+
+        function updateUI() {
+            // Update unit display
+            const unitSpan = document.getElementById('valueUnit');
+            unitSpan.textContent = currentMode === 'CC' ? 'A' :
+                currentMode === 'CV' ? 'V' : 'W';
+
+            // Highlight active mode button
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.style.backgroundColor = btn.id === `${currentMode.toLowerCase()}Btn` ?
+                    '#45a049' : '#4CAF50';
+            });
+        }
+        const valueInput = document.getElementById('targetValue');
+
+        valueInput.addEventListener('change', () => {
+            const value = parseFloat(valueInput.value);
+            if (!isNaN(value)) {
+                sendToESP32({
+                    command: 'set_value',
+                    mode: currentMode,
+                    value: value
+                });
+            }
+        });
+
+        async function sendToESP32(data) {
+            try {
+                const response = await fetch('/control', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) throw new Error('Server error');
+                showStatus('Success: ' + await response.text(), 'success');
+            } catch (error) {
+                showStatus('Error: ' + error.message, 'error');
+            }
+        }
+
+        function showStatus(message, type) {
+            const status = document.createElement('div');
+            status.textContent = message;
+            status.className = `status-${type}`;
+            document.body.appendChild(status);
+            setTimeout(() => status.remove(), 3000);
+        }
+
+        // Update measurements every second
+        setInterval(async () => {
+            try {
+                const response = await fetch('/measurements');
+                const data = await response.json();
+
+                document.getElementById('voltageValue').textContent = data.voltage.toFixed(2);
+                document.getElementById('currentValue').textContent = data.current.toFixed(2);
+                document.getElementById('tempValue').textContent = data.temperature.toFixed(2);
+            } catch (error) {
+                console.error('Failed to update measurements:', error);
+            }
+        }, 1000);
+
+    </script>
+
 </body>
+
 </html>
