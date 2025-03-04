@@ -24,12 +24,14 @@ char current_time_str[64];
 
 
 struct measurement_data measurements;
-struct control_data* control_signals;
+struct control_data control_signals;
 
 struct measurement_data simulated_data = {0};
-static SemaphoreHandle_t sensor_mutex;
+SemaphoreHandle_t sensor_mutex;
 
 void sensor_sim_task(void *pvParameter) {
+
+    struct measurement_data *measurements = (struct measurement_data *)pvParameter;
     // Seed random number generator
     srand(time(NULL));
 
@@ -41,13 +43,11 @@ void sensor_sim_task(void *pvParameter) {
         float new_temp = 25.0f + (rand() % 250) / 10.0f;      // 25-50°C
 
         // Protect shared data with mutex
-        if(xSemaphoreTake(sensor_mutex, pdMS_TO_TICKS(100)) == pdTRUE) {
-            struct measurement_data simulated_data = {
-                .current = new_current,
-                .voltage = new_voltage,
-                .power = new_power,
-                .temperature = new_temp
-            };
+        if(xSemaphoreTake(sensor_mutex, pdMS_TO_TICKS(100))) {
+            measurements->current = new_current;
+            measurements->voltage = new_voltage;
+            measurements->power = new_power;
+            measurements->temperature = new_temp;
             xSemaphoreGive(sensor_mutex);
             
             ESP_LOGI(TAG, "New values: %.2fA, %.2fV, %.2fW, %.1f°C", 
@@ -73,7 +73,7 @@ void init_sensor_sim() {
         sensor_sim_task,    // Task function
         "sensor_sim",       // Task name
         4096,               // Stack size
-        NULL,               // Parameters
+        &measurements,               // Parameters
         2,                  // Priority
         NULL,               // Task handle
         tskNO_AFFINITY      // Core
@@ -83,7 +83,6 @@ void init_sensor_sim() {
 
 void app_main(void)
 {
-
     time_mutex = xSemaphoreCreateMutex();
     if (time_mutex == NULL)
     {
@@ -94,7 +93,7 @@ void app_main(void)
 
     wifi_start();
     xTaskCreatePinnedToCore(rtc_task, "rtc_task", 4096, NULL, 3, NULL, 0); // Max priroty is 25!
-    start_webserver(&simulated_data);
+    start_webserver(&measurements);
     init_sensor_sim();
 }
 

@@ -10,8 +10,10 @@
 
 static const char *TAG = "WEB_SERVER";
 
-extern struct measurement_data sensor_data;
+extern struct measurement_data measurements;
 extern struct control_data control_data;
+
+extern SemaphoreHandle_t sensor_mutex;
 
 
 esp_err_t index_get_handler(httpd_req_t *req) {
@@ -21,15 +23,20 @@ esp_err_t index_get_handler(httpd_req_t *req) {
 }
 
 esp_err_t measurements_handler(httpd_req_t *req) {
-    struct measurement_data* simulated_data_ptr = (struct measurement_data *)req->user_ctx;
-    struct measurement_data simulated_data = *simulated_data_ptr;
+    if(xSemaphoreTake(sensor_mutex, pdMS_TO_TICKS(100))) {
+    
+
     char json_buf[128];
     snprintf(json_buf, sizeof(json_buf),
         "{\"voltage\":%.2f,\"current\":%.2f,\"temperature\":%.1f}",
-        simulated_data.voltage, simulated_data.current, simulated_data.temperature);
+        measurements.voltage, measurements.current, measurements.temperature);
 
     httpd_resp_set_type(req, "application/json");
     httpd_resp_send(req, json_buf, HTTPD_RESP_USE_STRLEN);
+    xSemaphoreGive(sensor_mutex);
+    } else {
+        ESP_LOGW(TAG, "Failed to send sensor data - mutex timeout");
+    }
     return ESP_OK;
 }
 
@@ -66,7 +73,7 @@ httpd_handle_t start_webserver(struct measurement_data* data)
             .uri       = "/measurements",
             .method    = HTTP_GET,
             .handler   = measurements_handler,
-            .user_ctx  = &data
+            .user_ctx  = NULL
         };
         httpd_register_uri_handler(server, &measurments_uri);
 
