@@ -12,7 +12,6 @@
 #include "control.h"
 #include "esp_log.h"
 #include "control.h"
-//TEST
 
 static const char *TAG = "MAIN";
 
