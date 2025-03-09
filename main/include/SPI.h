@@ -2,7 +2,7 @@
 #define SPI_H
 
 /**
- * @file SPI_test.c
+ * @file SPI.h
  * @brief Implementation of SPI initialization and reading functions.
  * 
  * This file contains necesearly function for SPI communication. 
