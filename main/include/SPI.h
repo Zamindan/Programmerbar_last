@@ -39,3 +39,8 @@ void SPI_init(spi_host_device_t SPI_HOST_id ,gpio_num_t SPI_SCLK, gpio_num_t SPI
  * 
  */
 void SPI_add_device(spi_host_device_t SPI_HOST_id, int clk_speed, int duty_val,, int SPI_queue_size, gpio_num_t SPI_CS, spi_device_handle_t *handle_name)
+
+
+void spi_write_register(spi_device_handle_t handle_name, uint8_t reg, uint8_t value)
+
+void spi_read_register(spi_device_handle_t handle_name, uint8_t reg, uint8_t *value)
