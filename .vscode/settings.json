@@ -36,7 +36,8 @@
         "adc_oneshot.h": "c",
         "uart.h": "c",
         "*.lf": "c",
-        "task.h": "c"
+        "task.h": "c",
+        "string.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "C_Cpp.dimInactiveRegions": false
