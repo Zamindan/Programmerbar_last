@@ -55,12 +55,4 @@ void adc_channel_init(adc_oneshot_unit_handle_t adc_handle_name,
 int adc_read(adc_oneshot_unit_handle_t adc_handle_name,
              adc_channel_t channel);
 
-/**
- * @brief Task for reading ADC values.
- * 
- * This task reads the value from an ADC channel and prints it to the console.
- * 
- * @param parameter The parameters for the task.
- */
-void adc_task(void *parameter);
 #endif

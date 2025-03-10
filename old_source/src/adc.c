@@ -89,22 +89,3 @@ int adc_read(adc_oneshot_unit_handle_t adc_handle_name, adc_channel_t channel){
 }
 
 
-/**
- * @brief Task for reading ADC values.
- * 
- * This task reads the value from an ADC channel and prints it to the console.
- * 
- * @param parameter The parameters for the task.
- * 
- * @details The parameter should be a pointer to an adc_task_params_t struct.
- * @details The struct should contain the handle of the ADC unit and the channel to read from.
- * @details The struct should look like this:
- * @details adc_task_params_t params = {
- * @details     .adc_handle = adc_handle,
- * @details     .channel = channel,
- * @details };
- */
-void adc_task(void *parameter)
-{
- 
-}
