@@ -10,7 +10,7 @@
                 "C:/Espressif/frameworks/esp-idf-v5.4/components/freertos/FreeRTOS-Kernel-SMP/portable/linux/include/freertos",
                 "C:/Espressif/frameworks/esp-idf-v5.4/components/freertos/FreeRTOS-Kernel-SMP/portable/riscv/include/freertos",
                 "C:/Espressif/frameworks/esp-idf-v5.4/components/freertos/FreeRTOS-Kernel-SMP/portable/xtensa/include/freertos",
-                "${workspaceFolder}/main/include",
+                "${workspaceFolder}/main/**",
                 "C:/Espressif/frameworks/esp-idf-v5.4/components/**",
                 "C:/Espressif/frameworks/esp-idf-v5.4/components/esp_driver_i2c/**",
                 "C:/Espressif/frameworks/esp-idf-v5.4/components/esp_driver_i2c/include/driver"
