@@ -3,13 +3,14 @@
 #include "freertos/task.h"
 #include "driver/ledc.h"
 
-#define TAG "PWM"
 #define PWM_SPEED_MODE LEDC_LOW_SPEED_MODE
 #define PWM_TIMER_RESOLUTION LEDC_TIMER_10_BIT
 #define PWM_FREQ 50000
 #define PWM_CHANNEL LEDC_CHANNEL_0
 #define PWM_TIMER LEDC_TIMER_0
 #define PWM_GPIO 10
+
+static const char *TAG = "PWM";
 
 void pwm_init()
 {

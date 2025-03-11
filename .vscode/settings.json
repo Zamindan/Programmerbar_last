@@ -46,8 +46,15 @@
         "web_server.h": "c",
         "pwm.h": "c",
         "control.h": "c",
-        "i2c.h": "c"
+        "i2c.h": "c",
+        "queue.h": "c",
+        "bit": "c",
+        "compare": "c",
+        "limits": "c",
+        "new": "c",
+        "stdint.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled",
-    "C_Cpp.dimInactiveRegions": false
+    "C_Cpp.dimInactiveRegions": false,
+    "C_Cpp.default.compilerPath": "C:/TDM-GCC-64/bin/gcc.exe"
 }

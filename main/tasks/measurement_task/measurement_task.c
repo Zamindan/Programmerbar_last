@@ -17,13 +17,13 @@ static const char *TAG = "MEASUREMENT_TASK";
 QueueHandle_t measurement_queue = NULL;
 
 // Handle for the ADC unit
-extern adc_oneshot_unit_handle_t adc_handle_1;
+adc_oneshot_unit_handle_t adc_handle_1;
 
 // Handle for the I2C bus
-extern i2c_master_bus_handle_t bus_handle_name;
+i2c_master_bus_handle_t bus_handle_name;
 
 // Handle for the I2C device
-extern i2c_master_dev_handle_t ina_handle;
+i2c_master_dev_handle_t ina_handle;
 
 void measurement_intitialize()
 {
@@ -80,11 +80,7 @@ void measurement_task(void *paramter)
         // Calculate temperature
         measurements.temperature = (float)raw_temp; // Not yet implemented
 
-        // Send to queue (non-blocking)
-        if (measurement_queue != NULL)
-        {
-            xQueueOverwrite(measurement_queue, &measurements);
-        }
+        xQueueOverwrite(measurement_queue, &measurements);
 
         // Maintain 1 kHz sampling rate
         vTaskDelay(pdMS_TO_TICKS(1));
