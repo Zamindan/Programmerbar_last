@@ -1,2 +1,2 @@
-idf_component_register(SRCS "main.c" "src/adc.c" "src/I2C.c" "src/measurements.c" "src/uart.c" "src/wifi.c" "src/rtc_time.c" "src/web_server.c" "src/control.c" "src/pwm.c" "src/web_interface.c"
+idf_component_register(SRCS "main.c" "tasks/control_task/control_task.c" "tasks/measurement_task/measurement_task.c"
                     INCLUDE_DIRS "include")
