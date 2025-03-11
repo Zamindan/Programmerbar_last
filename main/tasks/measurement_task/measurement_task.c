@@ -7,11 +7,14 @@
 #include "esp_log.h"
 #include "adc.h"
 #include "i2c.h"
+#include "measurement_task.h"
 
 static const char *TAG = "MEASUREMENT_TASK";
 #define INA237_SHUNT_V_REG 0x04
 #define INA237_VBUS_REG 0x05
 #define INA237_CURRENT_REG 0x07
+
+QueueHandle_t measurement_queue = NULL;
 
 // Handle for the ADC unit
 extern adc_oneshot_unit_handle_t adc_handle_1;
@@ -21,8 +24,6 @@ extern i2c_master_bus_handle_t bus_handle_name;
 
 // Handle for the I2C device
 extern i2c_master_dev_handle_t ina_handle;
-
-
 
 void measurement_intitialize()
 {
@@ -48,22 +49,45 @@ void measurement_intitialize()
     i2c_write(ina_handle, 0x02, 0b0000100111000100); // Calculations from page 29: https://www.ti.com/lit/ds/symlink/ina237.pdf (Rshunt = 0.01 ohm, Current_LSB = 10/2^15, SHUNT_CAL = 2500)
 }
 
-void measurement_task(void* paramter)
+void measurement_task(void *paramter)
 {
     measurement_intitialize();
+    MeasurementData measurements;
+    QueueHandle_t measurement_queue = xQueueCreate(1, sizeof(MeasurementData));
+    if (measurement_queue = NULL)
+    {
+        ESP_LOGE(TAG, "Measurement queue failed to create.");
+    }
+
     while (1)
     {
-        // Read the current, voltage, power and temperature
-        
-        vTaskDelay(pdMS_TO_TICKS(10));
-        
-        vTaskDelay(pdMS_TO_TICKS(10));
-        
-        vTaskDelay(pdMS_TO_TICKS(10));
-        
+        // Read raw sensors
+        float raw_voltage = i2c_read(ina_handle, INA237_VBUS_REG);
+        float raw_current = i2c_read(ina_handle, INA237_CURRENT_REG);
+        float raw_power = raw_current * raw_voltage;
+        uint16_t raw_temp = adc_read(adc_handle_1, ADC_CHANNEL_0);
 
-        ESP_LOGI(TAG, "Current: %f Voltage: %f Power: %f Temperature: %f", measurements->current, measurements->voltage, measurements->power, measurements->temperature);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        // Convert raw values into usable values:
+        // Convert the raw voltage data to actualt voltage value
+        // Conversion factor: 3.125mV/LSB
+        measurements.bus_voltage = (float)raw_voltage * 3.125 / 1000.0; // Convert to volts (V)
+
+        // Convert the raw current data to actual current value
+        measurements.current = (float)raw_current * (10.0 / 32768.0);
+
+        // Calculate power
+        measurements.power = data.bus_voltage * data.current;
+
+        // Calculate temperature
+        measurements.temperature = (float)raw_temp; // Not yet implemented
+
+        // Send to queue (non-blocking)
+        if (measurement_queue != NULL)
+        {
+            xQueueOverwrite(measurement_queue, &measurements);
+        }
+
+        // Maintain 1 kHz sampling rate
+        vTaskDelay(pdMS_TO_TICKS(1));
     }
 }
-
