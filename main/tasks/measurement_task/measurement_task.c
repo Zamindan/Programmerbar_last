@@ -54,7 +54,7 @@ void measurement_task(void *paramter)
     measurement_intitialize();
     MeasurementData measurements;
     QueueHandle_t measurement_queue = xQueueCreate(1, sizeof(MeasurementData));
-    if (measurement_queue = NULL)
+    if (measurement_queue == NULL)
     {
         ESP_LOGE(TAG, "Measurement queue failed to create.");
     }
@@ -64,7 +64,6 @@ void measurement_task(void *paramter)
         // Read raw sensors
         float raw_voltage = i2c_read(ina_handle, INA237_VBUS_REG);
         float raw_current = i2c_read(ina_handle, INA237_CURRENT_REG);
-        float raw_power = raw_current * raw_voltage;
         uint16_t raw_temp = adc_read(adc_handle_1, ADC_CHANNEL_0);
 
         // Convert raw values into usable values:
@@ -76,7 +75,7 @@ void measurement_task(void *paramter)
         measurements.current = (float)raw_current * (10.0 / 32768.0);
 
         // Calculate power
-        measurements.power = data.bus_voltage * data.current;
+        measurements.power = measurements.bus_voltage * measurements.current;
 
         // Calculate temperature
         measurements.temperature = (float)raw_temp; // Not yet implemented

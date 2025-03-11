@@ -12,7 +12,7 @@ void control_task(void *paramter)
 {
     MeasurementData measurements;
     extern QueueHandle_t measurement_queue;
-    if (measurement_queue = NULL)
+    if (measurement_queue == NULL)
     {
         ESP_LOGE(TAG, "Measurement queue not found.");
     }
@@ -34,7 +34,7 @@ void control_task(void *paramter)
         case MODE_CV:
             ESP_LOGI(TAG, "Constant Voltage Mode not yet implemented");
             // Control logic here
-
+            
             break;
         case MODE_CP:
             ESP_LOGI(TAG, "Constant Power Mode not yet implemented");
