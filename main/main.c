@@ -6,10 +6,10 @@
 #include "freertos/task.h"
 #include "freertos/queue.h"
 #include "freertos/event_groups.h"
+#include "measurement_task.h"
+#include "control_task.h"
 #include "esp_log.h"
-#include "adc.h"
-#include "driver/gpio.h"
-#include "i2c.h"
+
 
 
 
