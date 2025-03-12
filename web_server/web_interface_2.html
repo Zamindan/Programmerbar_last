@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP32 Measurements</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .measurement {
+            margin-bottom: 10px;
+        }
+        .setpoint {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ESP32 Measurements</h1>
+        <div class="measurement">
+            <strong>Voltage:</strong> <span id="voltage">0.00</span> V
+        </div>
+        <div class="measurement">
+            <strong>Current:</strong> <span id="current">0.00</span> A
+        </div>
+        <div class="measurement">
+            <strong>Power:</strong> <span id="power">0.00</span> W
+        </div>
+        <div class="measurement">
+            <strong>Temperature:</strong> <span id="temperature">0.00</span> °C
+        </div>
+        <div class="setpoint">
+            <label for="setpoint">Setpoint:</label>
+            <input type="number" id="setpoint" step="0.01">
+            <button onclick="updateSetpoint()">Update</button>
+        </div>
+    </div>
+    <script>
+        async function fetchMeasurements() {
+            const response = await fetch('/measurement');
+            const data = await response.json();
+            document.getElementById('voltage').textContent = data.voltage.toFixed(2);
+            document.getElementById('current').textContent = data.current.toFixed(2);
+            document.getElementById('power').textContent = data.power.toFixed(2);
+            document.getElementById('temperature').textContent = data.temperature.toFixed(2);
+        }
+
+        async function updateSetpoint() {
+            const setpoint = document.getElementById('setpoint').value;
+            await fetch('/setpoint', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: setpoint,
+            });
+        }
+
+        setInterval(fetchMeasurements, 1000);
+    </script>
+</body>
+</html>
