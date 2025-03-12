@@ -10,28 +10,33 @@
 
 static const char *TAG = "CONTROL_TASK";
 
-
 void control_task(void *paramter)
 {
+    ControlMode mode = MODE_CC;
     MeasurementData measurements;
+
     float duty_cycle = 0.0;
-    if (measurement_queue == NULL)
-    {
-        ESP_LOGE(TAG, "Measurement queue not found.");
-    }
+    float setpoint = 0.0;
+
     while (1)
     {
-        if (xQueuePeek(measurement_queue, &measurements, pdTICKS_TO_MS(100)) == pdTRUE)
-            {
-                ESP_LOGI(TAG, "Received measurement data");
-                vTaskDelay(pdMS_TO_TICKS(1));
-            }
+        if (xQueuePeek(setpoint_queue, &setpoint, pdTICKS_TO_MS(1)) == pdTRUE)
+        {
+            ESP_LOGI(TAG, "Received setpoint data");
+            vTaskDelay(pdMS_TO_TICKS(1));
+        }
 
-        if (xQueuePeek(mode_queue, &mode, pdTICKS_TO_MS(100)) == pdTRUE)
-            {
-                ESP_LOGI(TAG, "Received mode data");
-                vTaskDelay(pdMS_TO_TICKS(1));
-            }
+        if (xQueuePeek(measurement_queue, &measurements, pdTICKS_TO_MS(1)) == pdTRUE)
+        {
+            ESP_LOGI(TAG, "Received measurement data");
+            vTaskDelay(pdMS_TO_TICKS(1));
+        }
+
+        if (xQueuePeek(mode_queue, &mode, pdTICKS_TO_MS(1)) == pdTRUE)
+        {
+            ESP_LOGI(TAG, "Received mode data");
+            vTaskDelay(pdMS_TO_TICKS(1));
+        }
         switch (mode)
         {
         case MODE_CC:
@@ -59,7 +64,7 @@ void control_task(void *paramter)
         case MODE_CV:
             ESP_LOGI(TAG, "Constant Voltage Mode not yet implemented");
             // Control logic here
-            
+
             break;
         case MODE_CP:
             ESP_LOGI(TAG, "Constant Power Mode not yet implemented");

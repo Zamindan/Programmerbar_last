@@ -56,5 +56,5 @@
     },
     "C_Cpp.errorSquiggles": "disabled",
     "C_Cpp.dimInactiveRegions": false,
-    "C_Cpp.default.compilerPath": "C:/TDM-GCC-64/bin/gcc.exe"
+    //"C_Cpp.default.compilerPath": "C:/TDM-GCC-64/bin/gcc.exe"
 }

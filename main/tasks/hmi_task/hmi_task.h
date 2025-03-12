@@ -10,8 +10,9 @@ typedef enum {
 } ControlMode;
 
 extern QueueHandle_t mode_queue;
-extern ControlMode mode;
-extern float setpoint;
+extern QueueHandle_t setpoint_queue;
+
+
 void hmi_task(void *pvParameters);
 
 #endif
