@@ -16,7 +16,9 @@
 void app_main()
 {
     xTaskCreatePinnedToCore(measurement_task, "Measurement Task", 2048, NULL, 1, NULL, 1);
+
     xTaskCreatePinnedToCore(hmi_task, "HMI Task", 2048, NULL, 1, NULL, 1);
+    
     xTaskCreatePinnedToCore(control_task, "Control Task", 2048, NULL, 1, NULL, 1);
 
 }
