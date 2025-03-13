@@ -15,48 +15,52 @@ void control_task(void *paramter)
     ControlMode mode = MODE_CC;
     MeasurementData measurements;
 
-    float duty_cycle = 0.0;
+    int duty_cycle = 0;
     float setpoint = 0.0;
-
+    pwm_init();
     while (1)
     {
-        if (xQueuePeek(setpoint_queue, &setpoint, pdTICKS_TO_MS(1)) == pdTRUE)
+        if (xEventGroupGetBits(signal_event_group) & CONTROL_SETPOINT_BIT)
         {
             ESP_LOGI(TAG, "Received setpoint data");
+            xEventGroupClearBits(signal_event_group, CONTROL_SETPOINT_BIT);
+            xQueuePeek(setpoint_queue, &setpoint, pdMS_TO_TICKS(1));
             vTaskDelay(pdMS_TO_TICKS(1));
         }
 
         if (xQueuePeek(measurement_queue, &measurements, pdTICKS_TO_MS(1)) == pdTRUE)
         {
-            ESP_LOGI(TAG, "Received measurement data");
             vTaskDelay(pdMS_TO_TICKS(1));
         }
 
         if (xQueuePeek(mode_queue, &mode, pdTICKS_TO_MS(1)) == pdTRUE)
         {
-            ESP_LOGI(TAG, "Received mode data");
             vTaskDelay(pdMS_TO_TICKS(1));
         }
+
+
         switch (mode)
         {
         case MODE_CC:
-            ESP_LOGI(TAG, "Constant Current Mode");
             // Control logic here
             if (measurements.current < setpoint)
             {
-                ESP_LOGI(TAG, "Current is below setpoint");
-
-                pwm_update_duty(duty_cycle + 0.01);
+                ESP_LOGI(TAG, "Current is below setpoint: %f", measurements.current);
+                ESP_LOGI(TAG, "Duty cycle: %d", duty_cycle);
+                duty_cycle += 10;
+                pwm_update_duty(duty_cycle);
             }
             else if (measurements.current > setpoint)
             {
-                ESP_LOGI(TAG, "Current is above setpoint");
-
-                pwm_update_duty(duty_cycle - 0.01);
+                ESP_LOGI(TAG, "Current is above setpoint: %f", measurements.current);
+                ESP_LOGI(TAG, "Duty cycle: %d", duty_cycle);
+                duty_cycle -= 10;
+                pwm_update_duty(duty_cycle);
             }
             else
             {
-                ESP_LOGI(TAG, "Current is at setpoint");
+                ESP_LOGI(TAG, "Current is at setpoint: %f", measurements.current);
+                ESP_LOGI(TAG, "Duty cycle: %d", duty_cycle);
 
                 vTaskDelay(pdMS_TO_TICKS(100));
             }
@@ -75,5 +79,6 @@ void control_task(void *paramter)
             ESP_LOGE(TAG, "Invalid mode");
             break;
         }
+        vTaskDelay(pdMS_TO_TICKS(1));
     }
 }

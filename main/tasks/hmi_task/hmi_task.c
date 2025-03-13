@@ -9,9 +9,6 @@
 
 static const char *TAG = "HMI_TASK";
 
-QueueHandle_t mode_queue;
-
-QueueHandle_t setpoint_queue;
 
 
 
@@ -20,25 +17,7 @@ void hmi_task(void *pvParameters)
     float setpoint = 0.0;
     float previous_setpoint = 0.0;
     ControlMode mode = MODE_CC;
-    setpoint_queue = xQueueCreate(1, sizeof(float));
-    if (setpoint_queue == NULL)
-    {
-        ESP_LOGE(TAG, "Setpoint queue failed to create.");
-    }
-    else
-    {
-        ESP_LOGI(TAG, "Setpoint queue created.");
-    }
-
-    mode_queue = xQueueCreate(1, sizeof(ControlMode));
-    if (mode_queue == NULL)
-    {
-        ESP_LOGE(TAG, "Mode queue failed to create.");
-    }
-    else
-    {
-        ESP_LOGI(TAG, "Mode queue created.");
-    }
+    
 
     while (1)
     {
@@ -46,23 +25,21 @@ void hmi_task(void *pvParameters)
         {
             previous_setpoint = setpoint;
             xQueueOverwrite(setpoint_queue, &setpoint);
+            xEventGroupSetBits(signal_event_group, COMMUNICATION_SETPOINT_BIT);
+            xEventGroupSetBits(signal_event_group, CONTROL_SETPOINT_BIT);
             vTaskDelay(pdMS_TO_TICKS(1));
         }
-        else if (xQueuePeek(setpoint_queue, &setpoint, pdTICKS_TO_MS(1)) == pdTRUE)
+        else if (xEventGroupGetBits(signal_event_group) & HMI_SETPOINT_BIT)
         {
             ESP_LOGI(TAG, "Received setpoint data");
+            xEventGroupClearBits(signal_event_group, HMI_SETPOINT_BIT);
+            xQueuePeek(setpoint_queue, &setpoint, pdMS_TO_TICKS(1));
+            previous_setpoint = setpoint;
             vTaskDelay(pdMS_TO_TICKS(1));
         }
         else
         {
-            vTaskDelay(pdMS_TO_TICKS(1));
-        }
-    
-
-        if (xQueuePeek(mode_queue, &mode, pdTICKS_TO_MS(1)) == pdTRUE)
-        {
-            ESP_LOGI(TAG, "Received mode data");
-            vTaskDelay(pdMS_TO_TICKS(1));
+            vTaskDelay(pdMS_TO_TICKS(10));
         }
         
     }

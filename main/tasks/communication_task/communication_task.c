@@ -31,8 +31,8 @@
 #define TCP_FAILURE 1 << 1
 #define MAX_FAILURES 10
 
-#define CONFIG_WIFI_SSID "ESP"
-#define CONFIG_WIFI_PASSWORD "merethe123"
+#define CONFIG_WIFI_SSID "Sondre"
+#define CONFIG_WIFI_PASSWORD "123456sp"
 
 static const char *TAG = "COMMUNICATION_TASK";
 static const char *index_html = 
@@ -75,16 +75,16 @@ static const char *index_html =
 "    <div class=\"container\">"
 "        <h1>ESP32 Measurements</h1>"
 "        <div class=\"measurement\">"
-"            <strong>Voltage:</strong> <span id=\"voltage\">0.00</span> V"
+"            <strong>Voltage:</strong> <span id=\"voltage\">0.0000</span> V"
 "        </div>"
 "        <div class=\"measurement\">"
-"            <strong>Current:</strong> <span id=\"current\">0.00</span> A"
+"            <strong>Current:</strong> <span id=\"current\">0.0000</span> A"
 "        </div>"
 "        <div class=\"measurement\">"
-"            <strong>Power:</strong> <span id=\"power\">0.00</span> W"
+"            <strong>Power:</strong> <span id=\"power\">0.0000</span> W"
 "        </div>"
 "        <div class=\"measurement\">"
-"            <strong>Temperature:</strong> <span id=\"temperature\">0.00</span> °C"
+"            <strong>Temperature:</strong> <span id=\"temperature\">0.0000</span> °C"
 "        </div>"
 "        <div class=\"setpoint\">"
 "            <label for=\"setpoint\">Setpoint:</label>"
@@ -96,10 +96,10 @@ static const char *index_html =
 "        async function fetchMeasurements() {"
 "            const response = await fetch('/measurement');"
 "            const data = await response.json();"
-"            document.getElementById('voltage').textContent = data.voltage.toFixed(2);"
-"            document.getElementById('current').textContent = data.current.toFixed(2);"
-"            document.getElementById('power').textContent = data.power.toFixed(2);"
-"            document.getElementById('temperature').textContent = data.temperature.toFixed(2);"
+"            document.getElementById('voltage').textContent = data.voltage.toFixed(4);"
+"            document.getElementById('current').textContent = data.current.toFixed(4);"
+"            document.getElementById('power').textContent = data.power.toFixed(4);"
+"            document.getElementById('temperature').textContent = data.temperature.toFixed(4);"
 "        }"
 "        async function updateSetpoint() {"
 "            const setpoint = document.getElementById('setpoint').value;"
@@ -304,6 +304,9 @@ static esp_err_t set_setpoint_handler(httpd_req_t *req) {
 
     float setpoint = atof(content);
     xQueueOverwrite(setpoint_queue, &setpoint);
+    xEventGroupSetBits(signal_event_group, COMMUNICATION_SETPOINT_BIT);
+    xEventGroupSetBits(signal_event_group, HMI_SETPOINT_BIT);
+    xEventGroupSetBits(signal_event_group, CONTROL_SETPOINT_BIT);
 
     httpd_resp_send(req, "Setpoint updated", HTTPD_RESP_USE_STRLEN);
     return ESP_OK;
@@ -352,10 +355,8 @@ void communication_task(void *parameter)
     float previous_setpoint = 0.0;
     ControlMode mode = MODE_CC;
     MeasurementData measurement;
-    wifi_start();
-    start_webserver();
 
-
+    
 
     while (1)
     {
@@ -363,16 +364,21 @@ void communication_task(void *parameter)
         {
             previous_setpoint = setpoint;
             xQueueOverwrite(setpoint_queue, &setpoint);
+            xEventGroupSetBits(signal_event_group, HMI_SETPOINT_BIT);
+            xEventGroupSetBits(signal_event_group, CONTROL_SETPOINT_BIT);
             vTaskDelay(pdMS_TO_TICKS(1));
         }
-        else if (xQueuePeek(setpoint_queue, &setpoint, pdTICKS_TO_MS(1)) == pdTRUE)
+        else if (xEventGroupGetBits(signal_event_group) & COMMUNICATION_SETPOINT_BIT)
         {
             ESP_LOGI(TAG, "Received setpoint data");
+            xEventGroupClearBits(signal_event_group, COMMUNICATION_SETPOINT_BIT);
+            xQueuePeek(setpoint_queue, &setpoint, pdMS_TO_TICKS(1));
+            previous_setpoint = setpoint;
             vTaskDelay(pdMS_TO_TICKS(1));
         }
         else
         {
-            vTaskDelay(pdMS_TO_TICKS(1));
+            vTaskDelay(pdMS_TO_TICKS(10));
         }
     }
 }

@@ -4,6 +4,8 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/queue.h"
 
+extern QueueHandle_t measurement_queue;
+
 // Processed measurements
 typedef struct {
     float bus_voltage;    // V
@@ -13,6 +15,6 @@ typedef struct {
 } MeasurementData;
 
 void measurement_task(void *pvParameters);
-extern QueueHandle_t measurement_queue;
+
 
 #endif

@@ -14,8 +14,6 @@ static const char *TAG = "MEASUREMENT_TASK";
 #define INA237_VBUS_REG 0x05
 #define INA237_CURRENT_REG 0x07
 
-QueueHandle_t measurement_queue = NULL;
-
 // Handle for the ADC unit
 adc_oneshot_unit_handle_t adc_handle_1;
 
@@ -53,11 +51,7 @@ void measurement_task(void *paramter)
 {
     measurement_intitialize();
     MeasurementData measurements;
-    QueueHandle_t measurement_queue = xQueueCreate(1, sizeof(MeasurementData));
-    if (measurement_queue == NULL)
-    {
-        ESP_LOGE(TAG, "Measurement queue failed to create.");
-    }
+    
 
     while (1)
     {

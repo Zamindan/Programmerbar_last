@@ -37,16 +37,16 @@
     <div class="container">
         <h1>ESP32 Measurements</h1>
         <div class="measurement">
-            <strong>Voltage:</strong> <span id="voltage">0.00</span> V
+            <strong>Voltage:</strong> <span id="voltage">0.0000</span> V
         </div>
         <div class="measurement">
-            <strong>Current:</strong> <span id="current">0.00</span> A
+            <strong>Current:</strong> <span id="current">0.0000</span> A
         </div>
         <div class="measurement">
-            <strong>Power:</strong> <span id="power">0.00</span> W
+            <strong>Power:</strong> <span id="power">0.0000</span> W
         </div>
         <div class="measurement">
-            <strong>Temperature:</strong> <span id="temperature">0.00</span> °C
+            <strong>Temperature:</strong> <span id="temperature">0.0000</span> °C
         </div>
         <div class="setpoint">
             <label for="setpoint">Setpoint:</label>
@@ -58,10 +58,10 @@
         async function fetchMeasurements() {
             const response = await fetch('/measurement');
             const data = await response.json();
-            document.getElementById('voltage').textContent = data.voltage.toFixed(2);
-            document.getElementById('current').textContent = data.current.toFixed(2);
-            document.getElementById('power').textContent = data.power.toFixed(2);
-            document.getElementById('temperature').textContent = data.temperature.toFixed(2);
+            document.getElementById('voltage').textContent = data.voltage.toFixed(4);
+            document.getElementById('current').textContent = data.current.toFixed(4);
+            document.getElementById('power').textContent = data.power.toFixed(4);
+            document.getElementById('temperature').textContent = data.temperature.toFixed(4);
         }
 
         async function updateSetpoint() {
