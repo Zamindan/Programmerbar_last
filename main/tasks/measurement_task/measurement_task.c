@@ -66,7 +66,7 @@ void measurement_task(void *paramter)
         measurements.bus_voltage = (float)raw_voltage * 3.125 / 1000.0; // Convert to volts (V)
 
         // Convert the raw current data to actual current value
-        measurements.current = (float)raw_current * (10.0 / 32768.0);
+        measurements.current = (float)raw_current * (8.0 / 32768.0);
 
         // Calculate power
         measurements.power = measurements.bus_voltage * measurements.current;
@@ -75,7 +75,7 @@ void measurement_task(void *paramter)
         measurements.temperature = (float)raw_temp; // Not yet implemented
 
         xQueueOverwrite(measurement_queue, &measurements);
-
+        //ESP_LOGI(TAG, "raw_current from INA= %f", raw_current);
         // Maintain 1 kHz sampling rate
         vTaskDelay(pdMS_TO_TICKS(1));
     }

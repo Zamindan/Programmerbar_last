@@ -15,7 +15,7 @@ void control_task(void *paramter)
     ControlMode mode = MODE_CC;
     MeasurementData measurements;
 
-    int duty_cycle = 0;
+    float duty_cycle = 0.0;
     float setpoint = 0.0;
     pwm_init();
     while (1)
@@ -46,21 +46,24 @@ void control_task(void *paramter)
             if (measurements.current < setpoint)
             {
                 ESP_LOGI(TAG, "Current is below setpoint: %f", measurements.current);
-                ESP_LOGI(TAG, "Duty cycle: %d", duty_cycle);
-                duty_cycle += 10;
+                duty_cycle = duty_cycle + 0.1;
+                if (duty_cycle > 60){
+                    duty_cycle = 60;
+                }
                 pwm_update_duty(duty_cycle);
             }
             else if (measurements.current > setpoint)
             {
                 ESP_LOGI(TAG, "Current is above setpoint: %f", measurements.current);
-                ESP_LOGI(TAG, "Duty cycle: %d", duty_cycle);
-                duty_cycle -= 10;
+                duty_cycle = duty_cycle - 0.1;
+                if (duty_cycle < 0){
+                    duty_cycle = 0;
+                }
                 pwm_update_duty(duty_cycle);
             }
             else
             {
                 ESP_LOGI(TAG, "Current is at setpoint: %f", measurements.current);
-                ESP_LOGI(TAG, "Duty cycle: %d", duty_cycle);
 
                 vTaskDelay(pdMS_TO_TICKS(100));
             }

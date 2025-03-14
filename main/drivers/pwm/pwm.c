@@ -34,11 +34,15 @@ void pwm_init()
     ESP_LOGI(TAG, "PWM initialized");
 }
 
-void pwm_update_duty(float duty_cycle)
+void pwm_update_duty(float duty_cycle_percentage)
 {
+    // Ensure the duty cycle percentage is within 0 to 100
+    if (duty_cycle_percentage < 0) duty_cycle_percentage = 0;
+    if (duty_cycle_percentage > 100) duty_cycle_percentage = 100;
+
     // Calculate the duty cycle value based on the resolution
-    uint32_t pwm_setpoint = (uint32_t)(duty_cycle * ((1 << PWM_TIMER_RESOLUTION) - 1));
+    uint32_t pwm_setpoint = (uint32_t)((duty_cycle_percentage / 100.0) * ((1 << PWM_TIMER_RESOLUTION) - 1));
     ESP_ERROR_CHECK(ledc_set_duty(PWM_SPEED_MODE, PWM_CHANNEL, pwm_setpoint));
     ESP_ERROR_CHECK(ledc_update_duty(PWM_SPEED_MODE, PWM_CHANNEL));
-    ESP_LOGI(TAG, "PWM duty cycle set to %u", pwm_setpoint);
+    ESP_LOGI(TAG, "PWM duty cycle set to %lu (%.2f%%)", pwm_setpoint, duty_cycle_percentage);
 }

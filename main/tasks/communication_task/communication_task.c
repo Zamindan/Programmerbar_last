@@ -280,7 +280,7 @@ static esp_err_t get_measurement_handler(httpd_req_t *req) {
     MeasurementData measurement;
     if (xQueuePeek(measurement_queue, &measurement, pdMS_TO_TICKS(10)) == pdTRUE) {
         char resp[100];
-        snprintf(resp, sizeof(resp), "{\"voltage\": %.2f, \"current\": %.2f, \"power\": %.2f, \"temperature\": %.2f}",
+        snprintf(resp, sizeof(resp), "{\"voltage\": %.4f, \"current\": %.4f, \"power\": %.4f, \"temperature\": %.2f}",
                  measurement.bus_voltage, measurement.current, measurement.power, measurement.temperature);
         httpd_resp_set_type(req, "application/json");
         httpd_resp_send(req, resp, strlen(resp));
