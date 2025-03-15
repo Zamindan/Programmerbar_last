@@ -1,260 +1,58 @@
-[0;32mI (99) esp_image: segment 2: paddr=0001e9c8 vaddr=40374000 size=ESP-ROM:esp32s3-20210327[0m
-Build:Mar 27 2021
-rst:0x15 (USB_UART_CHIP_RESET),boot:0x8 (SPI_FAST_FLASH_BOOT)
-Saved PC:0x4037927a
-SPIWP:0xee
-mode:DIO, clock div:1
-load:0x3fce2810,len:0x15a0
-load:0x403c8700,len:0x4
-load:0x403c8704,len:0xd20
-load:0x403cb700,len:0x2ee4
-entry 0x403c8928
-[0;32mI (26) boot: ESP-IDF v5.4 2nd stage bootloader[0m
-[0;32mI (27) boot: compile time Feb 22 2025 13:43:01[0m
-[0;32mI (27) boot: Multicore bootloader[0m
-[0;32mI (27) boot: chip revision: v0.2[0m
-[0;32mI (29) boot: efuse block revision: v1.3[0m
-[0;32mI (33) boot.esp32s3: Boot SPI Speed : 80MHz[0m
-[0;32mI (37) boot.esp32s3: SPI Mode       : DIO[0m
-[0;32mI (41) boot.esp32s3: SPI Flash Size : 8MB[0m
-[0;32mI (44) boot: Enabling RNG early entropy source...[0m
-[0;32mI (49) boot: Partition Table:[0m
-[0;32mI (52) boot: ## Label            Usage          Type ST Offset   Length[0m
-[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
-[0;32mI (64) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
-[0;32mI (71) boot:  2 factory          factory app      00 00 00010000 00100000[0m
-[0;32mI (77) boot: End of partition table[0m
-[0;32mI (81) esp_image: segment 0: paddr=00010020 vaddr=3c020020 size=0be90h ( 48784) map[0m
-[0;32mI (97) esp_image: segment 1: paddr=0001beb8 vaddr=3fc94100 size=02b08h ( 11016) load[0m
-[0;32mI (99) esp_image: segment 2: paddr=0001e9c8 vaddr=40374000 size=01650h (  5712) load[0m
-[0;32mI (104) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=1b3f0h (111600) map[0m
-[0;32mI (130) esp_image: segment 4: paddr=0003b418 vaddr=40375650 size=0ea18h ( 59928) load[0m
-[0;32mI (144) esp_image: segment 5: paddr=00049e38 vaddr=600fe100 size=0001ch (    28) load[0m
-[0;32mI (150) boot: Loaded app from partition at offset 0x10000[0m
-[0;32mI (150) boot: Disabling RNG early entropy source...[0m
-[0;32mI (161) cpu_start: Multicore app[0m
-[0;32mI (170) cpu_start: Pro cpu start user code[0m
-[0;32mI (170) cpu_start: cpu freq: 240000000 Hz[0m
-[0;32mI (171) app_init: Application information:[0m
-[0;32mI (171) app_init: Project name:     Programmerbar_last[0m
-[0;32mI (175) app_init: App version:      d713109-dirty[0m
-[0;32mI (180) app_init: Compile time:     Mar  3 2025 13:49:02[0m
-[0;32mI (185) app_init: ELF file SHA256:  591850024...[0m
-[0;32mI (189) app_init: ESP-IDF:          v5.4[0m
-[0;32mI (193) efuse_init: Min chip rev:     v0.0[0m
-[0;32mI (197) efuse_init: Max chip rev:     v0.99 [0m
-[0;32mI (201) efuse_init: Chip rev:         v0.2[0m
-[0;32mI (204) heap_init: Initializing. RAM available for dynamic allocation:[0m
-[0;32mI (211) heap_init: At 3FC974E0 len 00052230 (328 KiB): RAM[0m
-[0;32mI (216) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
-[0;32mI (221) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
-[0;32mI (226) heap_init: At 600FE11C len 00001ECC (7 KiB): RTCRAM[0m
-[0;32mI (232) spi_flash: detected chip: gd[0m
-[0;32mI (235) spi_flash: flash io: dio[0m
-[0;32mI (238) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
-[0;32mI (244) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
-[0;32mI (251) main_task: Started on CPU0[0m
-[0;32mI (261) main_task: Calling app_main()[0m
-[1;31mE (261) SPI: SPI initialization success: ESP_OK[0m
-[1;31mE (361) SPI: SPI add device success: ESP_OK[0m
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ��������Fast SPI for SP0
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: 
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: Hello from Slav
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: llo from Slave!
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: o from%
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: from Slave!
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: om Slave!
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO:  Slave!
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: lave!
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ve!
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: !
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: Hello from Slav
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: llo from Slave!
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�g���0�o����w��?��
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��?�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w��w��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;��
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m��0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;��
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;��
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�}�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��?�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Testing Fast SPI for ESP32
-Message received from MISO: ~w��}�w�gq��0{�m�w�0g��;�
-Message sendt from MOSI: Test
+[1/10] Performing build step for 'bootloader'
+[1/1] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\ardiu\OneDrive\Dokumenter\Programmerbar_last\build\bootloader\esp-idf\esptool_py && C:\Espressif\python_env\idf5.4_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.4/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 C:/Users/ardiu/OneDrive/Dokumenter/Programmerbar_last/build/bootloader/bootloader.bin"
+Bootloader binary size 0x5210 bytes. 0x2df0 bytes (36%) free.
+[2/10] No install step for 'bootloader'
+[3/10] Completed 'bootloader'
+[4/10] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+[5/10] Linking C static library esp-idf\main\libmain.a
+[6/10] Generating ld/sections.ld
+[7/10] Linking CXX executable Programmerbar_last.elf
+[8/10] Generating binary image from built executable
+esptool.py v4.8.1
+Creating esp32s3 image...
+Merged 2 ELF sections
+Successfully created esp32s3 image.
+Generated C:/Users/ardiu/OneDrive/Dokumenter/Programmerbar_last/build/Programmerbar_last.bin
+[9/10] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\ardiu\OneDrive\Dokumenter\Programmerbar_last\build\esp-idf\esptool_py && C:\Espressif\python_env\idf5.4_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.4/components/partition_table/check_sizes.py --offset 0x8000 partition --type app C:/Users/ardiu/OneDrive/Dokumenter/Programmerbar_last/build/partition_table/partition-table.bin C:/Users/ardiu/OneDrive/Dokumenter/Programmerbar_last/build/Programmerbar_last.bin"
+Programmerbar_last.bin binary size 0x39ed0 bytes. Smallest app partition is 0x100000 bytes. 0xc6130 bytes (77%) free.
+[9/10] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v5.4\components\esptool_py && C:\Espressif\tools\cmake\3.30.2\bin\cmake.exe -D IDF_PATH=C:/Espressif/frameworks/esp-idf-v5.4 -D SERIAL_TOOL=C:/Espressif/python_env/idf5.4_py3.11_env/Scripts/python.exe;;C:/Espressif/frameworks/esp-idf-v5.4/components/esptool_py/esptool/esptool.py;--chip;esp32s3 -D SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@flash_args -D WORKING_DIRECTORY=C:/Users/ardiu/OneDrive/Dokumenter/Programmerbar_last/build -P C:/Espressif/frameworks/esp-idf-v5.4/components/esptool_py/run_serial_tool.cmake"
+esptool.py --chip esp32s3 -p COM4 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 80m --flash_size 8MB 0x0 bootloader/bootloader.bin 0x10000 Programmerbar_last.bin 0x8000 partition_table/partition-table.bin
+esptool.py v4.8.1
+Serial port COM4
+Connecting...
+Chip is ESP32-S3 (QFN56) (revision v0.2)
+Features: WiFi, BLE, Embedded PSRAM 8MB (AP_3v3)
+Crystal is 40MHz
+MAC: 8c:bf:ea:03:b8:98
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00000000 to 0x00005fff...
+Flash will be erased from 0x00010000 to 0x00049fff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+SHA digest in image updated
+Compressed 21008 bytes to 13372...
+Writing at 0x00000000... (100 %)
+Wrote 21008 bytes (13372 compressed) at 0x00000000 in 0.4 seconds (effective 433.1 kbit/s)...
+Hash of data verified.
+Compressed 237264 bytes to 126000...
+Writing at 0x00010000... (12 %)
+Writing at 0x0001c028... (25 %)
+Writing at 0x00023b95... (37 %)
+Writing at 0x0002a99d... (50 %)
+Writing at 0x00030872... (62 %)
+Writing at 0x00038ff0... (75 %)
+Writing at 0x0003eee4... (87 %)
+Writing at 0x00045713... (100 %)
+Wrote 237264 bytes (126000 compressed) at 0x00010000 in 1.8 seconds (effective 1036.3 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 103...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (103 compressed) at 0x00008000 in 0.1 seconds (effective 332.1 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
