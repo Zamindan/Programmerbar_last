@@ -34,7 +34,7 @@
  * @details This function gives the ability to select how the DMA is going to opperate.
  * @details ERROR checing the initializing of SPI
  */
-void SPI_init(spi_host_device_t SPI_HOST_id, gpio_num_t SPI_SCLK, gpio_num_t SPI_MOSI, gpio_num_t SPI_MISO, spi_dma_chan_t DMA_CHAN)
+void spi_init(spi_host_device_t SPI_HOST_id, gpio_num_t SPI_SCLK, gpio_num_t SPI_MOSI, gpio_num_t SPI_MISO, spi_dma_chan_t DMA_CHAN)
 {
     spi_bus_config_t bus_config = {
         .sclk_io_num = SPI_SCLK,
@@ -47,8 +47,7 @@ void SPI_init(spi_host_device_t SPI_HOST_id, gpio_num_t SPI_SCLK, gpio_num_t SPI
 
     // Check if initializing of SPI was sucsessful
     esp_err_t check_SPI_init = spi_bus_initialize(SPI_HOST_id, &bus_config, DMA_CHAN);
-    ESP_LOGE(SPI_TAG, esp_err_to_name(check_SPI_init));
-
+    ESP_LOGE(SPI_TAG, "Initialize: %s", esp_err_to_name(check_SPI_init));
     vTaskDelay(pdMS_TO_TICKS(10)); // Delay
 }
 
@@ -63,8 +62,9 @@ void SPI_init(spi_host_device_t SPI_HOST_id, gpio_num_t SPI_SCLK, gpio_num_t SPI
  * @param hande_name Choose a handler for SPI operation
  *
  */
-void SPI_add_device(spi_host_device_t SPI_HOST_id, int clk_speed, int duty_val, int SPI_queue_size, gpio_num_t SPI_CS, spi_device_handle_t *handle_name)
+void spi_add_device(spi_host_device_t SPI_HOST_id, int clk_speed, int duty_val, int SPI_queue_size, gpio_num_t SPI_CS, spi_device_handle_t *handle_name)
 {
+
     spi_device_interface_config_t device_configuration = {
         .clock_speed_hz = clk_speed,
         .duty_cycle_pos = duty_val,
@@ -75,6 +75,7 @@ void SPI_add_device(spi_host_device_t SPI_HOST_id, int clk_speed, int duty_val, 
 
     // Chech if adding a new SPI device was sucsessful
     esp_err_t check_spi_add_device = spi_bus_add_device(SPI_HOST_id, &device_configuration, handle_name);
-    ESP_LOGE(SPI_TAG, esp_err_to_name(check_spi_add_device));
+    if (check_spi_add_device =  )
+    ESP_LOGE(SPI_TAG, "Add device: %s", esp_err_to_name(check_spi_add_device));
     vTaskDelay(pdMS_TO_TICKS(10));
 }
