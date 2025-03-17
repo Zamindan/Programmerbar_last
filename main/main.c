@@ -15,10 +15,12 @@
 #include "communication_task.h"
 #include "pwm.h"
 #include "driver/ledc.h"
+#include "safety_task.h"
 
 QueueHandle_t mode_queue;
 QueueHandle_t setpoint_queue;
 QueueHandle_t measurement_queue;
+QueueHandle_t safety_queue;
 
 EventGroupHandle_t signal_event_group;
 
@@ -38,6 +40,18 @@ void app_main()
     }*/
     
         signal_event_group = xEventGroupCreate();
+        safety_event_group = xEventGroupCreate();
+
+
+        safety_queue = xQueueCreate(1, sizeof(SafetyData));
+        if (safety_queue == NULL)
+        {
+            ESP_LOGE(TAG, "Safety queue failed to create.");
+        }
+        else
+        {
+            ESP_LOGI(TAG, "Safety queue created.");
+        }
 
         setpoint_queue = xQueueCreate(1, sizeof(float));
         if (setpoint_queue == NULL)
