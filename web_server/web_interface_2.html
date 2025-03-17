@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESP32 Measurements</title>
+    <title>STAMM Load</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,28 +15,73 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background-color: #000;
+            /* Black background */
+            color: #fff;
+            /* White text for contrast */
         }
+
         .container {
-            background: white;
+            background: #1a1a1a;
+            /* Dark gray container */
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+            /* White shadow */
         }
-        h1 {
-            margin-bottom: 20px;
-        }
-        .measurement {
-            margin-bottom: 10px;
-        }
-        .setpoint {
-            margin-top: 20px;
-        }
+
+        
+    /* Base button styling for ALL buttons */
+    button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease; /* Transition all properties */
+        margin: 5px;
+    }
+
+    /* Hover effect for ALL buttons */
+    button:hover {
+        background-color: #45a049;
+        transform: scale(1.05);
+    }
+
+    /* Active/press effect for ALL buttons */
+    button:active {
+        transform: scale(0.95);
+    }
+
+    /* Specific styles for measurement values */
+    .measurement span {
+        color: #4CAF50;
+        font-weight: bold;
+    }
+
+    /* Input field styling */
+    input[type="number"] {
+        background-color: #333;
+        color: white;
+        border: 1px solid #4CAF50;
+        padding: 8px;
+        border-radius: 4px;
+        margin-right: 10px;
+        transition: border-color 0.3s ease;
+    }
+
+    input[type="number"]:focus {
+        outline: none;
+        border-color: #45a049;
+    }
+
     </style>
 </head>
+
 <body>
     <div class="container">
-        <h1>ESP32 Measurements</h1>
+        <h1>STAMM Load</h1>
         <div class="measurement">
             <strong>Voltage:</strong> <span id="voltage">0.0000</span> V
         </div>
@@ -52,6 +98,9 @@
             <label for="setpoint">Setpoint:</label>
             <input type="number" id="setpoint" step="0.01">
             <button onclick="updateSetpoint()">Update</button>
+        </div>
+        <div class="startstop">
+            <button onclick="updateStartStop(this)">Start</button>
         </div>
     </div>
     <script>
@@ -75,7 +124,24 @@
             });
         }
 
+        async function updateStartStop(button) {
+            const isStarting = button.textContent === "Start";
+            button.textContent = isStarting ? "Stop" : "Start";
+
+            try {
+                await fetch('/startstop', {
+                    method: 'POST',
+                    body: isStarting ? "start" : "stop"
+                });
+            } catch (error) {
+                console.error('Start/Stop error:', error);
+                // Revert button state if failed
+                button.textContent = isStarting ? "Start" : "Stop";
+            }
+        }
+
         setInterval(fetchMeasurements, 1000);
     </script>
 </body>
+
 </html>

@@ -21,7 +21,8 @@ void hmi_task(void *pvParameters)
 
     while (1)
     {
-        if (setpoint != previous_setpoint)
+        // Logic for handling setpoint values
+        if (setpoint != previous_setpoint)// If the local variable changes, signal to other tasks that it has changed.
         {
             previous_setpoint = setpoint;
             xQueueOverwrite(setpoint_queue, &setpoint);
@@ -29,7 +30,7 @@ void hmi_task(void *pvParameters)
             xEventGroupSetBits(signal_event_group, CONTROL_SETPOINT_BIT);
             vTaskDelay(pdMS_TO_TICKS(1));
         }
-        else if (xEventGroupGetBits(signal_event_group) & HMI_SETPOINT_BIT)
+        else if (xEventGroupGetBits(signal_event_group) & HMI_SETPOINT_BIT) // If the local variable of another task changes, changes the local one.
         {
             ESP_LOGI(TAG, "Received setpoint data");
             xEventGroupClearBits(signal_event_group, HMI_SETPOINT_BIT);

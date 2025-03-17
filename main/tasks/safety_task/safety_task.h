@@ -7,23 +7,26 @@
 #include "freertos/event_groups.h"
 
 //Bits for protection triggering
-#define VOLTAGE_BIT 1 << 0
-#define CURRENT_BIT 1 << 1
-#define POWER_BIT 1 << 2
-#define TEMPERATURE_BIT 1 << 3
-#define 
+#define OVERVOLTAGE_BIT 1 << 0
+#define OVERCURRENT_BIT 1 << 1
+#define OVERPOWER_BIT 1 << 2
+#define OVERTEMPERATURE_BIT 1 << 3
+#define START_STOP_BIT 1 << 4
 
 //Data structure for safety data
 typedef struct {
-    float max_voltage; 
-    float min_voltage;       
-    float max_current;        
-    float max_power;          
-    float max_temperature;    
+    float max_voltage_user;
+    float min_voltage_user;
+    float max_current_user;
+    float max_power_user;
+    float max_temperature_user;
+    float max_voltage_hard;
+    float max_current_hard;
+    float max_temperature_hard;
 } SafetyData;
 
 extern QueueHandle_t safety_queue;
 
-extern EventGroupHandle_t safety_event_group;
+extern EventGroupHandle_t hmi_safety_event_group;
 
 #endif

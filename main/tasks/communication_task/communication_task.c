@@ -10,6 +10,7 @@
 #include "hmi_task.h"
 #include "communication_task.h"
 #include "measurement_task.h"
+#include "safety_task.h"
 
 #include <string.h>
 #include "esp_system.h"
@@ -25,16 +26,21 @@
 #include "esp_http_server.h"
 #include "esp_log.h"
 
+// Bits for wifi event group
 #define WIFI_SUCCESS 1 << 0
 #define WIFI_FAILURE 1 << 1
 #define TCP_SUCCESS 1 << 0
 #define TCP_FAILURE 1 << 1
+
 #define MAX_FAILURES 10
 
+// SSID and PASSWORD
 #define CONFIG_WIFI_SSID "Sondre"
 #define CONFIG_WIFI_PASSWORD "123456sp"
 
 static const char *TAG = "COMMUNICATION_TASK";
+
+// Char pointer that holds HTML code.
 static const char *index_html = 
 "<!DOCTYPE html>"
 "<html lang=\"en\">"
@@ -150,6 +156,7 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base, int32_t e
     }
 }
 
+//Handles IP events
 static void ip_event_handler(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
 {
     if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP)
@@ -161,6 +168,7 @@ static void ip_event_handler(void *arg, esp_event_base_t event_base, int32_t eve
     }
 }
 
+// Initialise wifi
 esp_err_t wifi_init()
 {
     int status = WIFI_FAILURE;
@@ -245,6 +253,7 @@ esp_err_t wifi_init()
     return status;
 }
 
+// Start wifi function
 void wifi_start()
 {
     esp_err_t status = WIFI_FAILURE;
@@ -261,7 +270,7 @@ void wifi_start()
     status = wifi_init();
     if (WIFI_SUCCESS != status)
     {
-        ESP_LOGI(TAG, "Failed to associate to AP, dying...");
+        ESP_LOGI(TAG, "Failed to connect to AP, dying...");
         return;
     }
     else
@@ -270,12 +279,14 @@ void wifi_start()
     }
 }
 
+// Handler for serving HTML page.
 static esp_err_t index_handler(httpd_req_t *req) {
     httpd_resp_set_type(req, "text/html");
     httpd_resp_send(req, index_html, strlen(index_html));
     return ESP_OK;
 }
 
+// Handler for getting measurement data to display on html page
 static esp_err_t get_measurement_handler(httpd_req_t *req) {
     MeasurementData measurement;
     if (xQueuePeek(measurement_queue, &measurement, pdMS_TO_TICKS(10)) == pdTRUE) {
@@ -290,6 +301,7 @@ static esp_err_t get_measurement_handler(httpd_req_t *req) {
     return ESP_OK;
 }
 
+// Handler for posting setpoint data
 static esp_err_t set_setpoint_handler(httpd_req_t *req) {
     char content[100];
     size_t recv_size = MIN(req->content_len, sizeof(content) - 1);
@@ -303,7 +315,11 @@ static esp_err_t set_setpoint_handler(httpd_req_t *req) {
     content[recv_size] = '\0';
 
     float setpoint = atof(content);
+
+    // Writes new setpoint to queue:
     xQueueOverwrite(setpoint_queue, &setpoint);
+
+    // Sets event group bits, signals that new data is ready to be read by tasks that need setpoint.
     xEventGroupSetBits(signal_event_group, COMMUNICATION_SETPOINT_BIT);
     xEventGroupSetBits(signal_event_group, HMI_SETPOINT_BIT);
     xEventGroupSetBits(signal_event_group, CONTROL_SETPOINT_BIT);
@@ -312,13 +328,43 @@ static esp_err_t set_setpoint_handler(httpd_req_t *req) {
     return ESP_OK;
 }
 
+
+static esp_err_t start_stop_handler(httpd_req_t *req) {
+    char content[10];
+    size_t recv_size = MIN(req->content_len, sizeof(content) - 1);
+    int ret = httpd_req_recv(req, content, recv_size);
+    
+    if (ret <= 0) {
+        if (ret == HTTPD_SOCK_ERR_TIMEOUT) {
+            httpd_resp_send_408(req);
+        }
+        return ESP_FAIL;
+    }
+    content[recv_size] = '\0';
+
+    // Toggle the event group bit based on received command
+    if (strcmp(content, "start") == 0) {
+        xEventGroupSetBits(signal_event_group, START_STOP_BIT);
+    } else if (strcmp(content, "stop") == 0) {
+        xEventGroupClearBits(signal_event_group, START_STOP_BIT);
+    }
+
+    httpd_resp_send(req, "OK", HTTPD_RESP_USE_STRLEN);
+    return ESP_OK;
+}
+
+// Function for starting HTTP server
 httpd_handle_t start_webserver()
 {
+    // Create http handle and config.
     httpd_handle_t server = NULL;
     httpd_config_t config = HTTPD_DEFAULT_CONFIG();
 
+    // Start http server with the above handle and config
     esp_err_t ret = httpd_start(&server, &config);
     if (ret == ESP_OK) {
+
+        // Register uri's with their handler and initialise them
         httpd_uri_t index_uri = {
             .uri       = "/",
             .method    = HTTP_GET,
@@ -326,6 +372,14 @@ httpd_handle_t start_webserver()
             .user_ctx  = NULL
         };
         httpd_register_uri_handler(server, &index_uri);
+
+        httpd_uri_t startstop_uri = {
+            .uri       = "/startstop",
+            .method    = HTTP_POST,
+            .handler   = start_stop_handler,
+            .user_ctx  = NULL
+        };
+        httpd_register_uri_handler(server, &startstop_uri);
 
         httpd_uri_t measurement_uri = {
             .uri       = "/measurement",
@@ -348,7 +402,7 @@ httpd_handle_t start_webserver()
     return server;
 }
 
-
+// Communication task
 void communication_task(void *parameter)
 {   
     float setpoint = 0.0;
@@ -360,7 +414,8 @@ void communication_task(void *parameter)
 
     while (1)
     {
-        if (setpoint != previous_setpoint)
+        // Logic for handling setpoint values
+        if (setpoint != previous_setpoint) // If the local variable changes, signal to other tasks that it has changed.
         {
             previous_setpoint = setpoint;
             xQueueOverwrite(setpoint_queue, &setpoint);
@@ -368,7 +423,7 @@ void communication_task(void *parameter)
             xEventGroupSetBits(signal_event_group, CONTROL_SETPOINT_BIT);
             vTaskDelay(pdMS_TO_TICKS(1));
         }
-        else if (xEventGroupGetBits(signal_event_group) & COMMUNICATION_SETPOINT_BIT)
+        else if (xEventGroupGetBits(signal_event_group) & COMMUNICATION_SETPOINT_BIT) // If the local variable of another task changes, changes the local one.
         {
             ESP_LOGI(TAG, "Received setpoint data");
             xEventGroupClearBits(signal_event_group, COMMUNICATION_SETPOINT_BIT);
