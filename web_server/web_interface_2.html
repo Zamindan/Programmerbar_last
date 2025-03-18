@@ -24,58 +24,101 @@
         .container {
             background: #1a1a1a;
             /* Dark gray container */
-            padding: 20px;
+            padding: 100px;
             border-radius: 8px;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
             /* White shadow */
         }
 
-        
-    /* Base button styling for ALL buttons */
-    button {
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: all 0.3s ease; /* Transition all properties */
-        margin: 5px;
-    }
 
-    /* Hover effect for ALL buttons */
-    button:hover {
-        background-color: #45a049;
-        transform: scale(1.05);
-    }
+        /* Base button styling for ALL buttons */
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            /* Transition all properties */
+            margin: 5px;
+        }
 
-    /* Active/press effect for ALL buttons */
-    button:active {
-        transform: scale(0.95);
-    }
+        /* Hover effect for ALL buttons */
+        button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
 
-    /* Specific styles for measurement values */
-    .measurement span {
-        color: #4CAF50;
-        font-weight: bold;
-    }
+        /* Active/press effect for ALL buttons */
+        button:active {
+            transform: scale(0.95);
+        }
 
-    /* Input field styling */
-    input[type="number"] {
-        background-color: #333;
-        color: white;
-        border: 1px solid #4CAF50;
-        padding: 8px;
-        border-radius: 4px;
-        margin-right: 10px;
-        transition: border-color 0.3s ease;
-    }
+        /* Specific styles for measurement values */
+        .measurement span {
+            color: #4CAF50;
+            font-weight: bold;
+        }
 
-    input[type="number"]:focus {
-        outline: none;
-        border-color: #45a049;
-    }
+        /* Input field styling */
+        input[type="number"] {
+            background-color: #333;
+            color: white;
+            border: 1px solid #4CAF50;
+            padding: 8px;
+            border-radius: 4px;
+            margin-right: 10px;
+            transition: border-color 0.3s ease;
+        }
 
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #45a049;
+        }
+
+        .safety-limits {
+            margin-top: 30px;
+            padding: 30px;
+            background: #2a2a2a;
+            border-radius: 8px;
+            width: 90%;
+        }
+
+        .safety-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .safety-input {
+            flex: 1;
+        }
+
+        .safety-input label {
+            display: block;
+            margin-bottom: 5px;
+            color: #4CAF50;
+        }
+
+        .safety-input input {
+            width: 100%;
+            padding: 8px;
+            background: #333;
+            border: 1px solid #4CAF50;
+            color: white;
+            border-radius: 4px;
+        }
+
+        .safety-button {
+            background-color: #2196F3 !important;
+            align-self: flex-end;
+            height: 40px;
+        }
+
+        .safety-button:hover {
+            background-color: #1976D2 !important;
+        }
     </style>
 </head>
 
@@ -101,6 +144,36 @@
         </div>
         <div class="startstop">
             <button onclick="updateStartStop(this)">Start</button>
+        </div>
+        <div class="safety-limits">
+            <h2>Safety Limits</h2>
+            <div class="safety-row">
+                <div class="safety-input">
+                    <label>Max Voltage (V):</label>
+                    <input type="number" id="max_voltage_user" step="0.1" min="0">
+                </div>
+                <div class="safety-input">
+                    <label>Min Voltage (V):</label>
+                    <input type="number" id="min_voltage_user" step="0.1" min="0">
+                </div>
+            </div>
+            <div class="safety-row">
+                <div class="safety-input">
+                    <label>Max Current (A):</label>
+                    <input type="number" id="max_current_user" step="0.1" min="0">
+                </div>
+                <div class="safety-input">
+                    <label>Max Power (W):</label>
+                    <input type="number" id="max_power_user" step="1" min="0">
+                </div>
+            </div>
+            <div class="safety-row">
+                <div class="safety-input">
+                    <label>Max Temperature (°C):</label>
+                    <input type="number" id="max_temperature_user" step="1" min="0">
+                </div>
+                <button onclick="updateSafetyLimits()" class="safety-button">Set Safety Limits</button>
+            </div>
         </div>
     </div>
     <script>
@@ -137,6 +210,32 @@
                 console.error('Start/Stop error:', error);
                 // Revert button state if failed
                 button.textContent = isStarting ? "Start" : "Stop";
+            }
+        }
+
+        async function updateSafetyLimits() {
+            const safetyData = {
+                max_voltage_user: parseFloat(document.getElementById('max_voltage_user').value),
+                min_voltage_user: parseFloat(document.getElementById('min_voltage_user').value),
+                max_current_user: parseFloat(document.getElementById('max_current_user').value),
+                max_power_user: parseFloat(document.getElementById('max_power_user').value),
+                max_temperature_user: parseFloat(document.getElementById('max_temperature_user').value)
+            };
+
+            try {
+                const response = await fetch('/safety', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(safetyData)
+                });
+
+                if (!response.ok) throw new Error('Failed to update safety limits');
+                alert('Safety limits updated successfully!');
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error updating safety limits!');
             }
         }
 

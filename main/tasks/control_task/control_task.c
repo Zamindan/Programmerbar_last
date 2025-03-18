@@ -40,14 +40,7 @@ void control_task(void *paramter)
             vTaskDelay(pdMS_TO_TICKS(1));
         }
 
-        EventBits_t bits = xEventGroupWaitBits(
-            hmi_safety_event_group,
-            START_STOP_BIT,
-            pdFALSE,
-            pdFALSE,
-            portMAX_DELAY);
-
-        if ((bits & START_STOP_BIT) == 1)
+        if ((xEventGroupGetBits(signal_event_group) && START_STOP_BIT) & (xEventGroupGetBits(hmi_safety_event_group) == 0))
         {
 
             switch (mode)
@@ -98,6 +91,12 @@ void control_task(void *paramter)
         }
         else{
             vTaskDelay(pdMS_TO_TICKS(1));
+        }
+
+        if ((xEventGroupGetBits(hmi_safety_event_group) != 0))
+        {
+            duty_cycle = 0;
+            ESP_LOGI(TAG, "SAFETY TRIGGERED");
         }
         vTaskDelay(pdMS_TO_TICKS(1));
     }

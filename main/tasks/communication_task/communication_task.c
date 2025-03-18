@@ -26,6 +26,8 @@
 #include "esp_http_server.h"
 #include "esp_log.h"
 
+#include "cJSON.h"
+
 // Bits for wifi event group
 #define WIFI_SUCCESS 1 << 0
 #define WIFI_FAILURE 1 << 1
@@ -353,6 +355,44 @@ static esp_err_t start_stop_handler(httpd_req_t *req) {
     return ESP_OK;
 }
 
+static esp_err_t set_safety_handler(httpd_req_t *req) {
+    char content[200];
+    size_t recv_size = MIN(req->content_len, sizeof(content) - 1);
+    int ret = httpd_req_recv(req, content, recv_size);
+    
+    if (ret <= 0) return ESP_FAIL;
+    content[recv_size] = '\0';
+
+    // Parse JSON (using cJSON library recommended)
+    cJSON *root = cJSON_Parse(content);
+    if (!root) {
+        httpd_resp_send_500(req);
+        return ESP_FAIL;
+    }
+
+    SafetyData safety;
+    memset(&safety, 0, sizeof(safety));
+    
+    // Get user values
+    safety.max_voltage_user = cJSON_GetObjectItem(root, "max_voltage_user")->valuedouble;
+    safety.min_voltage_user = cJSON_GetObjectItem(root, "min_voltage_user")->valuedouble;
+    safety.max_current_user = cJSON_GetObjectItem(root, "max_current_user")->valuedouble;
+    safety.max_power_user = cJSON_GetObjectItem(root, "max_power_user")->valuedouble;
+    safety.max_temperature_user = cJSON_GetObjectItem(root, "max_temperature_user")->valuedouble;
+
+
+    // Send to queue
+    if (xQueueSend(safety_queue, &safety, pdMS_TO_TICKS(100)) != pdPASS) {
+        cJSON_Delete(root);
+        httpd_resp_send_500(req);
+        return ESP_FAIL;
+    }
+
+    cJSON_Delete(root);
+    httpd_resp_send(req, "OK", HTTPD_RESP_USE_STRLEN);
+    return ESP_OK;
+}
+
 // Function for starting HTTP server
 httpd_handle_t start_webserver()
 {
@@ -396,6 +436,15 @@ httpd_handle_t start_webserver()
             .user_ctx  = NULL
         };
         httpd_register_uri_handler(server, &setpoint_uri);
+
+        httpd_uri_t safety_uri = {
+            .uri = "/safety",
+            .method = HTTP_POST,
+            .handler = set_safety_handler,
+            .user_ctx = NULL
+        };
+        httpd_register_uri_handler(server, &safety_uri);
+
     } else {
         ESP_LOGI(TAG, "Server failed to start");
     }

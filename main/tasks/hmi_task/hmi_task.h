@@ -7,6 +7,7 @@
 #define HMI_SETPOINT_BIT 1 << 0
 #define COMMUNICATION_SETPOINT_BIT 1 << 1
 #define CONTROL_SETPOINT_BIT 1 << 2
+#define START_STOP_BIT 1 << 3
 
 extern float setpoint;
 

@@ -9,9 +9,12 @@
 //Bits for protection triggering
 #define OVERVOLTAGE_BIT 1 << 0
 #define OVERCURRENT_BIT 1 << 1
-#define OVERPOWER_BIT 1 << 2
+#define UNDERVOLTAGE_BIT 1 << 2
 #define OVERTEMPERATURE_BIT 1 << 3
-#define START_STOP_BIT 1 << 4
+
+// GPIO for relays
+#define BATTERY_RELAY_PIN 48
+#define POWER_SWITCH_RELAY_PIN 45
 
 //Data structure for safety data
 typedef struct {
@@ -20,9 +23,6 @@ typedef struct {
     float max_current_user;
     float max_power_user;
     float max_temperature_user;
-    float max_voltage_hard;
-    float max_current_hard;
-    float max_temperature_hard;
 } SafetyData;
 
 extern QueueHandle_t safety_queue;
