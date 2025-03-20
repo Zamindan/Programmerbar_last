@@ -37,7 +37,8 @@
         "uart.h": "c",
         "*.lf": "c",
         "task.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "spi_test_2": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "C_Cpp.dimInactiveRegions": false
