@@ -8,6 +8,8 @@
 #include "hmi_task.h"
 #include "pwm.h"
 #include "safety_task.h"
+#include "globals.h"
+#include "config.h"
 
 static const char *TAG = "CONTROL_TASK";
 
@@ -40,7 +42,7 @@ void control_task(void *paramter)
             vTaskDelay(pdMS_TO_TICKS(1));
         }
 
-        if ((xEventGroupGetBits(signal_event_group) && START_STOP_BIT) & (xEventGroupGetBits(hmi_safety_event_group) == 0))
+        if ((xEventGroupGetBits(signal_event_group) && START_STOP_BIT) & (xEventGroupGetBits(safety_event_group) == 0))
         {
 
             switch (mode)
@@ -93,7 +95,7 @@ void control_task(void *paramter)
             vTaskDelay(pdMS_TO_TICKS(1));
         }
 
-        if ((xEventGroupGetBits(hmi_safety_event_group) != 0))
+        if ((xEventGroupGetBi) != 0))
         {
             duty_cycle = 0;
             ESP_LOGI(TAG, "SAFETY TRIGGERED");

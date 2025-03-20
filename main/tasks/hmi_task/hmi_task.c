@@ -5,6 +5,8 @@
 #include "esp_log.h"
 #include "hmi_task.h"
 #include "measurement_task.h"
+#include "globals.h"
+#include "config.h"
 // #include "communication_task.h" // Uncomment this line after creating the communication task
 
 static const char *TAG = "HMI_TASK";

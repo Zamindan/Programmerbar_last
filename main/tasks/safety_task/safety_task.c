@@ -8,13 +8,10 @@
 #include "control_task.h"
 #include "hmi_task.h"
 #include "communication_task.h"
+#include "globals.h"
+#include "config.h"
 
 static const char *TAG = "SAFETY_TASK";
-
-// Define hardcoded max values for the load
-const float max_voltage_hard = 50;
-const float max_temperature_hard = 100;
-const float max_current_hard = 11;
 
 void safety_task(void *paramater)
 {
@@ -42,25 +39,25 @@ void safety_task(void *paramater)
             if (xQueuePeek(measurement_queue, &measurements, pdMS_TO_TICKS(10)))
             {
                 // Check if bus voltage is higher than max user or hardcoded max voltage
-                if ((measurements.bus_voltage > safety_data.max_voltage_user) || (measurements.bus_voltage > max_voltage_hard))
+                if ((measurements.bus_voltage > safety_data.max_voltage_user) || (measurements.bus_voltage > MAX_VOLTAGE))
                 {
-                    xEventGroupSetBits(hmi_safety_event_group, OVERVOLTAGE_BIT);
+                    xEventGroupSetBits(safety_event_group, OVERVOLTAGE_BIT);
                     gpio_set_level(POWER_SWITCH_RELAY_PIN, 0);
                     gpio_set_level(BATTERY_RELAY_PIN, 0);
                 }
 
                 // Check if current is higher than max user or hardcoded max current
-                if ((measurements.current > safety_data.max_current_user) || (measurements.current > max_current_hard))
+                if ((measurements.current > safety_data.max_current_user) || (measurements.current > MAX_CURRENT))
                 {
-                    xEventGroupSetBits(hmi_safety_event_group, OVERCURRENT_BIT);
+                    xEventGroupSetBits(safety_event_group, OVERCURRENT_BIT);
                     gpio_set_level(POWER_SWITCH_RELAY_PIN, 0);
                     gpio_set_level(BATTERY_RELAY_PIN, 0);
                 }
 
                 // Check if temperature is higher than user or hardcoded max temperature
-                if ((measurements.temperature > safety_data.max_temperature_user) || (measurements.temperature > max_temperature_hard))
+                if ((measurements.temperature > safety_data.max_temperature_user) || (measurements.temperature > MAX_TEMPERATURE))
                 {
-                    xEventGroupSetBits(hmi_safety_event_group, OVERTEMPERATURE_BIT);
+                    xEventGroupSetBits(safety_event_group, OVERTEMPERATURE_BIT);
                     gpio_set_level(POWER_SWITCH_RELAY_PIN, 0);
                     gpio_set_level(BATTERY_RELAY_PIN, 0);
                 }
@@ -68,7 +65,7 @@ void safety_task(void *paramater)
                 // Check if bus voltage is lower than user set minimum voltage
                 if ((measurements.bus_voltage < safety_data.min_voltage_user))
                 {
-                    xEventGroupSetBits(hmi_safety_event_group, UNDERVOLTAGE_BIT);
+                    xEventGroupSetBits(safety_event_group, UNDERVOLTAGE_BIT);
                     gpio_set_level(POWER_SWITCH_RELAY_PIN, 0);
                     gpio_set_level(BATTERY_RELAY_PIN, 0);
                 }

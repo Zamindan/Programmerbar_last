@@ -14,14 +14,9 @@
 #include "lwip/netdb.h"
 #include "lwip/dns.h"
 
-#define WIFI_SUCCESS 1 << 0
-#define WIFI_FAILURE 1 << 1
-#define TCP_SUCCESS 1 << 0
-#define TCP_FAILURE 1 << 1
-#define MAX_FAILURES 10
+#include "config.h"
+#include "globals.h"
 
-#define CONFIG_WIFI_SSID "Sondre"
-#define CONFIG_WIFI_PASSWORD "123456sp"
 
 // Event group to contain status information
 static EventGroupHandle_t wifi_event_group;

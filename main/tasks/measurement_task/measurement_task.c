@@ -8,6 +8,8 @@
 #include "adc.h"
 #include "i2c.h"
 #include "measurement_task.h"
+#include "globals.h"
+#include "config.h"
 
 static const char *TAG = "MEASUREMENT_TASK";
 #define INA237_SHUNT_V_REG 0x04
