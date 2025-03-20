@@ -1,2 +1,2 @@
-idf_component_register(SRCS "main.c" "src/adc.c" "src/I2C.c" "src/measurements.c" "src/uart.c"
-                    INCLUDE_DIRS "include")
+idf_component_register(SRCS "main.c" "tasks/control_task/control_task.c" "tasks/measurement_task/measurement_task.c" "drivers/adc/adc.c" "drivers/" "drivers/i2c/i2c.c" "drivers/pwm/pwm.c" "drivers/spi/spi.c" "tasks/hmi_task/hmi_task.c" "tasks/communication_task/communication_task.c" "tasks/safety_task/safety_task.c" "tasks/server_task/server_task.c"
+                    INCLUDE_DIRS "tasks/control_task" "tasks/hmi_task" "tasks/control_task" "tasks/measurement_task" "tasks/communication_task" "tasks/safety_task" "tasks/server_task" "drivers/adc" "drivers/i2c" "drivers/pwm" "drivers/spi")

@@ -10,17 +10,21 @@
                 "C:/Espressif/frameworks/esp-idf-v5.4/components/freertos/FreeRTOS-Kernel-SMP/portable/linux/include/freertos",
                 "C:/Espressif/frameworks/esp-idf-v5.4/components/freertos/FreeRTOS-Kernel-SMP/portable/riscv/include/freertos",
                 "C:/Espressif/frameworks/esp-idf-v5.4/components/freertos/FreeRTOS-Kernel-SMP/portable/xtensa/include/freertos",
-                "${workspaceFolder}/main/include",
+                "${workspaceFolder}/main/**",
                 "C:/Espressif/frameworks/esp-idf-v5.4/components/**",
                 "C:/Espressif/frameworks/esp-idf-v5.4/components/esp_driver_i2c/**",
-                "C:/Espressif/frameworks/esp-idf-v5.4/components/esp_driver_i2c/include/driver"
+                "C:/Espressif/frameworks/esp-idf-v5.4/components/esp_driver_i2c/include/driver",
+                "${workspaceFolder}/main/drivers/**",
+                "${workspaceFolder}/main/tasks/**",
+                "${workspaceFolder}/main/tasks/control_task/**",
+                "${workspaceFolder}/main/tasks/**"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE"
             ],
-            "compilerPath": "C:\\TDM-GCC-64\\bin\\gcc.exe",
+            "compilerPath": "C:/TDM-GCC-64/bin/gcc.exe",
             "cStandard": "c17",
             "cppStandard": "gnu++14",
             "intelliSenseMode": "windows-gcc-x64"

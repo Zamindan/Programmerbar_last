@@ -1,1 +1,3 @@
 tools/init_esp_idf.bat
+build/
+doxygen/

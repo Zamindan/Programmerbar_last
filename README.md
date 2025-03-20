@@ -8,11 +8,12 @@ Først må du installere ESP-IDF. Dette er et rammeverk som brukes for å progra
  > [!CAUTION]
  > 4. Pass på at path for installasjonen blir `C:/Espressif`.
 
-### 2. Installer GitHub Desktop
+### 2. Installer GitHub Desktop og Git
 GitHub Desktop er et verktøy som gjør det enkelt å jobbe med Git og GitHub. Installer det for å klone og jobbe med repositoryet.
   1. Last ned [GitHub Desktop](https://github.com/apps/desktop).
   2. Installer programmet.
   3. Lag og/eller logg inn med GitHub-konto.
+  4. Last ned [64-bit Git for Windows](https://git-scm.com/downloads/win)
 
 ### 3. Klone repository
 Nå må du klone prosjektets repository til din maskin.
