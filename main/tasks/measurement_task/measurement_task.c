@@ -12,15 +12,13 @@
 #include "config.h"
 
 static const char *TAG = "MEASUREMENT_TASK";
-#define INA237_SHUNT_V_REG 0x04
-#define INA237_VBUS_REG 0x05
-#define INA237_CURRENT_REG 0x07
+
 
 // Handle for the ADC unit
 adc_oneshot_unit_handle_t adc_handle_1;
 
 // Handle for the I2C bus
-i2c_master_bus_handle_t bus_handle_name;
+i2c_master_bus_handle_t i2c_handle;
 
 // Handle for the I2C device
 i2c_master_dev_handle_t ina_handle;
@@ -34,10 +32,10 @@ void measurement_intitialize()
     adc_channel_init(adc_handle_1, ADC_CHANNEL_0, ADC_ATTEN_DB_12, ADC_BITWIDTH_12);
 
     // Handle for the I2C device
-    i2c_init(&bus_handle_name, GPIO_NUM_11, GPIO_NUM_12);
+    i2c_init(i2c_handle, GPIO_NUM_11, GPIO_NUM_12);
 
     // Add the I2C device to the bus
-    i2c_add_device(bus_handle_name, &ina_handle, (uint16_t)0b1000000, 100000);
+    i2c_add_device(i2c_handle, &ina_handle, (uint16_t)0b1000000, 100000);
 
     // Set the CONFIG register of the INA237
     i2c_write(ina_handle, 0x00, 0b0000000000000000);

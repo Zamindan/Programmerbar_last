@@ -25,9 +25,9 @@ void safety_task(void *paramater)
 
     // Set the pins controlling relays high, meaning the relays are closed since they are NO.
     gpio_set_direction(POWER_SWITCH_RELAY_PIN, GPIO_MODE_OUTPUT);
-    gpio_set_direction(BATTERY_RELAY_PIN, GPIO_MODE_OUTPUT);
+    gpio_set_direction(DUT_RELAY_PIN, GPIO_MODE_OUTPUT);
     gpio_set_level(POWER_SWITCH_RELAY_PIN, 1);
-    gpio_set_level(BATTERY_RELAY_PIN, 0);
+    gpio_set_level(DUT_RELAY_PIN, 0);
 
 
     while (1)
@@ -43,7 +43,7 @@ void safety_task(void *paramater)
                 {
                     xEventGroupSetBits(safety_event_group, OVERVOLTAGE_BIT);
                     gpio_set_level(POWER_SWITCH_RELAY_PIN, 0);
-                    gpio_set_level(BATTERY_RELAY_PIN, 0);
+                    gpio_set_level(DUT_RELAY_PIN, 0);
                 }
 
                 // Check if current is higher than max user or hardcoded max current
@@ -51,7 +51,7 @@ void safety_task(void *paramater)
                 {
                     xEventGroupSetBits(safety_event_group, OVERCURRENT_BIT);
                     gpio_set_level(POWER_SWITCH_RELAY_PIN, 0);
-                    gpio_set_level(BATTERY_RELAY_PIN, 0);
+                    gpio_set_level(DUT_RELAY_PIN, 0);
                 }
 
                 // Check if temperature is higher than user or hardcoded max temperature
@@ -59,7 +59,7 @@ void safety_task(void *paramater)
                 {
                     xEventGroupSetBits(safety_event_group, OVERTEMPERATURE_BIT);
                     gpio_set_level(POWER_SWITCH_RELAY_PIN, 0);
-                    gpio_set_level(BATTERY_RELAY_PIN, 0);
+                    gpio_set_level(DUT_RELAY_PIN, 0);
                 }
 
                 // Check if bus voltage is lower than user set minimum voltage
@@ -67,7 +67,7 @@ void safety_task(void *paramater)
                 {
                     xEventGroupSetBits(safety_event_group, UNDERVOLTAGE_BIT);
                     gpio_set_level(POWER_SWITCH_RELAY_PIN, 0);
-                    gpio_set_level(BATTERY_RELAY_PIN, 0);
+                    gpio_set_level(DUT_RELAY_PIN, 0);
                 }
             }
         }
