@@ -4,6 +4,8 @@
 #include "driver/i2c_slave.h"
 #include "freertos/freeRTOS.h"
 #include "freertos/task.h"
+#include "config.h"
+#include "globals.h"
 
 /**
  * @file I2C.c
@@ -20,7 +22,7 @@
 
 
 
-static const char TAG = "I2C";
+static const char* TAG = "I2C";
 
 /**
  * @brief Function for initialising I2C with a bus handle.

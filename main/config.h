@@ -36,7 +36,7 @@
 #define UNDERVOLTAGE_BIT 1 << 2    /**< Event group bit for undervoltage protection. */
 #define OVERTEMPERATURE_BIT 1 << 3 /**< Event group bit for overtemperature protection. */
 
-// Bits for setpoint
+// Bits for signal event group
 #define HMI_SETPOINT_BIT 1 << 0           /**< Event group bit for HMI setpoint updates. */
 #define COMMUNICATION_SETPOINT_BIT 1 << 1 /**< Event group bit for communication setpoint updates. */
 #define CONTROL_SETPOINT_BIT 1 << 2       /**< Event group bit for control setpoint updates. */

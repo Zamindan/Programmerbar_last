@@ -13,9 +13,23 @@
 #include "lwip/sys.h"
 #include "lwip/netdb.h"
 #include "lwip/dns.h"
+#include "lwip/ip_addr.h"
+#include "lwip/netif.h"
 
 #include "config.h"
 #include "globals.h"
+
+/**
+ * @file wifi.c
+ * @brief Implementation of the WiFi module.
+ *
+ * This file contains the implementation of functions for initializing and connecting
+ * to a WiFi network. It handles WiFi events, manages retries, and signals connection
+ * status using FreeRTOS event groups.
+ *
+ * @author Sondre
+ * @date 2025-03-24
+ */
 
 
 // Event group to contain status information
@@ -24,10 +38,20 @@ static EventGroupHandle_t wifi_event_group;
 // Retry tracker
 static int s_retry_num = 0;
 
-// Task tag
-static const char *TAG = "WIFI";
 
-// Wifi event handler
+static const char *TAG = "WIFI"; /**< Tag for logging messages from the wifi module. */
+
+/**
+ * @brief WiFi event handler.
+ *
+ * Handles WiFi events such as starting the station, disconnecting from the AP,
+ * and retrying connections. Signals success or failure using the event group.
+ *
+ * @param arg Unused parameter.
+ * @param event_base The base of the event (e.g., WIFI_EVENT).
+ * @param event_id The ID of the event (e.g., WIFI_EVENT_STA_START).
+ * @param event_data Pointer to event-specific data.
+ */
 static void wifi_event_handler(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
 {
     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START)
@@ -50,6 +74,17 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base, int32_t e
     }
 }
 
+/**
+ * @brief IP event handler.
+ *
+ * Handles IP events such as successfully obtaining an IP address. Signals
+ * success using the event group.
+ *
+ * @param arg Unused parameter.
+ * @param event_base The base of the event (e.g., IP_EVENT).
+ * @param event_id The ID of the event (e.g., IP_EVENT_STA_GOT_IP).
+ * @param event_data Pointer to event-specific data.
+ */
 static void ip_event_handler(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
 {
     if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP)
@@ -61,6 +96,17 @@ static void ip_event_handler(void *arg, esp_event_base_t event_base, int32_t eve
     }
 }
 
+/**
+ * @brief Connects to a WiFi network.
+ *
+ * Initializes the WiFi driver, sets up the station mode, and attempts to connect
+ * to the configured access point (AP). Waits for either a successful connection
+ * or a failure event.
+ *
+ * @return
+ * - `ESP_OK` if the connection is successful.
+ * - `ESP_FAIL` if the connection fails.
+ */
 esp_err_t connect_wifi()
 {
     int status = WIFI_FAILURE;
@@ -145,6 +191,13 @@ esp_err_t connect_wifi()
     return status;
 }
 
+/**
+ * @brief Starts the WiFi module.
+ *
+ * Initializes the non-volatile storage (NVS) and starts the WiFi connection
+ * process by calling `connect_wifi()`. If the connection fails, it logs an
+ * error and stops further execution.
+ */
 void wifi_start()
 {
     esp_err_t status = WIFI_FAILURE;

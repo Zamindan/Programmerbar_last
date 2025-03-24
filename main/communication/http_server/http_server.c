@@ -23,7 +23,9 @@
 #include "lwip/sockets.h"
 #include "lwip/sys.h"
 #include "lwip/netdb.h"
+#include "lwip/netif.h"
 #include "lwip/dns.h"
+#include "lwip/ip_addr.h"
 
 #include "esp_http_server.h"
 #include "esp_log.h"
@@ -31,11 +33,29 @@
 #include "cJSON.h"
 
 
+/**
+ * @file http_server.c
+ * @brief Implementation of the HTTP server module.
+ *
+ * This file contains the implementation of the HTTP server, which provides
+ * endpoints for interacting with the ESP32. The server handles requests for
+ * retrieving measurements, updating setpoints, starting/stopping the load,
+ * and configuring safety parameters.
+ *
+ * @author Sondre
+ * @date 2025-03-24
+ */
 
 
-static const char *TAG = "SERVER";
 
-// Char pointer that holds HTML code.
+static const char *TAG = "SERVER"; /**< Tag for logging messages from the HTTP server module. */
+
+/**
+ * @brief HTML content for the main page.
+ *
+ * This HTML page displays the current measurements and allows the user to
+ * update the setpoint.
+ */
 static const char *index_html = 
 "<!DOCTYPE html>"
 "<html lang=\"en\">"
@@ -118,14 +138,31 @@ static const char *index_html =
 "</html>";
 
 
-// Handler for serving HTML page.
+/**
+ * @brief Handler for serving the main HTML page.
+ *
+ * This handler responds to GET requests to the `/` endpoint by serving the
+ * main HTML page, which displays measurements and allows the user to update
+ * the setpoint.
+ *
+ * @param req Pointer to the HTTP request.
+ * @return ESP_OK on success, or an error code on failure.
+ */
 static esp_err_t index_handler(httpd_req_t *req) {
     httpd_resp_set_type(req, "text/html");
     httpd_resp_send(req, index_html, strlen(index_html));
     return ESP_OK;
 }
 
-// Handler for getting measurement data to display on html page
+/**
+ * @brief Handler for retrieving measurement data.
+ *
+ * This handler responds to GET requests to the `/measurement` endpoint by
+ * returning the current measurement data in JSON format.
+ *
+ * @param req Pointer to the HTTP request.
+ * @return ESP_OK on success, or an error code on failure.
+ */
 static esp_err_t get_measurement_handler(httpd_req_t *req) {
     MeasurementData measurement;
     if (xQueuePeek(measurement_queue, &measurement, pdMS_TO_TICKS(10)) == pdTRUE) {
@@ -140,7 +177,15 @@ static esp_err_t get_measurement_handler(httpd_req_t *req) {
     return ESP_OK;
 }
 
-// Handler for posting setpoint data
+/**
+ * @brief Handler for updating the setpoint value.
+ *
+ * This handler responds to POST requests to the `/setpoint` endpoint by
+ * updating the setpoint value and signaling other tasks.
+ *
+ * @param req Pointer to the HTTP request.
+ * @return ESP_OK on success, or an error code on failure.
+ */
 static esp_err_t set_setpoint_handler(httpd_req_t *req) {
     char content[100];
     size_t recv_size = MIN(req->content_len, sizeof(content) - 1);
@@ -167,7 +212,15 @@ static esp_err_t set_setpoint_handler(httpd_req_t *req) {
     return ESP_OK;
 }
 
-
+/**
+ * @brief Handler for starting or stopping the load.
+ *
+ * This handler responds to POST requests to the `/startstop` endpoint by
+ * toggling the start/stop state of the load based on the received command.
+ *
+ * @param req Pointer to the HTTP request.
+ * @return ESP_OK on success, or an error code on failure.
+ */
 static esp_err_t start_stop_handler(httpd_req_t *req) {
     char content[10];
     size_t recv_size = MIN(req->content_len, sizeof(content) - 1);
@@ -192,6 +245,15 @@ static esp_err_t start_stop_handler(httpd_req_t *req) {
     return ESP_OK;
 }
 
+/**
+ * @brief Handler for configuring safety parameters.
+ *
+ * This handler responds to POST requests to the `/safety` endpoint by
+ * updating the safety parameters based on the received JSON data.
+ *
+ * @param req Pointer to the HTTP request.
+ * @return ESP_OK on success, or an error code on failure.
+ */
 static esp_err_t set_safety_handler(httpd_req_t *req) {
     char content[200];
     size_t recv_size = MIN(req->content_len, sizeof(content) - 1);
@@ -230,7 +292,14 @@ static esp_err_t set_safety_handler(httpd_req_t *req) {
     return ESP_OK;
 }
 
-// Function for starting HTTP server
+/**
+ * @brief Starts the HTTP server.
+ *
+ * Initializes and starts the HTTP server, registering URI handlers for
+ * various endpoints such as `/`, `/measurement`, `/setpoint`, `/startstop`, and `/safety`.
+ *
+ * @return Handle to the HTTP server instance, or NULL on failure.
+ */
 httpd_handle_t start_webserver()
 {
     // Create http handle and config.

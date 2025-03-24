@@ -20,10 +20,10 @@
 /// @name Queues
 /// Queues used for inter-task communication.
 //@{
-extern QueueHandle_t mode_queue;         /**< Queue for control mode updates. */
-extern QueueHandle_t setpoint_queue;     /**< Queue for setpoint values. */
-extern QueueHandle_t safety_queue;       /**< Queue for safety-related data. */
-extern QueueHandle_t measurement_queue;  /**< Queue for processed measurement data. */
+extern QueueHandle_t mode_queue;        /**< Queue for control mode updates. Declared in main.c */
+extern QueueHandle_t setpoint_queue;    /**< Queue for setpoint values. Declared in main.c */
+extern QueueHandle_t safety_queue;      /**< Queue for safety-related data. Declared in main.c */
+extern QueueHandle_t measurement_queue; /**< Queue for processed measurement data. Declared in main.c */
 //@}
 
 /// @name Event Groups
@@ -40,13 +40,17 @@ extern EventGroupHandle_t safety_event_group; /**< Event group for safety-relate
  * power, and temperature. These values are used to ensure the system operates
  * within safe limits.
  */
-typedef struct {
+typedef struct
+{
     float max_voltage_user;     /**< Maximum allowable voltage set by the user (V). */
     float min_voltage_user;     /**< Minimum allowable voltage set by the user (V). */
     float max_current_user;     /**< Maximum allowable current set by the user (A). */
     float max_power_user;       /**< Maximum allowable power set by the user (W). */
     float max_temperature_user; /**< Maximum allowable temperature set by the user (°C). */
-} SafetyData;
+    float soft_max_current;     /**< Soft maximum allowable current set by the user (A). */
+    float soft_max_voltage;     /**< Soft maximum allowable voltage set by the user (V). */
+    float soft_max_temperature; /**< Soft maximum allowable temperature set by the user (°C) */
+} SafetyData;                   // The difference between soft and non soft limits is that the soft limits will trigger the system regulate the PWM to stay within the limits, the others will open relays to completelt shut off the load.
 
 /**
  * @brief Data structure for processed measurement data.
@@ -55,11 +59,15 @@ typedef struct {
  * current, power, and temperature. These values are updated by the measurement
  * task and shared with other tasks via the `measurement_queue`.
  */
-typedef struct {
-    float bus_voltage;    /**< Measured bus voltage (V). */
-    float current;        /**< Measured current (A). */
-    float power;          /**< Calculated power (W). */
-    float temperature;    /**< Measured temperature (°C). */
+typedef struct
+{
+    float bus_voltage;            /**< Measured bus voltage (V). */
+    float current;                /**< Measured current (A). */
+    float power;                  /**< Calculated power (W). */
+    float temperature_internal;   /**< Measured internal temperature (°C). */
+    float temperature_external_1; /**< Measured external temperature probe 1 (°C)*/
+    float temperature_external_2; /**< Measured external temperature probe 2 (°C)*/
+    float temperature_external_3; /**< Measured external temperature probe 3 (°C)*/
 } MeasurementData;
 
 /**
@@ -68,10 +76,11 @@ typedef struct {
  * This enumeration defines the available control modes for the programmable
  * electrical load. The control mode determines how the load operates.
  */
-typedef enum {
-    MODE_CC,  /**< Constant Current mode. */
-    MODE_CV,  /**< Constant Voltage mode. */
-    MODE_CP   /**< Constant Power mode. */
+typedef enum
+{
+    MODE_CC, /**< Constant Current mode. */
+    MODE_CV, /**< Constant Voltage mode. */
+    MODE_CP  /**< Constant Power mode. */
 } ControlMode;
 
 #endif // GLOBALS_H
