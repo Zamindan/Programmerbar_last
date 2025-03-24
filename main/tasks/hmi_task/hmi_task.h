@@ -4,25 +4,26 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/queue.h"
 
-#define HMI_SETPOINT_BIT 1 << 0
-#define COMMUNICATION_SETPOINT_BIT 1 << 1
-#define CONTROL_SETPOINT_BIT 1 << 2
-#define START_STOP_BIT 1 << 3
+/**
+ * @file hmi_task.h
+ * @brief Header file for the Human-Machine Interface (HMI) task.
+ *
+ * This file contains the declaration of the HMI task, which is responsible
+ * for managing user interactions and updating the setpoint and control mode.
+ * The task communicates with other tasks via FreeRTOS queues and event groups.
+ *
+ * @author Sondre
+ * @date 2025-03-24
+ */
 
-extern float setpoint;
-
-typedef enum {
-    MODE_CC,  // Constant Current
-    MODE_CV,  // Constant Voltage
-    MODE_CP   // Constant Power
-} ControlMode;
-
-extern QueueHandle_t mode_queue;
-extern QueueHandle_t setpoint_queue;
-
-extern EventGroupHandle_t signal_event_group;
-
-
+/**
+ * @brief HMI task for managing user interactions.
+ *
+ * This task handles user input for updating the setpoint and control mode.
+ * It synchronizes with other tasks using FreeRTOS queues and event groups.
+ *
+ * @param pvParameters Pointer to task parameters (can be NULL).
+ */
 void hmi_task(void *pvParameters);
 
 #endif

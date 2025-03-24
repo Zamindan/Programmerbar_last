@@ -1,32 +1,28 @@
 #ifndef SAFETY_TASK_H
 #define SAFETY_TASK_H
 
-#include <stdint.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/queue.h"
-#include "freertos/event_groups.h"
+/**
+ * @file safety_task.h
+ * @brief Header file for the safety task.
+ *
+ * This file contains the declaration of the safety task, which is responsible
+ * for monitoring safety conditions such as overvoltage, overcurrent, overtemperature,
+ * and undervoltage. The task interacts with other tasks via FreeRTOS queues and
+ * event groups to ensure safe operation of the system.
+ *
+ * @author Sondre
+ * @date 2025-03-24
+ */
 
-//Bits for protection triggering
-#define OVERVOLTAGE_BIT 1 << 0
-#define OVERCURRENT_BIT 1 << 1
-#define UNDERVOLTAGE_BIT 1 << 2
-#define OVERTEMPERATURE_BIT 1 << 3
+/**
+ * @brief Safety task for monitoring and enforcing safety conditions.
+ *
+ * This task continuously monitors measurement data and user-defined safety limits.
+ * If a safety condition is violated (e.g., overvoltage, overcurrent), it triggers
+ * the appropriate safety event and disables the relays to protect the system.
+ *
+ * @param paramater Pointer to task parameters (can be NULL).
+ */
+void safety_task(void *paramater);
 
-// GPIO for relays
-#define BATTERY_RELAY_PIN 48
-#define POWER_SWITCH_RELAY_PIN 45
-
-//Data structure for safety data
-typedef struct {
-    float max_voltage_user;
-    float min_voltage_user;
-    float max_current_user;
-    float max_power_user;
-    float max_temperature_user;
-} SafetyData;
-
-extern QueueHandle_t safety_queue;
-
-extern EventGroupHandle_t hmi_safety_event_group;
-
-#endif
+#endif // SAFETY_TASK_H

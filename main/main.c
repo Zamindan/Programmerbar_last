@@ -16,24 +16,49 @@
 #include "pwm.h"
 #include "driver/ledc.h"
 #include "safety_task.h"
+#include "globals.h"
+#include "config.h"
+#include "safety_task.h"
+#include "wifi.h"
+#include "http_server.h"
+
+/**
+ * @file main.c
+ * @brief Entry point for the programmable electrical load project.
+ *
+ * This file contains the `app_main` function, which initializes the system,
+ * creates FreeRTOS queues and event groups, and starts the various tasks
+ * (safety, measurement, HMI, communication, and control). It also starts
+ * the WiFi module and HTTP server for remote interaction.
+ *
+ * @author Sondre
+ * @date 2025-03-24
+ */
 
 // Declare queues
-QueueHandle_t mode_queue;        // Declare queue that holds mode.
-QueueHandle_t setpoint_queue;    // Declare queue that holds setpoint.
-QueueHandle_t measurement_queue; // Declare queue that holds measurement struct.
-QueueHandle_t safety_queue;      // Declare queue that holds max values for different parameters, set by user and hardcoded.
+QueueHandle_t mode_queue;        /**< Queue for control mode updates. */
+QueueHandle_t setpoint_queue;    /**< Queue for setpoint values. */
+QueueHandle_t measurement_queue; /**< Queue for processed measurement data. */
+QueueHandle_t safety_queue;      /**< Queue for safety-related data. */
 
 // Declare event groups
-EventGroupHandle_t signal_event_group;     // Declare event group that has bits related to signaling if setpoint data has been updated
-EventGroupHandle_t hmi_safety_event_group; // Declare event group that has bits related to triggering of over-current, voltage, temperature and power. Also has start/stop bit.
+EventGroupHandle_t signal_event_group; /**< Event group for signaling between tasks. */
+EventGroupHandle_t safety_event_group; /**< Event group for safety-related events. */
 
 static const char *TAG = "MAIN";
 
+/**
+ * @brief Main entry point for the application.
+ *
+ * This function initializes the system by creating FreeRTOS queues and event groups,
+ * and starting the various tasks. It also initializes the WiFi module and HTTP server
+ * for remote interaction.
+ */
 void app_main()
 {
     // Create event groups
     signal_event_group = xEventGroupCreate();
-    hmi_safety_event_group = xEventGroupCreate();
+    safety_event_group = xEventGroupCreate();
 
     // Create queues
     safety_queue = xQueueCreate(1, sizeof(SafetyData));
@@ -77,12 +102,13 @@ void app_main()
     }
 
     // Set tasks to cores
-    xTaskCreatePinnedToCore(measurement_task, "Measurement Task", 4096, NULL, 1, NULL, 1);
+    xTaskCreatePinnedToCore(safety_task, "Safety Task", 4096, NULL, 3, NULL, 1);
+    xTaskCreatePinnedToCore(measurement_task, "Measurement Task", 4096, NULL, 2, NULL, 1);
     xTaskCreatePinnedToCore(hmi_task, "HMI Task", 4096, NULL, 1, NULL, 1);
     xTaskCreatePinnedToCore(communication_task, "Communication Task", 4096, NULL, 1, NULL, 1);
-    xTaskCreatePinnedToCore(control_task, "Control Task", 4096, NULL, 1, NULL, 1);
+    xTaskCreatePinnedToCore(control_task, "Control Task", 4096, NULL, 2, NULL, 1);
 
     // Start WiFi and HTTP server
-    wifi_start();
-    start_webserver();
+    wifi_start();      // This module starts its own FreeRTOS task through esp_wifi_start() with priority 23 and an event loop task with priority 20.
+    start_webserver(); // This module starts its own FreeRTOS task through httpd_start() with priority 5.
 }

@@ -8,57 +8,94 @@
 #include "adc.h"
 #include "i2c.h"
 #include "measurement_task.h"
+#include "globals.h"
+#include "config.h"
 
-static const char *TAG = "MEASUREMENT_TASK";
-#define INA237_SHUNT_V_REG 0x04
-#define INA237_VBUS_REG 0x05
-#define INA237_CURRENT_REG 0x07
+/**
+ * @file measurement_task.c
+ * @brief Implementation of the measurement task.
+ *
+ * This file contains the implementation of the measurement task, which is responsible
+ * for reading sensor data (voltage, current, temperature) and processing it into
+ * usable values. The task communicates with other tasks via FreeRTOS queues.
+ *
+ * The task uses the INA237 sensor for voltage and current measurements and an ADC
+ * channel for temperature readings. The processed data is stored in the
+ * `measurement_queue` for use by other tasks.
+ *
+ * @note The INA237 configuration is based on the datasheet calculations.
+ *
+ * @author Sondre
+ * @date 2025-03-24
+ */
 
-// Handle for the ADC unit
-adc_oneshot_unit_handle_t adc_handle_1;
+static const char *TAG = "MEASUREMENT_TASK"; /**< Tag for logging messages from the measurement task. */
 
-// Handle for the I2C bus
-i2c_master_bus_handle_t bus_handle_name;
+// Handles for ADC and I2C peripherals
+adc_oneshot_unit_handle_t adc_handle_1; /**< Handle for the ADC unit. */
+adc_oneshit_unit_handle_t adc_handle_2; /**< Handle for the ADC unit. */
+i2c_master_bus_handle_t i2c_handle;     /**< Handle for the I2C bus. */
+i2c_master_dev_handle_t ina_handle;     /**< Handle for the INA237 device. */
 
-// Handle for the I2C device
-i2c_master_dev_handle_t ina_handle;
-
+/**
+ * @brief Initializes the measurement peripherals.
+ *
+ * This function initializes the ADC and I2C peripherals, configures the INA237
+ * sensor, and sets up the necessary calibration values for accurate measurements.
+ */
 void measurement_intitialize()
 {
     // Initialise the ADC unit
     adc_unit_init(&adc_handle_1, ADC_UNIT_1, ADC_ULP_MODE_DISABLE);
+    adc_unit_init(&adc_handle_2, ADC_UNIT_2, ADC_ULP_MODE_DISABLE);
 
     // Initialise the ADC channel
-    adc_channel_init(adc_handle_1, ADC_CHANNEL_0, ADC_ATTEN_DB_12, ADC_BITWIDTH_12);
+    adc_channel_init(adc_handle_1, ADC_CHANNEL_3, ADC_ATTEN_DB_12, ADC_BITWIDTH_12); // ADC_CHANNEL_3 ADC1 is GPIO 4, for internal NTC
+
+    adc_channel_init(adc_handle_1, ADC_CHANNEL_0, ADC_ATTEN_DB_12, ADC_BITWIDTH_12); // ADC_CHANNEL_0 ADC1 is GPIO 1, for external NTC
+
+    adc_channel_init(adc_handle_1, ADC_CHANNEL_1, ADC_ATTEN_DB_12, ADC_BITWIDTH_12); // ADC_CHANNEL_1 ADC1 is GPIO 2, for external NTC
+
+    adc_channel_init(adc_handle_2, ADC_CHANNEL_6, ADC_ATTEN_DB_12, ADC_BITWIDTH_12); // ADC_CHANNEL_6 ADC2 is GPIO 17, for external NTC
 
     // Handle for the I2C device
-    i2c_init(&bus_handle_name, GPIO_NUM_11, GPIO_NUM_12);
+    i2c_init(&i2c_handle, GPIO_NUM_11, GPIO_NUM_12);
 
     // Add the I2C device to the bus
-    i2c_add_device(bus_handle_name, &ina_handle, (uint16_t)0b1000000, 100000);
+    i2c_add_device(i2c_handle, &ina_handle, (uint16_t)0b1000000, 100000);
 
-    // Set the CONFIG register of the INA237
-    i2c_write(ina_handle, 0x00, 0b0000000000000000);
+    // Configure the INA237 registers
+    i2c_write(ina_handle, 0x00, 0b0000000000000000); // CONFIG register
+    i2c_write(ina_handle, 0x01, 0b1011000000000000); // ADC configuration
+    i2c_write(ina_handle, 0x02, 0b0000100111000100); // Shunt calibration (Rshunt = 0.01 ohm, Current_LSB = 10/2^15) From page 29: https://www.ti.com/lit/ds/symlink/ina237.pdf
 
-    // Set the ADC configuration of the INA237
-    i2c_write(ina_handle, 0x01, 0b1011000000000000);
-
-    // Set the shunt calibration of the INA237
-    i2c_write(ina_handle, 0x02, 0b0000100111000100); // Calculations from page 29: https://www.ti.com/lit/ds/symlink/ina237.pdf (Rshunt = 0.01 ohm, Current_LSB = 10/2^15, SHUNT_CAL = 2500)
+    ESP_LOGI(TAG, "Measurement peripherals initialized");
 }
 
+/**
+ * @brief Measurement task for reading and processing sensor data.
+ *
+ * This task reads raw data from the INA237 sensor (voltage and current) and the
+ * ADC channel (temperature), processes the data into meaningful values, and updates
+ * the `measurement_queue`. The task maintains a 1 kHz sampling rate.
+ *
+ * @param parameter Pointer to task parameters (can be NULL).
+ */
 void measurement_task(void *paramter)
 {
     measurement_intitialize();
-    MeasurementData measurements;
-    
+    MeasurementData measurements; /**< Struct to hold the processed measurement data. */
 
     while (1)
     {
         // Read raw sensors
         float raw_voltage = i2c_read(ina_handle, INA237_VBUS_REG);
         float raw_current = i2c_read(ina_handle, INA237_CURRENT_REG);
-        uint16_t raw_temp = adc_read(adc_handle_1, ADC_CHANNEL_0);
+        uint16_t raw_temp_internal = adc_read(adc_handle_1, ADC_CHANNEL_0);
+        uint16_t raw_temp_external_1 = adc_read(adc_handle_1, ADC_CHANNEL_1);
+        uint16_t raw_temp_external_2 = adc_read(adc_handle_1, ADC_CHANNEL_3);
+        uint16_t raw_temp_external_3 = adc_read(adc_handle_2, ADC_CHANNEL_6);
+
 
         // Convert raw values into usable values:
         // Convert the raw voltage data to actualt voltage value
@@ -72,11 +109,11 @@ void measurement_task(void *paramter)
         measurements.power = measurements.bus_voltage * measurements.current;
 
         // Calculate temperature
-        measurements.temperature = (float)raw_temp; // Not yet implemented
+        measurements.temperature_internal = (float)raw_temp_internal; // Not yet implemented
 
         xQueueOverwrite(measurement_queue, &measurements);
-        //ESP_LOGI(TAG, "raw_current from INA= %f", raw_current);
-        // Maintain 1 kHz sampling rate
+        // ESP_LOGI(TAG, "raw_current from INA= %f", raw_current);
+        //  Maintain 1 kHz sampling rate
         vTaskDelay(pdMS_TO_TICKS(1));
     }
 }

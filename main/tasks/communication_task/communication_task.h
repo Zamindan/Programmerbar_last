@@ -5,17 +5,28 @@
 #include "esp_wifi.h"
 #include "esp_http_server.h"
 
-// Define constants for WiFi status
-#define WIFI_SUCCESS 1 << 0
-#define WIFI_FAILURE 1 << 1
+/**
+ * @file communication_task.h
+ * @brief Header file for the communication task.
+ *
+ * This file contains the declaration of the communication task, which is responsible
+ * for managing setpoint values and signaling changes to other tasks. It provides
+ * the function prototype for the task and includes necessary dependencies.
+ *
+ * @author Sondre
+ * @date 2025-03-24
+ */
 
+/**
+ * @brief Communication task for managing setpoint values.
+ *
+ * This task handles inter-task communication related to setpoint values. It monitors
+ * changes to the setpoint, updates the local setpoint value, and signals other tasks
+ * when changes occur. The task uses FreeRTOS queues and event groups for communication
+ * and synchronization.
+ *
+ * @param pvParameters Pointer to task parameters (can be NULL).
+ */
 void communication_task(void *pvParameters);
 
-// Function to connect to WiFi
-esp_err_t wifi_init();
-
-void wifi_start();
-
-httpd_handle_t start_webserver();
-
-#endif
+#endif // COMMUNICATION_TASK_H_
