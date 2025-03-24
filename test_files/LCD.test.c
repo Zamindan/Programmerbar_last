@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -19,6 +18,7 @@
 #define FSPI_CS 10
 #define FSPI_MISO 13
 #define FSPI_MOSI 11
+#define FSPI_PD_N 9  // Power-down pin
 
 void spi_init(spi_host_device_t SPI_HOST_id, gpio_num_t SPI_SCLK, gpio_num_t SPI_MOSI, gpio_num_t SPI_MISO, int transfer_size, spi_dma_chan_t DMA_CHAN)
 {
@@ -31,7 +31,7 @@ void spi_init(spi_host_device_t SPI_HOST_id, gpio_num_t SPI_SCLK, gpio_num_t SPI
         .flags = 0,
         .max_transfer_sz = transfer_size};
 
-    // Check if initializing of SPI was sucsessful
+    // Initialize SPI bus
     esp_err_t check_spi_init = spi_bus_initialize(SPI_HOST_id, &bus_config, DMA_CHAN);
     ESP_ERROR_CHECK(check_spi_init);
 }
@@ -41,22 +41,18 @@ void spi_add_device(spi_host_device_t SPI_HOST_id, int clk_speed, int duty_val, 
     spi_device_interface_config_t device_configuration = {
         .clock_speed_hz = clk_speed,
         .duty_cycle_pos = duty_val,
-        .mode = 0,
+        .mode = 0,  // SPI Mode 0
         .queue_size = SPI_queue_size,
         .spics_io_num = SPI_CS,
     };
 
-    // Chech if adding a new SPI device was sucsessful
+    // Add SPI device
     esp_err_t check_spi_add_device = spi_bus_add_device(SPI_HOST_id, &device_configuration, handle_name);
     ESP_ERROR_CHECK(check_spi_add_device);
 }
 
 void spi_write_data(uint32_t reg_address, uint32_t data, spi_device_handle_t *handle_name)
 {
-    /* FT81X SPI Write Format:
-     * [23:16] [15:8] [7:1 | 0] (0 for write) [Data MSB] ... [Data LSB]
-     */
-
     uint8_t tx_buffer[7];
 
     // Address (3 bytes) - LSB must have Bit 0 as 0 (for write)
@@ -71,11 +67,8 @@ void spi_write_data(uint32_t reg_address, uint32_t data, spi_device_handle_t *ha
     tx_buffer[6] = data & 0xFF;          // LSB
 
     spi_transaction_t write_transaction = {
-        .length = 8 * 7,               // 7 bytes = 56 bits
-        .tx_buffer = tx_buffer         // Use tx_buffer directly
-    };
-
-    printf("Writing to 0x%06X: Data = 0x%08X\n", reg_address, data);
+        .length = 8 * 7,  // 7 bytes = 56 bits
+        .tx_buffer = tx_buffer};
 
     esp_err_t check_spi_write = spi_device_polling_transmit(*handle_name, &write_transaction);
     ESP_ERROR_CHECK(check_spi_write);
@@ -84,7 +77,7 @@ void spi_write_data(uint32_t reg_address, uint32_t data, spi_device_handle_t *ha
 void spi_read_data(uint32_t reg_address, spi_device_handle_t *handle_name)
 {
     uint8_t tx_buffer[4];
-    uint8_t rx_buffer[5] = {0}; // Dummy + 4 bytes data
+    uint8_t rx_buffer[5] = {0};  // Dummy + 4 bytes data
 
     // Address (3 bytes) - LSB must have Bit 0 as 1 (for read)
     tx_buffer[0] = (reg_address >> 16) & 0xFF;  // MSB
@@ -95,11 +88,11 @@ void spi_read_data(uint32_t reg_address, spi_device_handle_t *handle_name)
     tx_buffer[3] = 0x00;
 
     spi_transaction_t read_transaction = {
-        .flags = 0,            // No special flags
+        .flags = 0,  // No special flags
         .tx_buffer = tx_buffer,
         .rx_buffer = rx_buffer,
-        .length = 8 * 4,       // 4 bytes output (address + dummy)
-        .rxlength = 8 * 5,     // Read 5 bytes (dummy + 4 bytes data)
+        .length = 8 * 4,    // 4 bytes output (address + dummy)
+        .rxlength = 8 * 5,   // Read 5 bytes (dummy + 4 bytes data)
     };
 
     esp_err_t check_spi_read = spi_device_polling_transmit(*handle_name, &read_transaction);
@@ -109,19 +102,36 @@ void spi_read_data(uint32_t reg_address, spi_device_handle_t *handle_name)
     printf("Read from 0x%06X: Data = 0x%08X\n", reg_address, data);
 }
 
+void ft812q_init(spi_device_handle_t *handle_name)
+{
+    // Power down and up the FT812Q
+    gpio_set_direction(FSPI_PD_N, GPIO_MODE_OUTPUT);
+    gpio_set_level(FSPI_PD_N, 0);  // Power down
+    vTaskDelay(pdMS_TO_TICKS(10));
+    gpio_set_level(FSPI_PD_N, 1);  // Power up
+    vTaskDelay(pdMS_TO_TICKS(100));
+
+    // Initialize FT812Q registers (example)
+    spi_write_data(0x102400, 0x00000000, handle_name);  // Set display resolution
+    spi_write_data(0x102404, 0x00000000, handle_name);  // Set touch configuration
+}
 
 int app_main(void)
 {
     spi_device_handle_t SPI_handler;
 
+    // Initialize SPI and FT812Q
     spi_init(SPI_HOST, FSPI_SCLK, FSPI_MOSI, FSPI_MISO, 4096, SPI_DMA_CH);
     spi_add_device(SPI_HOST, 30 * 1000 * 1000, 0, 1, FSPI_CS, &SPI_handler);
+    ft812q_init(&SPI_handler);
 
-    uint32_t register_address = 0xAA;
-    uint32_t data = 0xAB;    
+    // Test read/write
+    uint32_t register_address = 0x102400;  // Example register
+    uint32_t data = 0x00000001;           // Example data
 
     spi_read_data(register_address, &SPI_handler);
-    spi_write_data(register_address, data, &SPI_handler); 
+    spi_write_data(register_address, data, &SPI_handler);
     spi_read_data(register_address, &SPI_handler);
+
     return 0;
 }
