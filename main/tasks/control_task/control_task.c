@@ -92,7 +92,7 @@ void control_task(void *paramter)
         // Retrieve the soft safety limits
         if (xQueuePeek(safety_queue, &safety_data, pdTICKS_TO_MS(1)) == pdTRUE)
         {
-            vTaskDelay(pdMS_TO_TICKS(1))
+            vTaskDelay(pdMS_TO_TICKS(1));
         }
 
         // Check if the load should be started and no safety triggers are active

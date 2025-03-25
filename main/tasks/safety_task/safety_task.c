@@ -7,7 +7,6 @@
 #include "measurement_task.h"
 #include "control_task.h"
 #include "hmi_task.h"
-#include "communication_task.h"
 #include "globals.h"
 #include "config.h"
 

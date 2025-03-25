@@ -12,7 +12,6 @@
 #include "adc.h"
 #include "driver/gpio.h"
 #include "i2c.h"
-#include "communication_task.h"
 #include "pwm.h"
 #include "driver/ledc.h"
 #include "safety_task.h"
@@ -105,7 +104,6 @@ void app_main()
     xTaskCreatePinnedToCore(safety_task, "Safety Task", 4096, NULL, 3, NULL, 1);
     xTaskCreatePinnedToCore(measurement_task, "Measurement Task", 4096, NULL, 2, NULL, 1);
     xTaskCreatePinnedToCore(hmi_task, "HMI Task", 4096, NULL, 1, NULL, 1);
-    xTaskCreatePinnedToCore(communication_task, "Communication Task", 4096, NULL, 1, NULL, 1);
     xTaskCreatePinnedToCore(control_task, "Control Task", 4096, NULL, 2, NULL, 1);
 
     // Start WiFi and HTTP server
