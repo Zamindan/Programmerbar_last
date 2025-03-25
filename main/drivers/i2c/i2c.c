@@ -4,6 +4,8 @@
 #include "driver/i2c_slave.h"
 #include "freertos/freeRTOS.h"
 #include "freertos/task.h"
+#include "config.h"
+#include "globals.h"
 
 /**
  * @file I2C.c
@@ -18,14 +20,9 @@
  * @date 2025-02-13
  */
 
-#define I2C_PORT -1
-#define CLK_SRC I2C_CLK_SRC_DEFAULT
-#define GLITCH_IGNORE_COUNT 7
-#define INTERNAL_PULLUP 1
 
-#define DEV_ADDR_LENGTH I2C_ADDR_BIT_LEN_7
 
-#define TAG "I2C"
+static const char* TAG = "I2C";
 
 /**
  * @brief Function for initialising I2C with a bus handle.

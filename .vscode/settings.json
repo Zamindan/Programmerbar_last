@@ -52,7 +52,14 @@
         "compare": "c",
         "limits": "c",
         "new": "c",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "sockets.h": "c",
+        "event_groups.h": "c",
+        "control_task.h": "c",
+        "cjson.h": "c",
+        "communication_task.h": "c",
+        "sys.h": "c",
+        "safety_task.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "C_Cpp.dimInactiveRegions": false,

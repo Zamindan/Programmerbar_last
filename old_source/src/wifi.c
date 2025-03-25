@@ -66,7 +66,7 @@ static void ip_event_handler(void *arg, esp_event_base_t event_base, int32_t eve
     }
 }
 
-esp_err_t connect_wifi()
+esp_err_t wifi_init()
 {
     int status = WIFI_FAILURE;
 
