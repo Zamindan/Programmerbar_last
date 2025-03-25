@@ -8,7 +8,6 @@
 #include "freertos/event_groups.h"
 #include "esp_log.h"
 #include "hmi_task.h"
-#include "communication_task.h"
 #include "measurement_task.h"
 #include "safety_task.h"
 #include "globals.h"
@@ -168,7 +167,7 @@ static esp_err_t get_measurement_handler(httpd_req_t *req) {
     if (xQueuePeek(measurement_queue, &measurement, pdMS_TO_TICKS(10)) == pdTRUE) {
         char resp[100];
         snprintf(resp, sizeof(resp), "{\"voltage\": %.4f, \"current\": %.4f, \"power\": %.4f, \"temperature\": %.2f}",
-                 measurement.bus_voltage, measurement.current, measurement.power, measurement.temperature);
+                 measurement.bus_voltage, measurement.current, measurement.power, measurement.temperature_internal);
         httpd_resp_set_type(req, "application/json");
         httpd_resp_send(req, resp, strlen(resp));
     } else {

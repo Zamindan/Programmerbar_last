@@ -33,7 +33,7 @@ static const char *TAG = "MEASUREMENT_TASK"; /**< Tag for logging messages from 
 
 // Handles for ADC and I2C peripherals
 adc_oneshot_unit_handle_t adc_handle_1; /**< Handle for the ADC unit. */
-adc_oneshit_unit_handle_t adc_handle_2; /**< Handle for the ADC unit. */
+adc_oneshot_unit_handle_t adc_handle_2; /**< Handle for the ADC unit. */
 i2c_master_bus_handle_t i2c_handle;     /**< Handle for the I2C bus. */
 i2c_master_dev_handle_t ina_handle;     /**< Handle for the INA237 device. */
 
