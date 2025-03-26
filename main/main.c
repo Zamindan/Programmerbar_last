@@ -1,6 +1,7 @@
 #include "driver/spi_master.h"
 #include "driver/gpio.h"
 #include "esp_log.h"
+#include "string.h"
 
 // Pin definitions
 #define PIN_NUM_MISO  -1  // Not used for this display
