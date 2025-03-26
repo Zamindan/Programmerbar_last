@@ -1,88 +1,118 @@
-#include <stdio.h>
-#include "measurement_task.h"
-#include "control_task.h"
-#include "hmi_task.h"
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "freertos/queue.h"
-#include "freertos/event_groups.h"
-#include "measurement_task.h"
-#include "control_task.h"
-#include "esp_log.h"
-#include "adc.h"
+#include "driver/spi_master.h"
 #include "driver/gpio.h"
-#include "i2c.h"
-#include "communication_task.h"
-#include "pwm.h"
-#include "driver/ledc.h"
-#include "safety_task.h"
+#include "esp_log.h"
 
-// Declare queues
-QueueHandle_t mode_queue;        // Declare queue that holds mode.
-QueueHandle_t setpoint_queue;    // Declare queue that holds setpoint.
-QueueHandle_t measurement_queue; // Declare queue that holds measurement struct.
-QueueHandle_t safety_queue;      // Declare queue that holds max values for different parameters, set by user and hardcoded.
+// Pin definitions
+#define PIN_NUM_MISO  -1  // Not used for this display
+#define PIN_NUM_MOSI  13
+#define PIN_NUM_CLK   14
+#define PIN_NUM_CS    10
+#define PIN_NUM_DC    12
+#define PIN_NUM_RST   11
+#define PIN_NUM_BKL   9   // Backlight control
 
-// Declare event groups
-EventGroupHandle_t signal_event_group;     // Declare event group that has bits related to signaling if setpoint data has been updated
-EventGroupHandle_t hmi_safety_event_group; // Declare event group that has bits related to triggering of over-current, voltage, temperature and power. Also has start/stop bit.
+// SPI configuration
+spi_device_handle_t spi;
 
-static const char *TAG = "MAIN";
+void initialize_spi() {
+    esp_err_t ret;
+    
+    spi_bus_config_t buscfg = {
+        .miso_io_num = PIN_NUM_MISO,
+        .mosi_io_num = PIN_NUM_MOSI,
+        .sclk_io_num = PIN_NUM_CLK,
+        .quadwp_io_num = -1,
+        .quadhd_io_num = -1,
+        .max_transfer_sz = 4096,
+    };
+    
+    spi_device_interface_config_t devcfg = {
+        .clock_speed_hz = 10 * 1000 * 1000,  // 10MHz
+        .mode = 0,                            // SPI mode 0
+        .spics_io_num = PIN_NUM_CS,
+        .queue_size = 7,
+        .pre_cb = NULL,
+        .post_cb = NULL,
+    };
+    
+    // Initialize the SPI bus
+    ret = spi_bus_initialize(SPI2_HOST, &buscfg, SPI_DMA_CH_AUTO);
+    ESP_ERROR_CHECK(ret);
+    
+    // Attach the LCD to the SPI bus
+    ret = spi_bus_add_device(SPI2_HOST, &devcfg, &spi);
+    ESP_ERROR_CHECK(ret);
+}
 
-void app_main()
-{
-    // Create event groups
-    signal_event_group = xEventGroupCreate();
-    hmi_safety_event_group = xEventGroupCreate();
+void initialize_gpio() {
+    // Configure reset and data/command pins as outputs
+    gpio_config_t io_conf = {
+        .pin_bit_mask = (1ULL << PIN_NUM_DC) | (1ULL << PIN_NUM_RST) | (1ULL << PIN_NUM_BKL),
+        .mode = GPIO_MODE_OUTPUT,
+        .pull_up_en = GPIO_PULLUP_DISABLE,
+        .pull_down_en = GPIO_PULLDOWN_DISABLE,
+        .intr_type = GPIO_INTR_DISABLE,
+    };
+    gpio_config(&io_conf);
+    
+    // Set initial states
+    gpio_set_level(PIN_NUM_RST, 1);
+    gpio_set_level(PIN_NUM_DC, 0);
+    gpio_set_level(PIN_NUM_BKL, 1);  // Turn on backlight
+}
 
-    // Create queues
-    safety_queue = xQueueCreate(1, sizeof(SafetyData));
-    if (safety_queue == NULL)
-    {
-        ESP_LOGE(TAG, "Safety queue failed to create.");
-    }
-    else
-    {
-        ESP_LOGI(TAG, "Safety queue created.");
-    }
+void lcd_reset() {
+    gpio_set_level(PIN_NUM_RST, 0);
+    vTaskDelay(100 / portTICK_PERIOD_MS);
+    gpio_set_level(PIN_NUM_RST, 1);
+    vTaskDelay(100 / portTICK_PERIOD_MS);
+}
 
-    setpoint_queue = xQueueCreate(1, sizeof(float));
-    if (setpoint_queue == NULL)
-    {
-        ESP_LOGE(TAG, "Setpoint queue failed to create.");
-    }
-    else
-    {
-        ESP_LOGI(TAG, "Setpoint queue created.");
-    }
+void lcd_send_cmd(uint8_t cmd) {
+    esp_err_t ret;
+    spi_transaction_t t;
+    memset(&t, 0, sizeof(t));
+    
+    gpio_set_level(PIN_NUM_DC, 0);  // Command mode
+    t.length = 8;
+    t.tx_buffer = &cmd;
+    ret = spi_device_polling_transmit(spi, &t);
+    assert(ret == ESP_OK);
+}
 
-    mode_queue = xQueueCreate(1, sizeof(ControlMode));
-    if (mode_queue == NULL)
-    {
-        ESP_LOGE(TAG, "Mode queue failed to create.");
-    }
-    else
-    {
-        ESP_LOGI(TAG, "Mode queue created.");
-    }
+void lcd_send_data(uint8_t *data, uint16_t length) {
+    esp_err_t ret;
+    spi_transaction_t t;
+    
+    if (length == 0) return;
+    
+    memset(&t, 0, sizeof(t));
+    gpio_set_level(PIN_NUM_DC, 1);  // Data mode
+    t.length = length * 8;
+    t.tx_buffer = data;
+    ret = spi_device_polling_transmit(spi, &t);
+    assert(ret == ESP_OK);
+}
 
-    measurement_queue = xQueueCreate(1, sizeof(MeasurementData));
-    if (measurement_queue == NULL)
-    {
-        ESP_LOGE(TAG, "Measurement queue failed to create.");
-    }
-    else
-    {
-        ESP_LOGI(TAG, "Measurement queue created.");
-    }
+void lcd_init() {
+    // Initialize GPIO and SPI
+    initialize_gpio();
+    initialize_spi();
+    
+    // Reset the display
+    lcd_reset();
+    
+    // Send initialization commands
+    // Refer to your display's datasheet for the exact command sequence
+    lcd_send_cmd(0x01);  // Example command - replace with actual commands
+    vTaskDelay(100 / portTICK_PERIOD_MS);
+    
+    // More initialization commands...
+}
 
-    // Set tasks to cores
-    xTaskCreatePinnedToCore(measurement_task, "Measurement Task", 4096, NULL, 1, NULL, 1);
-    xTaskCreatePinnedToCore(hmi_task, "HMI Task", 4096, NULL, 1, NULL, 1);
-    xTaskCreatePinnedToCore(communication_task, "Communication Task", 4096, NULL, 1, NULL, 1);
-    xTaskCreatePinnedToCore(control_task, "Control Task", 4096, NULL, 1, NULL, 1);
-
-    // Start WiFi and HTTP server
-    wifi_start();
-    start_webserver();
+void app_main() {
+    lcd_init();
+    
+    // Now you can start drawing on the display
+    // You'll need to implement functions to set drawing area, write pixels, etc.
 }
