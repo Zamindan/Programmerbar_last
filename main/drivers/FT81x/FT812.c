@@ -1,0 +1,207 @@
+#include <stdio.h>
+#include "driver/spi_master.h"
+#include "driver/gpio.h"
+#include "esp_log.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "esp_heap_caps.h"
+
+#define SPI_TAG "SPI"
+#define LCD_TAG "LCD"
+
+#define SPI_HOST SPI2_HOST // Use SPI2 (HSPI)
+#define GPIO_MISO GPIO_NUM_13
+#define GPIO_MOSI GPIO_NUM_11
+#define GPIO_SCLK GPIO_NUM_12
+#define GPIO_CS GPIO_NUM_10
+#define GPIO_PD GPIO_NUM_18 // Power Down (PD#) Pin
+
+
+// Memory map (Start addresses)
+#define RAM_G 0x000000
+#define ROM_FONT 0x1E0000
+#define ROM_FONT_ADDR 0x2FFFFC
+#define RAM_DL 0x300000
+#define RAM_REG 0x302000
+#define RAM_CMD 0x308000
+
+// Register Address Definitions
+#define REG_TAP_MASK 0x302028
+#define REG_HCYCLE 0x30202C
+#define REG_HOFFSET 0x302030
+#define REG_HSIZE 0x302034
+#define REG_HSYNC0 0x302038
+#define REG_HSYNC1 0x30203C
+#define REG_VCYCLE 0x302040
+#define REG_VOFFSET 0x302044
+#define REG_VSIZE 0x302048
+#define REG_VSYNC0 0x30204C
+#define REG_VSYNC1 0x302050
+#define REG_DLSWAP 0x30205A
+#define REG_ROTATE 0x302058
+#define REG_OUTBITS 0x30205C
+#define REG_DITHER 0x302060
+#define REG_SWIZZLE 0x30206A
+#define REG_CSPREAD 0x302068
+#define REG_PCLK_POL 0x30206C
+#define REG_PCLK 0x302070
+#define REG_TAG_X 0x30207A
+#define REG_TAG_Y 0x302078
+#define REG_TAG 0x30207C
+#define REG_VOL_PB 0x302080
+#define REG_VOL_SOUND 0x30208A
+#define REG_SOUND 0x302088
+#define REG_PLAY 0x30208C
+#define REG_GPIO_DIR 0x302090
+#define REG_GPIO 0x302094
+#define REG_GPIOX_DIR 0x302098
+#define REG_GPIOX 0x30209C
+#define REG_INT_FLAGS 0x3020A8
+#define REG_INT_EN 0x3020AC
+#define REG_INT_MASK 0x3020B0
+#define REG_PLAYBACK_START 0x3020B4
+#define REG_PLAYBACK_LENGTH 0x3020B8
+#define REG_PLAYBACK_READPTR 0x3020BC
+#define REG_PLAYBACK_FREQ 0x3020C0
+#define REG_PLAYBACK_FORMAT 0x3020C4
+#define REG_PLAYBACK_LOOP 0x3020C8
+#define REG_PLAYBACK_PLAY 0x3020CC
+#define REG_PWM_HZ 0x3020D0
+#define REG_PWM_DUTY 0x3020D4
+#define REG_MACRO_0 0x3020D8
+#define REG_MACRO_1 0x3020DC
+#define REG_CMD_READ 0x3020F8
+#define REG_TOUCH_TAG3_XY 0x302140
+#define REG_TOUCH_TAG3 0x302144
+#define REG_TOUCH_TAG4_XY 0x302148
+#define REG_TOUCH_TAG4 0x30214C
+#define REG_TOUCH_TRANSFORM_A 0x302150
+#define REG_TOUCH_TRANSFORM_B 0x302154
+#define REG_TOUCH_TRANSFORM_C 0x302158
+#define REG_TOUCH_TRANSFORM_D 0x30215C
+#define REG_TOUCH_TRANSFORM_E 0x302160
+#define REG_TOUCH_TRANSFORM_F 0x302164
+#define REG_TOUCH_CONFIG 0x302168
+#define REG_CTOUCH_TOUCH4_X 0x30216C
+#define REG_BIST_EN 0x302174
+#define REG_TRIM 0x302180
+#define REG_ANA_COMP 0x30218A
+#define REG_SPI_WIDTH 0x30218B
+#define REG_TOUCH_DIRECT_XY 0x30218C
+#define REG_CTOUCH_TOUCH2_XY 0x30218C
+#define REG_TOUCH_DIRECT_Z12 0x302190
+#define REG_CTOUCH_TOUCH3_XY 0x302190
+#define REG_DATESTAMP 0x30256A
+#define REG_CMDB_SPACE 0x30257A
+#define REG_CMDB_WRITE 0x30257B
+
+// Host Command
+#define ACTIVE 0x00
+#define STANDBY 0x41
+#define SLEEP 0x42
+#define PWRDOWN 0x43
+#define CLKEXT 0x44
+#define CLKINT 0x48
+#define PD_ROMS 0x49
+#define RST_PULSE 0x68
+#define PINDRIVE 0x70
+#define PIN_PD_STATE 0x71
+
+// Read/Write Commands
+#define WRITE 0x41
+#define READ 0x80
+
+
+// Drawing Primitives
+#define BITMAPS 1
+#define POINTS 2
+#define LINES          3    // Line drawing primitive
+#define LINE_STRIP     4    // Line strip drawing primitive
+#define EDGE_STRIP_R   5    // Edge strip right side drawing primitive
+#define EDGE_STRIP_L   6    // Edge strip left side drawing primitive  
+#define EDGE_STRIP_A   7    // Edge strip above drawing primitive
+#define EDGE_STRIP_B   8    // Edge strip below side drawing primitive
+#define RECTS          9    // Rectangle drawing primitive
+
+
+
+uint32_t BEGIN(uint8_t prim) {
+    return 0x1F000000 | (prim & 0xF);
+}
+
+uint32_t CLEAR_COLOR_RGB(uint8_t red, uint8_t green, uint8_t blue) {
+    return 0x02000000 | (red << 16) | (blue << 8) | green;
+}
+
+uint32_t CLEAR(uint8_t c, uint8_t s, uint8_t t) {
+    return 0x26000000 | (c << 2) | (s << 1) | t;
+}
+
+uint32_t COLOR_RGB(uint8_t red, uint8_t green, uint8_t blue) {
+    return 0x04000000 | (red << 16) | (blue << 8) | green;
+}
+
+uint32_t POINT_SIZE(uint16_t size) {
+    return 0x0D000000 | size;
+}
+
+uint32_t DISPLAY() {
+    return 0x00000000;
+}
+uint32_t END(){
+    return 0x21000000;
+}
+uint32_t VERTEX2II(uint16_t x, uint16_t y, uint8_t handle, uint8_t cell) {
+    return 0x40000000 | ((x & 0x1FF) << 21) | ((y & 0x1FF) << 12) | ((handle & 0x1F) << 7) | (cell & 0x7F);         
+}
+
+void LCD_init()
+{
+    
+        // Configure GPIO_PD as output
+        gpio_config_t io_conf = {
+            .mode = GPIO_MODE_OUTPUT,
+            .pin_bit_mask = (1ULL << GPIO_PD),
+            .pull_down_en = 0,
+            .pull_up_en = 0,
+        };
+        gpio_config(&io_conf);
+    
+        // Toggle GPIO_PD from low to high with a 20ms delay
+        gpio_set_level(GPIO_PD, 0); // Set GPIO_PD low
+        vTaskDelay(pdMS_TO_TICKS(20)); // Wait for 20ms
+        gpio_set_level(GPIO_PD, 1); // Set GPIO_PD high
+        vTaskDelay(pdMS_TO_TICKS(20)); // Wait for another 20ms if needed
+    
+    
+        spi_read_8(0xC0001);
+    
+        host_command(ACTIVE); // send host command "ACTIVE" to FT81X
+    
+        /* Configure display registers - demonstration for WQVGA resolution */
+        spi_write_16(REG_HCYCLE, 928);
+        spi_write_16(REG_HOFFSET, 88);
+        spi_write_16(REG_HSYNC0, 0);
+        spi_write_16(REG_HSYNC1, 48);
+        spi_write_16(REG_VCYCLE, 525);
+        spi_write_16(REG_VOFFSET, 32);
+        spi_write_16(REG_VSYNC0, 0);
+        spi_write_16(REG_VSYNC1, 3);
+        spi_write_16(REG_SWIZZLE, 0);
+        spi_write_16(REG_PCLK_POL, 0);
+        spi_write_16(REG_CSPREAD, 1);
+        spi_write_16(REG_HSIZE, 800);
+        spi_write_16(REG_VSIZE, 480);
+    
+        /* write first display list */
+        spi_write_32(RAM_DL + 0, CLEAR_COLOR_RGB(0, 0, 0));
+    
+        spi_write_32(RAM_DL + 4, CLEAR(1, 1, 1));
+        spi_write_32(RAM_DL + 8, DISPLAY());
+        spi_write_8(REG_DLSWAP, 0x02); // display list swap
+        spi_write_8(REG_GPIO_DIR, 0x80 | spi_read_8(REG_GPIO_DIR));
+        spi_write_8(REG_GPIO, 0x080 | spi_read_8(REG_GPIO)); // enable display bit
+        spi_write_16(REG_PCLK, 5);                           // after this display is visible on the LCD
+        spi_add_device(30 * 1000 * 1000, 0, 0, 1, GPIO_CS);
+    
+}

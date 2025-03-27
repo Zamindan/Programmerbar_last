@@ -56,7 +56,9 @@
         "sockets.h": "c",
         "event_groups.h": "c",
         "control_task.h": "c",
-        "cjson.h": "c"
+        "cjson.h": "c",
+        "LCD.C": "cpp",
+        "FT81x.C": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "C_Cpp.dimInactiveRegions": false,
