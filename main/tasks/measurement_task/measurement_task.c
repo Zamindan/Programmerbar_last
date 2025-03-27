@@ -10,6 +10,7 @@
 #include "measurement_task.h"
 #include "globals.h"
 #include "config.h"
+#include "math.h"
 
 /**
  * @file measurement_task.c
@@ -73,6 +74,39 @@ void measurement_intitialize()
 }
 
 /**
+ * @brief Calculate the NTC resistance from the raw ADC value.
+ *
+ * This function calculates the NTC resistance based on the raw ADC value, the
+ * voltage divider resistor value, and the maximum ADC value.
+ *
+ * @param raw_adc_value The raw ADC value read from the NTC sensor.
+ * @param R1 The resistance of the voltage divider resistor (R1 = 10k ohm).
+ * @param adc_max_value The maximum ADC value (4095 for 12-bit ADC).
+ * @return The calculated NTC resistance.
+ */
+float ntc_resistance_calculate(uint16_t raw_adc_value, float R1, int adc_max_value)
+{
+    float R = (((float)raw_adc_value / (float)adc_max_value) * R1) / (1 - ((float)raw_adc_value / (float)adc_max_value));
+    return R;
+}
+
+/**
+ * @brief Calculate the temperature from the NTC resistance.
+ *
+ * This function calculates the temperature based on the NTC resistance, the
+ * reference resistance, the reference temperature, and the B value.
+ *
+ * @param B The B value of the NTC thermistor.
+ * @param R The NTC resistance.
+ * @return The calculated temperature.
+ */
+float R_to_T(float B, float R)
+{
+    float T = 1 / ((1 / T0_NTC) + (1 / B) * log(R / R0_NTC));
+    return T;
+}
+
+/**
  * @brief Measurement task for reading and processing sensor data.
  *
  * This task reads raw data from the INA237 sensor (voltage and current) and the
@@ -86,6 +120,11 @@ void measurement_task(void *paramter)
     measurement_intitialize();
     MeasurementData measurements; /**< Struct to hold the processed measurement data. */
 
+    float R_ntc_internal = 0;
+    float R_ntc_external_1 = 0;
+    float R_ntc_external_2 = 0;
+    float R_ntc_external_3 = 0;
+
     while (1)
     {
         // Read raw sensors
@@ -96,6 +135,15 @@ void measurement_task(void *paramter)
         uint16_t raw_temp_external_2 = adc_read(adc_handle_1, ADC_CHANNEL_3);
         uint16_t raw_temp_external_3 = adc_read(adc_handle_2, ADC_CHANNEL_6);
 
+        R_ntc_internal = ntc_resistance_calculate(raw_temp_internal, R1_NTC_VDIV, 4095);
+        R_ntc_external_1 = ntc_resistance_calculate(raw_temp_external_1, R1_NTC_VDIV, 4095);
+        R_ntc_external_2 = ntc_resistance_calculate(raw_temp_external_2, R1_NTC_VDIV, 4095);
+        R_ntc_external_3 = ntc_resistance_calculate(raw_temp_external_3, R1_NTC_VDIV, 4095);
+
+        measurements.temperature_internal = R_to_T(B_NTC_INTERNAL, R_ntc_internal);
+        measurements.temperature_external_1 = R_to_T(B_NTC_EXTERNAL, R_ntc_external_1);
+        measurements.temperature_external_2 = R_to_T(B_NTC_EXTERNAL, R_ntc_external_2);
+        measurements.temperature_external_3 = R_to_T(B_NTC_EXTERNAL, R_ntc_external_3);
 
         // Convert raw values into usable values:
         // Convert the raw voltage data to actualt voltage value
@@ -107,9 +155,6 @@ void measurement_task(void *paramter)
 
         // Calculate power
         measurements.power = measurements.bus_voltage * measurements.current;
-
-        // Calculate temperature
-        measurements.temperature_internal = (float)raw_temp_internal; // Not yet implemented
 
         xQueueOverwrite(measurement_queue, &measurements);
         // ESP_LOGI(TAG, "raw_current from INA= %f", raw_current);

@@ -55,13 +55,13 @@ static const char *TAG = "SERVER"; /**< Tag for logging messages from the HTTP s
  * This HTML page displays the current measurements and allows the user to
  * update the setpoint.
  */
-static const char *index_html = 
+static const char *index_html =
 "<!DOCTYPE html>"
 "<html lang=\"en\">"
 "<head>"
 "    <meta charset=\"UTF-8\">"
 "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"
-"    <title>ESP32 Measurements</title>"
+"    <title>Programmable Load Control</title>"
 "    <style>"
 "        body {"
 "            font-family: Arial, sans-serif;"
@@ -72,44 +72,88 @@ static const char *index_html =
 "            align-items: center;"
 "            justify-content: center;"
 "            height: 100vh;"
-"            background-color: #f0f0f0;"
+"            background-color: #1a1a1a;"
+"            color: #fff;"
 "        }"
 "        .container {"
-"            background: white;"
+"            background: #2a2a2a;"
 "            padding: 20px;"
 "            border-radius: 8px;"
-"            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);"
+"            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);"
+"            width: 90%;"
+"            max-width: 600px;"
 "        }"
 "        h1 {"
+"            text-align: center;"
+"        }"
+"        .measurement, .setpoint, .safety-limits, .startstop {"
 "            margin-bottom: 20px;"
 "        }"
-"        .measurement {"
-"            margin-bottom: 10px;"
+"        .measurement span {"
+"            color: #4CAF50;"
+"            font-weight: bold;"
 "        }"
-"        .setpoint {"
-"            margin-top: 20px;"
+"        input[type=\"number\"] {"
+"            background-color: #333;"
+"            color: white;"
+"            border: 1px solid #4CAF50;"
+"            padding: 8px;"
+"            border-radius: 4px;"
+"            margin-right: 10px;"
+"            width: 100%;"
+"        }"
+"        button {"
+"            background-color: #4CAF50;"
+"            color: white;"
+"            border: none;"
+"            padding: 10px 20px;"
+"            border-radius: 5px;"
+"            cursor: pointer;"
+"            transition: all 0.3s ease;"
+"        }"
+"        button:hover {"
+"            background-color: #45a049;"
+"        }"
+"        button:active {"
+"            transform: scale(0.95);"
 "        }"
 "    </style>"
 "</head>"
 "<body>"
 "    <div class=\"container\">"
-"        <h1>ESP32 Measurements</h1>"
+"        <h1>Programmable Load Control</h1>"
 "        <div class=\"measurement\">"
-"            <strong>Voltage:</strong> <span id=\"voltage\">0.0000</span> V"
-"        </div>"
-"        <div class=\"measurement\">"
-"            <strong>Current:</strong> <span id=\"current\">0.0000</span> A"
-"        </div>"
-"        <div class=\"measurement\">"
-"            <strong>Power:</strong> <span id=\"power\">0.0000</span> W"
-"        </div>"
-"        <div class=\"measurement\">"
-"            <strong>Temperature:</strong> <span id=\"temperature\">0.0000</span> °C"
+"            <h2>Measurements</h2>"
+"            <p><strong>Voltage:</strong> <span id=\"voltage\">0.0000</span> V</p>"
+"            <p><strong>Current:</strong> <span id=\"current\">0.0000</span> A</p>"
+"            <p><strong>Power:</strong> <span id=\"power\">0.0000</span> W</p>"
+"            <p><strong>Internal Temperature:</strong> <span id=\"temperature_internal\">0.0000</span> °C</p>"
+"            <p><strong>External Temperature 1:</strong> <span id=\"temperature_external_1\">0.0000</span> °C</p>"
+"            <p><strong>External Temperature 2:</strong> <span id=\"temperature_external_2\">0.0000</span> °C</p>"
+"            <p><strong>External Temperature 3:</strong> <span id=\"temperature_external_3\">0.0000</span> °C</p>"
 "        </div>"
 "        <div class=\"setpoint\">"
-"            <label for=\"setpoint\">Setpoint:</label>"
-"            <input type=\"number\" id=\"setpoint\" step=\"0.01\">"
-"            <button onclick=\"updateSetpoint()\">Update</button>"
+"            <h2>Setpoint</h2>"
+"            <input type=\"number\" id=\"setpoint\" step=\"0.01\" placeholder=\"Enter setpoint\">"
+"            <button onclick=\"updateSetpoint()\">Update Setpoint</button>"
+"        </div>"
+"        <div class=\"startstop\">"
+"            <h2>Start/Stop</h2>"
+"            <button onclick=\"toggleStartStop(this)\">Start</button>"
+"        </div>"
+"        <div class=\"safety-limits\">"
+"            <h2>Safety Limits</h2>"
+"            <h3>Hard Limits</h3>"
+"            <input type=\"number\" id=\"max_voltage_user\" placeholder=\"Max Voltage (V)\">"
+"            <input type=\"number\" id=\"min_voltage_user\" placeholder=\"Min Voltage (V)\">"
+"            <input type=\"number\" id=\"max_current_user\" placeholder=\"Max Current (A)\">"
+"            <input type=\"number\" id=\"max_power_user\" placeholder=\"Max Power (W)\">"
+"            <input type=\"number\" id=\"max_temperature_user\" placeholder=\"Max Temperature (°C)\">"
+"            <h3>Soft Limits</h3>"
+"            <input type=\"number\" id=\"soft_max_voltage\" placeholder=\"Soft Max Voltage (V)\">"
+"            <input type=\"number\" id=\"soft_max_current\" placeholder=\"Soft Max Current (A)\">"
+"            <input type=\"number\" id=\"soft_max_temperature\" placeholder=\"Soft Max Temperature (°C)\">"
+"            <button onclick=\"updateSafetyLimits()\">Set Safety Limits</button>"
 "        </div>"
 "    </div>"
 "    <script>"
@@ -119,16 +163,42 @@ static const char *index_html =
 "            document.getElementById('voltage').textContent = data.voltage.toFixed(4);"
 "            document.getElementById('current').textContent = data.current.toFixed(4);"
 "            document.getElementById('power').textContent = data.power.toFixed(4);"
-"            document.getElementById('temperature').textContent = data.temperature.toFixed(4);"
+"            document.getElementById('temperature_internal').textContent = data.temperature_internal.toFixed(4);"
+"            document.getElementById('temperature_external_1').textContent = data.temperature_external_1.toFixed(4);"
+"            document.getElementById('temperature_external_2').textContent = data.temperature_external_2.toFixed(4);"
+"            document.getElementById('temperature_external_3').textContent = data.temperature_external_3.toFixed(4);"
 "        }"
 "        async function updateSetpoint() {"
 "            const setpoint = document.getElementById('setpoint').value;"
 "            await fetch('/setpoint', {"
 "                method: 'POST',"
-"                headers: {"
-"                    'Content-Type': 'application/x-www-form-urlencoded',"
-"                },"
+"                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },"
 "                body: setpoint,"
+"            });"
+"        }"
+"        async function toggleStartStop(button) {"
+"            const action = button.textContent === \"Start\" ? \"start\" : \"stop\";"
+"            await fetch('/startstop', {"
+"                method: 'POST',"
+"                body: action,"
+"            });"
+"            button.textContent = action === \"start\" ? \"Stop\" : \"Start\";"
+"        }"
+"        async function updateSafetyLimits() {"
+"            const safetyData = {"
+"                max_voltage_user: parseFloat(document.getElementById('max_voltage_user').value),"
+"                min_voltage_user: parseFloat(document.getElementById('min_voltage_user').value),"
+"                max_current_user: parseFloat(document.getElementById('max_current_user').value),"
+"                max_power_user: parseFloat(document.getElementById('max_power_user').value),"
+"                max_temperature_user: parseFloat(document.getElementById('max_temperature_user').value),"
+"                soft_max_voltage: parseFloat(document.getElementById('soft_max_voltage').value),"
+"                soft_max_current: parseFloat(document.getElementById('soft_max_current').value),"
+"                soft_max_temperature: parseFloat(document.getElementById('soft_max_temperature').value),"
+"            };"
+"            await fetch('/safety', {"
+"                method: 'POST',"
+"                headers: { 'Content-Type': 'application/json' },"
+"                body: JSON.stringify(safetyData),"
 "            });"
 "        }"
 "        setInterval(fetchMeasurements, 1000);"
@@ -165,9 +235,14 @@ static esp_err_t index_handler(httpd_req_t *req) {
 static esp_err_t get_measurement_handler(httpd_req_t *req) {
     MeasurementData measurement;
     if (xQueuePeek(measurement_queue, &measurement, pdMS_TO_TICKS(10)) == pdTRUE) {
-        char resp[100];
-        snprintf(resp, sizeof(resp), "{\"voltage\": %.4f, \"current\": %.4f, \"power\": %.4f, \"temperature\": %.2f}",
-                 measurement.bus_voltage, measurement.current, measurement.power, measurement.temperature_internal);
+        char resp[200];
+        snprintf(resp, sizeof(resp),
+                 "{\"voltage\": %.4f, \"current\": %.4f, \"power\": %.4f, "
+                 "\"temperature_internal\": %.2f, \"temperature_external_1\": %.2f, "
+                 "\"temperature_external_2\": %.2f, \"temperature_external_3\": %.2f}",
+                 measurement.bus_voltage, measurement.current, measurement.power,
+                 measurement.temperature_internal, measurement.temperature_external_1,
+                 measurement.temperature_external_2, measurement.temperature_external_3);
         httpd_resp_set_type(req, "application/json");
         httpd_resp_send(req, resp, strlen(resp));
     } else {
@@ -254,14 +329,13 @@ static esp_err_t start_stop_handler(httpd_req_t *req) {
  * @return ESP_OK on success, or an error code on failure.
  */
 static esp_err_t set_safety_handler(httpd_req_t *req) {
-    char content[200];
+    char content[300];
     size_t recv_size = MIN(req->content_len, sizeof(content) - 1);
     int ret = httpd_req_recv(req, content, recv_size);
-    
+
     if (ret <= 0) return ESP_FAIL;
     content[recv_size] = '\0';
 
-    // Parse JSON (using cJSON library recommended)
     cJSON *root = cJSON_Parse(content);
     if (!root) {
         httpd_resp_send_500(req);
@@ -270,16 +344,16 @@ static esp_err_t set_safety_handler(httpd_req_t *req) {
 
     SafetyData safety;
     memset(&safety, 0, sizeof(safety));
-    
-    // Get user values
+
     safety.max_voltage_user = cJSON_GetObjectItem(root, "max_voltage_user")->valuedouble;
     safety.min_voltage_user = cJSON_GetObjectItem(root, "min_voltage_user")->valuedouble;
     safety.max_current_user = cJSON_GetObjectItem(root, "max_current_user")->valuedouble;
     safety.max_power_user = cJSON_GetObjectItem(root, "max_power_user")->valuedouble;
     safety.max_temperature_user = cJSON_GetObjectItem(root, "max_temperature_user")->valuedouble;
+    safety.soft_max_voltage = cJSON_GetObjectItem(root, "soft_max_voltage")->valuedouble;
+    safety.soft_max_current = cJSON_GetObjectItem(root, "soft_max_current")->valuedouble;
+    safety.soft_max_temperature = cJSON_GetObjectItem(root, "soft_max_temperature")->valuedouble;
 
-
-    // Send to queue
     if (xQueueSend(safety_queue, &safety, pdMS_TO_TICKS(100)) != pdPASS) {
         cJSON_Delete(root);
         httpd_resp_send_500(req);
@@ -287,7 +361,36 @@ static esp_err_t set_safety_handler(httpd_req_t *req) {
     }
 
     cJSON_Delete(root);
-    httpd_resp_send(req, "OK", HTTPD_RESP_USE_STRLEN);
+    httpd_resp_send(req, "Safety limits updated", HTTPD_RESP_USE_STRLEN);
+    return ESP_OK;
+}
+
+static esp_err_t set_mode_handler(httpd_req_t *req) {
+    char content[20];
+    size_t recv_size = MIN(req->content_len, sizeof(content) - 1);
+    int ret = httpd_req_recv(req, content, recv_size);
+
+    if (ret <= 0) return ESP_FAIL;
+    content[recv_size] = '\0';
+
+    ControlMode mode;
+    if (strcmp(content, "MODE_CC") == 0) {
+        mode = MODE_CC;
+    } else if (strcmp(content, "MODE_CV") == 0) {
+        mode = MODE_CV;
+    } else if (strcmp(content, "MODE_CP") == 0) {
+        mode = MODE_CP;
+    } else {
+        httpd_resp_send_400(req);
+        return ESP_FAIL;
+    }
+
+    if (xQueueOverwrite(mode_queue, &mode) != pdPASS) {
+        httpd_resp_send_500(req);
+        return ESP_FAIL;
+    }
+
+    httpd_resp_send(req, "Mode updated", HTTPD_RESP_USE_STRLEN);
     return ESP_OK;
 }
 
@@ -349,6 +452,14 @@ httpd_handle_t start_webserver()
             .user_ctx = NULL
         };
         httpd_register_uri_handler(server, &safety_uri);
+
+        httpd_uri_t mode_uri = {
+            .uri       = "/mode",
+            .method    = HTTP_POST,
+            .handler   = set_mode_handler,
+            .user_ctx  = NULL
+        };
+        httpd_register_uri_handler(server, &mode_uri);
 
     } else {
         ESP_LOGI(TAG, "Server failed to start");

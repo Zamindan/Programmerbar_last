@@ -52,8 +52,9 @@
 // PWM Related
 #define PWM_SPEED_MODE LEDC_LOW_SPEED_MODE     /**< LEDC speed mode (low speed). */
 #define PWM_TIMER_RESOLUTION LEDC_TIMER_10_BIT /**< PWM timer resolution (10 bits). */
-#define PWM_FREQ 5000                          /**< PWM frequency in Hz. */
-#define PWM_CHANNEL LEDC_CHANNEL_0             /**< LEDC channel used for PWM. */
+#define PWM_FREQ 30000                         /**< PWM frequency in Hz. */
+#define PWM_CHANNEL_LOAD LEDC_CHANNEL_0        /**< LEDC channel used for PWM. */
+#define PWM_CHANNEL_FAN LEDC_CHANNEL_1         /**< LEDC channel used for PWM. */
 #define PWM_TIMER LEDC_TIMER_0                 /**< LEDC timer used for PWM. */
 
 // INA237 Registers
@@ -66,5 +67,12 @@
 #define GLITCH_IGNORE_COUNT 7              /**< Number of glitches to ignore on the I2C bus. */
 #define INTERNAL_PULLUP 1                  /**< Enable (1) or disable (0) internal pull-up resistors. */
 #define DEV_ADDR_LENGTH I2C_ADDR_BIT_LEN_7 /**< I2C device address length in bits (7-bit addressing). */
+
+// NTC Related
+#define R1_NTC_VDIV 10000   /**< Value of R1 in the voltage divider for NTC thermistor. */
+#define T0_NTC 298.15       /**< Reference temperature for NTC thermistor. */
+#define R0_NTC 10000        /**< Reference resistance for NTC thermistor. */
+#define B_NTC_INTERNAL 3500 /**< B value for internal NTC thermistor. */
+#define B_NTC_EXTERNAL 3500 /**< B value for external NTC thermistors. */
 
 #endif

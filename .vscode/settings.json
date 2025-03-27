@@ -63,5 +63,12 @@
     },
     "C_Cpp.errorSquiggles": "disabled",
     "C_Cpp.dimInactiveRegions": false,
+    "cmake.generator": "Ninja",
+    "cmake.configureSettings": {
+        "CMAKE_MAKE_PROGRAM": "ninja",
+        "IDF_TARGET": "esp32s3" // Explicitly set your target (esp32s3)
+    },
+    "cmake.cCompilerPath": "C:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/xtensa-esp-elf-gcc.exe",
+    "cmake.cppCompilerPath": "C:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/xtensa-esp-elf-g++.exe"
     //"C_Cpp.default.compilerPath": "C:/TDM-GCC-64/bin/gcc.exe"
 }
