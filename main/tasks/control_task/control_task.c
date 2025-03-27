@@ -145,7 +145,7 @@ void control_task(void *paramter)
                     }
 
                     // Update the PWM duty cycle
-                    pwm_update_duty(duty_cycle);
+                    pwm_update_duty(duty_cycle, PWM_CHANNEL_LOAD);
 
                     ESP_LOGI(TAG, "Setpoint: %.2f A, Measured: %.2f A, Duty Cycle: %.2f%%", setpoint, measurements.current, duty_cycle);
                 }
@@ -181,5 +181,34 @@ void control_task(void *paramter)
             ESP_LOGI(TAG, "SAFETY TRIGGERED");
         }
         vTaskDelay(pdMS_TO_TICKS(1));
+
+        // For fan control I need a PWM signal that is between 18 kHz and 30 kHz
+        // The fan has an operating duty cycle range from 30% to 100%
+        // This is a very rudementary way to implement a fan curve but its the first thing i though of, change if it doesnt work well.
+        if (measurements.temperature_internal > 80)
+        {
+            pwm_update_duty(100, PWM_CHANNEL_FAN);
+        }
+        else if (measurements.temperature_internal > 70)
+        {
+            pwm_update_duty(80, PWM_CHANNEL_FAN);
+        }
+        else if (measurements.temperature_internal > 60)
+        {
+            pwm_update_duty(60, PWM_CHANNEL_FAN);
+        }
+        else if (measurements.temperature_internal > 50)
+        {
+            pwm_update_duty(40, PWM_CHANNEL_FAN);
+        }
+        else if (measurements.temperature_internal > 40)
+        {
+            pwm_update_duty(30, PWM_CHANNEL_FAN);
+        }
+        else
+        {
+            pwm_update_duty(0, PWM_CHANNEL_FAN);
+        }
+
     }
 }

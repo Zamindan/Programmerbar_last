@@ -36,16 +36,27 @@ void pwm_init()
         .freq_hz = PWM_FREQ};
     ESP_ERROR_CHECK(ledc_timer_config(&pwm_timer));
 
-    ledc_channel_config_t pwm_config = {
+    ledc_channel_config_t pwm_config_load = {
         .gpio_num = PWM_GPIO_MOSFET,
         .speed_mode = PWM_SPEED_MODE,
-        .channel = PWM_CHANNEL,
+        .channel = PWM_CHANNEL_LOAD,
         .timer_sel = PWM_TIMER,
         .intr_type = LEDC_INTR_DISABLE,
         .duty = 0,
         .hpoint = 0};
-    ESP_ERROR_CHECK(ledc_channel_config(&pwm_config));
-    ESP_LOGI(TAG, "PWM initialized");
+    ESP_ERROR_CHECK(ledc_channel_config(&pwm_config_load));
+    ESP_LOGI(TAG, "PWM load initialized");
+
+    ledc_channel_config_t pwm_config_fan = {
+        .gpio_num = PWM_GPIO_FAN,
+        .speed_mode = PWM_SPEED_MODE,
+        .channel = PWM_CHANNEL_FAN,
+        .timer_sel = PWM_TIMER,
+        .intr_type = LEDC_INTR_DISABLE,
+        .duty = 0,
+        .hpoint = 0};
+    ESP_ERROR_CHECK(ledc_channel_config(&pwm_config_fan));
+    ESP_LOGI(TAG, "PWM fan initialized");
 }
 
 /**
@@ -56,8 +67,9 @@ void pwm_init()
  * of the timer (10 bits in this case).
  *
  * @param duty_cycle_percentage The desired duty cycle as a percentage (0.0 to 100.0).
+ * @param PWM_CHANNEL The PWM channel to update.
  */
-void pwm_update_duty(float duty_cycle_percentage)
+void pwm_update_duty(float duty_cycle_percentage, ledc_channel_t PWM_CHANNEL)
 {
     // Ensure the duty cycle percentage is within 0 to 100
     if (duty_cycle_percentage < 0) duty_cycle_percentage = 0;

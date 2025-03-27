@@ -1,4 +1,6 @@
-idf_component_register(SRCS "main.c" 
+# Register the component with all source files and include directories
+idf_component_register(SRCS
+"main.c" 
 "tasks/control_task/control_task.c" 
 "tasks/measurement_task/measurement_task.c" 
 "drivers/adc/adc.c" 
@@ -10,9 +12,8 @@ idf_component_register(SRCS "main.c"
 "tasks/safety_task/safety_task.c" 
 "communication/wifi/wifi.c" 
 "communication/http_server/http_server.c"
-                    INCLUDE_DIRS 
-                    "." "communication/http_server" 
-                    "tasks/control_task" 
+                    INCLUDE_DIRS
+                    "." "communication/http_server"  
                     "tasks/hmi_task" 
                     "tasks/control_task" 
                     "tasks/measurement_task" 

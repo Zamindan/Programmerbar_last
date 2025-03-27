@@ -1,6 +1,8 @@
 #ifndef I2C_H
 #define I2C_H
 
+#include "driver/ledc.h"
+
 /**
  * @file pwm.h
  * @brief He<der file for the PWM driver.abort
@@ -27,8 +29,9 @@ void pwm_init();
  * between 0% and 100%.
  *
  * @param duty_cycle The desired duty cycle as a percentage (0.0 to 100.0).
+ * @param PWM_CHANNEL The PWM channel to update.
  */
-void pwm_update_duty(float duty_cycle);
+void pwm_update_duty(float duty_cycle_percentage, ledc_channel_t PWM_CHANNEL);
 
 #endif
 
