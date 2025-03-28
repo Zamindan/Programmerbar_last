@@ -101,6 +101,9 @@
 #define REG_CMDB_SPACE 0x30257A
 #define REG_CMDB_WRITE 0x30257B
 
+#define CLOCK_10_MHz 10000000
+#define CLOCK_30_MHz 30000000
+
 // Host Command
 #define ACTIVE 0x00
 #define STANDBY 0x41
@@ -168,22 +171,28 @@ void spi_add_device(int clk_speed, int duty_val, int spi_mode, int spi_queue_siz
     vTaskDelay(pdMS_TO_TICKS(100));
 }
 
+void spi_clock(int clk_speed)
+{
+    spi_device_interface_config_t device_config = {
+        .clock_speed_hz = clk_speed,
+    };
+}
+
 void spi_write_8(uint32_t address, uint8_t data)
 {
     // FT812 requires: [WRITE_CMD(0x41)] + [24-bit address] + [8-bit data]
     uint8_t tx_buf[5]; // 1 (cmd) + 3 (addr) + 1 (data)
 
-    tx_buf[0] = 0x41;                  // WRITE command (0x41)
+    tx_buf[0] = 0x41;                   // WRITE command (0x41)
     tx_buf[1] = (address >> 16) & 0xFF; // Address byte 2 (MSB)
     tx_buf[2] = (address >> 8) & 0xFF;  // Address byte 1
     tx_buf[3] = address & 0xFF;         // Address byte 0 (LSB)
     tx_buf[4] = data;                   // 8-bit data
 
     spi_transaction_t trans = {
-        .length = 5 * 8,     // Total bits to send (5 bytes)
+        .length = 5 * 8, // Total bits to send (5 bytes)
         .tx_buffer = tx_buf,
-        .rx_buffer = NULL
-    };
+        .rx_buffer = NULL};
 
     esp_err_t ret = spi_device_polling_transmit(spi_handle, &trans);
     ESP_ERROR_CHECK(ret);
@@ -194,7 +203,7 @@ void spi_write_16(uint32_t address, uint16_t data)
     // FT812 requires: [WRITE_CMD(0x41)] + [24-bit address] + [16-bit data]
     uint8_t tx_buf[6]; // 1 (cmd) + 3 (addr) + 2 (data)
 
-    tx_buf[0] = 0x41;                  // WRITE command (0x41)
+    tx_buf[0] = 0x41;                   // WRITE command (0x41)
     tx_buf[1] = (address >> 16) & 0xFF; // Address byte 2 (MSB)
     tx_buf[2] = (address >> 8) & 0xFF;  // Address byte 1
     tx_buf[3] = address & 0xFF;         // Address byte 0 (LSB)
@@ -202,10 +211,9 @@ void spi_write_16(uint32_t address, uint16_t data)
     tx_buf[5] = (data >> 8) & 0xFF;     // Data MSB
 
     spi_transaction_t trans = {
-        .length = 6 * 8,     // Total bits to send (6 bytes)
+        .length = 6 * 8, // Total bits to send (6 bytes)
         .tx_buffer = tx_buf,
-        .rx_buffer = NULL
-    };
+        .rx_buffer = NULL};
 
     esp_err_t ret = spi_device_polling_transmit(spi_handle, &trans);
     ESP_ERROR_CHECK(ret);
@@ -226,10 +234,9 @@ void spi_write_32(uint32_t address, uint32_t data)
     tx_buf[7] = (data >> 24) & 0xFF;    // Data byte 3 (MSB)
 
     spi_transaction_t trans = {
-        .length = 8 * 8,     // Total bits to send (8 bytes)
+        .length = 8 * 8, // Total bits to send (8 bytes)
         .tx_buffer = tx_buf,
-        .rx_buffer = NULL
-    };
+        .rx_buffer = NULL};
 
     // Perform the SPI transaction
     esp_err_t ret = spi_device_polling_transmit(spi_handle, &trans);
@@ -243,7 +250,7 @@ uint8_t spi_read_8(uint32_t address)
     uint8_t rx_buf[3]; // Dummy byte + 1 data byte
 
     // Prepare the transmit buffer
-    tx_buf[0] = 0x80;                  // READ command (0x80)
+    tx_buf[0] = 0x80;                   // READ command (0x80)
     tx_buf[1] = (address >> 16) & 0xFF; // Address byte 2 (MSB)
     tx_buf[2] = (address >> 8) & 0xFF;  // Address byte 1
     tx_buf[3] = address & 0xFF;         // Address byte 0 (LSB)
@@ -252,9 +259,9 @@ uint8_t spi_read_8(uint32_t address)
     // Configure the SPI transaction
     spi_transaction_t trans = {
         .length = 5 * 8,     // Total bits to send (5 bytes)
-        .rxlength = 2 * 8,    // Total bits to receive (2 bytes: dummy + 1 data)
-        .tx_buffer = tx_buf,  // Pointer to the transmit buffer
-        .rx_buffer = rx_buf   // Pointer to the receive buffer
+        .rxlength = 2 * 8,   // Total bits to receive (2 bytes: dummy + 1 data)
+        .tx_buffer = tx_buf, // Pointer to the transmit buffer
+        .rx_buffer = rx_buf  // Pointer to the receive buffer
     };
 
     // Perform the SPI transaction
@@ -265,7 +272,6 @@ uint8_t spi_read_8(uint32_t address)
     return rx_buf[1];
 }
 
-
 uint16_t spi_read_16(uint32_t address)
 {
     // FT812 requires: [READ_CMD(0x80)] + [24-bit address] + [dummy byte]
@@ -274,7 +280,7 @@ uint16_t spi_read_16(uint32_t address)
     uint8_t rx_buf[4]; // Dummy byte + 2 data bytes
 
     // Prepare the transmit buffer
-    tx_buf[0] = 0x80;                  // READ command (0x80)
+    tx_buf[0] = 0x80;                   // READ command (0x80)
     tx_buf[1] = (address >> 16) & 0xFF; // Address byte 2 (MSB)
     tx_buf[2] = (address >> 8) & 0xFF;  // Address byte 1
     tx_buf[3] = address & 0xFF;         // Address byte 0 (LSB)
@@ -283,9 +289,9 @@ uint16_t spi_read_16(uint32_t address)
     // Configure the SPI transaction
     spi_transaction_t trans = {
         .length = 5 * 8,     // Total bits to send (5 bytes)
-        .rxlength = 3 * 8,    // Total bits to receive (3 bytes: dummy + 2 data)
-        .tx_buffer = tx_buf,  // Pointer to the transmit buffer
-        .rx_buffer = rx_buf   // Pointer to the receive buffer
+        .rxlength = 3 * 8,   // Total bits to receive (3 bytes: dummy + 2 data)
+        .tx_buffer = tx_buf, // Pointer to the transmit buffer
+        .rx_buffer = rx_buf  // Pointer to the receive buffer
     };
 
     // Perform the SPI transaction
@@ -305,7 +311,7 @@ uint32_t spi_read_32(uint32_t address)
     uint8_t rx_buf[8]; // Dummy byte + 4 data bytes
 
     // Prepare the transmit buffer
-    tx_buf[0] = 0x80;                  // READ command (0x80)
+    tx_buf[0] = 0x80;                   // READ command (0x80)
     tx_buf[1] = (address >> 16) & 0xFF; // Address byte 2 (MSB)
     tx_buf[2] = (address >> 8) & 0xFF;  // Address byte 1
     tx_buf[3] = address & 0xFF;         // Address byte 0 (LSB)
@@ -314,9 +320,9 @@ uint32_t spi_read_32(uint32_t address)
     // Configure the SPI transaction
     spi_transaction_t trans = {
         .length = 5 * 8,     // Total bits to send (5 bytes)
-        .rxlength = 5 * 8,    // Total bits to receive (5 bytes)
-        .tx_buffer = tx_buf,  // Pointer to the transmit buffer
-        .rx_buffer = rx_buf   // Pointer to the receive buffer
+        .rxlength = 5 * 8,   // Total bits to receive (5 bytes)
+        .tx_buffer = tx_buf, // Pointer to the transmit buffer
+        .rx_buffer = rx_buf  // Pointer to the receive buffer
     };
 
     // Perform the SPI transaction
@@ -328,27 +334,36 @@ uint32_t spi_read_32(uint32_t address)
     return data;
 }
 
-void host_command(uint8_t command)
+esp_err_t host_command(uint8_t command)
 {
+    esp_err_t ret;
     spi_transaction_t trans = {
-        .length = 8,           // Single byte command
-        .tx_buffer = &command, // Pointer to command byte
-        .rx_buffer = NULL      // No response expected
+        .length = 8, // 8 bits (1 byte)
+        .tx_buffer = &command,
+        .rx_buffer = NULL,
     };
-
-    // Execute the transaction
-    esp_err_t check_host_command = spi_device_polling_transmit(spi_handle, &trans);
-    ESP_LOGE(SPI_TAG, "Host command 0x%02X failed: %s", command, esp_err_to_name(check_host_command));
-
-    // Some commands require a delay
-    switch (command)
-    {
-    case 0x68:                         // CORERST
-    case 0x57:                         // CLK48M
-        vTaskDelay(pdMS_TO_TICKS(20)); // 20ms delay
-        break;
+    
+    // Send the command
+    ret = spi_device_polling_transmit(spi_handle, &trans);
+    if (ret != ESP_OK) {
+        ESP_LOGE(SPI_TAG, "SPI transmit failed: %s", esp_err_to_name(ret));
+        return ret;
     }
+    
+    // Some commands require a small delay
+    switch (command) {
+        case ACTIVE:
+        case CLKEXT:
+            vTaskDelay(pdMS_TO_TICKS(20));
+            break;
+        default:
+            vTaskDelay(pdMS_TO_TICKS(1));
+            break;
+    }
+    
+    return ESP_OK;
 }
+
 
 uint32_t BEGIN(uint8_t prim)
 {
@@ -398,59 +413,53 @@ uint32_t VERTEX2II(uint16_t x, uint16_t y, uint8_t handle, uint8_t cell)
     return 0x40000000 | ((x & 0x1FF) << 21) | ((y & 0x1FF) << 12) | ((handle & 0x1F) << 7) | (cell & 0x7F);
 }
 
+void ft812_init()
+{
+    spi_clock(CLOCK_10_MHz);
 
-    void FT81x_init()
-    {
+    // Toggle GPIO_PD from low to high with a 20ms delay
+    gpio_set_direction(GPIO_PD, GPIO_MODE_OUTPUT); // Set GPIO_PD as output
+    gpio_set_level(GPIO_PD, 0);                    // Set GPIO_PD low
+    gpio_set_level(GPIO_PD, 1);                    // Set GPIO_PD high
+    vTaskDelay(pdMS_TO_TICKS(20));
 
-        // Configure GPIO_PD as output
-        gpio_config_t io_conf = {
-            .mode = GPIO_MODE_OUTPUT,
-            .pin_bit_mask = (1ULL << GPIO_PD),
-            .pull_down_en = 0,
-            .pull_up_en = 0,
-        };
-        gpio_config(&io_conf);
+    host_command(ACTIVE); // send host command "ACTIVE" to FT81X
+    vTaskDelay(pdMS_TO_TICKS(300)); // Wait for 300ms
 
-        // Toggle GPIO_PD from low to high with a 20ms delay
-        gpio_set_level(GPIO_PD, 0);    // Set GPIO_PD low
-        vTaskDelay(pdMS_TO_TICKS(20)); // Wait for 20ms
-        gpio_set_level(GPIO_PD, 1);    // Set GPIO_PD high
-        vTaskDelay(pdMS_TO_TICKS(20)); // Wait for another 20ms if needed
+    // Configure video time registers
+    spi_write_16(REG_HSIZE, 480);  // horizontal resolution
+    spi_write_16(REG_HCYCLE, 928); // number of clocks per line
+    spi_write_16(REG_HOFFSET, 88); // horizontal offset from starting signal
+    spi_write_16(REG_HSYNC0, 0);   // hsync falls after this clock
+    spi_write_16(REG_HSYNC1, 48);  // hsync rises after this clock
 
-        host_command(ACTIVE); // send host command "ACTIVE" to FT81X
+    spi_write_16(REG_VSIZE, 480);  // vertical resolution
+    spi_write_16(REG_VCYCLE, 525); // number of clocks per line
+    spi_write_16(REG_VOFFSET, 32); // vertical offset from starting signal
+    spi_write_16(REG_VSYNC0, 0);   // vsync falls after this clock
+    spi_write_16(REG_VSYNC1, 3);   // vsync rises after this clock
 
-        // Configure display registers - demonstration for WQVGA resolution 
-        spi_write_16(REG_HCYCLE, 928);
-        spi_write_16(REG_HOFFSET, 88);
-        spi_write_16(REG_HSYNC0, 0);
-        spi_write_16(REG_HSYNC1, 48);
-        spi_write_16(REG_VCYCLE, 525);
-        spi_write_16(REG_VOFFSET, 32);
-        spi_write_16(REG_VSYNC0, 0);
-        spi_write_16(REG_VSYNC1, 3);
-        spi_write_16(REG_SWIZZLE, 0);
-        spi_write_16(REG_PCLK_POL, 0);
-        spi_write_16(REG_CSPREAD, 1);
-        spi_write_16(REG_HSIZE, 800);
-        spi_write_16(REG_VSIZE, 480);
+    spi_write_8(REG_PCLK, 2);    // 2 = 84MHz / 2 = 42MHz
+    spi_write_8(REG_SWIZZLE, 0); // no swizzle
+    spi_write_8(REG_PCLK_POL, 0);
+    spi_write_8(REG_CSPREAD, 0); // spread spectrum on
+    spi_write_8(REG_DITHER, 1);  // dithering on
 
-        // write first display list
-        spi_write_32(RAM_DL + 0, CLEAR_COLOR_RGB(0, 0, 0));
+    // write first display list
+    spi_write_32(RAM_DL + 0, CLEAR_COLOR_RGB(0, 0, 0));
 
-        spi_write_32(RAM_DL + 4, CLEAR(1, 1, 1));
-        spi_write_32(RAM_DL + 8, DISPLAY());
-        spi_write_8(REG_DLSWAP, 0x02); // display list swap
-        spi_write_8(REG_GPIO_DIR, 0x80 | spi_read_8(REG_GPIO_DIR));
-        spi_write_8(REG_GPIO, 0x080 | spi_read_8(REG_GPIO)); // enable display bit
-        spi_write_16(REG_PCLK, 5);                           // after this display is visible on the LCD
-        spi_add_device(30 * 1000 * 1000, 0, 0, 1, GPIO_CS);
-    }
+    spi_write_32(RAM_DL + 4, CLEAR(1, 1, 1));
+    spi_write_32(RAM_DL + 8, DISPLAY());
+    spi_write_8(REG_DLSWAP, 0x02); // display list swap
+    spi_write_8(REG_GPIO_DIR, 0x80 | spi_read_8(REG_GPIO_DIR));
+    spi_write_8(REG_GPIO, 0x080 | spi_read_8(REG_GPIO)); // enable display bit
 
-    void app_main()
-    { 
-        spi_init(GPIO_SCLK, GPIO_MOSI, GPIO_MISO);
-        spi_add_device(7 * 1000 * 1000, 0, 0, 1, GPIO_CS);
+    spi_write_8(REG_PCLK, 2);                           // after this display is visible on the LCD
+    spi_clock(CLOCK_30_MHz);
+}
 
+void display_texy()
+{
     spi_write_32(RAM_DL + 0, CLEAR(1, 1, 1));                // clear screen
     spi_write_32(RAM_DL + 4, BEGIN(BITMAPS));                // start drawing bitmaps
     spi_write_32(RAM_DL + 8, VERTEX2II(220, 110, 31, 'F'));  // ascii F in font 31
@@ -464,10 +473,21 @@ uint32_t VERTEX2II(uint16_t x, uint16_t y, uint8_t handle, uint8_t cell)
     spi_write_32(RAM_DL + 40, VERTEX2II(192, 133, 0, 0)); // red point
     spi_write_32(RAM_DL + 44, END());
     spi_write_32(RAM_DL + 48, DISPLAY());
-    
-    while(1){
+}
+
+void app_main()
+{
+    spi_init(GPIO_SCLK, GPIO_MOSI, GPIO_MISO);
+    spi_add_device(30 * 1000 * 1000, 0, 0, 1, GPIO_CS);
+    ft812_init();
+    display_texy();
+
+    // Wait for another 20ms if needed
+
+    while (1)
+    {
         vTaskDelay(pdMS_TO_TICKS(1000));
-        uint32_t reg_id = spi_read_32(0x302028);
+        uint32_t reg_id = spi_read_32(0x302000);
         printf("REG_ID: 0x%08lX\n", reg_id);
         // Expected output: 0x0000007C (if communication is working)
     }
