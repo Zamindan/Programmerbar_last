@@ -64,6 +64,8 @@ typedef struct
     float bus_voltage;            /**< Measured bus voltage (V). */
     float current;                /**< Measured current (A). */
     float power;                  /**< Calculated power (W). */
+    float Ah;                     /**< Calculated Ampere-hours (Ah). */
+    float Wh;                     /**< Calculated Watt-hours (Wh). */
     float temperature_internal;   /**< Measured internal temperature (°C). */
     float temperature_external_1; /**< Measured external temperature probe 1 (°C)*/
     float temperature_external_2; /**< Measured external temperature probe 2 (°C)*/

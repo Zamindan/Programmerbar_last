@@ -67,15 +67,11 @@ static const char *index_html =
 "            font-family: Arial, sans-serif;"
 "            margin: 0;"
 "            padding: 0;"
-"            display: flex;"
-"            flex-direction: column;"
-"            align-items: center;"
-"            justify-content: center;"
-"            height: 100vh;"
 "            background-color: #1a1a1a;"
 "            color: #fff;"
 "        }"
 "        .container {"
+"            margin: 20px auto;"
 "            background: #2a2a2a;"
 "            padding: 20px;"
 "            border-radius: 8px;"
@@ -86,14 +82,15 @@ static const char *index_html =
 "        h1 {"
 "            text-align: center;"
 "        }"
-"        .measurement, .setpoint, .safety-limits, .startstop {"
+"        .section {"
 "            margin-bottom: 20px;"
 "        }"
-"        .measurement span {"
+"        .section span {"
 "            color: #4CAF50;"
 "            font-weight: bold;"
 "        }"
-"        input[type=\"number\"] {"
+"        input[type=\"number\"],"
+"        select {"
 "            background-color: #333;"
 "            color: white;"
 "            border: 1px solid #4CAF50;"
@@ -117,42 +114,116 @@ static const char *index_html =
 "        button:active {"
 "            transform: scale(0.95);"
 "        }"
+"        .input-group {"
+"            display: flex;"
+"            align-items: center;"
+"            margin-bottom: 10px;"
+"        }"
+"        .input-group label {"
+"            flex: 1;"
+"            margin-right: 10px;"
+"            color: #4CAF50;"
+"            font-weight: bold;"
+"        }"
+"        .input-group input {"
+"            flex: 2;"
+"            background-color: #333;"
+"            color: white;"
+"            border: 1px solid #4CAF50;"
+"            padding: 8px;"
+"            border-radius: 4px;"
+"        }"
 "    </style>"
 "</head>"
 "<body>"
 "    <div class=\"container\">"
 "        <h1>Programmable Load Control</h1>"
-"        <div class=\"measurement\">"
+"        <div class=\"section\">"
 "            <h2>Measurements</h2>"
 "            <p><strong>Voltage:</strong> <span id=\"voltage\">0.0000</span> V</p>"
 "            <p><strong>Current:</strong> <span id=\"current\">0.0000</span> A</p>"
 "            <p><strong>Power:</strong> <span id=\"power\">0.0000</span> W</p>"
+"            <p><strong>Amp Hours:</strong> <span id=\"Ah\">0.0000</span> Ah</p>"
+"            <p><strong>Watt Hours:</strong> <span id=\"Wh\">0.0000</span> Wh</p>"
 "            <p><strong>Internal Temperature:</strong> <span id=\"temperature_internal\">0.0000</span> °C</p>"
 "            <p><strong>External Temperature 1:</strong> <span id=\"temperature_external_1\">0.0000</span> °C</p>"
 "            <p><strong>External Temperature 2:</strong> <span id=\"temperature_external_2\">0.0000</span> °C</p>"
 "            <p><strong>External Temperature 3:</strong> <span id=\"temperature_external_3\">0.0000</span> °C</p>"
 "        </div>"
-"        <div class=\"setpoint\">"
+"        <div class=\"section\">"
+"            <h2>Control Mode</h2>"
+"            <select id=\"control_mode\">"
+"                <option value=\"MODE_CC\">Constant Current (CC)</option>"
+"                <option value=\"MODE_CV\">Constant Voltage (CV)</option>"
+"                <option value=\"MODE_CP\">Constant Power (CP)</option>"
+"            </select>"
+"            <button onclick=\"updateControlMode()\">Set Mode</button>"
+"        </div>"
+"        <div class=\"section\">"
 "            <h2>Setpoint</h2>"
+"            <p>The setpoint defines the target value for the selected mode:</p>"
+"            <ul>"
+"                <li><span>CC Mode:</span> Target current (Amps).</li>"
+"                <li><span>CV Mode:</span> Target voltage (Volts).</li>"
+"                <li><span>CP Mode:</span> Target power (Watts).</li>"
+"            </ul>"
 "            <input type=\"number\" id=\"setpoint\" step=\"0.01\" placeholder=\"Enter setpoint\">"
 "            <button onclick=\"updateSetpoint()\">Update Setpoint</button>"
 "        </div>"
-"        <div class=\"startstop\">"
+"        <div class=\"section\">"
 "            <h2>Start/Stop</h2>"
-"            <button onclick=\"toggleStartStop(this)\">Start</button>"
+"            <button id=\"startstop_button\" onclick=\"toggleStartStop(this)\">Start</button>"
 "        </div>"
-"        <div class=\"safety-limits\">"
+"        <div class=\"section\">"
+"            <h2>Load State</h2>"
+"            <p><strong>Status:</strong> <span id=\"load_state\">Unknown</span></p>"
+"        </div>"
+"        <div class=\"section\">"
+"            <h2>Reset</h2>"
+"            <button id=\"reset_button\" onclick=\"resetLoad()\">Reset Load</button>"
+"        </div>"
+"        <div class=\"section\">"
 "            <h2>Safety Limits</h2>"
+"            <p><span>Hard Limits:</span> If exceeded, the load will stop completely.</p>"
+"            <p><span>Soft Limits:</span> If exceeded, the system will adjust the PWM signal to stay within limits.</p>"
+"            <p> The load is rated for: </p>"
+"            <p> Max Current = 10.0 A </p>"
+"            <p> Max Voltage = 48.0 V </p>"
+"            <p> Max Temperature = 125.0°C </p>"
 "            <h3>Hard Limits</h3>"
-"            <input type=\"number\" id=\"max_voltage_user\" placeholder=\"Max Voltage (V)\">"
-"            <input type=\"number\" id=\"min_voltage_user\" placeholder=\"Min Voltage (V)\">"
-"            <input type=\"number\" id=\"max_current_user\" placeholder=\"Max Current (A)\">"
-"            <input type=\"number\" id=\"max_power_user\" placeholder=\"Max Power (W)\">"
-"            <input type=\"number\" id=\"max_temperature_user\" placeholder=\"Max Temperature (°C)\">"
+"            <div class=\"input-group\">"
+"                <label for=\"max_voltage_user\">Max Voltage (V):</label>"
+"                <input type=\"number\" id=\"max_voltage_user\" placeholder=\"50.0\">"
+"            </div>"
+"            <div class=\"input-group\">"
+"                <label for=\"min_voltage_user\">Min Voltage (V):</label>"
+"                <input type=\"number\" id=\"min_voltage_user\" placeholder=\"0.0\">"
+"            </div>"
+"            <div class=\"input-group\">"
+"                <label for=\"max_current_user\">Max Current (A):</label>"
+"                <input type=\"number\" id=\"max_current_user\" placeholder=\"11.0\">"
+"            </div>"
+"            <div class=\"input-group\">"
+"                <label for=\"max_power_user\">Max Power (W):</label>"
+"                <input type=\"number\" id=\"max_power_user\" placeholder=\"500.0\">"
+"            </div>"
+"            <div class=\"input-group\">"
+"                <label for=\"max_temperature_user\">Max Temperature (°C):</label>"
+"                <input type=\"number\" id=\"max_temperature_user\" placeholder=\"80.0\">"
+"            </div>"
 "            <h3>Soft Limits</h3>"
-"            <input type=\"number\" id=\"soft_max_voltage\" placeholder=\"Soft Max Voltage (V)\">"
-"            <input type=\"number\" id=\"soft_max_current\" placeholder=\"Soft Max Current (A)\">"
-"            <input type=\"number\" id=\"soft_max_temperature\" placeholder=\"Soft Max Temperature (°C)\">"
+"            <div class=\"input-group\">"
+"                <label for=\"soft_max_voltage\">Soft Max Voltage (V):</label>"
+"                <input type=\"number\" id=\"soft_max_voltage\" placeholder=\"48.0\">"
+"            </div>"
+"            <div class=\"input-group\">"
+"                <label for=\"soft_max_current\">Soft Max Current (A):</label>"
+"                <input type=\"number\" id=\"soft_max_current\" placeholder=\"10.0\">"
+"            </div>"
+"            <div class=\"input-group\">"
+"                <label for=\"soft_max_temperature\">Soft Max Temperature (°C):</label>"
+"                <input type=\"number\" id=\"soft_max_temperature\" placeholder=\"75.0\">"
+"            </div>"
 "            <button onclick=\"updateSafetyLimits()\">Set Safety Limits</button>"
 "        </div>"
 "    </div>"
@@ -163,10 +234,30 @@ static const char *index_html =
 "            document.getElementById('voltage').textContent = data.voltage.toFixed(4);"
 "            document.getElementById('current').textContent = data.current.toFixed(4);"
 "            document.getElementById('power').textContent = data.power.toFixed(4);"
+"            document.getElementById('Ah').textContent = data.Ah.toFixed(4);"
+"            document.getElementById('Wh').textContent = data.Wh.toFixed(4);"
 "            document.getElementById('temperature_internal').textContent = data.temperature_internal.toFixed(4);"
 "            document.getElementById('temperature_external_1').textContent = data.temperature_external_1.toFixed(4);"
 "            document.getElementById('temperature_external_2').textContent = data.temperature_external_2.toFixed(4);"
 "            document.getElementById('temperature_external_3').textContent = data.temperature_external_3.toFixed(4);"
+"        }"
+"        async function resetLoad() {"
+"            await fetch('/reset', {"
+"                method: 'POST',"
+"                body: 'reset',"
+"            });"
+"            alert('Load has been reset.');"
+"        }"
+"        async function fetchLoadState() {"
+"            try {"
+"                const response = await fetch('/loadstate');"
+"                const data = await response.json();"
+"                const loadStateElement = document.getElementById('load_state');"
+"                loadStateElement.textContent = data.running ? \"Running\" : \"Stopped\";"
+"                loadStateElement.style.color = data.running ? \"#4CAF50\" : \"#FF0000\";"
+"            } catch (error) {"
+"                console.error('Error fetching load state:', error);"
+"            }"
 "        }"
 "        async function updateSetpoint() {"
 "            const setpoint = document.getElementById('setpoint').value;"
@@ -174,6 +265,14 @@ static const char *index_html =
 "                method: 'POST',"
 "                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },"
 "                body: setpoint,"
+"            });"
+"        }"
+"        async function updateControlMode() {"
+"            const mode = document.getElementById('control_mode').value;"
+"            await fetch('/mode', {"
+"                method: 'POST',"
+"                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },"
+"                body: mode,"
 "            });"
 "        }"
 "        async function toggleStartStop(button) {"
@@ -202,6 +301,7 @@ static const char *index_html =
 "            });"
 "        }"
 "        setInterval(fetchMeasurements, 1000);"
+"        setInterval(fetchLoadState, 1000);"
 "    </script>"
 "</body>"
 "</html>";
@@ -235,14 +335,14 @@ static esp_err_t index_handler(httpd_req_t *req) {
 static esp_err_t get_measurement_handler(httpd_req_t *req) {
     MeasurementData measurement;
     if (xQueuePeek(measurement_queue, &measurement, pdMS_TO_TICKS(10)) == pdTRUE) {
-        char resp[200];
+        char resp[512];
         snprintf(resp, sizeof(resp),
                  "{\"voltage\": %.4f, \"current\": %.4f, \"power\": %.4f, "
                  "\"temperature_internal\": %.2f, \"temperature_external_1\": %.2f, "
-                 "\"temperature_external_2\": %.2f, \"temperature_external_3\": %.2f}",
+                 "\"temperature_external_2\": %.2f, \"temperature_external_3\": %.2f, \"Ah\": %.4f, \"Wh\": %.4f}",
                  measurement.bus_voltage, measurement.current, measurement.power,
                  measurement.temperature_internal, measurement.temperature_external_1,
-                 measurement.temperature_external_2, measurement.temperature_external_3);
+                 measurement.temperature_external_2, measurement.temperature_external_3, measurement.Ah, measurement.Wh);
         httpd_resp_set_type(req, "application/json");
         httpd_resp_send(req, resp, strlen(resp));
     } else {
@@ -381,7 +481,7 @@ static esp_err_t set_mode_handler(httpd_req_t *req) {
     } else if (strcmp(content, "MODE_CP") == 0) {
         mode = MODE_CP;
     } else {
-        httpd_resp_send_400(req);
+        httpd_resp_send_500(req);
         return ESP_FAIL;
     }
 
@@ -391,6 +491,60 @@ static esp_err_t set_mode_handler(httpd_req_t *req) {
     }
 
     httpd_resp_send(req, "Mode updated", HTTPD_RESP_USE_STRLEN);
+    return ESP_OK;
+}
+
+/**
+ * @brief Handler for resetting the load.
+ *
+ * This handler responds to POST requests to the `/reset` endpoint by setting
+ * the RESET_BIT in the signal event group.
+ *
+ * @param req Pointer to the HTTP request.
+ * @return ESP_OK on success, or an error code on failure.
+ */
+static esp_err_t reset_handler(httpd_req_t *req) {
+    char content[10];
+    size_t recv_size = MIN(req->content_len, sizeof(content) - 1);
+    int ret = httpd_req_recv(req, content, recv_size);
+
+    if (ret <= 0) {
+        if (ret == HTTPD_SOCK_ERR_TIMEOUT) {
+            httpd_resp_send_408(req);
+        }
+        return ESP_FAIL;
+    }
+    content[recv_size] = '\0';
+
+    if (strcmp(content, "reset") == 0) {
+        xEventGroupSetBits(signal_event_group, RESET_BIT);
+        ESP_LOGI(TAG, "Reset signal triggered");
+    }
+
+    httpd_resp_send(req, "Reset triggered", HTTPD_RESP_USE_STRLEN);
+    return ESP_OK;
+}
+
+/**
+ * @brief Handler for checking if the load is running.
+ *
+ * This handler responds to GET requests to the `/loadstate` endpoint by
+ * returning a JSON response indicating whether the load is running or not.
+ *
+ * @param req Pointer to the HTTP request.
+ * @return ESP_OK on success, or an error code on failure.
+ */
+static esp_err_t get_load_state_handler(httpd_req_t *req) {
+    // Check the START_STOP_BIT in the signal event group
+    EventBits_t bits = xEventGroupGetBits(signal_event_group);
+    bool is_running = (bits & START_STOP_BIT) != 0;
+
+    // Create a JSON response
+    char resp[50];
+    snprintf(resp, sizeof(resp), "{\"running\": %s}", is_running ? "true" : "false");
+
+    httpd_resp_set_type(req, "application/json");
+    httpd_resp_send(req, resp, strlen(resp));
     return ESP_OK;
 }
 
@@ -460,6 +614,22 @@ httpd_handle_t start_webserver()
             .user_ctx  = NULL
         };
         httpd_register_uri_handler(server, &mode_uri);
+
+        httpd_uri_t reset_uri = {
+            .uri       = "/reset",
+            .method    = HTTP_POST,
+            .handler   = reset_handler,
+            .user_ctx  = NULL
+        };
+        httpd_register_uri_handler(server, &reset_uri);
+
+        httpd_uri_t loadstate_uri = {
+            .uri       = "/loadstate",
+            .method    = HTTP_GET,
+            .handler   = get_load_state_handler,
+            .user_ctx  = NULL
+        };
+        httpd_register_uri_handler(server, &loadstate_uri);
 
     } else {
         ESP_LOGI(TAG, "Server failed to start");

@@ -48,9 +48,17 @@ void control_task(void *paramter)
     float duty_cycle = 0.0; /**< Current PWM duty cycle (0% to 100%). */
     float setpoint = 0.0;   /**< Current setpoint value. */
 
-    // PI regulator paramters
-    const float Kp = 1.0; /**< Proportional gain. Adjust based on system response. */
-    const float Ki = 0.1; /**< Integral gain. Adjust based on system response. */
+    // PI regulator paramters for CC mode
+    const float Kp_CC = 1.0; /**< Proportional gain CC */
+    const float Ki_CC = 0.1; /**< Integral gain CC */
+
+    // PI regulator paramters for CC mode
+    const float Kp_CV = 1.0; /**< Proportional gain CC */
+    const float Ki_CV = 0.1; /**< Integral gain CC */
+
+    // PI regulator paramters for CC mode
+    const float Kp_CP = 1.0; /**< Proportional gain CC */
+    const float Ki_CP = 0.1; /**< Integral gain CC */
 
     float error = 0.0;          /**< Current error (setpoint - measured current). */
     float integral_error = 0.0; /**< Accumulated integral error. */
@@ -102,66 +110,144 @@ void control_task(void *paramter)
             switch (mode)
             {
             case MODE_CC: // Constant Current Mode
-                // Control logic here
-                if (measurements.current < setpoint)
+                          // Control logic here
+                if ((measurements.current < safety_data.soft_max_current) & (measurements.temperature_internal < safety_data.soft_max_temperature))
                 {
-                    if ((measurements.current < safety_data.soft_max_current) & (measurements.temperature_internal < safety_data.soft_max_temperature))
+
+                    // Calculate the error
+                    error = setpoint - measurements.current;
+
+                    // Update the integral term
+                    integral_error += error * dt;
+
+                    // Anti-windup: Clamp the integral term to prevent excessive accumulation
+                    if (integral_error > 10.0) // Adjust this limit as needed
                     {
-
-                        // Calculate the error
-                        error = setpoint - measurements.current;
-
-                        // Update the integral term
-                        integral_error += error * dt;
-
-                        // Anti-windup: Clamp the integral term to prevent excessive accumulation
-                        if (integral_error > 10.0) // Adjust this limit as needed
-                        {
-                            integral_error = 10.0;
-                        }
-                        else if (integral_error < -10.0)
-                        {
-                            integral_error = -10.0;
-                        }
-
-                        // Calculate the control output (duty cycle)
-                        duty_cycle = Kp * error + Ki * integral_error;
+                        integral_error = 10.0;
                     }
-                    // Enforce soft current and temperature limit
-                    else if ((measurements.current > safety_data.soft_max_current) | (measurements.temperature_internal > safety_data.soft_max_temperature))
+                    else if (integral_error < -10.0)
                     {
-                        ESP_LOGW(TAG, "Soft current limit exceeded: %.2f A (Limit: %.2f A)", measurements.current, safety_data.soft_max_current);
-                        duty_cycle -= 1.0; // Reduce duty cycle to bring current within limit
+                        integral_error = -10.0;
                     }
 
-                    // Clamp the duty cycle to valid range (0% to 100%)
-                    if (duty_cycle > 100.0)
-                    {
-                        duty_cycle = 100.0;
-                    }
-                    else if (duty_cycle < 0.0)
-                    {
-                        duty_cycle = 0.0;
-                    }
-
-                    // Update the PWM duty cycle
-                    pwm_update_duty(duty_cycle, PWM_CHANNEL_LOAD);
-
-                    ESP_LOGI(TAG, "Setpoint: %.2f A, Measured: %.2f A, Duty Cycle: %.2f%%", setpoint, measurements.current, duty_cycle);
+                    // Calculate the control output (duty cycle)
+                    duty_cycle = Kp_CC * error + Ki_CC * integral_error;
                 }
-                else
+                // Enforce soft current and temperature limit
+                else if ((measurements.current > safety_data.soft_max_current) | (measurements.temperature_internal > safety_data.soft_max_temperature))
                 {
-                    vTaskDelay(pdMS_TO_TICKS(1));
+                    ESP_LOGW(TAG, "Soft current limit exceeded: %.2f A (Limit: %.2f A)", measurements.current, safety_data.soft_max_current);
+                    duty_cycle -= 1.0; // Reduce duty cycle to bring current within limit
                 }
+
+                // Clamp the duty cycle to valid range (0% to 100%)
+                if (duty_cycle > 100.0)
+                {
+                    duty_cycle = 100.0;
+                }
+                else if (duty_cycle < 0.0)
+                {
+                    duty_cycle = 0.0;
+                }
+
+                // Update the PWM duty cycle
+                pwm_update_duty(duty_cycle, PWM_CHANNEL_LOAD);
+
+                ESP_LOGI(TAG, "Setpoint: %.2f A, Measured: %.2f A, Duty Cycle: %.2f%%", setpoint, measurements.current, duty_cycle);
+
                 break;
             case MODE_CV: // Constant Voltage Mode
-                ESP_LOGI(TAG, "Constant Voltage Mode not yet implemented");
                 // Control logic here
+                if ((measurements.bus_voltage < safety_data.soft_max_voltage) & (measurements.temperature_internal < safety_data.soft_max_temperature))
+                {
+
+                    // Calculate the error
+                    error = setpoint - measurements.bus_voltage;
+
+                    // Update the integral term
+                    integral_error += error * dt;
+
+                    // Anti-windup: Clamp the integral term to prevent excessive accumulation
+                    if (integral_error > 10.0) // Adjust this limit as needed
+                    {
+                        integral_error = 10.0;
+                    }
+                    else if (integral_error < -10.0)
+                    {
+                        integral_error = -10.0;
+                    }
+
+                    // Calculate the control output (duty cycle)
+                    duty_cycle = -Kp_CV * error - Ki_CV * integral_error;
+                }
+                // Enforce soft current and temperature limit
+                else if ((measurements.bus_voltage > safety_data.soft_max_voltage) | (measurements.temperature_internal > safety_data.soft_max_temperature))
+                {
+                    ESP_LOGW(TAG, "Soft voltage limit exceeded: %.2f V (Limit: %.2f V)", measurements.bus_voltage, safety_data.soft_max_voltage);
+                    duty_cycle -= 1.0; // Reduce duty cycle to bring current within limit
+                }
+
+                // Clamp the duty cycle to valid range (0% to 100%)
+                if (duty_cycle > 100.0)
+                {
+                    duty_cycle = 100.0;
+                }
+                else if (duty_cycle < 0.0)
+                {
+                    duty_cycle = 0.0;
+                }
+
+                // Update the PWM duty cycle
+                pwm_update_duty(duty_cycle, PWM_CHANNEL_LOAD);
+
+                ESP_LOGI(TAG, "Setpoint: %.2f V, Measured: %.2f V, Duty Cycle: %.2f%%", setpoint, measurements.bus_voltage, duty_cycle);
 
                 break;
             case MODE_CP: // Constant Power Mode
-                ESP_LOGI(TAG, "Constant Power Mode not yet implemented");
                 // Control logic here
+                if (measurements.temperature_internal < safety_data.soft_max_temperature)
+                {
+
+                    // Calculate the error
+                    error = setpoint - measurements.power;
+
+                    // Update the integral term
+                    integral_error += error * dt;
+
+                    // Anti-windup: Clamp the integral term to prevent excessive accumulation
+                    if (integral_error > 10.0) // Adjust this limit as needed
+                    {
+                        integral_error = 10.0;
+                    }
+                    else if (integral_error < -10.0)
+                    {
+                        integral_error = -10.0;
+                    }
+
+                    // Calculate the control output (duty cycle)
+                    duty_cycle = Kp_CP * error + Ki_CP * integral_error;
+                }
+                // Enforce soft current and temperature limit
+                else if ((measurements.current > safety_data.soft_max_current) | (measurements.temperature_internal > safety_data.soft_max_temperature) | (measurements.bus_voltage > safety_data.soft_max_voltage))
+                {
+                    ESP_LOGW(TAG, "Soft current or voltage limit exceeded: %.2f A (Limit: %.2f A), %.2f V (Limit: %.2f V)", measurements.current, safety_data.soft_max_current, measurements.bus_voltage, safety_data.soft_max_voltage);
+                    duty_cycle -= 1.0; // Reduce duty cycle to bring current within limit
+                }
+
+                // Clamp the duty cycle to valid range (0% to 100%)
+                if (duty_cycle > 100.0)
+                {
+                    duty_cycle = 100.0;
+                }
+                else if (duty_cycle < 0.0)
+                {
+                    duty_cycle = 0.0;
+                }
+
+                // Update the PWM duty cycle
+                pwm_update_duty(duty_cycle, PWM_CHANNEL_LOAD);
+
+                ESP_LOGI(TAG, "Setpoint: %.2f W, Measured: %.2f W, Duty Cycle: %.2f%%", setpoint, measurements.power, duty_cycle);
 
                 break;
             default:
@@ -172,13 +258,22 @@ void control_task(void *paramter)
         else
         {
             vTaskDelay(pdMS_TO_TICKS(1));
+            duty_cycle = 0;
+            error = 0;
+            integral_error = 0;
+            previous_tick = xTaskGetTickCount();
+            pwm_update_duty(duty_cycle, PWM_CHANNEL_LOAD);
+            ESP_LOGI(TAG, "Load stopped");
         }
 
         // Handle safety triggers
         if ((xEventGroupGetBits(safety_event_group)) != 0)
         {
             duty_cycle = 0;
+            pwm_update_duty(duty_cycle, PWM_CHANNEL_LOAD);
             ESP_LOGI(TAG, "SAFETY TRIGGERED");
+            pwm_update_duty(50, PWM_CHANNEL_BUZZER);
+            vTaskDelay(pdMS_TO_TICKS(1000));
         }
         vTaskDelay(pdMS_TO_TICKS(1));
 
@@ -209,6 +304,5 @@ void control_task(void *paramter)
         {
             pwm_update_duty(0, PWM_CHANNEL_FAN);
         }
-
     }
 }

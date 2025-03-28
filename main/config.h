@@ -17,6 +17,7 @@
 // GPIO Pins
 #define PWM_GPIO_MOSFET 18        /**< GPIO pin used for PWM output for MOSFETs. */
 #define PWM_GPIO_FAN 0            /**< GPIO pin used for PWM output for fan control. */
+#define PWM_GPIO_BUZZER 36        /**< GPIO pin used for PWM output for buzzer. */
 #define ADC_GPIO 34               /**< GPIO pin used for ADC input. */
 #define DUT_RELAY_PIN 48          /**< GPIO pin used for relay between DUT and charger. */
 #define POWER_SWITCH_RELAY_PIN 45 /**< GPIO pin used for relay to physically disconnect DUT from laod. */
@@ -28,7 +29,7 @@
 // Safety Thresholds
 #define MAX_CURRENT 11.0      /**< Maximum allowable current in amperes (A). */
 #define MAX_VOLTAGE 50.0      /**< Maximum allowable voltage in volts (V). */
-#define MAX_TEMPERATURE 100.0 /**< Maximum allowable temperature in degrees Celsius (°C). */
+#define MAX_TEMPERATURE 125.0 /**< Maximum allowable temperature in degrees Celsius (°C). */
 
 // Bits for protection triggering (safety_event_group)
 #define OVERVOLTAGE_BIT 1 << 0     /**< Event group bit for overvoltage protection. */
@@ -41,6 +42,7 @@
 #define COMMUNICATION_SETPOINT_BIT 1 << 1 /**< Event group bit for communication setpoint updates. */
 #define CONTROL_SETPOINT_BIT 1 << 2       /**< Event group bit for control setpoint updates. */
 #define START_STOP_BIT 1 << 3             /**< Event group bit for start/stop control. */
+#define RESET_BIT 1 << 4                  /**< Event group bit for reset control. */
 
 // Bits for WiFi event group and WiFi-related operations
 #define WIFI_SUCCESS 1 << 0 /**< Event group bit for successful WiFi connection. */
@@ -55,6 +57,7 @@
 #define PWM_FREQ 30000                         /**< PWM frequency in Hz. */
 #define PWM_CHANNEL_LOAD LEDC_CHANNEL_0        /**< LEDC channel used for PWM. */
 #define PWM_CHANNEL_FAN LEDC_CHANNEL_1         /**< LEDC channel used for PWM. */
+#define PWM_CHANNEL_BUZZER LEDC_CHANNEL_2      /**< LEDC channel used for PWM. */
 #define PWM_TIMER LEDC_TIMER_0                 /**< LEDC timer used for PWM. */
 
 // INA237 Registers

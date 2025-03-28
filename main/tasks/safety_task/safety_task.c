@@ -99,6 +99,13 @@ void safety_task(void *paramater)
             }
         }
 
+        if (xEventGroupGetBits(signal_event_group) & RESET_BIT)
+        {
+            gpio_set_level(POWER_SWITCH_RELAY_PIN, 1);
+            xEventGroupClearBits(safety_event_group, OVERVOLTAGE_BIT | OVERCURRENT_BIT | OVERTEMPERATURE_BIT | UNDERVOLTAGE_BIT);
+            xEventGroupClearBits(signal_event_group, START_STOP_BIT);
+        }
+
         // Small delay to prevent task starvation
         vTaskDelay(pdMS_TO_TICKS(10));
     }

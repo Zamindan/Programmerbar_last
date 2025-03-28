@@ -120,6 +120,13 @@ void measurement_task(void *paramter)
     measurement_intitialize();
     MeasurementData measurements; /**< Struct to hold the processed measurement data. */
 
+    // Calculate Ah
+    TickType_t previous_tick = xTaskGetTickCount(); /**< Previous tick value for time calculations. */
+    TickType_t current_tick;                        /**< Current tick value for time calculations. */
+    float dt = 0;                                   /**< Time step in seconds. */
+    float dAh = 0;                                  /**< For calculating dAh. */
+    float dWh = 0;                                  /**< For caclulating dWh. */
+
     float R_ntc_internal = 0;
     float R_ntc_external_1 = 0;
     float R_ntc_external_2 = 0;
@@ -156,7 +163,26 @@ void measurement_task(void *paramter)
         // Calculate power
         measurements.power = measurements.bus_voltage * measurements.current;
 
+        // Calculate Ah and Wh
+        current_tick = xTaskGetTickCount();
+        dt = (float)(current_tick - previous_tick) / (float)configTICK_RATE_HZ;
+
+        dAh = measurements.current * dt / 3600;
+        measurements.Ah += dAh;
+
+        dWh = measurements.power * dt / 3600;
+        measurements.Wh += dWh;
+
+        previous_tick = current_tick;
+
         xQueueOverwrite(measurement_queue, &measurements);
+
+        if (xEventGroupGetBits(signal_event_group) & RESET_BIT)
+        {
+            measurements.Wh = 0;
+            measurements.Ah = 0;
+            xEventGroupClearBits(signal_event_group, RESET_BIT);
+        }
         // ESP_LOGI(TAG, "raw_current from INA= %f", raw_current);
         //  Maintain 1 kHz sampling rate
         vTaskDelay(pdMS_TO_TICKS(1));

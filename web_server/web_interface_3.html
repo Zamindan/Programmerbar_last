@@ -10,16 +10,12 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
             background-color: #1a1a1a;
             color: #fff;
         }
 
         .container {
+            margin: 20px auto;
             background: #2a2a2a;
             padding: 20px;
             border-radius: 8px;
@@ -41,7 +37,8 @@
             font-weight: bold;
         }
 
-        input[type="number"], select {
+        input[type="number"],
+        select {
             background-color: #333;
             color: white;
             border: 1px solid #4CAF50;
@@ -68,6 +65,31 @@
         button:active {
             transform: scale(0.95);
         }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .input-group label {
+            flex: 1;
+            /* Make the label take up space */
+            margin-right: 10px;
+            color: #4CAF50;
+            /* Green color for labels */
+            font-weight: bold;
+        }
+
+        .input-group input {
+            flex: 2;
+            /* Make the input field wider */
+            background-color: #333;
+            color: white;
+            border: 1px solid #4CAF50;
+            padding: 8px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 
@@ -81,6 +103,8 @@
             <p><strong>Voltage:</strong> <span id="voltage">0.0000</span> V</p>
             <p><strong>Current:</strong> <span id="current">0.0000</span> A</p>
             <p><strong>Power:</strong> <span id="power">0.0000</span> W</p>
+            <p><strong>Amp Hours:</strong> <span id="Ah">0.0000</span> Ah</p>
+            <p><strong>Watt Hours:</strong> <span id="Wh">0.0000</span> Wh</p>
             <p><strong>Internal Temperature:</strong> <span id="temperature_internal">0.0000</span> °C</p>
             <p><strong>External Temperature 1:</strong> <span id="temperature_external_1">0.0000</span> °C</p>
             <p><strong>External Temperature 2:</strong> <span id="temperature_external_2">0.0000</span> °C</p>
@@ -117,21 +141,64 @@
             <button id="startstop_button" onclick="toggleStartStop(this)">Start</button>
         </div>
 
+        <!-- Load State -->
+        <div class="section">
+            <h2>Load State</h2>
+            <p><strong>Status:</strong> <span id="load_state">Unknown</span></p>
+        </div>
+
+        <!-- Reset -->
+        <div class="section">
+            <h2>Reset</h2>
+            <button id="reset_button" onclick="resetLoad()">Reset Load</button>
+        </div>
+
         <!-- Safety Limits -->
         <div class="section">
             <h2>Safety Limits</h2>
             <p><span>Hard Limits:</span> If exceeded, the load will stop completely.</p>
             <p><span>Soft Limits:</span> If exceeded, the system will adjust the PWM signal to stay within limits.</p>
+            <p> The load is rated for: </p>
+            <p> Max Current = 10.0 A </p>
+            <p> Max Voltage = 48.0 V </p>
+            <p> Max Temperature = 125.0°C </p>
+
             <h3>Hard Limits</h3>
-            <input type="number" id="max_voltage_user" placeholder="Max Voltage (V)">
-            <input type="number" id="min_voltage_user" placeholder="Min Voltage (V)">
-            <input type="number" id="max_current_user" placeholder="Max Current (A)">
-            <input type="number" id="max_power_user" placeholder="Max Power (W)">
-            <input type="number" id="max_temperature_user" placeholder="Max Temperature (°C)">
+            <div class="input-group">
+                <label for="max_voltage_user">Max Voltage (V):</label>
+                <input type="number" id="max_voltage_user" placeholder="50.0">
+            </div>
+            <div class="input-group">
+                <label for="min_voltage_user">Min Voltage (V):</label>
+                <input type="number" id="min_voltage_user" placeholder="0.0">
+            </div>
+            <div class="input-group">
+                <label for="max_current_user">Max Current (A):</label>
+                <input type="number" id="max_current_user" placeholder="11.0">
+            </div>
+            <div class="input-group">
+                <label for="max_power_user">Max Power (W):</label>
+                <input type="number" id="max_power_user" placeholder="500.0">
+            </div>
+            <div class="input-group">
+                <label for="max_temperature_user">Max Temperature (°C):</label>
+                <input type="number" id="max_temperature_user" placeholder="80.0">
+            </div>
+
             <h3>Soft Limits</h3>
-            <input type="number" id="soft_max_voltage" placeholder="Soft Max Voltage (V)">
-            <input type="number" id="soft_max_current" placeholder="Soft Max Current (A)">
-            <input type="number" id="soft_max_temperature" placeholder="Soft Max Temperature (°C)">
+            <div class="input-group">
+                <label for="soft_max_voltage">Soft Max Voltage (V):</label>
+                <input type="number" id="soft_max_voltage" placeholder="48.0">
+            </div>
+            <div class="input-group">
+                <label for="soft_max_current">Soft Max Current (A):</label>
+                <input type="number" id="soft_max_current" placeholder="10.0">
+            </div>
+            <div class="input-group">
+                <label for="soft_max_temperature">Soft Max Temperature (°C):</label>
+                <input type="number" id="soft_max_temperature" placeholder="75.0">
+            </div>
+
             <button onclick="updateSafetyLimits()">Set Safety Limits</button>
         </div>
     </div>
@@ -143,10 +210,32 @@
             document.getElementById('voltage').textContent = data.voltage.toFixed(4);
             document.getElementById('current').textContent = data.current.toFixed(4);
             document.getElementById('power').textContent = data.power.toFixed(4);
+            document.getElementById('Ah').textContent = data.Ah.toFixed(4);
+            document.getElementById('Wh').textContent = data.Wh.toFixed(4);
             document.getElementById('temperature_internal').textContent = data.temperature_internal.toFixed(4);
             document.getElementById('temperature_external_1').textContent = data.temperature_external_1.toFixed(4);
             document.getElementById('temperature_external_2').textContent = data.temperature_external_2.toFixed(4);
             document.getElementById('temperature_external_3').textContent = data.temperature_external_3.toFixed(4);
+        }
+
+        async function resetLoad() {
+            await fetch('/reset', {
+                method: 'POST',
+                body: 'reset',
+            });
+            alert('Load has been reset.');
+        }
+
+        async function fetchLoadState() {
+            try {
+                const response = await fetch('/loadstate');
+                const data = await response.json();
+                const loadStateElement = document.getElementById('load_state');
+                loadStateElement.textContent = data.running ? "Running" : "Stopped";
+                loadStateElement.style.color = data.running ? "#4CAF50" : "#FF0000"; // Green for running, red for stopped
+            } catch (error) {
+                console.error('Error fetching load state:', error);
+            }
         }
 
         async function updateSetpoint() {
@@ -195,6 +284,9 @@
         }
 
         setInterval(fetchMeasurements, 1000);
+
+        // Call fetchLoadState periodically
+        setInterval(fetchLoadState, 1000);
     </script>
 </body>
 

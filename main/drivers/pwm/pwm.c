@@ -57,6 +57,17 @@ void pwm_init()
         .hpoint = 0};
     ESP_ERROR_CHECK(ledc_channel_config(&pwm_config_fan));
     ESP_LOGI(TAG, "PWM fan initialized");
+
+    ledc_channel_config_t pwm_config_buzzer = {
+        .gpio_num = PWM_GPIO_BUZZER,
+        .speed_mode = PWM_SPEED_MODE,
+        .channel = PWM_CHANNEL_BUZZER,
+        .timer_sel = PWM_TIMER,
+        .intr_type = LEDC_INTR_DISABLE,
+        .duty = 0,
+        .hpoint = 0};
+    ESP_ERROR_CHECK(ledc_channel_config(&pwm_config_buzzer));
+    ESP_LOGI(TAG, "PWM fan initialized");
 }
 
 /**
