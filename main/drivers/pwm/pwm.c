@@ -90,5 +90,5 @@ void pwm_update_duty(float duty_cycle_percentage, ledc_channel_t PWM_CHANNEL)
     uint32_t pwm_setpoint = (uint32_t)((duty_cycle_percentage / 100.0) * ((1 << PWM_TIMER_RESOLUTION) - 1));
     ESP_ERROR_CHECK(ledc_set_duty(PWM_SPEED_MODE, PWM_CHANNEL, pwm_setpoint));
     ESP_ERROR_CHECK(ledc_update_duty(PWM_SPEED_MODE, PWM_CHANNEL));
-    ESP_LOGI(TAG, "PWM duty cycle set to %lu (%.2f%%)", pwm_setpoint, duty_cycle_percentage);
+    //ESP_LOGI(TAG, "PWM duty cycle set to %lu (%.2f%%)", pwm_setpoint, duty_cycle_percentage);
 }

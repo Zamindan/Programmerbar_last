@@ -48,19 +48,19 @@ void measurement_intitialize()
 {
     // Initialise the ADC unit
     adc_unit_init(&adc_handle_1, ADC_UNIT_1, ADC_ULP_MODE_DISABLE);
-    adc_unit_init(&adc_handle_2, ADC_UNIT_2, ADC_ULP_MODE_DISABLE);
+    // adc_unit_init(&adc_handle_2, ADC_UNIT_2, ADC_ULP_MODE_DISABLE);
 
     // Initialise the ADC channel
     adc_channel_init(adc_handle_1, ADC_CHANNEL_3, ADC_ATTEN_DB_12, ADC_BITWIDTH_12); // ADC_CHANNEL_3 ADC1 is GPIO 4, for internal NTC
 
-    adc_channel_init(adc_handle_1, ADC_CHANNEL_0, ADC_ATTEN_DB_12, ADC_BITWIDTH_12); // ADC_CHANNEL_0 ADC1 is GPIO 1, for external NTC
+    // adc_channel_init(adc_handle_1, ADC_CHANNEL_0, ADC_ATTEN_DB_12, ADC_BITWIDTH_12); // ADC_CHANNEL_0 ADC1 is GPIO 1, for external NTC
 
-    adc_channel_init(adc_handle_1, ADC_CHANNEL_1, ADC_ATTEN_DB_12, ADC_BITWIDTH_12); // ADC_CHANNEL_1 ADC1 is GPIO 2, for external NTC
+    // adc_channel_init(adc_handle_1, ADC_CHANNEL_1, ADC_ATTEN_DB_12, ADC_BITWIDTH_12); // ADC_CHANNEL_1 ADC1 is GPIO 2, for external NTC
 
-    adc_channel_init(adc_handle_2, ADC_CHANNEL_6, ADC_ATTEN_DB_12, ADC_BITWIDTH_12); // ADC_CHANNEL_6 ADC2 is GPIO 17, for external NTC
+    // adc_channel_init(adc_handle_2, ADC_CHANNEL_6, ADC_ATTEN_DB_12, ADC_BITWIDTH_12); // ADC_CHANNEL_6 ADC2 is GPIO 17, for external NTC
 
     // Handle for the I2C device
-    i2c_init(&i2c_handle, GPIO_NUM_11, GPIO_NUM_12);
+    i2c_init(&i2c_handle, I2C_SDA_PIN, I2C_SCL_PIN);
 
     // Add the I2C device to the bus
     i2c_add_device(i2c_handle, &ina_handle, (uint16_t)0b1000000, 100000);
@@ -138,19 +138,19 @@ void measurement_task(void *paramter)
         float raw_voltage = i2c_read(ina_handle, INA237_VBUS_REG);
         float raw_current = i2c_read(ina_handle, INA237_CURRENT_REG);
         uint16_t raw_temp_internal = adc_read(adc_handle_1, ADC_CHANNEL_0);
-        uint16_t raw_temp_external_1 = adc_read(adc_handle_1, ADC_CHANNEL_1);
-        uint16_t raw_temp_external_2 = adc_read(adc_handle_1, ADC_CHANNEL_3);
-        uint16_t raw_temp_external_3 = adc_read(adc_handle_2, ADC_CHANNEL_6);
+        // uint16_t raw_temp_external_1 = adc_read(adc_handle_1, ADC_CHANNEL_1);
+        // uint16_t raw_temp_external_2 = adc_read(adc_handle_1, ADC_CHANNEL_3);
+        // uint16_t raw_temp_external_3 = adc_read(adc_handle_2, ADC_CHANNEL_6);
 
         R_ntc_internal = ntc_resistance_calculate(raw_temp_internal, R1_NTC_VDIV, 4095);
-        R_ntc_external_1 = ntc_resistance_calculate(raw_temp_external_1, R1_NTC_VDIV, 4095);
-        R_ntc_external_2 = ntc_resistance_calculate(raw_temp_external_2, R1_NTC_VDIV, 4095);
-        R_ntc_external_3 = ntc_resistance_calculate(raw_temp_external_3, R1_NTC_VDIV, 4095);
+        // R_ntc_external_1 = ntc_resistance_calculate(raw_temp_external_1, R1_NTC_VDIV, 4095);
+        // R_ntc_external_2 = ntc_resistance_calculate(raw_temp_external_2, R1_NTC_VDIV, 4095);
+        // R_ntc_external_3 = ntc_resistance_calculate(raw_temp_external_3, R1_NTC_VDIV, 4095);
 
-        measurements.temperature_internal = R_to_T(B_NTC_INTERNAL, R_ntc_internal);
-        measurements.temperature_external_1 = R_to_T(B_NTC_EXTERNAL, R_ntc_external_1);
-        measurements.temperature_external_2 = R_to_T(B_NTC_EXTERNAL, R_ntc_external_2);
-        measurements.temperature_external_3 = R_to_T(B_NTC_EXTERNAL, R_ntc_external_3);
+        measurements.temperature_internal = 20; // R_to_T(B_NTC_INTERNAL, R_ntc_internal);
+        // measurements.temperature_external_1 = R_to_T(B_NTC_EXTERNAL, R_ntc_external_1);
+        // measurements.temperature_external_2 = R_to_T(B_NTC_EXTERNAL, R_ntc_external_2);
+        // measurements.temperature_external_3 = R_to_T(B_NTC_EXTERNAL, R_ntc_external_3);
 
         // Convert raw values into usable values:
         // Convert the raw voltage data to actualt voltage value
@@ -167,21 +167,22 @@ void measurement_task(void *paramter)
         current_tick = xTaskGetTickCount();
         dt = (float)(current_tick - previous_tick) / (float)configTICK_RATE_HZ;
 
-        dAh = measurements.current * dt / 3600;
-        measurements.Ah += dAh;
+        if (xEventGroupGetBits(signal_event_group) & START_STOP_BIT)
+        {
+            dAh = measurements.current * dt / 3600;
+            measurements.Ah += dAh;
 
-        dWh = measurements.power * dt / 3600;
-        measurements.Wh += dWh;
+            dWh = measurements.power * dt / 3600;
+            measurements.Wh += dWh;
 
-        previous_tick = current_tick;
-
+            previous_tick = current_tick;
+        }
         xQueueOverwrite(measurement_queue, &measurements);
 
         if (xEventGroupGetBits(signal_event_group) & RESET_BIT)
         {
             measurements.Wh = 0;
             measurements.Ah = 0;
-            xEventGroupClearBits(signal_event_group, RESET_BIT);
         }
         // ESP_LOGI(TAG, "raw_current from INA= %f", raw_current);
         //  Maintain 1 kHz sampling rate

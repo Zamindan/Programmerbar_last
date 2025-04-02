@@ -378,7 +378,6 @@ static esp_err_t set_setpoint_handler(httpd_req_t *req) {
     xQueueOverwrite(setpoint_queue, &setpoint);
 
     // Sets event group bits, signals that new data is ready to be read by tasks that need setpoint.
-    xEventGroupSetBits(signal_event_group, COMMUNICATION_SETPOINT_BIT);
     xEventGroupSetBits(signal_event_group, HMI_SETPOINT_BIT);
     xEventGroupSetBits(signal_event_group, CONTROL_SETPOINT_BIT);
 
@@ -454,7 +453,7 @@ static esp_err_t set_safety_handler(httpd_req_t *req) {
     safety.soft_max_current = cJSON_GetObjectItem(root, "soft_max_current")->valuedouble;
     safety.soft_max_temperature = cJSON_GetObjectItem(root, "soft_max_temperature")->valuedouble;
 
-    if (xQueueSend(safety_queue, &safety, pdMS_TO_TICKS(100)) != pdPASS) {
+    if (xQueueOverwrite(safety_queue, &safety) != pdPASS) {
         cJSON_Delete(root);
         httpd_resp_send_500(req);
         return ESP_FAIL;
@@ -518,7 +517,7 @@ static esp_err_t reset_handler(httpd_req_t *req) {
 
     if (strcmp(content, "reset") == 0) {
         xEventGroupSetBits(signal_event_group, RESET_BIT);
-        ESP_LOGI(TAG, "Reset signal triggered");
+        ESP_LOGE(TAG, "Reset signal triggered: %lu", xEventGroupGetBits(signal_event_group));
     }
 
     httpd_resp_send(req, "Reset triggered", HTTPD_RESP_USE_STRLEN);

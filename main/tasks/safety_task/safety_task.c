@@ -86,6 +86,7 @@ void safety_task(void *paramater)
                 else if ((measurements.temperature_internal > safety_data.max_temperature_user) || (measurements.temperature_internal > MAX_TEMPERATURE))
                 {
                     xEventGroupSetBits(safety_event_group, OVERTEMPERATURE_BIT);
+                    ESP_LOGE(TAG, "Overtemperature detected: %.2f °C (Limit: %.2f °C)", measurements.temperature_internal, safety_data.max_temperature_user);
                     gpio_set_level(POWER_SWITCH_RELAY_PIN, 0);
                     gpio_set_level(DUT_RELAY_PIN, 0);
                 }
@@ -96,13 +97,21 @@ void safety_task(void *paramater)
                     gpio_set_level(POWER_SWITCH_RELAY_PIN, 0);
                     gpio_set_level(DUT_RELAY_PIN, 0);
                 }
+
+                if (xEventGroupGetBits(safety_event_group) != 0)
+                {
+                    xEventGroupClearBits(signal_event_group, START_STOP_BIT);
+                }
             }
         }
 
         if (xEventGroupGetBits(signal_event_group) & RESET_BIT)
         {
             gpio_set_level(POWER_SWITCH_RELAY_PIN, 1);
-            xEventGroupClearBits(safety_event_group, OVERVOLTAGE_BIT | OVERCURRENT_BIT | OVERTEMPERATURE_BIT | UNDERVOLTAGE_BIT);
+            xEventGroupClearBits(safety_event_group, OVERVOLTAGE_BIT);
+            xEventGroupClearBits(safety_event_group, OVERCURRENT_BIT);
+            xEventGroupClearBits(safety_event_group, OVERTEMPERATURE_BIT);
+            xEventGroupClearBits(safety_event_group, UNDERVOLTAGE_BIT);
             xEventGroupClearBits(signal_event_group, START_STOP_BIT);
         }
 

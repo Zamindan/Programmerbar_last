@@ -18,9 +18,10 @@
 #define PWM_GPIO_MOSFET 18        /**< GPIO pin used for PWM output for MOSFETs. */
 #define PWM_GPIO_FAN 0            /**< GPIO pin used for PWM output for fan control. */
 #define PWM_GPIO_BUZZER 36        /**< GPIO pin used for PWM output for buzzer. */
-#define ADC_GPIO 34               /**< GPIO pin used for ADC input. */
 #define DUT_RELAY_PIN 48          /**< GPIO pin used for relay between DUT and charger. */
 #define POWER_SWITCH_RELAY_PIN 45 /**< GPIO pin used for relay to physically disconnect DUT from laod. */
+#define I2C_SDA_PIN 11          /**< GPIO pin used for I2C SDA. */
+#define I2C_SCL_PIN 12          /**< GPIO pin used for I2C SCL. */
 
 // WiFi Configuration
 #define CONFIG_WIFI_SSID "Sondre"       /**< WiFi SSID for connecting the ESP32-S3. */
@@ -39,7 +40,6 @@
 
 // Bits for signal event group
 #define HMI_SETPOINT_BIT 1 << 0           /**< Event group bit for HMI setpoint updates. */
-#define COMMUNICATION_SETPOINT_BIT 1 << 1 /**< Event group bit for communication setpoint updates. */
 #define CONTROL_SETPOINT_BIT 1 << 2       /**< Event group bit for control setpoint updates. */
 #define START_STOP_BIT 1 << 3             /**< Event group bit for start/stop control. */
 #define RESET_BIT 1 << 4                  /**< Event group bit for reset control. */

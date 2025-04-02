@@ -50,7 +50,6 @@ void hmi_task(void *pvParameters)
 
             // Update the setpoint queue and signal other tasks
             xQueueOverwrite(setpoint_queue, &setpoint);
-            xEventGroupSetBits(signal_event_group, COMMUNICATION_SETPOINT_BIT);
             xEventGroupSetBits(signal_event_group, CONTROL_SETPOINT_BIT);
             vTaskDelay(pdMS_TO_TICKS(1));
         }
