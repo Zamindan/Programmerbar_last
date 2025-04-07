@@ -1,5 +1,5 @@
-#ifndef I2C_H
-#define I2C_H
+#ifndef PWM_H
+#define PWM_H
 
 #include "driver/ledc.h"
 
