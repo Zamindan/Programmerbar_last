@@ -102,8 +102,9 @@ float ntc_resistance_calculate(uint16_t raw_adc_value, float R1, int adc_max_val
  */
 float R_to_T(float B, float R)
 {
-    float T = 1 / ((1 / T0_NTC) + (1 / B) * log(R / R0_NTC));
-    return T;
+    float T_kelvin = 1 / ((1 / T0_NTC) + (1 / B) * log(R / R0_NTC));
+    float T_celcius = T_kelvin - 273.15; // Convert Kelvin to Celsius
+    return T_celcius;
 }
 
 /**
