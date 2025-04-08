@@ -143,7 +143,7 @@ void spi_init(gpio_num_t SCLK, gpio_num_t MOSI, gpio_num_t MISO)
         .miso_io_num = MISO,
         .quadwp_io_num = -1, // Turn off Write Protect
         .quadhd_io_num = -1, // Turn off Hold
-        .flags = 0,          // Important for newer ESP-IDF versions
+        .flags = 0,          
     };
 
     // To check if initializing of SPI was sucsessful
@@ -169,13 +169,6 @@ void spi_add_device(int clk_speed, int duty_val, int spi_mode, int spi_queue_siz
     ESP_ERROR_CHECK(check_spi_add_device); // Stops the program if the function fails
 
     vTaskDelay(pdMS_TO_TICKS(100));
-}
-
-void spi_clock(int clk_speed)
-{
-    spi_device_interface_config_t device_config = {
-        .clock_speed_hz = clk_speed,
-    };
 }
 
 void spi_write_8(uint32_t address, uint8_t data)
@@ -415,19 +408,12 @@ uint32_t VERTEX2II(uint16_t x, uint16_t y, uint8_t handle, uint8_t cell)
 
 void ft812_init()
 {
-    spi_clock(CLOCK_10_MHz);
-
-    // Toggle GPIO_PD from low to high with a 20ms delay
-    gpio_set_direction(GPIO_PD, GPIO_MODE_OUTPUT); // Set GPIO_PD as output
-    gpio_set_level(GPIO_PD, 0);                    // Set GPIO_PD low
-    gpio_set_level(GPIO_PD, 1);                    // Set GPIO_PD high
-    vTaskDelay(pdMS_TO_TICKS(20));
-
+    host_command(CLKEXT);
     host_command(ACTIVE); // send host command "ACTIVE" to FT81X
     vTaskDelay(pdMS_TO_TICKS(300)); // Wait for 300ms
 
     // Configure video time registers
-    spi_write_16(REG_HSIZE, 480);  // horizontal resolution
+    spi_write_16(REG_HSIZE, 800);  // horizontal resolution
     spi_write_16(REG_HCYCLE, 928); // number of clocks per line
     spi_write_16(REG_HOFFSET, 88); // horizontal offset from starting signal
     spi_write_16(REG_HSYNC0, 0);   // hsync falls after this clock
@@ -439,7 +425,6 @@ void ft812_init()
     spi_write_16(REG_VSYNC0, 0);   // vsync falls after this clock
     spi_write_16(REG_VSYNC1, 3);   // vsync rises after this clock
 
-    spi_write_8(REG_PCLK, 2);    // 2 = 84MHz / 2 = 42MHz
     spi_write_8(REG_SWIZZLE, 0); // no swizzle
     spi_write_8(REG_PCLK_POL, 0);
     spi_write_8(REG_CSPREAD, 0); // spread spectrum on
@@ -450,15 +435,15 @@ void ft812_init()
 
     spi_write_32(RAM_DL + 4, CLEAR(1, 1, 1));
     spi_write_32(RAM_DL + 8, DISPLAY());
-    spi_write_8(REG_DLSWAP, 0x02); // display list swap
+
+    spi_write_8(REG_DLSWAP, 2); // display list swap
     spi_write_8(REG_GPIO_DIR, 0x80 | spi_read_8(REG_GPIO_DIR));
     spi_write_8(REG_GPIO, 0x080 | spi_read_8(REG_GPIO)); // enable display bit
 
     spi_write_8(REG_PCLK, 2);                           // after this display is visible on the LCD
-    spi_clock(CLOCK_30_MHz);
 }
 
-void display_texy()
+void display_text()
 {
     spi_write_32(RAM_DL + 0, CLEAR(1, 1, 1));                // clear screen
     spi_write_32(RAM_DL + 4, BEGIN(BITMAPS));                // start drawing bitmaps
@@ -478,7 +463,17 @@ void display_texy()
 void app_main()
 {
     spi_init(GPIO_SCLK, GPIO_MOSI, GPIO_MISO);
-    spi_add_device(30 * 1000 * 1000, 0, 0, 1, GPIO_CS);
+    spi_add_device(10 * 1000 * 1000, 0, 0, 1, GPIO_CS);
+    ft812_init();
+
+    while (1)
+    {
+        vTaskDelay(pdMS_TO_TICKS(10000));
+    }
+}
+
+
+/**
     ft812_init();
     display_texy();
 
@@ -491,4 +486,4 @@ void app_main()
         printf("REG_ID: 0x%08lX\n", reg_id);
         // Expected output: 0x0000007C (if communication is working)
     }
-}
+        */
