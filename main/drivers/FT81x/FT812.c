@@ -5,8 +5,17 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_heap_caps.h"
+#include <inttypes.h>
 
-#define SPI_TAG "SPI"
+
+#include <stdio.h>
+#include "driver/spi_master.h"
+#include "driver/gpio.h"
+#include "esp_log.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+
+
 #define LCD_TAG "LCD"
 
 #define SPI_HOST SPI2_HOST // Use SPI2 (HSPI)
@@ -14,8 +23,10 @@
 #define GPIO_MOSI GPIO_NUM_11
 #define GPIO_SCLK GPIO_NUM_12
 #define GPIO_CS GPIO_NUM_10
-#define GPIO_PD GPIO_NUM_18 // Power Down (PD#) Pin
+#define GPIO_PD GPIO_NUM_8 // Power Down (PD#) Pin
 
+#define GPIO_LED_RED 38
+#define GPIO_LED_GREEN 36
 
 // Memory map (Start addresses)
 #define RAM_G 0x000000
@@ -95,6 +106,9 @@
 #define REG_CMDB_SPACE 0x30257A
 #define REG_CMDB_WRITE 0x30257B
 
+#define CLOCK_10_MHz 10000000
+#define CLOCK_30_MHz 30000000
+
 // Host Command
 #define ACTIVE 0x00
 #define STANDBY 0x41
@@ -111,97 +125,63 @@
 #define WRITE 0x41
 #define READ 0x80
 
-
 // Drawing Primitives
 #define BITMAPS 1
 #define POINTS 2
-#define LINES          3    // Line drawing primitive
-#define LINE_STRIP     4    // Line strip drawing primitive
-#define EDGE_STRIP_R   5    // Edge strip right side drawing primitive
-#define EDGE_STRIP_L   6    // Edge strip left side drawing primitive  
-#define EDGE_STRIP_A   7    // Edge strip above drawing primitive
-#define EDGE_STRIP_B   8    // Edge strip below side drawing primitive
-#define RECTS          9    // Rectangle drawing primitive
+#define LINES 3        // Line drawing primitive
+#define LINE_STRIP 4   // Line strip drawing primitive
+#define EDGE_STRIP_R 5 // Edge strip right side drawing primitive
+#define EDGE_STRIP_L 6 // Edge strip left side drawing primitive
+#define EDGE_STRIP_A 7 // Edge strip above drawing primitive
+#define EDGE_STRIP_B 8 // Edge strip below side drawing primitive
+#define RECTS 9        // Rectangle drawing primitive
 
 
 
-uint32_t BEGIN(uint8_t prim) {
+uint32_t BEGIN(uint8_t prim)
+{
+    // Validate primitive type (1-9 according to documentation)
+    if (prim < 1 || prim > 9)
+    {
+        prim = 1; // Default to BITMAPS if invalid
+    }
+
+    // Format according to spec:
+    // 31-24: 0x1F
+    // 23-4: Reserved (0)
+    // 3-0: Primitive type
     return 0x1F000000 | (prim & 0xF);
 }
 
-uint32_t CLEAR_COLOR_RGB(uint8_t red, uint8_t green, uint8_t blue) {
+uint32_t CLEAR_COLOR_RGB(uint8_t red, uint8_t green, uint8_t blue)
+{
     return 0x02000000 | (red << 16) | (blue << 8) | green;
 }
 
-uint32_t CLEAR(uint8_t c, uint8_t s, uint8_t t) {
+uint32_t CLEAR(uint8_t c, uint8_t s, uint8_t t)
+{
     return 0x26000000 | (c << 2) | (s << 1) | t;
 }
 
-uint32_t COLOR_RGB(uint8_t red, uint8_t green, uint8_t blue) {
+uint32_t COLOR_RGB(uint8_t red, uint8_t green, uint8_t blue)
+{
     return 0x04000000 | (red << 16) | (blue << 8) | green;
 }
 
-uint32_t POINT_SIZE(uint16_t size) {
+uint32_t POINT_SIZE(uint16_t size)
+{
     return 0x0D000000 | size;
 }
 
-uint32_t DISPLAY() {
+uint32_t DISPLAY()
+{
     return 0x00000000;
 }
-uint32_t END(){
+uint32_t END()
+{
     return 0x21000000;
 }
-uint32_t VERTEX2II(uint16_t x, uint16_t y, uint8_t handle, uint8_t cell) {
-    return 0x40000000 | ((x & 0x1FF) << 21) | ((y & 0x1FF) << 12) | ((handle & 0x1F) << 7) | (cell & 0x7F);         
-}
-
-void LCD_init()
+uint32_t VERTEX2II(uint16_t x, uint16_t y, uint8_t handle, uint8_t cell)
 {
-    
-        // Configure GPIO_PD as output
-        gpio_config_t io_conf = {
-            .mode = GPIO_MODE_OUTPUT,
-            .pin_bit_mask = (1ULL << GPIO_PD),
-            .pull_down_en = 0,
-            .pull_up_en = 0,
-        };
-        gpio_config(&io_conf);
-    
-        // Toggle GPIO_PD from low to high with a 20ms delay
-        gpio_set_level(GPIO_PD, 0); // Set GPIO_PD low
-        vTaskDelay(pdMS_TO_TICKS(20)); // Wait for 20ms
-        gpio_set_level(GPIO_PD, 1); // Set GPIO_PD high
-        vTaskDelay(pdMS_TO_TICKS(20)); // Wait for another 20ms if needed
-    
-    
-        spi_read_8(0xC0001);
-    
-        host_command(ACTIVE); // send host command "ACTIVE" to FT81X
-    
-        /* Configure display registers - demonstration for WQVGA resolution */
-        spi_write_16(REG_HCYCLE, 928);
-        spi_write_16(REG_HOFFSET, 88);
-        spi_write_16(REG_HSYNC0, 0);
-        spi_write_16(REG_HSYNC1, 48);
-        spi_write_16(REG_VCYCLE, 525);
-        spi_write_16(REG_VOFFSET, 32);
-        spi_write_16(REG_VSYNC0, 0);
-        spi_write_16(REG_VSYNC1, 3);
-        spi_write_16(REG_SWIZZLE, 0);
-        spi_write_16(REG_PCLK_POL, 0);
-        spi_write_16(REG_CSPREAD, 1);
-        spi_write_16(REG_HSIZE, 800);
-        spi_write_16(REG_VSIZE, 480);
-    
-        /* write first display list */
-        spi_write_32(RAM_DL + 0, CLEAR_COLOR_RGB(0, 0, 0));
-    
-        spi_write_32(RAM_DL + 4, CLEAR(1, 1, 1));
-        spi_write_32(RAM_DL + 8, DISPLAY());
-        spi_write_8(REG_DLSWAP, 0x02); // display list swap
-        spi_write_8(REG_GPIO_DIR, 0x80 | spi_read_8(REG_GPIO_DIR));
-        spi_write_8(REG_GPIO, 0x080 | spi_read_8(REG_GPIO)); // enable display bit
-        spi_write_16(REG_PCLK, 5);                           // after this display is visible on the LCD
-        spi_add_device(30 * 1000 * 1000, 0, 0, 1, GPIO_CS);
-    
+    return 0x40000000 | ((x & 0x1FF) << 21) | ((y & 0x1FF) << 12) | ((handle & 0x1F) << 7) | (cell & 0x7F);
 }
