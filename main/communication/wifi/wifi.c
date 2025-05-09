@@ -19,6 +19,12 @@
 #include "config.h"
 #include "globals.h"
 
+/*
+Code from this github:
+https://github.com/lowleveltv/esp32-wifi
+*/
+
+
 /**
  * @file wifi.c
  * @brief Implementation of the WiFi module.

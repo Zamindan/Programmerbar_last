@@ -109,4 +109,5 @@ void app_main()
     // Start WiFi and HTTP server
     wifi_start();      // This module starts its own FreeRTOS task through esp_wifi_start() with priority 23 and an event loop task with priority 20.
     start_webserver(); // This module starts its own FreeRTOS task through httpd_start() with priority 5.
+
 }

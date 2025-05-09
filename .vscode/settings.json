@@ -59,7 +59,8 @@
         "cjson.h": "c",
         "communication_task.h": "c",
         "sys.h": "c",
-        "safety_task.h": "c"
+        "safety_task.h": "c",
+        "globals.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "C_Cpp.dimInactiveRegions": false,

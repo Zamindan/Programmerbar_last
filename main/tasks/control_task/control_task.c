@@ -271,9 +271,8 @@ void control_task(void *paramter)
             pwm_update_duty(duty_cycle, PWM_CHANNEL_LOAD);
             ESP_LOGI(TAG, "SAFETY TRIGGERED, %lu", xEventGroupGetBits(safety_event_group));
             pwm_update_duty(50, PWM_CHANNEL_BUZZER);
-            vTaskDelay(pdMS_TO_TICKS(1000));
         }
-        vTaskDelay(pdMS_TO_TICKS(1));
+
 
         // For fan control I need a PWM signal that is between 18 kHz and 30 kHz
         // The fan has an operating duty cycle range from 30% to 100%
