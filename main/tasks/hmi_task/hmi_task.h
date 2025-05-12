@@ -12,8 +12,8 @@
  * for managing user interactions and updating the setpoint and control mode.
  * The task communicates with other tasks via FreeRTOS queues and event groups.
  *
- * @author Sondre
- * @date 2025-03-24
+ *
+ * @date 2025-05-12
  */
 
 /**

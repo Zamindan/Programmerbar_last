@@ -13,8 +13,8 @@
  * and data structures used throughout the project. These globals are shared
  * between tasks and modules to facilitate communication and synchronization.
  *
- * @author Sondre
- * @date 2025-03-21
+ *
+ * @date 2025-05-12
  */
 
 /// @name Queues

@@ -26,8 +26,8 @@
  *
  * @note The INA237 configuration is based on the datasheet calculations.
  *
- * @author Sondre
- * @date 2025-03-24
+ *
+ * @date 2025-05-12
  */
 
 static const char *TAG = "MEASUREMENT_TASK"; /**< Tag for logging messages from the measurement task. */

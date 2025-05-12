@@ -16,8 +16,8 @@
  * This file contains the declarations for I2C initialization, device addition, 
  * and data transmission functions.
  * 
- * @author Sondre Pettersen
- * @date 2025-02-13
+ *
+ * @date 2025-05-12
  */
 
 

@@ -10,8 +10,8 @@
  * These constants are used throughout the project to ensure consistency and
  * maintainability.
  *
- * @author Sondre
- * @date 2025-03-21
+ *
+ * @date 2025-05-12
  */
 
 // GPIO Pins

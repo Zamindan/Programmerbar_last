@@ -30,8 +30,8 @@
  * (safety, measurement, HMI, communication, and control). It also starts
  * the WiFi module and HTTP server for remote interaction.
  *
- * @author Sondre
- * @date 2025-03-24
+ *
+ * @date 2025-05-12
  */
 
 // Declare queues

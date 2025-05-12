@@ -9,8 +9,8 @@
  * This file contains the functions for initializing an ADC unit, configuring ADC channels,
  * and reading values from ADC channels.
  * 
- * @author Sondre Pettersen
- * @date 2025-02-11
+ *
+ * @date 2025-05-12
  */
 
 

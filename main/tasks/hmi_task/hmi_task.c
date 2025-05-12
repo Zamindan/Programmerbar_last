@@ -20,8 +20,7 @@
  * @note The communication task header is commented out and should be included
  *       once the communication task is implemented.
  *
- * @author Sondre
- * @date 2025-03-24
+ * @date 2025-05-12
  */
 
 static const char *TAG = "HMI_TASK"; /**< Tag for logging messages from the HMI task. */

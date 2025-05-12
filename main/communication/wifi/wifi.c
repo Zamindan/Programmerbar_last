@@ -33,8 +33,8 @@ https://github.com/lowleveltv/esp32-wifi
  * to a WiFi network. It handles WiFi events, manages retries, and signals connection
  * status using FreeRTOS event groups.
  *
- * @author Sondre
- * @date 2025-03-24
+ *
+ * @date 2025-05-12
  */
 
 

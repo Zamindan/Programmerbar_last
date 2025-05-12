@@ -20,8 +20,7 @@
  * the PWM duty cycle based on the selected mode (CC, CV, CP), setpoint, and measurement
  * data. It also handles safety triggers and start/stop signals.
  *
- * @author Sondre
- * @date 2025-03-24
+ * @date 2025-05-12
  */
 
 static const char *TAG = "CONTROL_TASK"; /**< Tag for logging messages from the control task. */

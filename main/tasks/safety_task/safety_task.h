@@ -10,8 +10,8 @@
  * and undervoltage. The task interacts with other tasks via FreeRTOS queues and
  * event groups to ensure safe operation of the system.
  *
- * @author Sondre
- * @date 2025-03-24
+ *
+ * @date 2025-05-12
  */
 
 /**

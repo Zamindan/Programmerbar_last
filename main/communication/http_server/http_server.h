@@ -16,8 +16,8 @@
  * interacting with the ESP32, such as retrieving measurements, updating setpoints,
  * and configuring safety parameters.
  *
- * @author Sondre
- * @date 2025-03-24
+ *
+ * @date 2025-05-12
  */
 
 /**

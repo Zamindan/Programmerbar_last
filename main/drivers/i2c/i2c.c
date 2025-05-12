@@ -16,8 +16,8 @@
  * with the INA237 IC in mind.
  * The file contains the source code for I2C initilisation, device addition and data transmission functions.
  * 
- * @author Sondre Pettersen
- * @date 2025-02-13
+ *
+ * @date 2025-05-12
  */
 
 

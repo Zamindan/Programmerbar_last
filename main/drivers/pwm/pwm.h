@@ -10,8 +10,8 @@
  * This file contains the function prototypes for initialising and updating
  * the PWM duty cycle using the ESP32 LEDC peripheral
  * 
- * @author Sondre Pettersen
- * @date 2025-03-21
+ *
+ * @date 2025-05-12
  */
 
  /**

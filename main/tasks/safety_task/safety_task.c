@@ -23,8 +23,7 @@
  * @note The relays are configured as normally open (NO), meaning they are closed
  *       when the GPIO pin is set high.
  *
- * @author Sondre
- * @date 2025-03-24
+ * @date 2025-05-12
  */
 
 static const char *TAG = "SAFETY_TASK"; /**< Tag for logging messages from the safety task. */

@@ -10,8 +10,8 @@
  * and constant power (CP) modes. The task interacts with other tasks via queues
  * and event groups.
  *
- * @author Sondre
- * @date 2025-03-24
+ *
+ * @date 2025-05-12
  */
 
 /**

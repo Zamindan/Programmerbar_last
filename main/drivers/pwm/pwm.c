@@ -12,8 +12,7 @@
  * the PWM duty cycle using the ESP32 LEDC peripheral. The PWM is configured to
  * operate on a specific GPIO pin with a defined frequency and resolution.
  *
- * @author Sondre
- * @date 2025-03-21
+ * @date 2025-05-12
  */
 
 static const char *TAG = "PWM"; /**< Tag for logging messages from the PWM module. */

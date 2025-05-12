@@ -41,8 +41,8 @@
  * retrieving measurements, updating setpoints, starting/stopping the load,
  * and configuring safety parameters.
  *
- * @author Sondre
- * @date 2025-03-24
+ *
+ * @date 2025-05-12
  */
 
 

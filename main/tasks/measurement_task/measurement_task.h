@@ -12,8 +12,8 @@
  * for reading sensor data (voltage, current, temperature) and processing it into
  * usable values. The task communicates with other tasks via FreeRTOS queues.
  *
- * @author Sondre
- * @date 2025-03-24
+ *
+ * @date 2025-05-12
  */
 
 /**
