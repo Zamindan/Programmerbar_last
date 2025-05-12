@@ -19,9 +19,6 @@
  *
  * @date 2025-05-12
  */
-
-
-
 static const char* TAG = "I2C";
 
 /**
