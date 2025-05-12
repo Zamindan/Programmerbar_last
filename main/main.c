@@ -7,66 +7,90 @@
 #include "esp_heap_caps.h"
 #include <inttypes.h>
 
-#include "spi.c"
-#include "FT812.c"
+#include "spi.h"
+#include "FT812.h"
 
 #define SPI_TAG "SPI"
 #define LCD_TAG "LCD"
 
 #define SPI_HOST SPI2_HOST // Use SPI2 (HSPI)
-#define GPIO_MISO GPIO_NUM_13
-#define GPIO_MOSI GPIO_NUM_11
-#define GPIO_SCLK GPIO_NUM_12
-#define GPIO_CS GPIO_NUM_10
-#define GPIO_PD GPIO_NUM_8 // Power Down (PD#) Pin
+#define SPI_MISO_PIN GPIO_NUM_13
+#define SPI_MOSI_PIN GPIO_NUM_11
+#define SPI_SCLK_PIN GPIO_NUM_12
+#define SPI_CS_PIN GPIO_NUM_10
+#define PD_PIN GPIO_NUM_8 // Power Down (PD#) Pin
 
-#define GPIO_LED_RED 38
+#define GPIO_LED_RED 37
 #define GPIO_LED_GREEN 36
+
+spi_device_handle_t spi_handle;
 
 void ft812_init()
 {
-    gpio_set_direction(GPIO_PD, GPIO_MODE_OUTPUT); // Set PD pin as output
-    gpio_set_level(GPIO_PD, 0);    // Set PD pin low
-    vTaskDelay(pdMS_TO_TICKS(20)); // Wait for 20ms
-    gpio_set_level(GPIO_PD, 1);    // Set PD pin high
-    vTaskDelay(pdMS_TO_TICKS(20)); // Wait for another 20ms
+    // Turn on the FT812 chip
+    gpio_set_direction(PD_PIN, GPIO_MODE_OUTPUT); 
+    gpio_set_level(PD_PIN, 0);    
+    vTaskDelay(pdMS_TO_TICKS(20));
+    gpio_set_level(PD_PIN, 1);    
+    vTaskDelay(pdMS_TO_TICKS(20)); 
 
-    host_command(ACTIVE);           // send host command "ACTIVE" to FT81X
-    vTaskDelay(pdMS_TO_TICKS(300)); // Wait for 300ms
+    host_command(ACTIVE);          
+    vTaskDelay(pdMS_TO_TICKS(300)); 
 
     
     // Configure video time registers
-    spi_write_16(REG_HSIZE, 800);  // horizontal resolution
-    spi_write_16(REG_HCYCLE, 928); // number of clocks per line
-    spi_write_16(REG_HOFFSET, 88); // horizontal offset from starting signal
-    spi_write_16(REG_HSYNC0, 0);   // hsync falls after this clock
-    spi_write_16(REG_HSYNC1, 48);  // hsync rises after this clock
+    spi_write_16(REG_HSIZE, 800);  
+    spi_write_16(REG_HCYCLE, 928); 
+    spi_write_16(REG_HOFFSET, 88); 
+    spi_write_16(REG_HSYNC0, 0);   
+    spi_write_16(REG_HSYNC1, 48);  
 
-    spi_write_16(REG_VSIZE, 480);  // vertical resolution
-    spi_write_16(REG_VCYCLE, 525); // number of clocks per line
-    spi_write_16(REG_VOFFSET, 32); // vertical offset from starting signal
-    spi_write_16(REG_VSYNC0, 0);   // vsync falls after this clock
-    spi_write_16(REG_VSYNC1, 3);   // vsync rises after this clock
+    spi_write_16(REG_VSIZE, 480);  
+    spi_write_16(REG_VCYCLE, 525); 
+    spi_write_16(REG_VOFFSET, 32); 
+    spi_write_16(REG_VSYNC0, 0);   
+    spi_write_16(REG_VSYNC1, 3);   
 
-    spi_write_8(REG_SWIZZLE, 0); // no swizzle
+    spi_write_8(REG_SWIZZLE, 0); 
     spi_write_8(REG_PCLK_POL, 0);
-    spi_write_8(REG_CSPREAD, 0); // spread spectrum on
-    spi_write_8(REG_DITHER, 1);  // dithering on
+    spi_write_8(REG_CSPREAD, 0); 
+    spi_write_8(REG_DITHER, 1);  
 
-    // write first display list
-    spi_write_32(RAM_DL + 0, CLEAR_COLOR_RGB(255, 0, 0));
+ 
+    spi_write_32(RAM_DL + 0, CLEAR_COLOR_RGB(0, 0, 0));
 
     spi_write_32(RAM_DL + 4, CLEAR(1, 1, 1));
     spi_write_32(RAM_DL + 8, DISPLAY());
 
-    spi_write_8(REG_DLSWAP, 2); // display list swap
+    spi_write_8(REG_DLSWAP, 2); 
     spi_write_8(REG_GPIO_DIR, 0x80 | spi_read_8(REG_GPIO_DIR));
-    spi_write_8(REG_GPIO, 0x080 | spi_read_8(REG_GPIO)); // enable display bit
+    spi_write_8(REG_GPIO, 0x080 | spi_read_8(REG_GPIO)); 
 
-    spi_write_8(REG_PCLK, 2); // after this display is visible on the LCD*/
+    spi_write_8(REG_PCLK, 2); 
 } 
 
  
+
+void indicator_active(){
+    gpio_set_level(GPIO_LED_RED, 0);   // Turn off red LED
+    gpio_set_level(GPIO_LED_GREEN, 1); // Turn on green LED
+}
+
+void indicator_standby(){
+        gpio_set_level(GPIO_LED_GREEN, 0); // Turn off green LED
+        gpio_set_level(GPIO_LED_RED, 1); // Turn on green LED
+        vTaskDelay(pdMS_TO_TICKS(1000)); // Wait for 1 second
+        gpio_set_level(GPIO_LED_RED, 0); // Turn off green LED
+        vTaskDelay(pdMS_TO_TICKS(1000)); // Wait for 1 second
+    }
+
+void indicator_alert(){
+    gpio_set_level(GPIO_LED_RED, 1);   // Turn on red LED
+    gpio_set_level(GPIO_LED_GREEN, 0); // Turn off green LED
+};
+
+
+// Function to display text on the screen
 void display_text()
 {
     spi_write_32(RAM_DL + 0, CLEAR(1, 1, 1));                // clear screen
@@ -84,43 +108,44 @@ void display_text()
     spi_write_32(RAM_DL + 48, DISPLAY());
 }
 
+
 void app_main()
 {
-    spi_init(GPIO_SCLK, GPIO_MOSI, GPIO_MISO, SPI2_HOST);
-    spi_add_device(100000, 0, 0, 1, GPIO_CS, SPI2_HOST);
+    spi_init(SPI_SCLK_PIN, SPI_MOSI_PIN, SPI_MISO_PIN, SPI2_HOST);
+    spi_add_device(10000, 0, 0, 1, SPI_CS_PIN, SPI2_HOST);
+
     ft812_init();
 
+    gpio_set_direction(GPIO_LED_RED, GPIO_MODE_OUTPUT); // Set PD pin as output
+    gpio_set_direction(GPIO_LED_GREEN, GPIO_MODE_OUTPUT); // Set PD pin as output
+
     // Configure video time registers
-    spi_read_16(REG_HSIZE);   // horizontal resolution
-    spi_read_16(REG_HCYCLE);  // number of clocks per line
-    spi_read_16(REG_HOFFSET); // horizontal offset from starting signal
-    spi_read_16(REG_HSYNC0);  // hsync falls after this clock
-    spi_read_16(REG_HSYNC1);  // hsync rises after this clock
+    spi_read_16(REG_HSIZE);   
+    spi_read_16(REG_HCYCLE);  
+    spi_read_16(REG_HOFFSET); 
+    spi_read_16(REG_HSYNC0);  
+    spi_read_16(REG_HSYNC1);  
 
-    spi_read_16(REG_VSIZE);   // vertical resolution
-    spi_read_16(REG_VCYCLE);  // number of clocks per line
-    spi_read_16(REG_VOFFSET); // vertical offset from starting signal
-    spi_read_16(REG_VSYNC0);  // vsync falls after this clock
-    spi_read_16(REG_VSYNC1);  // vsync rises after this clock
+    spi_read_16(REG_VSIZE);   
+    spi_read_16(REG_VCYCLE);  
+    spi_read_16(REG_VOFFSET); 
+    spi_read_16(REG_VSYNC0);  
+    spi_read_16(REG_VSYNC1);  
 
-    spi_read_8(REG_SWIZZLE); // no swizzle
+    spi_read_8(REG_SWIZZLE); 
     spi_read_8(REG_PCLK_POL);
-    spi_read_8(REG_CSPREAD); // spread spectrum on
-    spi_read_8(REG_DITHER);  // dithering on
+    spi_read_8(REG_CSPREAD); 
+    spi_read_8(REG_DITHER); 
 
-    vTaskDelay(pdMS_TO_TICKS(10000));
-    gpio_set_direction(GPIO_LED_RED, GPIO_MODE_OUTPUT);
-    gpio_set_direction(GPIO_LED_GREEN, GPIO_MODE_OUTPUT);
+    display_text();
 
-    // display_text();
+    spi_write_32(REG_PWM_HZ, 1000);  
+    spi_write_8(REG_PWM_DUTY, 128);   
+    
 
     while (1)
     {
-        gpio_set_level(GPIO_LED_RED, 1);
-        gpio_set_level(GPIO_LED_GREEN, 1);
-        vTaskDelay(pdMS_TO_TICKS(1000));
-        gpio_set_level(GPIO_LED_RED, 0);
-        gpio_set_level(GPIO_LED_GREEN, 0);
-        display_text();
+        vTaskDelay(pdMS_TO_TICKS(1000)); // Wait for 1 second
     }
 }
+

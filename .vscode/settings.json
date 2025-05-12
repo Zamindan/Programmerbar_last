@@ -58,7 +58,8 @@
         "control_task.h": "c",
         "cjson.h": "c",
         "LCD.C": "cpp",
-        "FT81x.C": "cpp"
+        "FT81x.C": "cpp",
+        "cstdint": "c"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "C_Cpp.dimInactiveRegions": false,

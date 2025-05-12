@@ -1,3 +1,5 @@
+#ifndef FT812_H
+
 #include <stdio.h>
 #include "driver/spi_master.h"
 #include "driver/gpio.h"
@@ -15,18 +17,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
-
 #define LCD_TAG "LCD"
-
-#define SPI_HOST SPI2_HOST // Use SPI2
-#define GPIO_MISO GPIO_NUM_13
-#define GPIO_MOSI GPIO_NUM_11
-#define GPIO_SCLK GPIO_NUM_12
-#define GPIO_CS GPIO_NUM_10
-#define GPIO_PD GPIO_NUM_8 
-
-#define GPIO_LED_RED 38
-#define GPIO_LED_GREEN 36
 
 // Memory map (Start addresses)
 #define RAM_G 0x000000
@@ -136,42 +127,25 @@
 #define EDGE_STRIP_B 8 
 #define RECTS 9        
 
+uint32_t BEGIN(uint8_t prim);
+
+uint32_t CLEAR_COLOR_RGB(uint8_t red, uint8_t green, uint8_t blue);
 
 
-uint32_t BEGIN(uint8_t prim)
-{
-    return 0x1F000000 | (prim & 0xF);
-}
+uint32_t CLEAR(uint8_t c, uint8_t s, uint8_t t);
 
-uint32_t CLEAR_COLOR_RGB(uint8_t red, uint8_t green, uint8_t blue)
-{
-    return 0x02000000 | (red << 16) | (blue << 8) | green;
-}
 
-uint32_t CLEAR(uint8_t c, uint8_t s, uint8_t t)
-{
-    return 0x26000000 | (c << 2) | (s << 1) | t;
-}
+uint32_t COLOR_RGB(uint8_t red, uint8_t green, uint8_t blue);
 
-uint32_t COLOR_RGB(uint8_t red, uint8_t green, uint8_t blue)
-{
-    return 0x04000000 | (red << 16) | (blue << 8) | green;
-}
 
-uint32_t POINT_SIZE(uint16_t size)
-{
-    return 0x0D000000 | size;
-}
+uint32_t POINT_SIZE(uint16_t size);
 
-uint32_t DISPLAY()
-{
-    return 0x00000000;
-}
-uint32_t END()
-{
-    return 0x21000000;
-}
-uint32_t VERTEX2II(uint16_t x, uint16_t y, uint8_t handle, uint8_t cell)
-{
-    return 0x40000000 | ((x & 0x1FF) << 21) | ((y & 0x1FF) << 12) | ((handle & 0x1F) << 7) | (cell & 0x7F);
-}
+
+uint32_t DISPLAY();
+
+uint32_t END();
+
+
+uint32_t VERTEX2II(uint16_t x, uint16_t y, uint8_t handle, uint8_t cell);
+
+#endif
