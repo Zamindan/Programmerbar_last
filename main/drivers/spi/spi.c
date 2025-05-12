@@ -9,10 +9,8 @@
 
 /**
  * @file SPI.c
- * @brief Functions for basic I2C functionaility.
- *
+ * @brief Functions for basic SPI functionaility.
  * The file contains the source code for SPI initilisation, device addition and data transmission functions.
- * 
  * @date 2025-04-15
  */
 
@@ -42,11 +40,11 @@ void spi_init(gpio_num_t SCLK, gpio_num_t MOSI, gpio_num_t MISO, spi_host_device
 void spi_add_device(int clk_speed, int duty_val, int spi_mode, int spi_queue_size, gpio_num_t CS, spi_host_device_t SPI_HOST)
 {
     spi_device_interface_config_t device_config = {
-        .clock_speed_hz = clk_speed,  // Velg klokkehastighet
-        .duty_cycle_pos = duty_val,   //
-        .mode = spi_mode,             // CPOL og CPHA (0 - 3)
-        .queue_size = spi_queue_size, // Definer køstørrelse
-        .spics_io_num = CS,           // Velg CS-pin
+        .clock_speed_hz = clk_speed,  
+        .duty_cycle_pos = duty_val,  
+        .mode = spi_mode,             
+        .queue_size = spi_queue_size, 
+        .spics_io_num = CS,           
     };
 
     esp_err_t check_spi_add_device = spi_bus_add_device(SPI_HOST, &device_config, &spi_handle);
